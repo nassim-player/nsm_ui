@@ -1,0 +1,135 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.dir-task-filters {
+    background: var(--cards-color);
+    border-radius: 24px;
+    padding: 28px;
+    border: 2px solid rgba(148, 163, 184, 0.15);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.dir-task-filters-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.dir-task-filters-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.dir-task-filters-title-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #eef2ff, #e0f2fe);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary-dark);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.filter-title-text {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-slate-900);
+    margin: 0;
+}
+
+.dir-task-filters-subtitle {
+    font-size: 0.8rem;
+    color: var(--color-slate-500);
+    margin-top: 4px;
+}
+
+.btn-secondary-small {
+    background: linear-gradient(135deg, var(--cards-color) 0%, var(--color-slate-50) 100%);
+    color: var(--color-slate-600);
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border: 2px solid rgba(148, 163, 184, 0.25);
+    cursor: pointer;
+    @include transition;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    &:hover {
+        background: linear-gradient(135deg, var(--color-slate-50) 0%, var(--color-slate-100) 100%);
+        border-color: var(--color-slate-400);
+        transform: translateY(-1px);
+    }
+}
+
+.dir-task-filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.dir-task-filter-chip {
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--color-slate-100), var(--color-slate-200));
+    color: var(--color-slate-600);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    @include transition;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+
+    &:hover {
+        background: linear-gradient(135deg, var(--color-slate-200), var(--color-slate-300));
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .close-icon {
+        cursor: pointer;
+        opacity: 0.6;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+.dir-task-filter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+
+    @include mobile {
+        grid-template-columns: 1fr;
+    }
+}
+
+.dir-task-field-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-slate-400);
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Styles for inputs inside the filter grid are usually the same as global inputs
+   but we can enforce specific styles here if needed. 
+   Using .dir-task-select and .dir-task-search classes from HTML if standard Inputs aren't used.
+   However, we should encourage reusing InputField/SelectField components.
+*/

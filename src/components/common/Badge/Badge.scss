@@ -1,0 +1,82 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-fast);
+
+    &:hover {
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-md);
+    }
+}
+
+/* Status Badges */
+.badge-status-completed {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+}
+
+.badge-status-inprogress {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+}
+
+.badge-status-pending {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+}
+
+.badge-status-cancelled {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+}
+
+/* Priority Badges */
+.badge-priority-critical {
+    background: linear-gradient(135deg, #dc2626, #991b1b);
+    color: white;
+}
+
+.badge-priority-high {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+}
+
+.badge-priority-medium {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+}
+
+.badge-priority-low {
+    background: linear-gradient(135deg, #94a3b8, #64748b);
+    color: white;
+}
+
+/* General Badges */
+.badge-success {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+}
+
+.badge-warning {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+}
+
+.badge-error {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+}
+
+.badge-info {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+}

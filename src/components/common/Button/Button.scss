@@ -1,0 +1,105 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+/* Primary Button */
+.btn-primary {
+    background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+    color: white;
+    padding: 14px 32px;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border: none;
+    cursor: pointer;
+    @include transition;
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s ease;
+    }
+
+    &:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 12px 30px rgba(59, 130, 246, 0.4);
+        filter: brightness(1.05);
+
+        &::before {
+            left: 100%;
+        }
+    }
+
+    &:active {
+        transform: translateY(0) scale(0.98);
+    }
+}
+
+/* Secondary Button */
+.btn-secondary {
+    background: linear-gradient(135deg, var(--cards-color) 0%, var(--color-slate-50) 100%);
+    color: var(--color-slate-600);
+    padding: 14px 32px;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 2px solid rgba(148, 163, 184, 0.25);
+    cursor: pointer;
+    @include transition;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: var(--shadow-sm);
+
+    &:hover {
+        background: linear-gradient(135deg, var(--color-slate-50) 0%, var(--color-slate-100) 100%);
+        border-color: var(--color-slate-400);
+        color: var(--color-slate-800);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+}
+
+/* Icon Button */
+.icon-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(59, 130, 246, 0.1);
+    border: none;
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    @include transition(all, 0.2s cubic-bezier(0.4, 0, 0.2, 1));
+
+    &:hover {
+        background: var(--color-primary);
+        color: white;
+        transform: scale(1.1);
+    }
+
+    /* Danger variant (Red) */
+    &-danger {
+        background: rgba(239, 68, 68, 0.1);
+        color: var(--color-error);
+
+        &:hover {
+            background: var(--color-error);
+            color: white;
+        }
+    }
+}

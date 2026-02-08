@@ -1,0 +1,64 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.tabs-container {
+    background: var(--cards-color);
+    border-radius: 20px;
+    border: 2px solid rgba(148, 163, 184, 0.15);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.tabs-header {
+    display: flex;
+    gap: 8px;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--color-slate-50) 0%, var(--color-slate-100) 100%);
+    border-bottom: 2px solid rgba(148, 163, 184, 0.1);
+    overflow-x: auto;
+    /* Handle overflow on small screens */
+
+    /* Hide scrollbar */
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.director-tab {
+    border-radius: 16px;
+    padding: 14px 28px;
+    border: 2px solid rgba(148, 163, 184, 0.2);
+    background: linear-gradient(135deg, var(--cards-color) 0%, var(--color-slate-50) 100%);
+    color: var(--color-slate-600);
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    @include transition;
+    box-shadow: var(--shadow-sm);
+    white-space: nowrap;
+
+    &:hover {
+        background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-secondary-light) 100%);
+        color: var(--color-primary);
+        border-color: rgba(59, 130, 246, 0.3);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+
+    &.active {
+        background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+        color: white;
+        border-color: transparent;
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.35);
+        transform: translateY(-2px);
+    }
+}
+
+.tabs-content {
+    padding: 24px;
+}

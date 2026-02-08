@@ -1,0 +1,108 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.quick-links-bar {
+    margin-bottom: 24px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    /* Space for scrollbar or shadow */
+
+    /* Hide scrollbar */
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.quick-links-container {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.quick-link-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    background: var(--cards-color);
+    border-radius: 12px;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    color: var(--color-slate-600);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    white-space: nowrap;
+    @include transition;
+    box-shadow: var(--shadow-sm);
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+        color: var(--color-primary);
+        border-color: rgba(59, 130, 246, 0.3);
+
+        .quick-link-icon {
+            background: var(--color-primary);
+            color: white;
+        }
+    }
+
+    &.active {
+        background: linear-gradient(135deg, var(--color-primary-light), var(--color-secondary-light));
+        color: #fff;
+        border-color: rgba(59, 130, 246, 0.3);
+
+        .quick-link-icon {
+            background: var(--color-primary);
+            color: white;
+        }
+    }
+
+    &.primary {
+        background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+        color: white;
+        border: none;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+
+        .quick-link-icon {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+        }
+    }
+}
+
+.quick-link-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--color-slate-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include transition;
+    position: relative;
+}
+
+.quick-link-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: var(--color-error);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    min-width: 16px;
+    height: 16px;
+    border-radius: 99px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--cards-color);
+}

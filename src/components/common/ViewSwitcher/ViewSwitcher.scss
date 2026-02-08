@@ -1,0 +1,39 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.view-switcher {
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    background: var(--cards-color);
+    border-radius: 16px;
+    border: 2px solid rgba(148, 163, 184, 0.15);
+    box-shadow: var(--shadow-sm);
+    width: fit-content;
+}
+
+.view-btn {
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: none;
+    background: transparent;
+    color: var(--color-slate-600);
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    @include transition;
+
+    &:hover {
+        background: var(--color-slate-100);
+        color: var(--color-slate-900);
+    }
+
+    &.active {
+        background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+        color: white;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
+}

@@ -1,0 +1,401 @@
+:root {
+  /* Primary Colors */
+  --color-primary: #3b82f6;
+  --color-primary-dark: #2563eb;
+  --color-primary-light: #60a5fa;
+  /* Secondary Colors */
+  --color-secondary: #8b5cf6;
+  --color-secondary-dark: #7c3aed;
+  --color-secondary-light: #a78bfa;
+  /* Neutral Colors */
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  /* Status Colors */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  /* Border Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --shadow-xl: 0 20px 40px rgba(15, 23, 42, 0.12);
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --primary-color: #1f94c2;
+  --secondary-color: #2c3e50;
+  --bacground-color: #fff;
+  --cards-color: #fff;
+  --cards-color-2: #ffffff;
+  --content-color: #f8f9fa;
+  --text-color: #000305;
+  --vec-color-hover: #33333317;
+  --vec-color-lighter: #3e4448;
+  --vec-color: #333;
+  --vec-color-better: #6057579c;
+  --light-gray: #e0e0e0;
+  --mid-gray: #666;
+  --dark-gray: #555;
+  --srv-gray: #888888;
+  --titel-gray: #999999;
+  --off-white: #f8f9fa;
+  --off-white-tb2t: rgba(0, 0, 0, 0.484);
+  --idk-border: #e3f2fd;
+  --idk: linear-gradient(135deg, #f8fbff 0%, #e3f2fd 100%);
+  --glass-background-zero: rgba(255, 255, 255, 0.93);
+  --glass-background-uno-zero: rgba(232, 232, 232, 0.86);
+  --glass-border-zero: rgba(255, 255, 255, 0.495);
+  --glass-background-uno: rgba(255, 255, 255, 0.69);
+  --glass-background-uno-hover: rgba(232, 232, 232, 0.727);
+  --glass-border-uno: rgba(255, 255, 255, 0.36);
+  --glass-background-dos: rgba(255, 255, 255, 0.2);
+  --glass-border-dos: rgba(255, 255, 255, 0.3);
+  --gradient-start: #3b82f6;
+  --gradient-end: #6366f1;
+  /* Header Fluid Variables */
+  --header-bg-gradient: radial-gradient(circle at top left, #f0f9ff, #e3f2fd);
+  --blob-1-color: var(--primary-color);
+  --blob-2-color: #4facfe;
+  --blob-3-color: #00f2fe;
+  --glass-panel-bg: rgba(255, 255, 255, 0.25);
+  --glass-panel-border: rgba(255, 255, 255, 0.4);
+  --glass-panel-shadow: rgba(31, 38, 135, 0.1);
+}
+
+.dark-mode {
+  /* Primary Colors */
+  --color-primary: #60a5fa;
+  --color-primary-dark: #3b82f6;
+  --color-primary-light: #93c5fd;
+  /* Secondary Colors */
+  --color-secondary: #a78bfa;
+  --color-secondary-dark: #8b5cf6;
+  --color-secondary-light: #c4b5fd;
+  /* Neutral Colors - Inverted for dark mode */
+  --color-slate-50: #0f172a;
+  --color-slate-100: #1e293b;
+  --color-slate-200: #334155;
+  --color-slate-300: #475569;
+  --color-slate-400: #64748b;
+  --color-slate-500: #94a3b8;
+  --color-slate-600: #cbd5e1;
+  --color-slate-700: #e2e8f0;
+  --color-slate-800: #f1f5f9;
+  --color-slate-900: #f8fafc;
+  /* Status Colors - Slightly brighter for dark mode visibility */
+  --color-success: #34d399;
+  --color-warning: #fbbf24;
+  --color-error: #f87171;
+  --color-info: #60a5fa;
+  /* Shadows - Darker for dark mode */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.6);
+  --primary-color: #23a3d6;
+  --secondary-color: #bebebe;
+  --bacground-color: #2d2b2b;
+  --text-color: #f2f2f2c7;
+  --vec-color: #ededed;
+  --cards-color: #3f3f3f;
+  --cards-color-2: #373737;
+  --content-color: #3f3f3f;
+  --vec-color-hover: #e2e2e234;
+  --vec-color-lighter: #adadad;
+  --vec-color-better: #fff;
+  --light-gray: #707070;
+  --mid-gray: #ababab;
+  --dark-gray: #c4c4c4;
+  --srv-gray: #ffffff;
+  --titel-gray: #c4c4c4;
+  --off-white: #616262;
+  --off-white-tb2t: rgba(241, 241, 241, 0.793);
+  --idk: linear-gradient(135deg, #1a1f2b 0%, #2a374e 100%);
+  --idk-border: #1f2a3d;
+  /* Glass Zero - Dark Mode */
+  --glass-background-zero: rgba(30, 30, 30, 0.95);
+  --glass-background-uno-zero: rgba(50, 50, 50, 0.9);
+  --glass-border-zero: rgba(255, 255, 255, 0.1);
+  --glass-background-uno: rgba(0, 0, 0, 0.5);
+  --glass-background-uno-hover: rgba(59, 59, 59, 0.5);
+  --glass-border-uno: rgba(255, 255, 255, 0.15);
+  --glass-background-dos: rgba(0, 0, 0, 0.35);
+  --glass-border-dos: rgba(255, 255, 255, 0.1);
+  /* Header Fluid Variables - Dark Mode */
+  --header-bg-gradient: radial-gradient(circle at top left, #1a1f2b, #0f172a);
+  --blob-1-color: #0c4a6e;
+  --blob-2-color: #0369a1;
+  --blob-3-color: #0284c7;
+  --glass-panel-bg: rgba(30, 41, 59, 0.4);
+  --glass-panel-border: rgba(255, 255, 255, 0.1);
+  --glass-panel-shadow: rgba(0, 0, 0, 0.3);
+}
+
+:root {
+  /* Primary Colors */
+  --color-primary: #3b82f6;
+  --color-primary-dark: #2563eb;
+  --color-primary-light: #60a5fa;
+  /* Secondary Colors */
+  --color-secondary: #8b5cf6;
+  --color-secondary-dark: #7c3aed;
+  --color-secondary-light: #a78bfa;
+  /* Neutral Colors */
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  /* Status Colors */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  /* Border Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --shadow-xl: 0 20px 40px rgba(15, 23, 42, 0.12);
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --primary-color: #1f94c2;
+  --secondary-color: #2c3e50;
+  --bacground-color: #fff;
+  --cards-color: #fff;
+  --cards-color-2: #ffffff;
+  --content-color: #f8f9fa;
+  --text-color: #000305;
+  --vec-color-hover: #33333317;
+  --vec-color-lighter: #3e4448;
+  --vec-color: #333;
+  --vec-color-better: #6057579c;
+  --light-gray: #e0e0e0;
+  --mid-gray: #666;
+  --dark-gray: #555;
+  --srv-gray: #888888;
+  --titel-gray: #999999;
+  --off-white: #f8f9fa;
+  --off-white-tb2t: rgba(0, 0, 0, 0.484);
+  --idk-border: #e3f2fd;
+  --idk: linear-gradient(135deg, #f8fbff 0%, #e3f2fd 100%);
+  --glass-background-zero: rgba(255, 255, 255, 0.93);
+  --glass-background-uno-zero: rgba(232, 232, 232, 0.86);
+  --glass-border-zero: rgba(255, 255, 255, 0.495);
+  --glass-background-uno: rgba(255, 255, 255, 0.69);
+  --glass-background-uno-hover: rgba(232, 232, 232, 0.727);
+  --glass-border-uno: rgba(255, 255, 255, 0.36);
+  --glass-background-dos: rgba(255, 255, 255, 0.2);
+  --glass-border-dos: rgba(255, 255, 255, 0.3);
+  --gradient-start: #3b82f6;
+  --gradient-end: #6366f1;
+  /* Header Fluid Variables */
+  --header-bg-gradient: radial-gradient(circle at top left, #f0f9ff, #e3f2fd);
+  --blob-1-color: var(--primary-color);
+  --blob-2-color: #4facfe;
+  --blob-3-color: #00f2fe;
+  --glass-panel-bg: rgba(255, 255, 255, 0.25);
+  --glass-panel-border: rgba(255, 255, 255, 0.4);
+  --glass-panel-shadow: rgba(31, 38, 135, 0.1);
+}
+
+.dark-mode {
+  /* Primary Colors */
+  --color-primary: #60a5fa;
+  --color-primary-dark: #3b82f6;
+  --color-primary-light: #93c5fd;
+  /* Secondary Colors */
+  --color-secondary: #a78bfa;
+  --color-secondary-dark: #8b5cf6;
+  --color-secondary-light: #c4b5fd;
+  /* Neutral Colors - Inverted for dark mode */
+  --color-slate-50: #0f172a;
+  --color-slate-100: #1e293b;
+  --color-slate-200: #334155;
+  --color-slate-300: #475569;
+  --color-slate-400: #64748b;
+  --color-slate-500: #94a3b8;
+  --color-slate-600: #cbd5e1;
+  --color-slate-700: #e2e8f0;
+  --color-slate-800: #f1f5f9;
+  --color-slate-900: #f8fafc;
+  /* Status Colors - Slightly brighter for dark mode visibility */
+  --color-success: #34d399;
+  --color-warning: #fbbf24;
+  --color-error: #f87171;
+  --color-info: #60a5fa;
+  /* Shadows - Darker for dark mode */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.6);
+  --primary-color: #23a3d6;
+  --secondary-color: #bebebe;
+  --bacground-color: #2d2b2b;
+  --text-color: #f2f2f2c7;
+  --vec-color: #ededed;
+  --cards-color: #3f3f3f;
+  --cards-color-2: #373737;
+  --content-color: #3f3f3f;
+  --vec-color-hover: #e2e2e234;
+  --vec-color-lighter: #adadad;
+  --vec-color-better: #fff;
+  --light-gray: #707070;
+  --mid-gray: #ababab;
+  --dark-gray: #c4c4c4;
+  --srv-gray: #ffffff;
+  --titel-gray: #c4c4c4;
+  --off-white: #616262;
+  --off-white-tb2t: rgba(241, 241, 241, 0.793);
+  --idk: linear-gradient(135deg, #1a1f2b 0%, #2a374e 100%);
+  --idk-border: #1f2a3d;
+  /* Glass Zero - Dark Mode */
+  --glass-background-zero: rgba(30, 30, 30, 0.95);
+  --glass-background-uno-zero: rgba(50, 50, 50, 0.9);
+  --glass-border-zero: rgba(255, 255, 255, 0.1);
+  --glass-background-uno: rgba(0, 0, 0, 0.5);
+  --glass-background-uno-hover: rgba(59, 59, 59, 0.5);
+  --glass-border-uno: rgba(255, 255, 255, 0.15);
+  --glass-background-dos: rgba(0, 0, 0, 0.35);
+  --glass-border-dos: rgba(255, 255, 255, 0.1);
+  /* Header Fluid Variables - Dark Mode */
+  --header-bg-gradient: radial-gradient(circle at top left, #1a1f2b, #0f172a);
+  --blob-1-color: #0c4a6e;
+  --blob-2-color: #0369a1;
+  --blob-3-color: #0284c7;
+  --glass-panel-bg: rgba(30, 41, 59, 0.4);
+  --glass-panel-border: rgba(255, 255, 255, 0.1);
+  --glass-panel-shadow: rgba(0, 0, 0, 0.3);
+}
+
+/* Mixins */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-fast);
+}
+.badge:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Status Badges */
+.badge-status-completed {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+}
+
+.badge-status-inprogress {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+}
+
+.badge-status-pending {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+}
+
+.badge-status-cancelled {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+}
+
+/* Priority Badges */
+.badge-priority-critical {
+  background: linear-gradient(135deg, #dc2626, #991b1b);
+  color: white;
+}
+
+.badge-priority-high {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+}
+
+.badge-priority-medium {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+}
+
+.badge-priority-low {
+  background: linear-gradient(135deg, #94a3b8, #64748b);
+  color: white;
+}
+
+/* General Badges */
+.badge-success {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+}
+
+.badge-warning {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+}
+
+.badge-error {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+}
+
+.badge-info {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+}/*# sourceMappingURL=Badge.css.map */

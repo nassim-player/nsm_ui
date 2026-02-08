@@ -1,0 +1,80 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+
+    label {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--color-slate-800);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        &::before {
+            content: '';
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+            border-radius: 50%;
+        }
+    }
+
+    input[type="text"],
+    input[type="date"],
+    select,
+    textarea {
+        width: 100%;
+        padding: 1rem 1.25rem;
+        border: 2px solid var(--color-slate-200);
+        border-radius: 14px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: var(--color-slate-900);
+        background: linear-gradient(135deg, var(--cards-color) 0%, var(--color-slate-50) 100%);
+        @include transition;
+        outline: none;
+        box-shadow: var(--shadow-sm);
+        font-family: inherit;
+
+        &:hover {
+            border-color: var(--color-slate-300);
+            box-shadow: var(--shadow-md);
+        }
+
+        &:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12), var(--shadow-lg);
+            background: var(--cards-color);
+            transform: translateY(-1px);
+        }
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 120px;
+        line-height: 1.6;
+    }
+
+    select {
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: left 1rem center;
+        background-size: 1.25rem;
+        padding-left: 2.75rem;
+
+        [dir="rtl"] & {
+            background-position: right 1rem center;
+            padding-left: 1.25rem;
+            padding-right: 2.75rem;
+        }
+    }
+}

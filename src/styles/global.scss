@@ -1,0 +1,46 @@
+@use 'variables';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--text-color);
+    background: var(--bacground-color);
+    line-height: 1.6;
+    direction: rtl;
+    text-align: right;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &.dark-mode {
+        background: radial-gradient(circle at top, rgba(59, 130, 246, 0.08), transparent 45%), var(--bacground-color);
+    }
+}
+
+/* Utility Classes */
+.flex {
+    display: flex;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.gap-6 {
+    gap: 1.5rem;
+}
+
+.hidden {
+    display: none;
+}

@@ -1,0 +1,19 @@
+@import "../../styles/mixins.scss";
+
+.registration-requests {
+    .page-header {
+        margin-bottom: 1.5rem;
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.375rem;
+        }
+
+        p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+    }
+}

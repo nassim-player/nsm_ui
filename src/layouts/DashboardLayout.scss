@@ -1,0 +1,28 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.dashboard-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+    padding: 24px;
+    width: 100%;
+    /* Ensure full width */
+
+    /* Account for sidebar width (RTL Default) */
+    margin-right: 64px;
+    margin-left: 0;
+
+    /* LTR Override */
+    [dir="ltr"] & {
+        margin-right: 0;
+        margin-left: 64px;
+    }
+}
+
+.content-area {
+    /* Space for content */
+}

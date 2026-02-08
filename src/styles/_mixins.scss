@@ -1,0 +1,192 @@
+@import 'variables';
+/* Mixins */
+
+@mixin flex($align: center, $justify: center, $direction: row, $gap: 0) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    flex-direction: $direction;
+    gap: $gap;
+}
+
+@mixin transition($property: all, $duration: var(--transition-base)) {
+    transition: $property $duration;
+}
+
+@mixin card-base {
+    box-shadow: var(--shadow-md);
+}
+
+@mixin mobile {
+    @media (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin glass-zero {
+    backdrop-filter: blur(8.2px);
+    background: var(--glass-background-zero);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    -webkit-backdrop-filter: blur(8.2px);
+    border: 1px solid var(--glass-border-zero);
+}
+
+@mixin glass-uno {
+    backdrop-filter: blur(8.2px);
+    background: var(--glass-background-uno);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    -webkit-backdrop-filter: blur(8.2px);
+    border: 1px solid var(--glass-border-uno);
+}
+
+@mixin glass-dos {
+    background: var(--glass-background-dos);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid var(--glass-boder-dos);
+}
+
+@mixin shadow {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+@mixin hover-animation {
+    transition: all 0.3s ease;
+    //border: 2px solid transparent;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(12, 148, 201, 0.2);
+        //border-color: #0C94C9;
+    }
+}
+
+@mixin form-input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid var(--light-gray);
+    border-radius: $border-radius-medium;
+    font-size: 16px;
+    transition: all $transition-speed;
+    background: var(--cards-color);
+    direction: rtl;
+    text-align: right;
+    color: var(--text-color);
+
+    &:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(74, 155, 142, 0.1);
+    }
+}
+
+@mixin section-container {
+    background: var(--off-white);
+    padding: 30px;
+    border-radius: $border-radius-large;
+}
+
+
+// From Mixins 
+
+@mixin button-base {
+    border: none;
+    border-radius: $border-radius-medium;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all $transition-speed;
+    padding: 15px 30px;
+    min-width: 120px;
+}
+
+@mixin button-hover-effect {
+    &:hover {
+        transform: translateY(-2px);
+    }
+
+    &:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+        transform: none;
+    }
+}
+
+@mixin section-container {
+    background: var(--off-white);
+    padding: 30px;
+    border-radius: $border-radius-large;
+}
+
+@mixin card {
+    background: var(--cards-color-2);
+    padding: 20px;
+    border-radius: $border-radius-medium;
+    margin-bottom: 20px;
+    border-right: 4px solid $primary-color;
+}
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin responsive($breakpoint) {
+    @if $breakpoint ==tablet {
+        @media (max-width: $breakpoint-tablet) {
+            @content;
+        }
+    }
+
+    @if $breakpoint ==mobile {
+        @media (max-width: $breakpoint-mobile) {
+            @content;
+        }
+    }
+}
+
+@mixin fade-in-animation {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@mixin glass-dos {
+    background: var(--glass-background-dos);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid var(--glass-boder-dos);
+}
+
+
+
+@mixin active-animation {
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(12, 148, 201, 0.2);
+    transform: translateY(-5px);
+
+
+}

@@ -1,0 +1,185 @@
+.students-home {
+    .page-header {
+        margin-bottom: 2rem;
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+    }
+}
+
+/* Bento Grid Layout */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+
+    @media (max-width: 1024px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 640px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.bento-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+        border-color: var(--primary-color);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+
+        svg {
+            color: var(--primary-color);
+        }
+
+        h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+    }
+}
+
+.bento-large {
+    grid-column: span 2;
+
+    @media (max-width: 640px) {
+        grid-column: span 1;
+    }
+}
+
+/* Stats Overview Card */
+.stats-overview {
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+
+        @media (max-width: 768px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    .stat-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        border-radius: 12px;
+        background: var(--hover-bg);
+
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        &.primary .stat-value {
+            color: var(--primary-color);
+        }
+
+        &.success .stat-value {
+            color: #10b981;
+        }
+
+        &.warning .stat-value {
+            color: #f59e0b;
+        }
+
+        &.info .stat-value {
+            color: #6366f1;
+        }
+    }
+}
+
+/* Quick Actions Card */
+.quick-actions {
+    .actions-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .action-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        width: 100%;
+        padding: 0.875rem 1rem;
+        background: var(--hover-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        color: var(--text-primary);
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+
+            svg {
+                stroke: white;
+            }
+        }
+
+        svg {
+            color: var(--primary-color);
+            transition: stroke 0.2s ease;
+        }
+    }
+}
+
+/* Organization Preview Card */
+.organization-preview {
+    .preview-content {
+        p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .preview-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            font-weight: 500;
+            text-decoration: none;
+            transition: gap 0.2s ease;
+
+            &:hover {
+                gap: 0.5rem;
+            }
+        }
+    }
+}
