@@ -88,7 +88,7 @@
 .dropdown-menu {
     position: absolute;
     top: calc(100% + 0.5rem);
-    right: 0;
+    inset-inline-end: 0;
     min-width: 220px;
     @include glass-uno;
     border-radius: 12px;
@@ -130,7 +130,7 @@
     display: block;
     width: 100%;
     padding: 0.625rem 0.875rem;
-    text-align: right;
+    text-align: var(--text-align);
     background: transparent;
     border: none;
     border-radius: 8px;
@@ -421,7 +421,7 @@
     border-radius: 12px;
     cursor: pointer;
     transition: all 0.25s ease;
-    text-align: right;
+    text-align: var(--text-align);
     width: 100%;
 
     .stage-icon {

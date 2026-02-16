@@ -1,16 +1,21 @@
-
 import React from 'react';
 import { Outlet, NavLink, useLocation } from 'react-router-dom';
-import { Grid, Users, Calendar } from 'react-feather';
+import { useTranslation } from '../context/LanguageContext';
+
+import { Grid, Users, Calendar, Settings, CheckCircle } from 'react-feather';
 import './RegistrationLayout.scss';
 
 export const RegistrationLayout = () => {
     const location = useLocation();
 
+    const { t } = useTranslation();
+
     const subLinks = [
-        { to: '/registration', icon: Grid, label: 'نظرة عامة', exact: true },
-        { to: '/registration/requests', icon: Users, label: 'الطلبات الجديدة' },
-        { to: '/registration/meetings', icon: Calendar, label: 'الاجتماعات' },
+        { to: '/registration', icon: Grid, label: t('nav.overview'), exact: true },
+        { to: '/registration/requests', icon: Users, label: t('nav.requests') },
+        { to: '/registration/meetings', icon: Calendar, label: t('nav.meetings') },
+        { to: '/registration/commissions', icon: Settings, label: t('nav.commissions') },
+        { to: '/registration/finalization', icon: CheckCircle, label: t('nav.finalization') },
     ];
 
     return (

@@ -1,10 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Calendar, Clock, User, X, Plus, Check, RefreshCw, Trash2, AlertCircle, CheckCircle, XCircle, UserX } from 'react-feather';
+import { useNavigate } from 'react-router-dom';
+import { ChevronLeft, ChevronRight, Calendar, Clock, User, X, Plus, Check, RefreshCw, Trash2, AlertCircle, CheckCircle, XCircle, UserX, Award, Activity, DollarSign, Download, Filter, Phone, Mail, Edit2, Zap, Loader, ChevronDown, Save, MapPin, Briefcase } from 'react-feather';
+import { Modal } from '../../components/common/Modal/Modal';
+import { Panel } from '../../components/common/Panel/Panel';
 import './RegistrationMeetings.scss';
+import { useTranslation } from '../../context/LanguageContext';
 
-// Arabic month names
-const arabicMonths = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
-const arabicDays = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
+// Helper to get localized month/day
+const getMonthName = (monthIndex, locale = 'ar-DZ') => {
+    const date = new Date(2024, monthIndex, 1);
+    return new Intl.DateTimeFormat(locale, { month: 'long' }).format(date);
+};
+
+const getDayName = (dayIndex, locale = 'ar-DZ') => {
+    const date = new Date(2024, 0, 7 + dayIndex); // Jan 7 2024 is Sunday
+    return new Intl.DateTimeFormat(locale, { weekday: 'long' }).format(date);
+};
 
 // Time slots for a day (15-min intervals from 8:00 to 17:00)
 const generateTimeSlots = () => {
@@ -23,16 +34,22 @@ const generateTimeSlots = () => {
 
 const TIME_SLOTS = generateTimeSlots();
 
-// Slot statuses
+// Arabic month names - moved inside or kept if we only want Arabic calendar context for now, but cleaner to translate
+// For now, let's keep hardcoded Arabic months/days as the request implies these might be specific, 
+// OR better, use Intl.DateTimeFormat in the component. 
+// I will stick to the provided translation pattern for UI elements.
+
+// Slot statuses - Labels are hardcoded in the original logic, need to be careful
 const SLOT_STATUS = {
-    AVAILABLE: 'available',      // Green - Admin created, open for booking
-    RESERVED: 'reserved',        // Yellow - Parent booked, awaiting approval
-    APPROVED: 'approved',        // Blue - Admin confirmed meeting
-    EXPIRED: 'expired',          // Gray - Time passed (empty slot)
-    NEEDS_REVIEW: 'needs_review' // Orange - Past meeting needs admin action
+    AVAILABLE: 'available',
+    RESERVED: 'reserved',
+    APPROVED: 'approved',
+    EXPIRED: 'expired',
+    NEEDS_REVIEW: 'needs_review'
 };
 
 export const RegistrationMeetings = () => {
+    const { t } = useTranslation();
     // Current time for the system (Feb 9, 2026, 3:18 PM)
     const now = new Date(2026, 1, 9, 15, 18, 0);
     const [currentMonth, setCurrentMonth] = useState(now.getMonth());
@@ -41,7 +58,13 @@ export const RegistrationMeetings = () => {
     const [isManageModalOpen, setIsManageModalOpen] = useState(false);
     const [isSlotEditorOpen, setIsSlotEditorOpen] = useState(false);
     const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [slotToReview, setSlotToReview] = useState(null);
+    const [slotToEdit, setSlotToEdit] = useState(null);
+
+    // Review Modal State
+    const [reviewStep, setReviewStep] = useState('initial'); // initial, success, refuse_form, noshow_form
+    const [reviewReason, setReviewReason] = useState('');
 
     // Slots data: { date: 'YYYY-MM-DD', time: '09:00', status, parentName?, parentPhone?, notes? }
     const [slots, setSlots] = useState([
@@ -65,6 +88,9 @@ export const RegistrationMeetings = () => {
         { id: 15, date: '2026-02-15', time: '09:00', status: 'reserved', parentName: 'ليلى عبدالله', parentPhone: '0555222333' },
     ]);
 
+    // Mock commissions
+    const COMMISSIONS = ['اللجنة أ (إدارة)', 'اللجنة ب (تربوي)', 'اللجنة ج (نفسي)'];
+
     // Helper: format date to string
     const formatDate = (date) => {
         const y = date.getFullYear();
@@ -86,11 +112,11 @@ export const RegistrationMeetings = () => {
         return slots.filter(s => s.date === dateStr).sort((a, b) => a.time.localeCompare(b.time));
     };
 
-    // Get slots needing review
-    const needsReviewSlots = slots.filter(s => s.status === SLOT_STATUS.NEEDS_REVIEW);
-
-    // Get pending reservations (yellow)
-    const pendingReservations = slots.filter(s => s.status === SLOT_STATUS.RESERVED && !isSlotPast(s.date, s.time));
+    // Get meetings that passed and need rating/review
+    const meetingsToRate = slots.filter(s =>
+        (s.status === SLOT_STATUS.APPROVED && isSlotPast(s.date, s.time)) ||
+        s.status === SLOT_STATUS.NEEDS_REVIEW
+    ).sort((a, b) => b.date.localeCompare(a.date) || b.time.localeCompare(a.time));
 
     // Get upcoming approved meetings
     const upcomingApproved = slots.filter(s => s.status === SLOT_STATUS.APPROVED && !isSlotPast(s.date, s.time))
@@ -308,33 +334,65 @@ export const RegistrationMeetings = () => {
     // Open review modal for past meetings
     const openReviewModal = (slot) => {
         setSlotToReview(slot);
+        setReviewStep('initial');
+        setReviewReason('');
         setIsReviewModalOpen(true);
     };
 
-    // Handle review actions
-    const handleReviewAction = (action) => {
+    // Handle review actions (Final Execution)
+    const executeReviewAction = (action, finalStatus) => {
         if (!slotToReview) return;
 
-        switch (action) {
-            case 'completed':
-                // Mark as completed and remove from active list
-                setSlots(slots.filter(s => s.id !== slotToReview.id));
-                break;
-            case 'noshow':
-                // Parent didn't show, remove slot
-                setSlots(slots.filter(s => s.id !== slotToReview.id));
-                break;
-            case 'canceled':
-                // Meeting was canceled
-                setSlots(slots.filter(s => s.id !== slotToReview.id));
-                break;
-            case 'reschedule':
-                // Convert back to available? Or handle separately
-                setSlots(slots.filter(s => s.id !== slotToReview.id));
-                break;
+        // Common cleanup logic
+        const cleanup = () => {
+            setSlots(slots.filter(s => s.id !== slotToReview.id));
+            if (action === 'reschedule') {
+                // Logic to reopen slot or notify for reschedule
+                console.log('Rescheduling slot:', slotToReview.id, 'Reason:', reviewReason);
+            }
+        };
+
+        if (action === 'completed') {
+            // Show success message first, then cleanup when modal closes or after delay?
+            // For now, we update the UI to success step.
+            setReviewStep('success');
+            // In a real app, you'd trigger the API call here.
+            setTimeout(() => {
+                cleanup();
+                // We keep the modal open on success step so user sees the message
+            }, 500); // Small delay to simulate processing if needed, or just cleanup immediately
+        } else {
+            cleanup();
+            setIsReviewModalOpen(false);
+            setSlotToReview(null);
         }
-        setIsReviewModalOpen(false);
-        setSlotToReview(null);
+    };
+
+    const closeReviewModal = () => {
+        if (reviewStep === 'success') {
+            // Already cleaned up in executeReviewAction
+            setIsReviewModalOpen(false);
+            setSlotToReview(null);
+        } else {
+            setIsReviewModalOpen(false);
+            setSlotToReview(null);
+        }
+    }
+
+    // Open edit modal for confirmed meetings
+    const openEditModal = (slot) => {
+        setSlotToEdit({
+            ...slot,
+            commission: slot.commission || COMMISSIONS[Math.floor(Math.random() * COMMISSIONS.length)]
+        });
+        setIsEditModalOpen(true);
+    };
+
+    // Handle updating confirmed meeting details
+    const handleUpdateSlot = (id, updates) => {
+        setSlots(slots.map(s => s.id === id ? { ...s, ...updates } : s));
+        setIsEditModalOpen(false);
+        setSlotToEdit(null);
     };
 
     // Refresh selected date slots after changes
@@ -358,24 +416,14 @@ export const RegistrationMeetings = () => {
             <div className="page-header">
                 <div className="header-content">
                     <div className="title-section">
-                        <h1>إدارة مواعيد المقابلات</h1>
-                        <p>نظام إدارة الفترات الزمنية للمقابلات مع أولياء الأمور</p>
+                        <h1>{t('meetings.title')}</h1>
+                        <p>{t('meetings.subtitle')}</p>
                     </div>
-                    <button className="manage-btn" onClick={() => setIsManageModalOpen(true)}>
-                        <Calendar size={18} />
-                        إدارة الفترات
-                    </button>
                 </div>
             </div>
 
             {/* Alerts Section */}
-            {needsReviewSlots.length > 0 && (
-                <div className="alerts-banner">
-                    <AlertCircle size={20} />
-                    <span>يوجد <strong>{needsReviewSlots.length}</strong> موعد منتهي يحتاج مراجعة</span>
-                    <button onClick={() => openReviewModal(needsReviewSlots[0])}>مراجعة الآن</button>
-                </div>
-            )}
+
 
             {/* Stats Cards */}
             <div className="stats-row">
@@ -383,119 +431,122 @@ export const RegistrationMeetings = () => {
                     <div className="stat-icon"><Clock size={20} /></div>
                     <div className="stat-data">
                         <span className="num">{availableCount}</span>
-                        <span className="label">فترة متاحة</span>
-                    </div>
-                </div>
-                <div className="stat-card reserved">
-                    <div className="stat-icon"><User size={20} /></div>
-                    <div className="stat-data">
-                        <span className="num">{reservedCount}</span>
-                        <span className="label">بانتظار الموافقة</span>
+                        <span className="label">{t('meetings.stat_available')}</span>
                     </div>
                 </div>
                 <div className="stat-card approved">
                     <div className="stat-icon"><CheckCircle size={20} /></div>
                     <div className="stat-data">
                         <span className="num">{approvedCount}</span>
-                        <span className="label">مواعيد مؤكدة</span>
+                        <span className="label">{t('meetings.stat_confirmed')}</span>
                     </div>
                 </div>
                 <div className="stat-card review">
                     <div className="stat-icon"><AlertCircle size={20} /></div>
                     <div className="stat-data">
-                        <span className="num">{needsReviewSlots.length}</span>
-                        <span className="label">تحتاج مراجعة</span>
+                        <span className="num">{meetingsToRate.length}</span>
+                        <span className="label">{t('meetings.stat_needs_review')}</span>
+                    </div>
+                </div>
+                <div className="stat-card financial">
+                    <div className="stat-icon"><DollarSign size={20} /></div>
+                    <div className="stat-data">
+                        <span className="num">--</span>
+                        <span className="label">{t('finance_department')}</span>
                     </div>
                 </div>
             </div>
 
             {/* Main Content Grid */}
             <div className="content-grid">
-                {/* Pending Reservations */}
-                <div className="panel pending-panel">
-                    <div className="panel-header">
-                        <h3>طلبات الحجز الجديدة</h3>
-                        <span className="badge yellow">{pendingReservations.length}</span>
-                    </div>
-                    <div className="panel-body">
-                        {pendingReservations.length > 0 ? (
-                            pendingReservations.map(slot => (
-                                <div key={slot.id} className="reservation-card">
-                                    <div className="card-header">
-                                        <span className="date">{slot.date.split('-').reverse().join('/')}</span>
-                                        <span className="time">{slot.time}</span>
-                                    </div>
-                                    <div className="card-body">
-                                        <div className="parent-info">
-                                            <User size={14} />
-                                            <span>{slot.parentName}</span>
-                                        </div>
-                                        <div className="phone">{slot.parentPhone}</div>
-                                    </div>
-                                    <div className="card-actions">
-                                        <button className="approve-btn" onClick={() => approveSlot(slot.id)}>
-                                            <Check size={14} /> موافقة
-                                        </button>
-                                        <button className="reschedule-btn" title="إعادة جدولة">
-                                            <RefreshCw size={14} />
-                                        </button>
-                                        <button className="remove-btn" onClick={() => openCancelModal(slot, 'refuse')} title="رفض">
-                                            <X size={14} />
-                                        </button>
-                                    </div>
-                                </div>
-                            ))
-                        ) : (
-                            <div className="empty-state">
-                                <User size={32} />
-                                <p>لا توجد طلبات حجز جديدة</p>
-                            </div>
-                        )}
-                    </div>
-                </div>
-
-                {/* Upcoming Approved */}
-                <div className="panel approved-panel">
-                    <div className="panel-header">
-                        <h3>المواعيد المؤكدة القادمة</h3>
-                        <span className="badge blue">{upcomingApproved.length}</span>
-                    </div>
-                    <div className="panel-body">
-                        {upcomingApproved.length > 0 ? (
-                            upcomingApproved.slice(0, 5).map(slot => (
-                                <div key={slot.id} className="approved-item">
+                {/* Upcoming Approved (The Meeting Stage) */}
+                <Panel
+                    title={t('upcoming_interviews')}
+                    icon={Calendar}
+                    badge={upcomingApproved.length}
+                    badgeVariant="blue"
+                    className="meetings-panel"
+                    glass
+                >
+                    {upcomingApproved.length > 0 ? (
+                        upcomingApproved.slice(0, 5).map(slot => {
+                            const commission = slot.commission || COMMISSIONS[Math.floor(Math.random() * COMMISSIONS.length)];
+                            return (
+                                <div key={slot.id} className="approved-item" onClick={() => openEditModal({ ...slot, commission })}>
                                     <div className="item-date">
                                         <span className="day">{slot.date.split('-')[2]}</span>
-                                        <span className="month">{arabicMonths[parseInt(slot.date.split('-')[1]) - 1]}</span>
+                                        <span className="month">{getMonthName(parseInt(slot.date.split('-')[1]) - 1, t('locale') || 'ar-DZ')}</span>
                                     </div>
                                     <div className="item-info">
                                         <div className="time">{slot.time}</div>
                                         <div className="name">{slot.parentName}</div>
+                                        <div className="commission-tag">{commission}</div>
                                     </div>
                                     <div className="item-status">
                                         <CheckCircle size={16} />
                                     </div>
                                 </div>
-                            ))
-                        ) : (
-                            <div className="empty-state">
-                                <Calendar size={32} />
-                                <p>لا توجد مواعيد مؤكدة</p>
-                            </div>
-                        )}
-                    </div>
-                </div>
-            </div>
+                            );
+                        })
+                    ) : (
+                        <div className="empty-state">
+                            <Calendar size={32} />
+                            <p>{t('meetings.no_confirmed')}</p>
+                        </div>
+                    )}
+                </Panel>
 
-            {/* Legend */}
-            <div className="status-legend">
-                <div className="legend-title">دليل الألوان:</div>
-                <div className="legend-items">
-                    <div className="legend-item"><span className="dot available"></span> فترة متاحة</div>
-                    <div className="legend-item"><span className="dot reserved"></span> محجوز (بانتظار الموافقة)</div>
-                    <div className="legend-item"><span className="dot approved"></span> موعد مؤكد</div>
-                    <div className="legend-item"><span className="dot expired"></span> منتهي</div>
-                </div>
+                {/* Meetings to Rate (The Review Stage) */}
+                <Panel
+                    title={t('meetings.review_stage')}
+                    icon={Award}
+                    badge={meetingsToRate.length}
+                    badgeVariant="orange"
+                    className="review-panel"
+                    glass
+                >
+                    {meetingsToRate.length > 0 ? (
+                        meetingsToRate.map(slot => (
+                            <div key={slot.id} className="review-item" onClick={() => openReviewModal(slot)}>
+                                <div className="item-date">
+                                    <span className="day">{slot.date.split('-')[2]}</span>
+                                    <span className="month">{getMonthName(parseInt(slot.date.split('-')[1]) - 1, t('locale') || 'ar-DZ')}</span>
+                                </div>
+                                <div className="item-info">
+                                    <div className="time">{slot.time}</div>
+                                    <div className="name">{slot.parentName}</div>
+                                </div>
+                                <div className="item-action">
+                                    <AlertCircle size={16} />
+                                </div>
+                            </div>
+                        ))
+                    ) : (
+                        <div className="empty-state">
+                            <Check size={32} />
+                            <p>{t('meetings.all_reviewed')}</p>
+                        </div>
+                    )}
+                </Panel>
+            </div>
+            <div className="content-grid">
+                {/* Upcoming Approved (The Meeting Stage) */}
+                <Panel
+                    title={t('meetings.next_stage')}
+                    icon={DollarSign}
+                    badge={0}
+                    badgeVariant="green"
+                    fullWidth
+                    className="financial-panel"
+                    glass
+                >
+                    <div className="empty-state">
+                        <DollarSign size={32} />
+                        <p>{t('meetings.no_finance_files')}</p>
+                        <span style={{ fontSize: '0.8rem', opacity: 0.7, marginTop: '0.5rem', display: 'block' }}>{t('meetings.finance_hint')}</span>
+                    </div>
+                </Panel>
+
             </div>
 
             {/* Management Modal */}
@@ -504,8 +555,8 @@ export const RegistrationMeetings = () => {
                     <div className="management-modal" onClick={e => e.stopPropagation()}>
                         <div className="modal-header">
                             <div className="header-text">
-                                <h2>إدارة الفترات الزمنية</h2>
-                                <p>اضغط على أي يوم لإضافة أو تعديل الفترات المتاحة</p>
+                                <h2>{t('meetings.manage_slots_modal')}</h2>
+                                <p>{t('meetings.manage_slots_hint')}</p>
                             </div>
                             <button className="close-btn" onClick={() => setIsManageModalOpen(false)}>
                                 <X size={24} />
@@ -516,15 +567,15 @@ export const RegistrationMeetings = () => {
                             {/* Calendar Navigation */}
                             <div className="calendar-nav">
                                 <button onClick={goToPreviousMonth}><ChevronLeft size={20} /></button>
-                                <h3>{arabicMonths[currentMonth]} {currentYear}</h3>
+                                <h3>{getMonthName(currentMonth, t('locale') || 'ar-DZ')} {currentYear}</h3>
                                 <button onClick={goToNextMonth}><ChevronRight size={20} /></button>
-                                <button className="today-btn" onClick={goToToday}>اليوم</button>
+                                <button className="today-btn" onClick={goToToday}>{t('today')}</button>
                             </div>
 
                             {/* Calendar Grid */}
                             <div className="calendar-grid">
                                 <div className="weekdays">
-                                    {arabicDays.map(d => <div key={d}>{d.substring(0, 2)}</div>)}
+                                    {[0, 1, 2, 3, 4, 5, 6].map(d => <div key={d}>{getDayName(d, t('locale') || 'ar-DZ').substring(0, 2)}</div>)}
                                 </div>
                                 <div className="days">
                                     {calendarDays.map((day, idx) => (
@@ -553,10 +604,10 @@ export const RegistrationMeetings = () => {
 
                             {/* Modal Legend */}
                             <div className="modal-legend">
-                                <div className="leg"><span className="dot available"></span> متاح</div>
-                                <div className="leg"><span className="dot reserved"></span> محجوز</div>
-                                <div className="leg"><span className="dot approved"></span> مؤكد</div>
-                                <div className="leg"><span className="dot expired"></span> منتهي</div>
+                                <div className="leg"><span className="dot available"></span> {t('meetings.available')}</div>
+                                <div className="leg"><span className="dot reserved"></span> {t('meetings.reserved')}</div>
+                                <div className="leg"><span className="dot approved"></span> {t('meetings.approved')}</div>
+                                <div className="leg"><span className="dot expired"></span> {t('meetings.expired')}</div>
                             </div>
                         </div>
                     </div>
@@ -570,14 +621,14 @@ export const RegistrationMeetings = () => {
                         <div className="editor-header">
                             <div className="date-display">
                                 <Calendar size={18} />
-                                <span>{selectedDate.day} {arabicMonths[currentMonth]} {currentYear}</span>
+                                <span>{selectedDate.day} {getMonthName(currentMonth, t('locale') || 'ar-DZ')} {currentYear}</span>
                             </div>
                             <button onClick={() => setIsSlotEditorOpen(false)}><X size={20} /></button>
                         </div>
 
                         <div className="editor-body">
                             <div className="slots-section">
-                                <h4>الفترات الحالية</h4>
+                                <h4>{t('meetings.current_slots') || "الفترات الحالية"}</h4>
                                 <div className="current-slots">
                                     {selectedDate.slots.length > 0 ? (
                                         selectedDate.slots.map(slot => (
@@ -587,29 +638,29 @@ export const RegistrationMeetings = () => {
                                                     {slot.parentName ? (
                                                         <span className="parent">{slot.parentName}</span>
                                                     ) : (
-                                                        <span className="empty-label">فترة متاحة</span>
+                                                        <span className="empty-label">{t('meetings.available')}</span>
                                                     )}
                                                 </div>
                                                 <div className="slot-status">
-                                                    {slot.status === 'available' && <span className="tag green">متاح</span>}
-                                                    {slot.status === 'reserved' && <span className="tag yellow">محجوز</span>}
-                                                    {slot.status === 'approved' && <span className="tag blue">مؤكد</span>}
-                                                    {slot.status === 'expired' && <span className="tag gray">منتهي</span>}
-                                                    {slot.status === 'needs_review' && <span className="tag orange">مراجعة</span>}
+                                                    {slot.status === 'available' && <span className="tag green">{t('meetings.available')}</span>}
+                                                    {slot.status === 'reserved' && <span className="tag yellow">{t('meetings.reserved')}</span>}
+                                                    {slot.status === 'approved' && <span className="tag blue">{t('meetings.approved')}</span>}
+                                                    {slot.status === 'expired' && <span className="tag gray">{t('meetings.expired')}</span>}
+                                                    {slot.status === 'needs_review' && <span className="tag orange">{t('meetings.review')}</span>}
                                                 </div>
                                                 <div className="slot-actions">
                                                     {slot.status === 'reserved' && (
-                                                        <button className="approve" onClick={() => approveSlot(slot.id)} title="موافقة">
+                                                        <button className="approve" onClick={() => approveSlot(slot.id)} title={t('commissions.approve') || "موافقة"}>
                                                             <Check size={14} />
                                                         </button>
                                                     )}
                                                     {slot.status === 'needs_review' && (
-                                                        <button className="review" onClick={() => openReviewModal(slot)} title="مراجعة">
+                                                        <button className="review" onClick={() => openReviewModal(slot)} title={t('commissions.review') || "مراجعة"}>
                                                             <AlertCircle size={14} />
                                                         </button>
                                                     )}
                                                     {(slot.status === 'available' || slot.status === 'expired') && (
-                                                        <button className="delete" onClick={() => removeSlot(slot.id)} title="حذف">
+                                                        <button className="delete" onClick={() => removeSlot(slot.id)} title={t('commissions.delete') || "حذف"}>
                                                             <Trash2 size={14} />
                                                         </button>
                                                     )}
@@ -617,7 +668,7 @@ export const RegistrationMeetings = () => {
                                             </div>
                                         ))
                                     ) : (
-                                        <div className="no-slots">لا توجد فترات محددة لهذا اليوم</div>
+                                        <div className="no-slots">{t('meetings.no_slots_day')}</div>
                                     )}
                                 </div>
                             </div>
@@ -625,7 +676,7 @@ export const RegistrationMeetings = () => {
                             {!selectedDate.isPast && (
                                 <div className="add-slots-section">
                                     <div className="section-header-row">
-                                        <h4>إضافة فترات متاحة</h4>
+                                        <h4>{t('meetings.add_slots')}</h4>
                                         <button
                                             className={`multi-select-toggle ${isMultiSelectMode ? 'active' : ''}`}
                                             onClick={() => {
@@ -633,16 +684,16 @@ export const RegistrationMeetings = () => {
                                                 setSelectedTimes([]);
                                             }}
                                         >
-                                            {isMultiSelectMode ? 'إلغاء التحديد' : 'تحديد متعدد'}
+                                            {isMultiSelectMode ? t('meetings.cancel_select') : t('meetings.multi_select')}
                                         </button>
                                     </div>
 
                                     {isMultiSelectMode && (
                                         <div className="preset-buttons">
-                                            <button onClick={() => selectPreset('morning')}>الصباح (8-12)</button>
-                                            <button onClick={() => selectPreset('afternoon')}>المساء (12-17)</button>
-                                            <button onClick={() => selectPreset('fullday')}>اليوم كامل</button>
-                                            <button onClick={() => selectPreset('clear')} className="clear-btn">مسح</button>
+                                            <button onClick={() => selectPreset('morning')}>{t('meetings.morning')}</button>
+                                            <button onClick={() => selectPreset('afternoon')}>{t('meetings.afternoon')}</button>
+                                            <button onClick={() => selectPreset('fullday')}>{t('meetings.full_day')}</button>
+                                            <button onClick={() => selectPreset('clear')} className="clear-btn">{t('meetings.clear')}</button>
                                         </div>
                                     )}
 
@@ -667,7 +718,7 @@ export const RegistrationMeetings = () => {
                                                     onClick={() => handleTimeSlotClick(timeSlot, exists, isPast)}
                                                     disabled={!canInteract && !isMultiSelectMode}
                                                 >
-                                                    {isPendingRemove ? 'تأكيد؟' : timeSlot.start}
+                                                    {isPendingRemove ? (t('commissions.confirm') || 'تأكيد؟') : timeSlot.start}
                                                 </button>
                                             );
                                         })}
@@ -676,7 +727,7 @@ export const RegistrationMeetings = () => {
                                     {isMultiSelectMode && selectedTimes.length > 0 && (
                                         <button className="batch-add-btn" onClick={addSelectedSlots}>
                                             <Plus size={16} />
-                                            إضافة {selectedTimes.length} فترة
+                                            {t('meetings.add_count_slots').replace('{count}', selectedTimes.length)}
                                         </button>
                                     )}
                                 </div>
@@ -688,51 +739,117 @@ export const RegistrationMeetings = () => {
 
             {/* Review Modal */}
             {isReviewModalOpen && slotToReview && (
-                <div className="modal-overlay" onClick={() => setIsReviewModalOpen(false)}>
+                <div className="modal-overlay" onClick={closeReviewModal}>
                     <div className="review-modal" onClick={e => e.stopPropagation()}>
                         <div className="review-header">
-                            <AlertCircle size={24} />
-                            <h3>مراجعة الموعد المنتهي</h3>
-                            <button onClick={() => setIsReviewModalOpen(false)}><X size={20} /></button>
+                            {reviewStep === 'success' ? <CheckCircle size={24} color="var(--color-success)" /> : <AlertCircle size={24} />}
+                            <h3>
+                                {reviewStep === 'success' && t('meetings.processed_success')}
+                                {reviewStep === 'initial' && t('meetings.review_expired')}
+                                {reviewStep === 'refuse_form' && t('meetings.refusal_reason')}
+                                {reviewStep === 'noshow_form' && t('meetings.noshow_record')}
+                            </h3>
+                            <button onClick={closeReviewModal}><X size={20} /></button>
                         </div>
+
                         <div className="review-body">
-                            <div className="review-info">
-                                <div className="info-row">
-                                    <span className="label">التاريخ:</span>
-                                    <span className="value">{slotToReview.date.split('-').reverse().join('/')}</span>
+                            {reviewStep === 'initial' && (
+                                <>
+                                    <div className="review-info">
+                                        <div className="info-row">
+                                            <span className="label">{t('guardian')}:</span>
+                                            <span className="value">{slotToReview.parentName}</span>
+                                        </div>
+                                        <div className="info-row">
+                                            <span className="label">{t('request_date')}:</span>
+                                            <span className="value">{slotToReview.date} - {slotToReview.time}</span>
+                                        </div>
+                                    </div>
+                                    <div className="review-question">{t('meetings.what_status')}</div>
+                                    <div className="review-actions-grid">
+                                        <button className="action-btn completed full-width" onClick={() => executeReviewAction('completed')}>
+                                            <CheckCircle size={18} />
+                                            <span>{t('meetings.accept_finance')}</span>
+                                        </button>
+
+                                        <div className="secondary-actions">
+                                            <button className="action-btn canceled" onClick={() => setReviewStep('refuse_form')}>
+                                                <XCircle size={18} />
+                                                <span>{t('meetings.reject')}</span>
+                                            </button>
+                                            <button className="action-btn noshow" onClick={() => setReviewStep('noshow_form')}>
+                                                <UserX size={18} />
+                                                <span>{t('meetings.did_not_attend')}</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </>
+                            )}
+
+                            {reviewStep === 'success' && (
+                                <div className="success-step">
+                                    <div className="success-icon">
+                                        <div className="ring"></div>
+                                        <CheckCircle size={48} />
+                                    </div>
+                                    <h4>{t('meetings.file_sent_finance')}</h4>
+                                    <p>{t('meetings.success_msg')}</p>
+                                    <button className="close-action-btn" onClick={closeReviewModal}>{t('meetings.close')}</button>
                                 </div>
-                                <div className="info-row">
-                                    <span className="label">الوقت:</span>
-                                    <span className="value">{slotToReview.time}</span>
+                            )}
+
+                            {reviewStep === 'refuse_form' && (
+                                <div className="form-step">
+                                    <label>{t('meetings.select_refusal_reason')}</label>
+                                    <textarea
+                                        placeholder={t('meetings.enter_reason')}
+                                        value={reviewReason}
+                                        onChange={(e) => setReviewReason(e.target.value)}
+                                        rows={3}
+                                    />
+                                    <div className="form-actions">
+                                        <button className="back-btn" onClick={() => setReviewStep('initial')}>{t('meetings.back')}</button>
+                                        <button
+                                            className="confirm-btn danger"
+                                            onClick={() => executeReviewAction('canceled')}
+                                            disabled={!reviewReason.trim()}
+                                        >
+                                            تأكيد الرفض
+                                        </button>
+                                    </div>
                                 </div>
-                                <div className="info-row">
-                                    <span className="label">ولي الأمر:</span>
-                                    <span className="value">{slotToReview.parentName}</span>
+                            )}
+
+                            {reviewStep === 'noshow_form' && (
+                                <div className="form-step">
+                                    <label>سبب عدم الحضور / ملاحظات:</label>
+                                    <textarea
+                                        placeholder="مثال: لم يجيب على الهاتف، طلب تأجيل، سبام..."
+                                        value={reviewReason}
+                                        onChange={(e) => setReviewReason(e.target.value)}
+                                        rows={3}
+                                    />
+                                    <div className="noshow-options">
+                                        <button
+                                            className="option-btn reschedule"
+                                            onClick={() => executeReviewAction('reschedule')}
+                                            disabled={!reviewReason.trim()}
+                                        >
+                                            <RefreshCw size={16} />
+                                            إعادة جدولة
+                                        </button>
+                                        <button
+                                            className="option-btn reject"
+                                            onClick={() => executeReviewAction('noshow')} // Treat as reject/noshow final
+                                            disabled={!reviewReason.trim()}
+                                        >
+                                            <XCircle size={16} />
+                                            رفض نهائي
+                                        </button>
+                                    </div>
+                                    <button className="back-btn-text" onClick={() => setReviewStep('initial')}>إلغاء والعودة</button>
                                 </div>
-                                <div className="info-row">
-                                    <span className="label">الهاتف:</span>
-                                    <span className="value">{slotToReview.parentPhone}</span>
-                                </div>
-                            </div>
-                            <div className="review-question">ما حالة هذا الموعد؟</div>
-                            <div className="review-actions">
-                                <button className="action-btn completed" onClick={() => handleReviewAction('completed')}>
-                                    <CheckCircle size={18} />
-                                    <span>تم المقابلة</span>
-                                </button>
-                                <button className="action-btn noshow" onClick={() => handleReviewAction('noshow')}>
-                                    <UserX size={18} />
-                                    <span>لم يحضر</span>
-                                </button>
-                                <button className="action-btn canceled" onClick={() => handleReviewAction('canceled')}>
-                                    <XCircle size={18} />
-                                    <span>ألغيت</span>
-                                </button>
-                                <button className="action-btn reschedule" onClick={() => handleReviewAction('reschedule')}>
-                                    <RefreshCw size={18} />
-                                    <span>إعادة جدولة</span>
-                                </button>
-                            </div>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -800,6 +917,77 @@ export const RegistrationMeetings = () => {
                                     تأكيد {cancelType === 'refuse' ? 'الرفض' : 'الإلغاء'}
                                 </button>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+            {/* Update/Edit Confirmed Meeting Modal */}
+            {isEditModalOpen && slotToEdit && (
+                <div className="modal-overlay" onClick={() => setIsEditModalOpen(false)}>
+                    <div className="modal-content edit-modal" onClick={e => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <div className="header-title">
+                                <Activity size={20} className="text-primary" />
+                                <h3>تعديل تفاصيل الموعد</h3>
+                            </div>
+                            <button className="close-btn" onClick={() => setIsEditModalOpen(false)}><X size={20} /></button>
+                        </div>
+
+                        <div className="modal-body">
+                            {/* Parent Info Card */}
+                            <div className="info-card">
+                                <div className="info-icon">
+                                    <User size={20} />
+                                </div>
+                                <div className="info-content">
+                                    <span className="label">ولي الأمر</span>
+                                    <span className="value">{slotToEdit.parentName}</span>
+                                    <span className="sub-value">{slotToEdit.parentPhone}</span>
+                                </div>
+                            </div>
+
+                            <div className="form-section">
+                                <div className="form-group">
+                                    <label>اللجنة المسؤولة</label>
+                                    <div className="select-wrapper">
+                                        <select
+                                            value={slotToEdit.commission}
+                                            onChange={(e) => setSlotToEdit({ ...slotToEdit, commission: e.target.value })}
+                                        >
+                                            {COMMISSIONS.map(c => <option key={c} value={c}>{c}</option>)}
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div className="form-group">
+                                    <label>توقيت الموعد ({slotToEdit.date})</label>
+                                    <div className="time-grid-mini box-scroll">
+                                        {TIME_SLOTS.slice(0, 32).map(t => (
+                                            <button
+                                                key={t.start}
+                                                className={`time-chip ${slotToEdit.time === t.start ? 'active' : ''}`}
+                                                onClick={() => setSlotToEdit({ ...slotToEdit, time: t.start })}
+                                                type="button"
+                                            >
+                                                {t.start}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="modal-footer">
+                            <button className="btn secondary" onClick={() => setIsEditModalOpen(false)}>إلغاء</button>
+                            <button
+                                className="btn primary"
+                                onClick={() => handleUpdateSlot(slotToEdit.id, {
+                                    commission: slotToEdit.commission,
+                                    time: slotToEdit.time
+                                })}
+                            >
+                                حفظ التغييرات
+                            </button>
                         </div>
                     </div>
                 </div>

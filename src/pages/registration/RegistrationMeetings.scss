@@ -1,44 +1,8 @@
 @import "../../styles/mixins.scss";
 
-// Color Variables for Slot Statuses
-$color-available: #22c55e; // Green - Available slots
-$color-reserved: #eab308; // Yellow - Waiting approval
-$color-approved: #3b82f6; // Blue - Confirmed meetings
-$color-expired: #9ca3af; // Gray - Past empty slots
-$color-needs-review: #f97316; // Orange - Needs admin action
+// Status colors are now handled by design system variables (var(--color-*))
 
-// Custom Scrollbar Mixin - Minimal & Modern
-@mixin custom-scrollbar {
-    &::-webkit-scrollbar {
-        width: 5px;
-    }
-
-    &::-webkit-scrollbar-track {
-        background: transparent;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background: rgba(0, 0, 0, 0.08);
-        border-radius: 10px;
-        transition: background 0.2s ease;
-    }
-
-    &:hover::-webkit-scrollbar-thumb {
-        background: rgba(0, 0, 0, 0.15);
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-        background: rgba(0, 0, 0, 0.25);
-    }
-
-    // Firefox
-    scrollbar-width: thin;
-    scrollbar-color: rgba(0, 0, 0, 0.08) transparent;
-
-    &:hover {
-        scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
-    }
-}
+// Custom Scrollbar is now handled by central _mixins.scss
 
 
 .registration-meetings {
@@ -78,7 +42,7 @@ $color-needs-review: #f97316; // Orange - Needs admin action
             align-items: center;
             gap: 0.5rem;
             padding: 0.75rem 1.5rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark, #4f46e5));
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
             color: white;
             border: none;
             border-radius: 12px;
@@ -86,56 +50,16 @@ $color-needs-review: #f97316; // Orange - Needs admin action
             font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.2s ease;
-            box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.25);
+            box-shadow: 0 4px 12px rgba(var(--color-primary-rgb), 0.25);
 
             &:hover {
                 transform: translateY(-2px);
-                box-shadow: 0 6px 20px rgba(var(--primary-rgb), 0.35);
+                box-shadow: 0 6px 20px rgba(var(--color-primary-rgb), 0.35);
             }
         }
     }
 
-    // Alerts Banner
-    .alerts-banner {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 1rem 1.5rem;
-        background: linear-gradient(135deg, rgba($color-needs-review, 0.1), rgba($color-needs-review, 0.05));
-        border: 1px solid rgba($color-needs-review, 0.3);
-        border-radius: 14px;
-        margin-bottom: 1.5rem;
-        color: $color-needs-review;
 
-        svg {
-            flex-shrink: 0;
-        }
-
-        span {
-            flex: 1;
-            font-size: 0.9rem;
-
-            strong {
-                font-weight: 800;
-            }
-        }
-
-        button {
-            padding: 0.5rem 1rem;
-            background: $color-needs-review;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-
-            &:hover {
-                transform: scale(1.02);
-            }
-        }
-    }
 
     // Stats Row
     .stats-row {
@@ -154,15 +78,18 @@ $color-needs-review: #f97316; // Orange - Needs admin action
 
         .stat-card {
             @include glass-uno;
+            background: var(--cards-color);
             padding: 1.25rem;
             border-radius: 16px;
             display: flex;
             align-items: center;
             gap: 1rem;
             transition: all 0.2s ease;
+            border: 1px solid var(--color-slate-100);
 
             &:hover {
                 transform: translateY(-2px);
+                border-color: var(--color-slate-200);
             }
 
             .stat-icon {
@@ -192,23 +119,23 @@ $color-needs-review: #f97316; // Orange - Needs admin action
             }
 
             &.available .stat-icon {
-                background: rgba($color-available, 0.1);
-                color: $color-available;
+                background: rgba(var(--color-success-rgb), 0.1);
+                color: var(--color-success);
             }
 
-            &.reserved .stat-icon {
-                background: rgba($color-reserved, 0.1);
-                color: $color-reserved;
+            &.financial .stat-icon {
+                background: rgba(var(--color-primary-rgb), 0.1);
+                color: var(--color-primary);
             }
 
             &.approved .stat-icon {
-                background: rgba($color-approved, 0.1);
-                color: $color-approved;
+                background: rgba(var(--color-primary-rgb), 0.1);
+                color: var(--color-primary);
             }
 
             &.review .stat-icon {
-                background: rgba($color-needs-review, 0.1);
-                color: $color-needs-review;
+                background: rgba(var(--color-warning-rgb), 0.15);
+                color: #f59e0b;
             }
         }
     }
@@ -220,13 +147,17 @@ $color-needs-review: #f97316; // Orange - Needs admin action
         gap: 1.5rem;
         margin-bottom: 2rem;
 
-        @media (max-width: 900px) {
+        @media (max-width: 950px) {
             grid-template-columns: 1fr;
+        }
+
+        .panel-container.full-width {
+            grid-column: 1 / -1;
         }
     }
 
-    // Panel Styles
-    .panel {
+    // Panel Styles adapted for reusable component
+    .panel-container {
         @include glass-uno;
         border-radius: 20px;
         overflow: hidden;
@@ -246,6 +177,17 @@ $color-needs-review: #f97316; // Orange - Needs admin action
                 margin: 0;
             }
 
+            .header-title {
+                display: flex;
+                align-items: center;
+                gap: 0.625rem;
+                color: var(--text-primary);
+
+                svg {
+                    color: var(--color-primary);
+                }
+            }
+
             .badge {
                 padding: 0.25rem 0.75rem;
                 border-radius: 20px;
@@ -253,13 +195,18 @@ $color-needs-review: #f97316; // Orange - Needs admin action
                 font-weight: 700;
 
                 &.yellow {
-                    background: rgba($color-reserved, 0.15);
-                    color: darken($color-reserved, 10%);
+                    background: rgba(var(--color-warning-rgb), 0.15);
+                    color: var(--color-warning-dark);
                 }
 
                 &.blue {
-                    background: rgba($color-approved, 0.15);
-                    color: $color-approved;
+                    background: rgba(var(--color-primary-rgb), 0.15);
+                    color: var(--color-primary);
+                }
+
+                &.orange {
+                    background: rgba(245, 158, 11, 0.15);
+                    color: #b45309;
                 }
             }
         }
@@ -272,127 +219,30 @@ $color-needs-review: #f97316; // Orange - Needs admin action
         }
     }
 
-
-
-    // Reservation Card (Yellow/Pending)
-    .reservation-card {
-        background: white;
-        border: 1px solid var(--border-color);
-        border-radius: 14px;
-        padding: 1rem;
-        margin-bottom: 0.75rem;
-        border-right: 4px solid $color-reserved;
-        transition: all 0.2s ease;
-
-        &:hover {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.75rem;
-
-            .date {
-                font-size: 0.8rem;
-                color: var(--text-secondary);
-                font-weight: 600;
-            }
-
-            .time {
-                font-size: 0.9rem;
-                font-weight: 800;
-                color: var(--text-primary);
-            }
-        }
-
-        .card-body {
-            margin-bottom: 0.75rem;
-
-            .parent-info {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                margin-bottom: 0.25rem;
-                font-weight: 600;
-                color: var(--text-primary);
-
-                svg {
-                    color: var(--text-secondary);
-                }
-            }
-
-            .phone {
-                font-size: 0.8rem;
-                color: var(--text-secondary);
-                padding-right: 1.5rem;
-            }
-        }
-
-        .card-actions {
-            display: flex;
-            gap: 0.5rem;
-
-            button {
-                padding: 0.5rem;
-                border-radius: 8px;
-                border: none;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                gap: 0.35rem;
-                font-size: 0.75rem;
-                font-weight: 700;
-                transition: all 0.2s ease;
-            }
-
-            .approve-btn {
-                flex: 1;
-                justify-content: center;
-                background: $color-approved;
-                color: white;
-
-                &:hover {
-                    background: darken($color-approved, 8%);
-                }
-            }
-
-            .reschedule-btn {
-                background: var(--hover-bg);
-                color: var(--text-secondary);
-
-                &:hover {
-                    background: var(--border-color);
-                }
-            }
-
-            .remove-btn {
-                background: rgba(239, 68, 68, 0.1);
-                color: #ef4444;
-
-                &:hover {
-                    background: rgba(239, 68, 68, 0.2);
-                }
-            }
-        }
-    }
-
-    // Approved Item
-    .approved-item {
+    // Review Item (Past meeting to be rated)
+    .review-item {
         display: flex;
         align-items: center;
         gap: 1rem;
-        padding: 1rem;
-        background: white;
-        border: 1px solid var(--border-color);
+        padding: 0.875rem 1rem;
+        background: var(--cards-color);
+        border: 1px solid var(--color-slate-200);
         border-radius: 12px;
         margin-bottom: 0.5rem;
-        border-right: 3px solid $color-approved;
+        border-right: 3px solid #f59e0b;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+            transform: translateX(-4px);
+            border-color: #f59e0b;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.1);
+        }
 
         .item-date {
             width: 50px;
             height: 50px;
-            background: rgba($color-approved, 0.1);
+            background: rgba(245, 158, 11, 0.1);
             border-radius: 10px;
             display: flex;
             flex-direction: column;
@@ -402,7 +252,79 @@ $color-needs-review: #f97316; // Orange - Needs admin action
             .day {
                 font-size: 1.1rem;
                 font-weight: 800;
-                color: $color-approved;
+                color: #f59e0b;
+                line-height: 1;
+            }
+
+            .month {
+                font-size: 0.6rem;
+                color: var(--text-secondary);
+                font-weight: 700;
+            }
+        }
+
+        .item-info {
+            flex: 1;
+
+            .time {
+                font-size: 0.85rem;
+                font-weight: 700;
+                color: var(--text-primary);
+            }
+
+            .name {
+                font-size: 0.8rem;
+                color: var(--text-secondary);
+            }
+        }
+
+        .item-action {
+            width: 32px;
+            height: 32px;
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        &:hover .item-action {
+            background: #f59e0b;
+            color: white;
+        }
+    }
+
+
+
+
+    // Approved Item
+    .approved-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: var(--cards-color);
+        border: 1px solid var(--color-slate-200);
+        border-radius: 12px;
+        margin-bottom: 0.5rem;
+        border-right: 3px solid var(--color-primary);
+
+        .item-date {
+            width: 50px;
+            height: 50px;
+            background: rgba(var(--color-primary-rgb), 0.1);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            .day {
+                font-size: 1.1rem;
+                font-weight: 800;
+                color: var(--color-primary);
                 line-height: 1;
             }
 
@@ -429,7 +351,189 @@ $color-needs-review: #f97316; // Orange - Needs admin action
         }
 
         .item-status {
-            color: $color-approved;
+            color: var(--color-primary);
+        }
+
+        &.clickable,
+        &[onClick] {
+            cursor: pointer;
+            transition: all 0.2s ease;
+
+            &:hover {
+                transform: translateY(-2px);
+                border-color: var(--color-primary);
+                box-shadow: 0 4px 12px rgba(var(--color-primary-rgb), 0.1);
+            }
+        }
+
+        .commission-tag {
+            background: rgba(var(--color-primary-rgb), 0.1);
+            color: var(--color-primary);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.15rem 0.5rem;
+            border-radius: 6px;
+            margin-top: 0.35rem;
+            display: inline-block;
+        }
+    }
+
+    // Edit Confirmed Modal
+    .edit-confirmed-modal {
+        background: var(--cards-color);
+        border-radius: 24px;
+        width: 100%;
+        max-width: 500px;
+        overflow: hidden;
+        box-shadow: var(--shadow-xl);
+        animation: modal-appear 0.3s ease;
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .edit-info-card {
+            background: var(--hover-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+
+            .parent-summary {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+
+                .avatar {
+                    width: 48px;
+                    height: 48px;
+                    background: var(--cards-color);
+                    border-radius: 12px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: var(--color-primary);
+                    border: 1px solid var(--border-color);
+                }
+
+                .details {
+                    h5 {
+                        margin: 0;
+                        font-size: 1rem;
+                        font-weight: 700;
+                        color: var(--text-primary);
+                    }
+
+                    span {
+                        font-size: 0.8rem;
+                        color: var(--text-secondary);
+                    }
+                }
+            }
+        }
+
+        .edit-fields {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+
+            .field-group {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+
+                label {
+                    font-size: 0.85rem;
+                    font-weight: 700;
+                    color: var(--text-secondary);
+                }
+
+                select {
+                    padding: 0.75rem 1rem;
+                    border-radius: 12px;
+                    border: 1px solid var(--border-color);
+                    background: var(--cards-color);
+                    color: var(--text-primary);
+                    font-weight: 600;
+                    outline: none;
+
+                    &:focus {
+                        border-color: var(--color-primary);
+                    }
+                }
+            }
+        }
+
+        .time-select-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            max-height: 200px;
+            overflow-y: auto;
+            padding: 0.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            @include custom-scrollbar;
+
+            .time-chip {
+                padding: 0.5rem;
+                background: var(--cards-color);
+                border: 1px solid var(--border-color);
+                border-radius: 8px;
+                font-size: 0.75rem;
+                font-weight: 700;
+                color: var(--text-secondary);
+                cursor: pointer;
+                transition: all 0.2s;
+
+                &:hover {
+                    border-color: var(--color-primary);
+                    color: var(--color-primary);
+                }
+
+                &.active {
+                    background: var(--color-primary);
+                    border-color: var(--color-primary);
+                    color: white;
+                }
+            }
+        }
+
+        .edit-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+
+            button {
+                flex: 1;
+                padding: 0.875rem;
+                border-radius: 12px;
+                border: none;
+                font-weight: 700;
+                font-size: 0.9rem;
+                cursor: pointer;
+                transition: all 0.2s;
+            }
+
+            .cancel-btn {
+                background: var(--hover-bg);
+                color: var(--text-secondary);
+
+                &:hover {
+                    background: var(--border-color);
+                }
+            }
+
+            .save-btn {
+                background: var(--color-primary);
+                color: white;
+
+                &:hover {
+                    background: var(--color-primary-dark);
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 12px rgba(var(--color-primary-rgb), 0.2);
+                }
+            }
         }
     }
 
@@ -486,19 +590,19 @@ $color-needs-review: #f97316; // Orange - Needs admin action
                 border-radius: 4px;
 
                 &.available {
-                    background: $color-available;
+                    background: var(--color-success);
                 }
 
                 &.reserved {
-                    background: $color-reserved;
+                    background: var(--color-warning);
                 }
 
                 &.approved {
-                    background: $color-approved;
+                    background: var(--color-primary);
                 }
 
                 &.expired {
-                    background: $color-expired;
+                    background: var(--color-slate-400);
                 }
             }
         }
@@ -523,13 +627,13 @@ $color-needs-review: #f97316; // Orange - Needs admin action
 
 // Management Modal
 .management-modal {
-    background: var(--bg-primary, white);
+    background: var(--cards-color);
     border-radius: 24px;
     width: 100%;
     max-width: 600px;
     max-height: 90vh;
     overflow: hidden;
-    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.25);
+    box-shadow: var(--shadow-xl);
     animation: modal-appear 0.3s ease;
 
     .modal-header {
@@ -588,17 +692,18 @@ $color-needs-review: #f97316; // Orange - Needs admin action
             width: 36px;
             height: 36px;
             border-radius: 10px;
-            border: 1px solid var(--border-color);
-            background: white;
+            border: 1px solid var(--color-slate-200);
+            background: var(--cards-color);
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.2s ease;
+            color: var(--text-primary);
 
             &:hover {
-                border-color: var(--primary-color);
-                color: var(--primary-color);
+                border-color: var(--color-primary);
+                color: var(--color-primary);
             }
         }
 
@@ -652,19 +757,20 @@ $color-needs-review: #f97316; // Orange - Needs admin action
             cursor: pointer;
             transition: all 0.2s ease;
             position: relative;
-            background: white;
+            background: var(--cards-color);
+            border: 1px solid var(--color-slate-100);
 
             &:not(.empty):hover {
-                border-color: var(--primary-color);
-                background: rgba(var(--primary-rgb), 0.05);
+                border-color: var(--color-primary);
+                background: rgba(var(--color-primary-rgb), 0.05);
             }
 
             &.today {
-                background: rgba(var(--primary-rgb), 0.1);
-                border-color: var(--primary-color);
+                background: rgba(var(--color-primary-rgb), 0.1);
+                border-color: var(--color-primary);
 
                 .day-num {
-                    color: var(--primary-color);
+                    color: var(--color-primary);
                     font-weight: 800;
                 }
             }
@@ -697,23 +803,23 @@ $color-needs-review: #f97316; // Orange - Needs admin action
                     border-radius: 2px;
 
                     &.available {
-                        background: $color-available;
+                        background: var(--color-success);
                     }
 
                     &.reserved {
-                        background: $color-reserved;
+                        background: var(--color-warning);
                     }
 
                     &.approved {
-                        background: $color-approved;
+                        background: var(--color-primary);
                     }
 
                     &.expired {
-                        background: $color-expired;
+                        background: var(--color-slate-400);
                     }
 
                     &.needs_review {
-                        background: $color-needs-review;
+                        background: var(--color-warning);
                     }
                 }
 
@@ -748,19 +854,19 @@ $color-needs-review: #f97316; // Orange - Needs admin action
                 border-radius: 3px;
 
                 &.available {
-                    background: $color-available;
+                    background: var(--color-success);
                 }
 
                 &.reserved {
-                    background: $color-reserved;
+                    background: var(--color-warning);
                 }
 
                 &.approved {
-                    background: $color-approved;
+                    background: var(--color-primary);
                 }
 
                 &.expired {
-                    background: $color-expired;
+                    background: var(--color-slate-400);
                 }
             }
         }
@@ -769,13 +875,13 @@ $color-needs-review: #f97316; // Orange - Needs admin action
 
 // Slot Editor Modal
 .slot-editor-modal {
-    background: white;
+    background: var(--cards-color);
     border-radius: 20px;
     width: 100%;
     max-width: 500px;
     max-height: 85vh;
     overflow: hidden;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-xl);
     animation: modal-slide 0.3s ease;
 
     .editor-header {
@@ -856,29 +962,29 @@ $color-needs-review: #f97316; // Orange - Needs admin action
             align-items: center;
             gap: 0.75rem;
             padding: 0.75rem 1rem;
-            background: white;
-            border: 1px solid var(--border-color);
+            background: var(--cards-color);
+            border: 1px solid var(--color-slate-200);
             border-radius: 10px;
             border-right: 4px solid transparent;
 
             &.available {
-                border-right-color: $color-available;
+                border-right-color: var(--color-success);
             }
 
             &.reserved {
-                border-right-color: $color-reserved;
+                border-right-color: var(--color-warning);
             }
 
             &.approved {
-                border-right-color: $color-approved;
+                border-right-color: var(--color-primary);
             }
 
             &.expired {
-                border-right-color: $color-expired;
+                border-right-color: var(--color-slate-400);
             }
 
             &.needs_review {
-                border-right-color: $color-needs-review;
+                border-right-color: var(--color-warning);
             }
 
             .slot-time {
@@ -908,28 +1014,28 @@ $color-needs-review: #f97316; // Orange - Needs admin action
                     font-weight: 700;
 
                     &.green {
-                        background: rgba($color-available, 0.15);
-                        color: darken($color-available, 10%);
+                        background: rgba(var(--color-success-rgb), 0.15);
+                        color: var(--color-success-dark);
                     }
 
                     &.yellow {
-                        background: rgba($color-reserved, 0.15);
-                        color: darken($color-reserved, 10%);
+                        background: rgba(var(--color-warning-rgb), 0.15);
+                        color: var(--color-warning-dark);
                     }
 
                     &.blue {
-                        background: rgba($color-approved, 0.15);
-                        color: $color-approved;
+                        background: rgba(var(--color-primary-rgb), 0.15);
+                        color: var(--color-primary);
                     }
 
                     &.gray {
-                        background: rgba($color-expired, 0.15);
-                        color: $color-expired;
+                        background: rgba(var(--color-slate-400-rgb, 148, 163, 184), 0.15);
+                        color: var(--color-slate-400);
                     }
 
                     &.orange {
-                        background: rgba($color-needs-review, 0.15);
-                        color: $color-needs-review;
+                        background: rgba(var(--color-warning-rgb), 0.15);
+                        color: var(--color-warning);
                     }
                 }
             }
@@ -950,29 +1056,29 @@ $color-needs-review: #f97316; // Orange - Needs admin action
                     transition: all 0.2s ease;
 
                     &.approve {
-                        background: rgba($color-approved, 0.1);
-                        color: $color-approved;
+                        background: rgba(var(--color-primary-rgb), 0.1);
+                        color: var(--color-primary);
 
                         &:hover {
-                            background: rgba($color-approved, 0.2);
+                            background: rgba(var(--color-primary-rgb), 0.2);
                         }
                     }
 
                     &.review {
-                        background: rgba($color-needs-review, 0.1);
-                        color: $color-needs-review;
+                        background: rgba(var(--color-warning-rgb), 0.1);
+                        color: var(--color-warning);
 
                         &:hover {
-                            background: rgba($color-needs-review, 0.2);
+                            background: rgba(var(--color-warning-rgb), 0.2);
                         }
                     }
 
                     &.delete {
-                        background: rgba(239, 68, 68, 0.1);
-                        color: #ef4444;
+                        background: rgba(var(--color-error-rgb), 0.15);
+                        color: var(--color-error);
 
                         &:hover {
-                            background: rgba(239, 68, 68, 0.2);
+                            background: rgba(var(--color-error-rgb), 0.2);
                         }
                     }
                 }
@@ -997,8 +1103,8 @@ $color-needs-review: #f97316; // Orange - Needs admin action
             .multi-select-toggle {
                 padding: 0.35rem 0.75rem;
                 border-radius: 8px;
-                border: 1px solid var(--border-color);
-                background: white;
+                border: 1px solid var(--color-slate-200);
+                background: var(--cards-color);
                 font-size: 0.7rem;
                 font-weight: 700;
                 color: var(--text-secondary);
@@ -1027,8 +1133,8 @@ $color-needs-review: #f97316; // Orange - Needs admin action
             button {
                 padding: 0.4rem 0.75rem;
                 border-radius: 20px;
-                border: 1px solid var(--border-color);
-                background: white;
+                border: 1px solid var(--color-slate-200);
+                background: var(--cards-color);
                 font-size: 0.7rem;
                 font-weight: 600;
                 color: var(--text-secondary);
@@ -1036,15 +1142,15 @@ $color-needs-review: #f97316; // Orange - Needs admin action
                 transition: all 0.2s ease;
 
                 &:hover {
-                    border-color: $color-available;
-                    background: rgba($color-available, 0.1);
-                    color: darken($color-available, 10%);
+                    border-color: var(--color-success);
+                    background: rgba(var(--color-success-rgb), 0.1);
+                    color: var(--color-success-dark);
                 }
 
                 &.clear-btn:hover {
-                    border-color: #ef4444;
-                    background: rgba(239, 68, 68, 0.1);
-                    color: #ef4444;
+                    border-color: var(--color-error);
+                    background: rgba(var(--color-error-rgb), 0.1);
+                    color: var(--color-error);
                 }
             }
         }
@@ -1061,7 +1167,7 @@ $color-needs-review: #f97316; // Orange - Needs admin action
             padding: 0.75rem;
             border-radius: 10px;
             border: none;
-            background: linear-gradient(135deg, $color-available, darken($color-available, 10%));
+            background: linear-gradient(135deg, var(--color-success), var(--color-success-dark));
             color: white;
             font-size: 0.85rem;
             font-weight: 700;
@@ -1074,7 +1180,7 @@ $color-needs-review: #f97316; // Orange - Needs admin action
 
             &:hover {
                 transform: translateY(-2px);
-                box-shadow: 0 4px 12px rgba($color-available, 0.3);
+                box-shadow: 0 4px 12px rgba(var(--color-success-rgb), 0.3);
             }
         }
 
@@ -1094,8 +1200,8 @@ $color-needs-review: #f97316; // Orange - Needs admin action
             .time-btn {
                 padding: 0.5rem 0.25rem;
                 border-radius: 8px;
-                border: 1px solid var(--border-color);
-                background: white;
+                border: 1px solid var(--color-slate-100);
+                background: var(--cards-color);
                 font-size: 0.7rem;
                 font-weight: 700;
                 color: var(--text-primary);
@@ -1103,66 +1209,66 @@ $color-needs-review: #f97316; // Orange - Needs admin action
                 transition: all 0.2s ease;
 
                 &:hover:not(:disabled) {
-                    border-color: $color-available;
-                    background: rgba($color-available, 0.1);
-                    color: $color-available;
+                    border-color: var(--color-success);
+                    background: rgba(var(--color-success-rgb), 0.1);
+                    color: var(--color-success);
                 }
 
                 &.selected {
-                    border-color: $color-approved;
-                    background: rgba($color-approved, 0.2);
-                    color: $color-approved;
-                    box-shadow: 0 0 0 2px rgba($color-approved, 0.3);
+                    border-color: var(--color-primary);
+                    background: rgba(var(--color-primary-rgb), 0.2);
+                    color: var(--color-primary);
+                    box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.3);
                 }
 
                 &.exists {
                     cursor: not-allowed;
 
                     &.available {
-                        border-color: $color-available;
-                        background: rgba($color-available, 0.15);
-                        color: darken($color-available, 10%);
+                        border-color: var(--color-success);
+                        background: rgba(var(--color-success-rgb), 0.15);
+                        color: var(--color-success-dark);
                         cursor: pointer; // Allow click to remove
 
                         &:hover {
-                            background: rgba($color-available, 0.25);
+                            background: rgba(var(--color-success-rgb), 0.25);
                         }
                     }
 
                     &.pending-remove {
-                        border-color: #ef4444;
-                        background: rgba(239, 68, 68, 0.15);
-                        color: #ef4444;
+                        border-color: var(--color-error);
+                        background: rgba(var(--color-error-rgb), 0.15);
+                        color: var(--color-error);
                         cursor: pointer;
                         animation: pulse-remove 0.8s ease infinite;
 
                         &:hover {
-                            background: rgba(239, 68, 68, 0.25);
+                            background: rgba(var(--color-error-rgb), 0.25);
                         }
                     }
 
                     &.reserved {
-                        border-color: $color-reserved;
-                        background: rgba($color-reserved, 0.15);
-                        color: darken($color-reserved, 10%);
+                        border-color: var(--color-warning);
+                        background: rgba(var(--color-warning-rgb), 0.15);
+                        color: var(--color-warning-dark);
                     }
 
                     &.approved {
-                        border-color: $color-approved;
-                        background: rgba($color-approved, 0.15);
-                        color: $color-approved;
+                        border-color: var(--color-primary);
+                        background: rgba(var(--color-primary-rgb), 0.15);
+                        color: var(--color-primary);
                     }
 
                     &.expired {
-                        border-color: $color-expired;
-                        background: rgba($color-expired, 0.15);
-                        color: $color-expired;
+                        border-color: var(--color-slate-400);
+                        background: rgba(var(--color-slate-400-rgb), 0.15);
+                        color: var(--color-slate-400);
                     }
 
                     &.needs_review {
-                        border-color: $color-needs-review;
-                        background: rgba($color-needs-review, 0.15);
-                        color: $color-needs-review;
+                        border-color: var(--color-warning);
+                        background: rgba(var(--color-warning-rgb), 0.15);
+                        color: var(--color-warning);
                     }
                 }
 
@@ -1181,7 +1287,7 @@ $color-needs-review: #f97316; // Orange - Needs admin action
 
 // Review Modal
 .review-modal {
-    background: white;
+    background: var(--cards-color);
     border-radius: 20px;
     width: 100%;
     max-width: 420px;
@@ -1195,10 +1301,10 @@ $color-needs-review: #f97316; // Orange - Needs admin action
         display: flex;
         align-items: center;
         gap: 0.75rem;
-        background: linear-gradient(135deg, rgba($color-needs-review, 0.1), rgba($color-needs-review, 0.05));
+        background: linear-gradient(135deg, rgba(var(--color-warning-rgb), 0.1), rgba(var(--color-warning-rgb), 0.05));
 
         svg {
-            color: $color-needs-review;
+            color: var(--color-warning);
             flex-shrink: 0;
         }
 
@@ -1265,71 +1371,276 @@ $color-needs-review: #f97316; // Orange - Needs admin action
         font-size: 0.95rem;
     }
 
-    .review-actions {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.75rem;
+    .review-actions-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
 
         .action-btn {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
+            gap: 0.75rem;
             padding: 1rem;
-            border-radius: 12px;
+            background: var(--cards-color);
             border: 1px solid var(--border-color);
-            background: white;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.2s ease;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-primary);
 
-            span {
-                font-size: 0.8rem;
-                font-weight: 700;
-                color: var(--text-primary);
+            svg {
+                width: 20px;
+                height: 20px;
             }
 
-            &.completed {
-                &:hover {
-                    border-color: $color-available;
-                    background: rgba($color-available, 0.05);
-                }
-
-                svg {
-                    color: $color-available;
-                }
+            &:hover {
+                @include glass-hover;
             }
 
-            &.noshow {
-                &:hover {
-                    border-color: $color-expired;
-                    background: rgba($color-expired, 0.05);
-                }
+            &.full-width {
+                width: 100%;
+                background: var(--color-success);
+                color: white;
+                border: none;
+                font-size: 1rem;
+                padding: 1.15rem;
+                box-shadow: 0 4px 12px rgba(var(--color-success-rgb), 0.2);
 
-                svg {
-                    color: $color-expired;
+                &:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 6px 16px rgba(var(--color-success-rgb), 0.3);
+                    background: var(--color-success-dark);
                 }
             }
 
             &.canceled {
-                &:hover {
-                    border-color: #ef4444;
-                    background: rgba(239, 68, 68, 0.05);
-                }
+                color: var(--color-error);
+                border-color: rgba(var(--color-error-rgb), 0.3);
+                background: rgba(var(--color-error-rgb), 0.05);
 
-                svg {
-                    color: #ef4444;
+                &:hover {
+                    background: rgba(var(--color-error-rgb), 0.1);
+                    border-color: var(--color-error);
                 }
             }
 
-            &.reschedule {
+            &.noshow {
+                color: var(--text-secondary);
+                border-color: var(--border-color);
+
                 &:hover {
-                    border-color: $color-approved;
-                    background: rgba($color-approved, 0.05);
+                    background: var(--hover-bg);
+                    border-color: var(--text-secondary);
+                    color: var(--text-primary);
+                }
+            }
+        }
+
+        .secondary-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+    }
+
+    .success-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1rem 1rem;
+        text-align: center;
+        animation: fadeIn 0.4s ease-out;
+
+        .success-icon {
+            position: relative;
+            margin-bottom: 1.5rem;
+            color: var(--color-success);
+
+            .ring {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                background: rgba(var(--color-success-rgb), 0.15);
+                animation: pulse 2s infinite;
+                z-index: -1;
+            }
+        }
+
+        h4 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin: 0 0 0.5rem 0;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin: 0 0 2rem 0;
+            font-size: 0.95rem;
+            max-width: 80%;
+        }
+
+        .close-action-btn {
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+
+            &:hover {
+                background: var(--color-primary-dark);
+                transform: translateY(-2px);
+            }
+        }
+    }
+
+    .form-step {
+        animation: slideUp 0.3s ease-out;
+        padding-top: 0.5rem;
+
+        label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--bg-primary-subtle);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-family: inherit;
+            resize: none;
+            outline: none;
+            margin-bottom: 1.5rem;
+            transition: all 0.2s;
+
+            &:focus {
+                border-color: var(--color-primary);
+                background: var(--cards-color);
+                box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb), 0.1);
+            }
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+
+            button {
+                flex: 1;
+                padding: 0.85rem;
+                border-radius: 10px;
+                font-weight: 700;
+                font-size: 0.9rem;
+                cursor: pointer;
+                transition: all 0.2s;
+                border: none;
+
+                &.back-btn {
+                    background: var(--hover-bg);
+                    color: var(--text-secondary);
+
+                    &:hover {
+                        background: var(--border-color);
+                    }
                 }
 
-                svg {
-                    color: $color-approved;
+                &.confirm-btn {
+                    background: var(--color-error);
+                    color: white;
+
+                    &:hover:not(:disabled) {
+                        background: rgb(220, 38, 38);
+                        /* darker red */
+                    }
+
+                    &:disabled {
+                        opacity: 0.6;
+                        cursor: not-allowed;
+                    }
                 }
+            }
+        }
+
+        .noshow-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+
+            .option-btn {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 0.75rem;
+                padding: 1.5rem 1rem;
+                border-radius: 14px;
+                border: 1px solid transparent;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                font-weight: 700;
+                font-size: 0.9rem;
+
+                &:disabled {
+                    opacity: 0.5;
+                    cursor: not-allowed;
+                }
+
+                &.reschedule {
+                    background: rgba(var(--color-warning-rgb), 0.05);
+                    color: #d97706;
+                    border-color: rgba(var(--color-warning-rgb), 0.2);
+
+                    &:hover:not(:disabled) {
+                        background: rgba(var(--color-warning-rgb), 0.15);
+                        transform: translateY(-2px);
+                    }
+                }
+
+                &.reject {
+                    background: rgba(var(--color-error-rgb), 0.05);
+                    color: var(--color-error);
+                    border-color: rgba(var(--color-error-rgb), 0.2);
+
+                    &:hover:not(:disabled) {
+                        background: rgba(var(--color-error-rgb), 0.15);
+                        transform: translateY(-2px);
+                    }
+                }
+            }
+        }
+
+        .back-btn-text {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            text-decoration: underline;
+            cursor: pointer;
+            padding: 0.5rem;
+
+            &:hover {
+                color: var(--text-primary);
             }
         }
     }
@@ -1337,12 +1648,12 @@ $color-needs-review: #f97316; // Orange - Needs admin action
 
 // Cancel/Refuse Modal
 .cancel-modal {
-    background: white;
+    background: var(--cards-color);
     border-radius: 20px;
     width: 100%;
     max-width: 420px;
     overflow: hidden;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-xl);
     animation: modal-slide 0.3s ease;
 
     .cancel-header {
@@ -1351,10 +1662,10 @@ $color-needs-review: #f97316; // Orange - Needs admin action
         display: flex;
         align-items: center;
         gap: 0.75rem;
-        background: linear-gradient(135deg, rgba(239, 68, 68, 0.08), rgba(239, 68, 68, 0.03));
+        background: linear-gradient(135deg, rgba(var(--color-error-rgb), 0.08), rgba(var(--color-error-rgb), 0.03));
 
         svg {
-            color: #ef4444;
+            color: var(--color-error);
             flex-shrink: 0;
         }
 
@@ -1433,8 +1744,8 @@ $color-needs-review: #f97316; // Orange - Needs admin action
             .reason-chip {
                 padding: 0.5rem 1rem;
                 border-radius: 20px;
-                border: 1px solid var(--border-color);
-                background: white;
+                border: 1px solid var(--color-slate-200);
+                background: var(--cards-color);
                 font-size: 0.8rem;
                 font-weight: 600;
                 color: var(--text-secondary);
@@ -1442,14 +1753,14 @@ $color-needs-review: #f97316; // Orange - Needs admin action
                 transition: all 0.2s ease;
 
                 &:hover {
-                    border-color: #ef4444;
-                    color: #ef4444;
+                    border-color: var(--color-error);
+                    color: var(--color-error);
                 }
 
                 &.active {
-                    background: rgba(239, 68, 68, 0.1);
-                    border-color: #ef4444;
-                    color: #ef4444;
+                    background: rgba(var(--color-error-rgb), 0.1);
+                    border-color: var(--color-error);
+                    color: var(--color-error);
                 }
             }
         }
@@ -1458,7 +1769,7 @@ $color-needs-review: #f97316; // Orange - Needs admin action
             width: 100%;
             padding: 0.75rem;
             border-radius: 10px;
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--color-slate-200);
             font-size: 0.85rem;
             font-family: inherit;
             resize: none;
@@ -1466,7 +1777,7 @@ $color-needs-review: #f97316; // Orange - Needs admin action
             transition: border-color 0.2s ease;
 
             &:focus {
-                border-color: var(--primary-color);
+                border-color: var(--color-primary);
             }
 
             &::placeholder {
@@ -1484,8 +1795,8 @@ $color-needs-review: #f97316; // Orange - Needs admin action
             flex: 1;
             padding: 0.875rem;
             border-radius: 10px;
-            border: 1px solid var(--border-color);
-            background: white;
+            border: 1px solid var(--color-slate-200);
+            background: var(--cards-color);
             font-weight: 700;
             font-size: 0.85rem;
             color: var(--text-secondary);
@@ -1502,7 +1813,7 @@ $color-needs-review: #f97316; // Orange - Needs admin action
             padding: 0.875rem;
             border-radius: 10px;
             border: none;
-            background: #ef4444;
+            background: var(--color-error);
             font-weight: 700;
             font-size: 0.85rem;
             color: white;
@@ -1514,7 +1825,7 @@ $color-needs-review: #f97316; // Orange - Needs admin action
             transition: all 0.2s ease;
 
             &:hover:not(:disabled) {
-                background: darken(#ef4444, 8%);
+                background: var(--color-error-dark);
                 transform: translateY(-1px);
             }
 
@@ -1560,5 +1871,277 @@ $color-needs-review: #f97316; // Orange - Needs admin action
 
     50% {
         opacity: 0.7;
+    }
+}
+
+// Edit Confirmed Meeting Modal Styles
+.edit-modal {
+    width: 90%;
+    max-width: 550px;
+    background: var(--cards-color);
+    border-radius: 16px;
+    box-shadow: var(--shadow-xl);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: modal-slide 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid var(--border-color);
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.25rem 1.5rem;
+        background: var(--bg-primary-subtle);
+        border-bottom: 1px solid var(--border-color);
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+
+            h3 {
+                margin: 0;
+                font-size: 1.1rem;
+                font-weight: 800;
+                color: var(--text-primary);
+            }
+
+            .text-primary {
+                color: var(--primary-color);
+            }
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:hover {
+                background: rgba(var(--color-error-rgb), 0.1);
+                color: var(--color-error);
+            }
+        }
+    }
+
+    .modal-body {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        max-height: 70vh;
+        overflow-y: auto;
+
+        .info-card {
+            background: linear-gradient(135deg, var(--bg-primary-subtle), var(--cards-color));
+            border-radius: 16px;
+            padding: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+
+            .info-icon {
+                width: 48px;
+                height: 48px;
+                background: rgba(var(--color-primary-rgb), 0.1);
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--primary-color);
+            }
+
+            .info-content {
+                display: flex;
+                flex-direction: column;
+                gap: 0.25rem;
+
+                .label {
+                    font-size: 0.7rem;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                    color: var(--text-tertiary);
+                    font-weight: 700;
+                }
+
+                .value {
+                    font-size: 1.1rem;
+                    color: var(--text-primary);
+                    font-weight: 800;
+                }
+
+                .sub-value {
+                    font-size: 0.85rem;
+                    color: var(--text-secondary);
+                    font-weight: 600;
+                }
+            }
+        }
+
+        .form-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+
+            .form-group {
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+
+                label {
+                    font-size: 0.9rem;
+                    font-weight: 700;
+                    color: var(--text-primary);
+                }
+
+                .select-wrapper {
+                    position: relative;
+
+                    select {
+                        width: 100%;
+                        padding: 0.875rem 1rem;
+                        border-radius: 12px;
+                        border: 1px solid var(--border-color);
+                        background: var(--bg-primary);
+                        color: var(--text-primary);
+                        font-family: inherit;
+                        font-size: 0.95rem;
+                        font-weight: 600;
+                        cursor: pointer;
+                        appearance: none;
+                        transition: all 0.2s ease;
+
+                        // Custom arrow could be added here or via SVG
+                        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+                        background-repeat: no-repeat;
+                        background-position: left 1rem center;
+                        padding-left: 2.5rem;
+
+                        &:hover {
+                            border-color: var(--text-secondary);
+                        }
+
+                        &:focus {
+                            border-color: var(--primary-color);
+                            outline: none;
+                            box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb), 0.1);
+                            background: var(--cards-color);
+                            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233b82f6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+                        }
+                    }
+                }
+
+                .time-grid-mini {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+                    gap: 0.5rem;
+                    max-height: 200px;
+                    overflow-y: auto;
+                    padding: 0.75rem;
+                    background: var(--bg-primary-subtle);
+                    border-radius: 12px;
+                    border: 1px solid var(--border-color);
+
+                    &.box-scroll {
+                        &::-webkit-scrollbar {
+                            width: 6px;
+                        }
+
+                        &::-webkit-scrollbar-thumb {
+                            background-color: var(--color-slate-300);
+                            border-radius: 4px;
+                        }
+                    }
+
+                    .time-chip {
+                        padding: 0.6rem 0.25rem;
+                        border: 1px solid var(--border-color);
+                        background: var(--cards-color);
+                        border-radius: 8px;
+                        font-size: 0.85rem;
+                        font-weight: 700;
+                        color: var(--text-primary);
+                        cursor: pointer;
+                        transition: all 0.2s ease;
+                        font-family: inherit;
+
+                        &:hover {
+                            border-color: var(--primary-color);
+                            transform: translateY(-2px);
+                            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+                        }
+
+                        &.active {
+                            background: var(--primary-color);
+                            border-color: var(--primary-color);
+                            color: white;
+                            box-shadow: 0 4px 12px rgba(var(--color-primary-rgb), 0.25);
+                            transform: scale(1.05);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .modal-footer {
+        padding: 1.25rem 1.5rem;
+        background: var(--bg-primary-subtle);
+        border-top: 1px solid var(--border-color);
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 1rem;
+
+        .btn {
+            padding: 0.875rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+
+            &.secondary {
+                background: transparent;
+                border: 1px solid transparent; // Invisible border for alignment
+                color: var(--text-secondary);
+
+                &:hover {
+                    background: rgba(0, 0, 0, 0.05);
+                    color: var(--text-primary);
+                }
+            }
+
+            &.primary {
+                background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+                border: none;
+                color: white;
+                box-shadow: 0 4px 12px rgba(var(--color-primary-rgb), 0.3);
+
+                &:hover {
+                    box-shadow: 0 6px 16px rgba(var(--color-primary-rgb), 0.4);
+                    transform: translateY(-2px);
+                }
+
+                &:active {
+                    transform: translateY(0);
+                }
+            }
+        }
     }
 }

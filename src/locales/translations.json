@@ -1,0 +1,1636 @@
+{
+    "total_requests": {
+        "ar": "إجمالي الطلبات",
+        "en": "Total Requests",
+        "fr": "Total des demandes"
+    },
+    "trend_this_week": {
+        "ar": "+12% هذا الأسبوع",
+        "en": "+12% this week",
+        "fr": "+12% cette semaine"
+    },
+    "scheduled_interviews": {
+        "ar": "مقابلات مجدولة",
+        "en": "Scheduled Interviews",
+        "fr": "Entretiens prévus"
+    },
+    "met_with_3_today": {
+        "ar": "تم الإجتماع مع 3 اليوم",
+        "en": "Met with 3 today",
+        "fr": "Rencontré 3 aujourd'hui"
+    },
+    "finance_department": {
+        "ar": "في القسم المالي",
+        "en": "Finance Department",
+        "fr": "Département financier"
+    },
+    "needs_payment": {
+        "ar": "يحتاجون دفع",
+        "en": "Needs Payment",
+        "fr": "Paiement requis"
+    },
+    "final_registration": {
+        "ar": "تسجيل نهائي",
+        "en": "Final Registration",
+        "fr": "Inscription finale"
+    },
+    "completed": {
+        "ar": "مكتمل",
+        "en": "Completed",
+        "fr": "Terminé"
+    },
+    "status_new": {
+        "ar": "جديد",
+        "en": "New",
+        "fr": "Nouveau"
+    },
+    "status_scheduled": {
+        "ar": "موعد",
+        "en": "Scheduled",
+        "fr": "Prévu"
+    },
+    "status_review": {
+        "ar": "مراجعة",
+        "en": "Review",
+        "fr": "Examen"
+    },
+    "status_approved": {
+        "ar": "مقبول",
+        "en": "Approved",
+        "fr": "Approuvé"
+    },
+    "status_rejected": {
+        "ar": "مرفوض",
+        "en": "Rejected",
+        "fr": "Rejeté"
+    },
+    "registration_dashboard": {
+        "ar": "لوحة تحكم التسجيل",
+        "en": "Registration Dashboard",
+        "fr": "Tableau de bord d'inscription"
+    },
+    "registration_overview_desc": {
+        "ar": "نظرة عامة على سير عملية تسجيل الطلاب الجدد",
+        "en": "Overview of the new student registration process",
+        "fr": "Aperçu du processus d'inscription des nouveaux étudiants"
+    },
+    "daily_report": {
+        "ar": "تقرير يومي",
+        "en": "Daily Report",
+        "fr": "Rapport quotidien"
+    },
+    "there_are": {
+        "ar": "يوجد",
+        "en": "There are",
+        "fr": "Il y a"
+    },
+    "expired_appointments_review": {
+        "ar": "موعد منتهي يحتاج تقييم ومراجعة",
+        "en": "expired appointments needing review",
+        "fr": "rendez-vous expirés nécessitant une révision"
+    },
+    "review_now": {
+        "ar": "مراجعة الآن",
+        "en": "Review Now",
+        "fr": "Revoir maintenant"
+    },
+    "latest_registration_requests": {
+        "ar": "أحدث طلبات التسجيل",
+        "en": "Latest Registration Requests",
+        "fr": "Dernières demandes d'inscription"
+    },
+    "view_all": {
+        "ar": "عرض الكل",
+        "en": "View All",
+        "fr": "Voir tout"
+    },
+    "guardian": {
+        "ar": "الولي",
+        "en": "Guardian",
+        "fr": "Tuteur"
+    },
+    "request_date": {
+        "ar": "تاريخ الطلب",
+        "en": "Request Date",
+        "fr": "Date de demande"
+    },
+    "children_count": {
+        "ar": "عدد الأبناء",
+        "en": "Children Count",
+        "fr": "Nombre d'enfants"
+    },
+    "status": {
+        "ar": "الحالة",
+        "en": "Status",
+        "fr": "Statut"
+    },
+    "registration_funnel": {
+        "ar": "مسار التسجيل (Conversion Funnel)",
+        "en": "Registration Funnel",
+        "fr": "Entonnoir d'inscription"
+    },
+    "requests": {
+        "ar": "طلبات",
+        "en": "Requests",
+        "fr": "Demandes"
+    },
+    "interviews": {
+        "ar": "مقابلات",
+        "en": "Interviews",
+        "fr": "Entretiens"
+    },
+    "nav": {
+        "dashboard": {
+            "ar": "لوحة التحكم",
+            "en": "Dashboard",
+            "fr": "Tableau de bord"
+        },
+        "management": {
+            "ar": "الإدارة",
+            "en": "Management",
+            "fr": "Gestion"
+        },
+        "teachers": {
+            "ar": "إدارة الأساتذة",
+            "en": "Teachers Management",
+            "fr": "Gestion des enseignants"
+        },
+        "students": {
+            "ar": "إدارة الطلاب",
+            "en": "Students Management",
+            "fr": "Gestion des étudiants"
+        },
+        "registration": {
+            "ar": "إدارة التسجيلات",
+            "en": "Registration Management",
+            "fr": "Gestion des inscriptions"
+        },
+        "academic": {
+            "ar": "إدارة أكادمية",
+            "en": "Academic Management",
+            "fr": "Gestion académique"
+        },
+        "calendar": {
+            "ar": "التقويم و الإعلانات",
+            "en": "Calendar & Announcements",
+            "fr": "Calendrier et annonces"
+        },
+        "hr": {
+            "ar": "إدارة الموارد البشرية",
+            "en": "HR Management",
+            "fr": "Gestion RH"
+        },
+        "account": {
+            "ar": "الحساب",
+            "en": "Account",
+            "fr": "Compte"
+        },
+        "logout": {
+            "ar": "تسجيل الخروج",
+            "en": "Logout",
+            "fr": "Déconnexion"
+        },
+        "overview": {
+            "ar": "نظرة عامة",
+            "en": "Overview",
+            "fr": "Aperçu"
+        },
+        "requests": {
+            "ar": "الطلبات الجديدة",
+            "en": "New Requests",
+            "fr": "Nouvelles demandes"
+        },
+        "meetings": {
+            "ar": "المقابلات",
+            "en": "Meetings",
+            "fr": "Entretiens"
+        },
+        "commissions": {
+            "ar": "إدارة اللجان",
+            "en": "Commissions",
+            "fr": "Commissions"
+        },
+        "finalization": {
+            "ar": "التسجيل النهائي",
+            "en": "Final Registration",
+            "fr": "Inscription finale"
+        },
+        "teachers_overview": {
+            "ar": "نظرة عامة",
+            "en": "Overview",
+            "fr": "Aperçu"
+        },
+        "teachers_list": {
+            "ar": "قائمة الأساتذة",
+            "en": "Teachers List",
+            "fr": "Liste des enseignants"
+        },
+        "main": {
+            "ar": "الرئيسية",
+            "en": "Main",
+            "fr": "Principal"
+        },
+        "employees": {
+            "ar": "إدارة الموظفين",
+            "en": "Employees",
+            "fr": "Employés"
+        },
+        "structure": {
+            "ar": "الهيكل التنظيمي",
+            "en": "Structure",
+            "fr": "Structure"
+        },
+        "attendance": {
+            "ar": "الحضور",
+            "en": "Attendance",
+            "fr": "Présence"
+        }
+    },
+    "req": {
+        "title": {
+            "ar": "طلبات التسجيل",
+            "en": "Registration Requests",
+            "fr": "Demandes d'inscription"
+        },
+        "subtitle": {
+            "ar": "طلبات التسجيل الواردة من الموقع الإلكتروني",
+            "en": "Registration requests received from the website",
+            "fr": "Demandes d'inscription reçues via le site web"
+        },
+        "status_pending": {
+            "ar": "في الانتظار",
+            "en": "Pending",
+            "fr": "En attente"
+        },
+        "status_scheduled": {
+            "ar": "موعد محدد",
+            "en": "Scheduled",
+            "fr": "Prévu"
+        },
+        "status_in_review": {
+            "ar": "قيد المراجعة",
+            "en": "In Review",
+            "fr": "En révision"
+        },
+        "status_approved": {
+            "ar": "مقبول",
+            "en": "Approved",
+            "fr": "Approuvé"
+        },
+        "status_rejected": {
+            "ar": "مرفوض",
+            "en": "Rejected",
+            "fr": "Rejeté"
+        },
+        "meeting_slot": {
+            "ar": "الموعد المختار",
+            "en": "Selected Slot",
+            "fr": "Créneau choisi"
+        },
+        "role": {
+            "ar": "الصفة",
+            "en": "Role",
+            "fr": "Rôle"
+        },
+        "phone": {
+            "ar": "الهاتف",
+            "en": "Phone",
+            "fr": "Téléphone"
+        },
+        "submission_date": {
+            "ar": "تاريخ الطلب",
+            "en": "Submission Date",
+            "fr": "Date de soumission"
+        },
+        "id": {
+            "ar": "رقم الطلب",
+            "en": "Request ID",
+            "fr": "ID demande"
+        },
+        "address": {
+            "ar": "العنوان",
+            "en": "Address",
+            "fr": "Adresse"
+        },
+        "family_members": {
+            "ar": "عدد أفراد العائلة",
+            "en": "Family Members",
+            "fr": "Membres de la famille"
+        },
+        "family_status": {
+            "ar": "الوضع العائلي",
+            "en": "Family Status",
+            "fr": "Statut familial"
+        },
+        "father_name": {
+            "ar": "اسم الأب",
+            "en": "Father's Name",
+            "fr": "Nom du père"
+        },
+        "father_phone": {
+            "ar": "هاتف الأب",
+            "en": "Father's Phone",
+            "fr": "Tél du père"
+        },
+        "father_email": {
+            "ar": "بريد الأب",
+            "en": "Father's Email",
+            "fr": "Email du père"
+        },
+        "father_job": {
+            "ar": "مهنة الأب",
+            "en": "Father's Job",
+            "fr": "Profession du père"
+        },
+        "father_status": {
+            "ar": "وضعية الأب",
+            "en": "Father's Status",
+            "fr": "Statut du père"
+        },
+        "mother_name": {
+            "ar": "اسم الأم",
+            "en": "Mother's Name",
+            "fr": "Nom de la mère"
+        },
+        "mother_phone": {
+            "ar": "هاتف الأم",
+            "en": "Mother's Phone",
+            "fr": "Tél de la mère"
+        },
+        "mother_email": {
+            "ar": "بريد الأم",
+            "en": "Mother's Email",
+            "fr": "Email de la mère"
+        },
+        "mother_job": {
+            "ar": "مهنة الأم",
+            "en": "Mother's Job",
+            "fr": "Profession de la mère"
+        },
+        "mother_status": {
+            "ar": "وضعية الأم",
+            "en": "Mother's Status",
+            "fr": "Statut de la mère"
+        },
+        "guardian_name": {
+            "ar": "اسم الولي الشرعي",
+            "en": "Guardian's Name",
+            "fr": "Nom du tuteur"
+        },
+        "guardian_phone": {
+            "ar": "هاتف الولي",
+            "en": "Guardian's Phone",
+            "fr": "Tél du tuteur"
+        },
+        "guardian_relation": {
+            "ar": "صلة الولي",
+            "en": "Guardian Relation",
+            "fr": "Lien du tuteur"
+        },
+        "discovery_source": {
+            "ar": "مصدر الاكتشاف",
+            "en": "Source",
+            "fr": "Source"
+        },
+        "reason_choice": {
+            "ar": "سبب الاختيار",
+            "en": "Reason for Choice",
+            "fr": "Raison du choix"
+        },
+        "add_requests": {
+            "ar": "طلبات إضافية",
+            "en": "Additional Requests",
+            "fr": "Demandes supplémentaires"
+        },
+        "step1": {
+            "ar": "تسجيل أولي",
+            "en": "Initial Registration",
+            "fr": "Inscription initiale"
+        },
+        "step1_desc": {
+            "ar": "معلومات الولي والأبناء",
+            "en": "Guardian and children info",
+            "fr": "Infos tuteur et enfants"
+        },
+        "step2": {
+            "ar": "المقابلة واللجنة",
+            "en": "Interview & Committee",
+            "fr": "Entretien et comité"
+        },
+        "step2_desc": {
+            "ar": "تقييم اللجنة للطلب",
+            "en": "Committee assessment",
+            "fr": "Évaluation du comité"
+        },
+        "step3": {
+            "ar": "الإجراءات المالية",
+            "en": "Financial Procedures",
+            "fr": "Procédures financières"
+        },
+        "step3_desc": {
+            "ar": "دفع الرسوم والخدمات",
+            "en": "Payment of fees",
+            "fr": "Paiement des frais"
+        },
+        "step4": {
+            "ar": "التسجيل النهائي",
+            "en": "Final Registration",
+            "fr": "Inscription finale"
+        },
+        "step4_desc": {
+            "ar": "نقل البيانات للإدارة",
+            "en": "Data transfer to admin",
+            "fr": "Transferت de données"
+        },
+        "bulk_rows_selected": {
+            "ar": "تم تحديد صفوف",
+            "en": "Rows selected",
+            "fr": "Lignes sélectionnées"
+        },
+        "reject_selected": {
+            "ar": "رفض المحدد",
+            "en": "Reject Selected",
+            "fr": "Rejeter la sélection"
+        },
+        "remove_selected": {
+            "ar": "رفض وحذف المحدد",
+            "en": "Reject & Remove",
+            "fr": "Rejeter et supprimer"
+        },
+        "deselect": {
+            "ar": "إلغاء التحديد",
+            "en": "Deselect",
+            "fr": "Désélectionner"
+        },
+        "search_placeholder": {
+            "ar": "البحث بالاسم أو الهاتف أو رقم الطلب...",
+            "en": "Search by name, phone or ID...",
+            "fr": "Rechercher par nom, tél ou ID..."
+        },
+        "no_requests": {
+            "ar": "لا توجد طلبات تسجيل",
+            "en": "No registration requests",
+            "fr": "Aucune demande"
+        },
+        "no_requests_msg": {
+            "ar": "ستظهر هنا الطلبات الواردة من الموقع الإلكتروني",
+            "en": "Requests from the website will appear here",
+            "fr": "Les demandes du site apparaîtront ici"
+        },
+        "total_requests_count": {
+            "ar": "إجمالي الطلبات: {count} طلب",
+            "en": "Total Requests: {count}",
+            "fr": "Total des demandes: {count}"
+        },
+        "selection_mode": {
+            "ar": "تحديد",
+            "en": "Select",
+            "fr": "Sélectionner"
+        },
+        "details_title": {
+            "ar": "تفاصيل طلب التسجيل",
+            "en": "Registration Request Details",
+            "fr": "Détails de la demande"
+        },
+        "family_info": {
+            "ar": "معلومات العائلة",
+            "en": "Family Information",
+            "fr": "Informations familiales"
+        },
+        "father": {
+            "ar": "الأب",
+            "en": "Father",
+            "fr": "Père"
+        },
+        "mother": {
+            "ar": "الأم",
+            "en": "Mother",
+            "fr": "Mère"
+        },
+        "registered_by_him": {
+            "ar": "هو من قام بالتسجيل",
+            "en": "Registered by him",
+            "fr": "Inscrit par lui"
+        },
+        "registered_by_her": {
+            "ar": "هي من قامت بالتسجيل",
+            "en": "Registered by her",
+            "fr": "Inscrite par elle"
+        },
+        "full_name": {
+            "ar": "الاسم الكامل",
+            "en": "Full Name",
+            "fr": "Nom complet"
+        },
+        "name_lat": {
+            "ar": "الاسم (LAT)",
+            "en": "Name (LAT)",
+            "fr": "Nom (LAT)"
+        },
+        "job": {
+            "ar": "المهنة",
+            "en": "Job",
+            "fr": "Profession"
+        },
+        "email": {
+            "ar": "البريد",
+            "en": "Email",
+            "fr": "Email"
+        },
+        "family_and_residence": {
+            "ar": "العائلة والسكن",
+            "en": "Family & Residence",
+            "fr": "Famille et résidence"
+        },
+        "registered_students": {
+            "ar": "التلاميذ المسجلين",
+            "en": "Registered Students",
+            "fr": "Étudiants inscrits"
+        },
+        "student": {
+            "ar": "تلميذ",
+            "en": "Student",
+            "fr": "Étudiant"
+        },
+        "students": {
+            "ar": "تلاميذ",
+            "en": "Students",
+            "fr": "Étudiants"
+        },
+        "personal_info": {
+            "ar": "المعلومات الشخصية",
+            "en": "Personal Info",
+            "fr": "Infos personnelles"
+        },
+        "academic_path": {
+            "ar": "المسار الدراسي",
+            "en": "Academic Path",
+            "fr": "Parcours académique"
+        },
+        "health_transport": {
+            "ar": "الصحة والنقل",
+            "en": "Health & Transport",
+            "fr": "Santé et transport"
+        },
+        "birth_date": {
+            "ar": "تاريخ الميلاد",
+            "en": "Date of Birth",
+            "fr": "Date de naissance"
+        },
+        "birth_place": {
+            "ar": "مكان الميلاد",
+            "en": "Place of Birth",
+            "fr": "Lieu de naissance"
+        },
+        "gender": {
+            "ar": "الجنس",
+            "en": "Gender",
+            "fr": "Sexe"
+        },
+        "nationality": {
+            "ar": "الجنسية",
+            "en": "Nationality",
+            "fr": "Nationalité"
+        },
+        "current_level": {
+            "ar": "المستوى الحالي",
+            "en": "Current Level",
+            "fr": "Niveau actuel"
+        },
+        "repeater": {
+            "ar": "هل هو معيد؟",
+            "en": "Repeater?",
+            "fr": "Redoublant?"
+        },
+        "prev_school": {
+            "ar": "المدرسة السابقة",
+            "en": "Previous School",
+            "fr": "École précédente"
+        },
+        "results": {
+            "ar": "النتائج:",
+            "en": "Results:",
+            "fr": "Résultats:"
+        },
+        "medical_status": {
+            "ar": "الحالة الطبية",
+            "en": "Medical Status",
+            "fr": "État médical"
+        },
+        "school_bus": {
+            "ar": "حافلة مدرسية",
+            "en": "School Bus",
+            "fr": "Bus scolaire"
+        },
+        "blood_type": {
+            "ar": "فصيلة الدم",
+            "en": "Blood Type",
+            "fr": "Groupe sanguin"
+        },
+        "notes": {
+            "ar": "ملاحظات",
+            "en": "Notes",
+            "fr": "Remارقات"
+        },
+        "spam_check": {
+            "ar": "هل تعتقد أن هذا طلب عشوائي (Spam)؟",
+            "en": "Is this a Spam request?",
+            "fr": "Est-ce une demande Spam?"
+        },
+        "spam_desc": {
+            "ar": "يمكنك حذف هذا الطلب نهائياً إذا كان يبدو غير صالح أو وهمي.",
+            "en": "You can permanently delete this request if it seems invalid.",
+            "fr": "Vous pouvez supprimer cette demande si elle semble invalide."
+        },
+        "delete_permanently": {
+            "ar": "حذف الطلب نهائياً",
+            "en": "Delete Permanently",
+            "fr": "Supprimer définitivement"
+        },
+        "primary_registrant": {
+            "ar": "المسجل الرئيسي",
+            "en": "Primary Registrant",
+            "fr": "Enregistreur principal"
+        },
+        "marital_status": {
+            "ar": "الحالة العائلية",
+            "en": "Marital Status",
+            "fr": "Statut matrimonial"
+        },
+        "dob": {
+            "ar": "تاريخ الميلاد",
+            "en": "Date of Birth",
+            "fr": "Date de naissance"
+        },
+        "pob": {
+            "ar": "مكان الميلاد",
+            "en": "Place of Birth",
+            "fr": "Lieu de naissance"
+        },
+        "is_repeater": {
+            "ar": "هل هو معيد؟",
+            "en": "Is Repeater?",
+            "fr": "Redoublant?"
+        },
+        "students_count": {
+            "ar": "عدد الطلاب",
+            "en": "Students Count",
+            "fr": "Nombre d'étudiants"
+        },
+        "actions": {
+            "ar": "الإجراءات",
+            "en": "Actions",
+            "fr": "Actions"
+        }
+    },
+    "commissions": {
+        "title": {
+            "ar": "إدارة اللجان والمواعيد",
+            "en": "Commissions & Appointments Management",
+            "fr": "Gestion des commissions et des rendez-vous"
+        },
+        "subtitle": {
+            "ar": "إنشاء وإدارة لجان التسجيل وتخصيص الفترات الزمنية للمقابلات",
+            "en": "Create and manage registration commissions and allocate interview slots",
+            "fr": "Créer et gérer les commissions d'inscription et allouer des créneaux"
+        },
+        "create_commission": {
+            "ar": "إنشاء لجنة جديدة",
+            "en": "Create New Commission",
+            "fr": "Créer une nouvelle commission"
+        },
+        "edit_commission": {
+            "ar": "تعديل اللجنة",
+            "en": "Edit Commission",
+            "fr": "Modifier la commission"
+        },
+        "name": {
+            "ar": "اسم اللجنة",
+            "en": "Commission Name",
+            "fr": "Nom de la commission"
+        },
+        "commission_name": {
+            "ar": "اسم اللجنة",
+            "en": "Commission Name",
+            "fr": "Nom de la commission"
+        },
+        "color": {
+            "ar": "اللون المميز",
+            "en": "Color",
+            "fr": "Couleur"
+        },
+        "criteria": {
+            "ar": "معايير التعيين",
+            "en": "Assignment Criteria",
+            "fr": "Critères d'affectation"
+        },
+        "members": {
+            "ar": "أعضاء اللجنة",
+            "en": "Commission Members",
+            "fr": "Membres de la commission"
+        },
+        "members_count": {
+            "ar": "أعضاء اللجنة (3 مطلوب)",
+            "en": "Commission Members (3 required)",
+            "fr": "Membres de la commission (3 requis)"
+        },
+        "members_desc": {
+            "ar": "يجب أن تحتوي كل لجنة على عضو من كل قسم",
+            "en": "Each commission must have a member from each department",
+            "fr": "Chaque commission doit avoir un membre de chaque département"
+        },
+        "members_hint": {
+            "ar": "يجب أن تحتوي كل لجنة على عضو من كل قسم",
+            "en": "Each commission must have a member from each department",
+            "fr": "Chaque commission doit avoir un membre de chaque département"
+        },
+        "psychologist": {
+            "ar": "الأخصائي النفسي",
+            "en": "Psychologist",
+            "fr": "Psychologue"
+        },
+        "teacher": {
+            "ar": "معلم المرحلة",
+            "en": "Teacher",
+            "fr": "Enseignant"
+        },
+        "admin": {
+            "ar": "عضو الإدارة",
+            "en": "Admin",
+            "fr": "Administrateur"
+        },
+        "admin_member": {
+            "ar": "عضو الإدارة",
+            "en": "Admin Member",
+            "fr": "Membre de l'administration"
+        },
+        "request_count": {
+            "ar": "{count} طلب",
+            "en": "{count} request",
+            "fr": "{count} demande"
+        },
+        "slot_count": {
+            "ar": "{count} فترة",
+            "en": "{count} slot",
+            "fr": "{count} créneau"
+        },
+        "save": {
+            "ar": "حفظ",
+            "en": "Save",
+            "fr": "Enregistrer"
+        },
+        "save_changes": {
+            "ar": "حفظ التعديلات",
+            "en": "Save Changes",
+            "fr": "Enregistrer les modifications"
+        },
+        "cancel": {
+            "ar": "إلغاء",
+            "en": "Cancel",
+            "fr": "Annuler"
+        },
+        "all_cases": {
+            "ar": "جميع الحالات",
+            "en": "All Cases",
+            "fr": "Tous les cas"
+        },
+        "married": {
+            "ar": "متزوج",
+            "en": "Married",
+            "fr": "Marié"
+        },
+        "divorced": {
+            "ar": "مطلق",
+            "en": "Divorced",
+            "fr": "Divorcé"
+        },
+        "widowed": {
+            "ar": "أرمل",
+            "en": "Widowed",
+            "fr": "Veuf"
+        },
+        "all_stages": {
+            "ar": "جميع المراحل",
+            "en": "All Stages",
+            "fr": "Tous les niveaux"
+        },
+        "preparatory": {
+            "ar": "التحضيري",
+            "en": "Preparatory",
+            "fr": "Préparatoire"
+        },
+        "primary": {
+            "ar": "الإبتدائي",
+            "en": "Primary",
+            "fr": "Primaire"
+        },
+        "middle": {
+            "ar": "المتوسط",
+            "en": "Middle School",
+            "fr": "Collège"
+        },
+        "healthcare": {
+            "ar": "الرعاية الصحية",
+            "en": "Healthcare",
+            "fr": "Soins de santé"
+        },
+        "parent_status": {
+            "ar": "حالة الوالدين",
+            "en": "Parents Status",
+            "fr": "Statut des parents"
+        },
+        "educational_stage": {
+            "ar": "المرحلة الدراسية",
+            "en": "Educational Stage",
+            "fr": "Niveau scolaire"
+        },
+        "no_date_selected": {
+            "ar": "اختر يوماً من التقويم لإدارة الفترات الزمنية",
+            "en": "Select a day from the calendar to manage slots",
+            "fr": "Sélectionnez un jour du calendrier pour gérer les créneaux"
+        },
+        "select_add_remove": {
+            "ar": "اضغط لإضافة • اضغط على المتاح للإزالة",
+            "en": "Click to add • Click available to remove",
+            "fr": "Cliquez pour ajouter • Cliquez sur disponible pour supprimer"
+        },
+        "select_multi_hint": {
+            "ar": "حدد الفترات المطلوبة ثم اضغط إضافة ({count} محدد)",
+            "en": "Select slots then click add ({count} selected)",
+            "fr": "Sélectionnez les créneaux puis cliquez sur ajouter ({count} sélectionnés)"
+        },
+        "confirm": {
+            "ar": "تأكيد؟",
+            "en": "Confirm?",
+            "fr": "Confirmer?"
+        },
+        "select_psychologist": {
+            "ar": "اختر أخصائي نفسي...",
+            "en": "Select Psychologist...",
+            "fr": "Sélectionner un psychologue..."
+        },
+        "select_teacher": {
+            "ar": "اختر معلم...",
+            "en": "Select Teacher...",
+            "fr": "Sélectionner un enseignant..."
+        },
+        "select_admin": {
+            "ar": "اختر عضو إداري...",
+            "en": "Select Admin...",
+            "fr": "Sélectionner un administrateur..."
+        }
+    },
+    "meetings": {
+        "title": {
+            "ar": "المواعيد والمقابلات",
+            "en": "Appointments & Interviews",
+            "fr": "Rendez-vous et Entretiens"
+        },
+        "subtitle": {
+            "ar": "إدارة الفترات الزمنية ومراجعة نتائج المقابلات",
+            "en": "Manage time slots and review interview results",
+            "fr": "Gérer les créneaux horaires et examiner les résultats"
+        },
+        "stat_available": {
+            "ar": "فترة متاحة",
+            "en": "Available Slots",
+            "fr": "Créneaux disponibles"
+        },
+        "stat_confirmed": {
+            "ar": "موعد مؤكد",
+            "en": "Confirmed Appointments",
+            "fr": "Rdv confirmés"
+        },
+        "stat_needs_review": {
+            "ar": "مقابلة بانتظار المراجعة",
+            "en": "Interviews Pending Review",
+            "fr": "Entretiens à réviser"
+        },
+        "current_stage": {
+            "ar": "المرحلة الحالية: المقابلة",
+            "en": "Current Stage: Interview",
+            "fr": "Étape actuelle : Entretien"
+        },
+        "review_stage": {
+            "ar": "مرحلة المراجعة والتقييم",
+            "en": "Review & Evaluation Stage",
+            "fr": "Étape de révision et d'évaluation"
+        },
+        "next_stage": {
+            "ar": "المرحلة القادمة: مصلحة المحاسبة",
+            "en": "Next Stage: Finance Department",
+            "fr": "Étape suivante : Service comptabilité"
+        },
+        "no_confirmed": {
+            "ar": "لا توجد مواعيد مؤكدة حالياً",
+            "en": "No confirmed appointments currently",
+            "fr": "Aucun rdv confirmé actuellement"
+        },
+        "all_reviewed": {
+            "ar": "تمت مراجعة جميع المقابلات المنتهية",
+            "en": "All finished interviews have been reviewed",
+            "fr": "Tous les entretiens terminés ont été révisés"
+        },
+        "no_finance_files": {
+            "ar": "لا توجد ملفات بانتظار المحاسبة",
+            "en": "No files pending finance",
+            "fr": "Aucun dossier en attente de comptabilité"
+        },
+        "finance_hint": {
+            "ar": "تظهر هنا الطلبات المقبولة فنياً بانتظار تسوية الوضعية المالية",
+            "en": "Technically accepted requests pending financial settlement appear here",
+            "fr": "Les demandes acceptées techniquement en attente de règlement financier apparaissent ici"
+        },
+        "manage_slots_modal": {
+            "ar": "إدارة فترات المواعيد",
+            "en": "Manage Appointment Slots",
+            "fr": "Gérer les créneaux de rdv"
+        },
+        "manage_slots_hint": {
+            "ar": "قم بإضافة أو حذف فترات زمنية للمقابلات لكل يوم",
+            "en": "Add or delete interview time slots for each day",
+            "fr": "Ajouter ou supprimer des créneaux d'entretien pour chaque jour"
+        },
+        "available": {
+            "ar": "متاح",
+            "en": "Available",
+            "fr": "Disponible"
+        },
+        "reserved": {
+            "ar": "محجوز",
+            "en": "Reserved",
+            "fr": "Réservé"
+        },
+        "approved": {
+            "ar": "مؤكد",
+            "en": "Confirmed",
+            "fr": "Confirmé"
+        },
+        "expired": {
+            "ar": "منتهي",
+            "en": "Expired",
+            "fr": "Expiré"
+        },
+        "review": {
+            "ar": "مراجعة",
+            "en": "Review",
+            "fr": "Révision"
+        },
+        "add_slots": {
+            "ar": "إضافة فترات متاحة",
+            "en": "Add Available Slots",
+            "fr": "Ajouter des créneaux"
+        },
+        "multi_select": {
+            "ar": "تحديد متعدد",
+            "en": "Multi-select",
+            "fr": "Sél. multiple"
+        },
+        "cancel_select": {
+            "ar": "إلغاء التحديد",
+            "en": "Cancel Selection",
+            "fr": "Annuler sél."
+        },
+        "morning": {
+            "ar": "فترة الصباح",
+            "en": "Morning",
+            "fr": "Matin"
+        },
+        "afternoon": {
+            "ar": "فترة المساء",
+            "en": "Afternoon",
+            "fr": "Après-midi"
+        },
+        "full_day": {
+            "ar": "يوم كامل",
+            "en": "Full Day",
+            "fr": "Journée"
+        },
+        "clear": {
+            "ar": "مسح",
+            "en": "Clear",
+            "fr": "Effacer"
+        },
+        "no_slots_day": {
+            "ar": "لا توجد فترات مضافة لهذا اليوم",
+            "en": "No slots added for this day",
+            "fr": "Aucun créneau ajouté pour ce jour"
+        },
+        "add_count_slots": {
+            "ar": "إضافة {count} فترة",
+            "en": "Add {count} slots",
+            "fr": "Ajouter {count} créneaux"
+        },
+        "processed_success": {
+            "ar": "تمت المعالجة بنجاح",
+            "en": "Processed successfully",
+            "fr": "Traité avec succès"
+        },
+        "review_expired": {
+            "ar": "مراجعة مقابلة منتهية",
+            "en": "Review Finished Interview",
+            "fr": "Réviser l'entretien terminé"
+        },
+        "refusal_reason": {
+            "ar": "سبب الرفض والتقرير",
+            "en": "Refusal Reason & Report",
+            "fr": "Motif du refus et rapport"
+        },
+        "noshow_record": {
+            "ar": "تسجيل حالة غياب",
+            "en": "Record No-Show",
+            "fr": "Enregistrer une absence"
+        },
+        "what_status": {
+            "ar": "ما هي حالة الطلب بعد إجراء المقابلة؟",
+            "en": "What is the request status after the interview?",
+            "fr": "Quel est le statut de la demande après l'entretien ?"
+        },
+        "accept_finance": {
+            "ar": "قبول وتحويل للمحاسبة",
+            "en": "Accept & Transfer to Finance",
+            "fr": "Accepter et transférer à la compta"
+        },
+        "reject": {
+            "ar": "رفض الطلب نهائياً",
+            "en": "Final Rejection",
+            "fr": "Refus définitif"
+        },
+        "did_not_attend": {
+            "ar": "لم يحضر المقابلة",
+            "en": "Did Not Attend",
+            "fr": "N'est pas venu"
+        },
+        "file_sent_finance": {
+            "ar": "تم إرسال الملف للمحاسبة",
+            "en": "File sent to Finance",
+            "fr": "Dossier envoyé à la compta"
+        },
+        "success_msg": {
+            "ar": "سيتم إخطار الولي بالقبول فنياً وبدء الإجراءات المالية",
+            "en": "Parent will be notified of acceptance and the start of financial procedures",
+            "fr": "Le parent sera informé de l'acceptation et du début des procédures financières"
+        },
+        "close": {
+            "ar": "إغلاق",
+            "en": "Close",
+            "fr": "Fermer"
+        },
+        "select_refusal_reason": {
+            "ar": "يرجى اختيار/كتابة سبب الرفض:",
+            "en": "Please select/write the refusal reason:",
+            "fr": "Veuillez choisir/écrire le motif du refus :"
+        },
+        "enter_reason": {
+            "ar": "اكتب السبب هنا...",
+            "en": "Write the reason here...",
+            "fr": "Écrivez le motif ici..."
+        },
+        "back": {
+            "ar": "رجوع",
+            "en": "Back",
+            "fr": "Retour"
+        },
+        "reschedule": {
+            "ar": "إعادة جدولة",
+            "en": "Reschedule",
+            "fr": "Replanifier"
+        },
+        "save_changes": {
+            "ar": "حفظ التغييرات",
+            "en": "Save Changes",
+            "fr": "Enregistrer"
+        }
+    },
+    "finalization": {
+        "title": {
+            "ar": "التسجيل النهائي",
+            "en": "Final Registration",
+            "fr": "Inscription finale"
+        },
+        "subtitle": {
+            "ar": "إدارة طلبات التسجيل الجاهزة للموافقة النهائية وإنشاء ملفات العائلة",
+            "en": "Manage ready registration requests for final approval and family file creation",
+            "fr": "Gérer les demandes prêtes pour l'approbation finale et la création de dossiers"
+        },
+        "ready_requests": {
+            "ar": "الطلبات الجاهزة للمعالجة النهائية",
+            "en": "Requests Ready for Final Processing",
+            "fr": "Demandes prêtes pour traitement final"
+        },
+        "view_table": {
+            "ar": "عرض الجدول",
+            "en": "Table View",
+            "fr": "Vue tableau"
+        },
+        "reg_date": {
+            "ar": "تاريخ التسجيل",
+            "en": "Registration Date",
+            "fr": "Date d'inscription"
+        },
+        "financial_status": {
+            "ar": "الحالة المالية",
+            "en": "Financial Status",
+            "fr": "Statut financier"
+        },
+        "approved_status": {
+            "ar": "مصادق عليه",
+            "en": "Approved",
+            "fr": "Approuvé"
+        },
+        "actions": {
+            "ar": "الإجراءات",
+            "en": "Actions",
+            "fr": "Actions"
+        },
+        "process": {
+            "ar": "معالجة الطلب",
+            "en": "Process Request",
+            "fr": "Traiter la demande"
+        },
+        "success_alert": {
+            "ar": "تم تسجيل العائلة والتلاميذ بنجاح! \nتم إنشاء حسابات لهم في النظام.",
+            "en": "Family and students registered successfully! \nAccounts created in the system.",
+            "fr": "Famille et étudiants inscrits avec succès! \nComptes créés dans le système."
+        },
+        "no_pending_requests": {
+            "ar": "لا توجد طلبات معلقة",
+            "en": "No pending requests",
+            "fr": "Aucune demande en attente"
+        },
+        "all_processed_msg": {
+            "ar": "جميع طلبات التسجيل النهائية تمت معالجتها بنجاح",
+            "en": "All final registration requests have been processed successfully",
+            "fr": "Toutes les demandes d'inscription finale ont été traitées avec succès"
+        },
+        "final_approval_title": {
+            "ar": "المصادقة النهائية على التسجيل",
+            "en": "Final Registration Approval",
+            "fr": "Approbation finale de l'inscription"
+        },
+        "file_number": {
+            "ar": "رقم الملف",
+            "en": "File Number",
+            "fr": "Numéro de dossier"
+        },
+        "interview_details": {
+            "ar": "مجريات المقابلة",
+            "en": "Interview Details",
+            "fr": "Détails de l'entretien"
+        },
+        "interview_date": {
+            "ar": "تاريخ المقابلة",
+            "en": "Interview Date",
+            "fr": "Date de l'entretien"
+        },
+        "interviewer": {
+            "ar": "المحاور",
+            "en": "Interviewer",
+            "fr": "Intervieweur"
+        },
+        "commission_decision": {
+            "ar": "قرار اللجنة",
+            "en": "Commission Decision",
+            "fr": "Décision de la commission"
+        },
+        "decision": {
+            "ar": "القرار",
+            "en": "Decision",
+            "fr": "Décision"
+        },
+        "recommendations": {
+            "ar": "توصيات",
+            "en": "Recommendations",
+            "fr": "Recommandations"
+        },
+        "financial_file": {
+            "ar": "الملف المالي",
+            "en": "Financial File",
+            "fr": "Dossier financier"
+        },
+        "financial_approved": {
+            "ar": "تمت المصادقة المالية",
+            "en": "Financial Approval Completed",
+            "fr": "Approbation financière terminée"
+        },
+        "approval_date": {
+            "ar": "تاريخ المصادقة",
+            "en": "Approval Date",
+            "fr": "Date d'approbation"
+        },
+        "accountant_notes": {
+            "ar": "ملاحظات المحاسب",
+            "en": "Accountant Notes",
+            "fr": "Notes du comptable"
+        },
+        "finalize_hint": {
+            "ar": "يؤدي قبول هذا الطلب إلى إنشاء ملف عائلي وحسابات للتلاميذ تلقائياً",
+            "en": "Accepting this request will automatically create a family file and student accounts",
+            "fr": "Accepter cette demande créera automatiquement un dossier familial et des comptes étudiants"
+        },
+        "cancel_btn": {
+            "ar": "إلغاء",
+            "en": "Cancel",
+            "fr": "Annuler"
+        },
+        "finalize_btn": {
+            "ar": "مصادقة نهائية ودمج في النظام",
+            "en": "Finalize & Merge into System",
+            "fr": "Finaliser et intégrer au système"
+        },
+        "processing": {
+            "ar": "جاري المعالجة...",
+            "en": "Processing...",
+            "fr": "Traitement..."
+        },
+        "process_file": {
+            "ar": "معالجة الملف",
+            "en": "Process File",
+            "fr": "Traiter le dossier"
+        },
+        "file_ready": {
+            "ar": "الملف المالي جاهز",
+            "en": "Financial File Ready",
+            "fr": "Dossier financier prêt"
+        }
+    },
+    "accepted": {
+        "ar": "مقبولين",
+        "en": "Accepted",
+        "fr": "Acceptés"
+    },
+    "registered": {
+        "ar": "مسجلين",
+        "en": "Registered",
+        "fr": "Inscrits"
+    },
+    "rejected": {
+        "ar": "مرفوضين",
+        "en": "Rejected",
+        "fr": "Rejetés"
+    },
+    "upcoming_interviews": {
+        "ar": "المقابلات القادمة",
+        "en": "Upcoming Interviews",
+        "fr": "Entretiens à venir"
+    },
+    "today": {
+        "ar": "اليوم",
+        "en": "Today",
+        "fr": "Aujourd'hui"
+    },
+    "tomorrow": {
+        "ar": "غداً",
+        "en": "Tomorrow",
+        "fr": "Demain"
+    },
+    "preparatory_committee": {
+        "ar": "لجنة التحضيري",
+        "en": "Preparatory Committee",
+        "fr": "Comité préparatoire"
+    },
+    "primary_committee": {
+        "ar": "لجنة الابتدائي",
+        "en": "Primary Committee",
+        "fr": "Comité primaire"
+    },
+    "middle_school_committee": {
+        "ar": "لجنة المتوسط",
+        "en": "Middle School Committee",
+        "fr": "Comité intermédiaire"
+    },
+    "interviews_schedule": {
+        "ar": "جدول المقابلات",
+        "en": "Interviews Schedule",
+        "fr": "Calendrier des entretiens"
+    },
+    "quick_actions": {
+        "ar": "إجراءات سريعة",
+        "en": "Quick Actions",
+        "fr": "Actions rapides"
+    },
+    "new_request": {
+        "ar": "طلب جديد",
+        "en": "New Request",
+        "fr": "Nouvelle demande"
+    },
+    "book_appointment": {
+        "ar": "حجز موعد",
+        "en": "Book Appointment",
+        "fr": "Prendre rendez-vous"
+    },
+    "pay_dues": {
+        "ar": "دفع مستحقات",
+        "en": "Pay Dues",
+        "fr": "Payer les cotisations"
+    },
+    "export_report": {
+        "ar": "تصدير تقرير",
+        "en": "Export Report",
+        "fr": "Exporter le rapport"
+    },
+    "phone": {
+        "ar": "الهاتف",
+        "en": "Phone",
+        "fr": "Téléphone"
+    },
+    "students": {
+        "ar": "تلاميذ",
+        "en": "Students",
+        "fr": "Étudiants"
+    },
+    "full_name": {
+        "ar": "الاسم الكامل",
+        "en": "Full Name",
+        "fr": "Nom complet"
+    },
+    "full_name_lat": {
+        "ar": "الاسم الكامل (LAT)",
+        "en": "Full Name (LAT)",
+        "fr": "Nom complet (LAT)"
+    },
+    "job": {
+        "ar": "المهنة",
+        "en": "Job",
+        "fr": "Profession"
+    },
+    "email": {
+        "ar": "البريد الإلكتروني",
+        "en": "Email",
+        "fr": "Email"
+    },
+    "alive": {
+        "ar": "على قيد الحياة",
+        "en": "Alive",
+        "fr": "Vivant"
+    },
+    "deceased": {
+        "ar": "متوفى",
+        "en": "Deceased",
+        "fr": "Décédé"
+    },
+    "gender": {
+        "ar": "الجنس",
+        "en": "Gender",
+        "fr": "Sexe"
+    },
+    "nationality": {
+        "ar": "الجنسية",
+        "en": "Nationality",
+        "fr": "Nationalité"
+    },
+    "algiers": {
+        "ar": "الجزائر",
+        "en": "Algiers",
+        "fr": "Alger"
+    },
+    "term_1": {
+        "ar": "الفصل 1",
+        "en": "Term 1",
+        "fr": "Trimestre 1"
+    },
+    "term_2": {
+        "ar": "الفصل 2",
+        "en": "Term 2",
+        "fr": "Trimestre 2"
+    },
+    "term_3": {
+        "ar": "الفصل 3",
+        "en": "Term 3",
+        "fr": "Trimestre 3"
+    },
+    "address": {
+        "ar": "العنوان",
+        "en": "Address",
+        "fr": "Adresse"
+    },
+    "father": {
+        "ar": "الأب",
+        "en": "Father",
+        "fr": "Père"
+    },
+    "mother": {
+        "ar": "الأم",
+        "en": "Mother",
+        "fr": "Mère"
+    },
+    "legal_guardian": {
+        "ar": "الولي الشرعي",
+        "en": "Legal Guardian",
+        "fr": "Tuteur légal"
+    },
+    "other_guardian": {
+        "ar": "ولي آخر",
+        "en": "Other Guardian",
+        "fr": "Autre tuteur"
+    },
+    "notes": {
+        "ar": "ملاحظات",
+        "en": "Notes",
+        "fr": "Remarques"
+    },
+    "steps": {
+        "initial_reg": {
+            "ar": "التسجيل الأولي",
+            "en": "Initial Registration",
+            "fr": "Inscription initiale"
+        },
+        "family_info": {
+            "ar": "معلومات العائلة",
+            "en": "Family Information",
+            "fr": "Infos famille"
+        },
+        "interview_committee": {
+            "ar": "المقابلة واللجنة",
+            "en": "Interview & Committee",
+            "fr": "Entretien et comité"
+        },
+        "committee_assessment": {
+            "ar": "تقييم اللجنة",
+            "en": "Committee Assessment",
+            "fr": "Évaluation comité"
+        },
+        "financial_procedures": {
+            "ar": "الإجراءات المالية",
+            "en": "Financial Procedures",
+            "fr": "Procédures financières"
+        },
+        "fees_payment": {
+            "ar": "دفع الرسوم",
+            "en": "Fees Payment",
+            "fr": "Paiement frais"
+        }
+    },
+    "male": {
+        "ar": "ذكر",
+        "en": "Male",
+        "fr": "Masculin"
+    },
+    "female": {
+        "ar": "أنثى",
+        "en": "Female",
+        "fr": "Féminin"
+    },
+    "teachers": {
+        "drh_info": {
+            "ar": "معلومات DRH",
+            "en": "HR Information",
+            "fr": "Informations RH"
+        },
+        "admin_control": {
+            "ar": "تحكم الإدارة",
+            "en": "Admin Control",
+            "fr": "Contrôle Admin"
+        },
+        "contact_data": {
+            "ar": "بيانات الاتصال",
+            "en": "Contact Data",
+            "fr": "Données de contact"
+        },
+        "career_path": {
+            "ar": "المسار المهني",
+            "en": "Career Path",
+            "fr": "Parcours professionnel"
+        },
+        "auto_suggest_title": {
+            "ar": "اقتراحات الأقسام الآلية",
+            "en": "Auto-suggested Classes",
+            "fr": "Classes suggérées"
+        },
+        "assigned_department": {
+            "ar": "تخصيص القسم",
+            "en": "Assign Department",
+            "fr": "Assigner le département"
+        },
+        "admin_notes": {
+            "ar": "ملاحظات إدارية",
+            "en": "Admin Notes",
+            "fr": "Notes administratives"
+        },
+        "assigned_classes": {
+            "ar": "الأقسام المسندة",
+            "en": "Assigned Classes",
+            "fr": "Classes assignées"
+        },
+        "assigned_module": {
+            "ar": "المادة المدرسة",
+            "en": "Teaching Module",
+            "fr": "Module d'enseignement"
+        },
+        "working_hours": {
+            "ar": "ساعات العمل اليومية",
+            "en": "Daily Working Hours",
+            "fr": "Heures de travail quotidiennes"
+        },
+        "break_times": {
+            "ar": "أوقات الاستراحة",
+            "en": "Break Times",
+            "fr": "Temps de pause"
+        },
+        "teaching_preferences": {
+            "ar": "تفضيلات التدريس",
+            "en": "Teaching Preferences",
+            "fr": "Préférences d'enseignement"
+        },
+        "pref_calm_class": {
+            "ar": "أقسام هادئة",
+            "en": "Calm Classes",
+            "fr": "Classes calmes"
+        },
+        "pref_morning": {
+            "ar": "تفضيل الصباح",
+            "en": "Morning Preferred",
+            "fr": "Matin préféré"
+        },
+        "pref_afternoon": {
+            "ar": "تفضيل المساء",
+            "en": "Afternoon Preferred",
+            "fr": "Après-midi préféré"
+        },
+        "pref_special_needs": {
+            "ar": "التعامل مع ذوي الاحتياجات",
+            "en": "Handles Special Needs",
+            "fr": "Gère besoins spéciaux"
+        },
+        "pending_hr_approval": {
+            "ar": "بانتظار موافقة الموارد البشرية",
+            "en": "Pending HR Approval",
+            "fr": "En attente d'approbation RH"
+        },
+        "submit_for_approval": {
+            "ar": "إرسال للمراجعة",
+            "en": "Submit for Review",
+            "fr": "Envoyer pour révision"
+        },
+        "draft_mode_active": {
+            "ar": "نمط المسودة نشط: التغييرات لم تُعتمد بعد",
+            "en": "Draft mode active: Changes not yet applied",
+            "fr": "Mode brouillon actif : Changements non appliqués"
+        },
+        "personal_info_edit_notice": {
+            "ar": "تعديل المعلومات الشخصية يتطلب تدقيقاً من قسم الموارد البشرية",
+            "en": "Editing personal info requires HR department verification",
+            "fr": "La modification des infos personnelles nécessite une vérification RH"
+        },
+        "stage": {
+            "ar": "الطور",
+            "en": "Stage",
+            "fr": "Étape"
+        },
+        "stage_all": {
+            "ar": "كافة الأطوار",
+            "en": "All stages",
+            "fr": "Toutes les étapes"
+        },
+        "stage_pre_school": {
+            "ar": "ما قبل المدرسة",
+            "en": "Pre-school",
+            "fr": "Préscolaire"
+        },
+        "stage_primary": {
+            "ar": "الطور الابتدائي",
+            "en": "Primary",
+            "fr": "Primaire"
+        },
+        "stage_middle": {
+            "ar": "الطور المتوسط",
+            "en": "Middle",
+            "fr": "Collège"
+        },
+        "sub_stage": {
+            "ar": "المستوى",
+            "en": "Sub-Stage",
+            "fr": "Sous-étape"
+        },
+        "class": {
+            "ar": "القسم",
+            "en": "Class",
+            "fr": "Classe"
+        },
+        "filter": {
+            "ar": "تصفية",
+            "en": "Filter",
+            "fr": "Filtrer"
+        },
+        "filter_all": {
+            "ar": "الكل",
+            "en": "All",
+            "fr": "Tout"
+        },
+        "selected": {
+            "ar": "محدد",
+            "en": "selected",
+            "fr": "sélectionné"
+        },
+        "nickname": {
+            "ar": "اللقب",
+            "en": "Nickname",
+            "fr": "Surnom"
+        },
+        "quick_assign": {
+            "ar": "تعيين سريع",
+            "en": "Quick Assign",
+            "fr": "Assignation rapide"
+        }
+    }
+}

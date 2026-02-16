@@ -9,12 +9,13 @@ export const PageHero = ({
     title,
     subtitle,
     notificationCount = 0,
+    currentLanguage = 'ar', // Default prop
     onLanguageChange,
     actions,
     className = ''
 }) => {
     const [isNotificationOpen, setIsNotificationOpen] = useState(false);
-    const [selectedLanguage, setSelectedLanguage] = useState('ar');
+    // Removed internal state for language
     const [isDarkMode, setIsDarkMode] = useState(() => {
         // Check if dark mode was previously set
         return document.body.classList.contains('dark-mode');
@@ -147,10 +148,9 @@ export const PageHero = ({
                                 {languages.map((lang) => (
                                     <button
                                         key={lang.code}
-                                        className={`language-option ${selectedLanguage === lang.code ? 'active' : ''}`}
+                                        className={`language-option ${currentLanguage === lang.code ? 'active' : ''}`}
                                         onClick={() => {
-                                            setSelectedLanguage(lang.code);
-                                            onLanguageChange?.({ target: { value: lang.code } });
+                                            onLanguageChange?.(lang.code);
                                         }}
                                     >
                                         {lang.label}
@@ -193,6 +193,7 @@ PageHero.propTypes = {
     title: PropTypes.string,
     subtitle: PropTypes.string,
     notificationCount: PropTypes.number,
+    currentLanguage: PropTypes.string,
     onLanguageChange: PropTypes.func,
     actions: PropTypes.node,
     className: PropTypes.string

@@ -1,6 +1,5 @@
-
 import React, { useState, useMemo, useEffect, useRef } from 'react';
-import { Search, ChevronDown, ChevronUp, Loader, Check, Settings as SettingsIcon, Eye, EyeOff } from 'react-feather';
+import { Search, ChevronDown, ChevronUp, Loader, Check, Sliders, Eye, EyeOff, Plus, X, Columns, ChevronRight, Grid, RotateCcw, AlertCircle } from 'react-feather';
 import PropTypes from 'prop-types';
 import './DataTable.scss';
 
@@ -10,34 +9,20 @@ import './DataTable.scss';
  * Features:
  * - Search functionality
  * - Sortable columns (click header)
- * - Column visibility configuration
+ * - Column visibility configuration  
+ * - Column reordering (drag & drop)
+ * - Add extra columns from available pool
  * - Resizable columns (drag column borders)
+ * - Reset to defaults
  * - Loading, error, and empty states
  * - Alternating row colors
  * - Custom cell rendering
- * 
- * @param {Object} props
- * @param {Array} props.data - Array of data objects to display
- * @param {Array} props.columns - Column configuration array:
- *   - key: string - The data key to display
- *   - label: string - Column header label
- *   - visible: boolean - Whether column is visible by default
- *   - width: number - Initial column width in pixels
- *   - render: function(value, row, index) - Optional custom render function
- *   - sortable: boolean - Whether column is sortable (default: true)
- * @param {boolean} props.loading - Show loading state
- * @param {string} props.error - Error message to display
- * @param {string} props.searchPlaceholder - Search input placeholder
- * @param {function} props.searchFilter - Custom search filter function(row, query)
- * @param {string} props.emptyIcon - React component for empty state icon
- * @param {string} props.emptyTitle - Empty state title
- * @param {string} props.emptyMessage - Empty state message
- * @param {string} props.footerText - Footer text (use {count} for row count)
- * @param {string} props.className - Additional CSS class for container
  */
 export const DataTable = ({
     data = [],
     columns: initialColumns = [],
+    defaultColumns = [], // Original default set for reset
+    extraColumns = [],
     loading = false,
     error = null,
     searchPlaceholder = 'البحث ...',
@@ -48,14 +33,26 @@ export const DataTable = ({
     footerText = 'إجمالي النتائج: {count}',
     className = '',
     onRetry,
+    onRowClick,
+    onColumnsChange,
+    headerActions,
+    selectable = false,
+    selectedRows = [],
+    onSelectedRowsChange,
 }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
     const [columns, setColumns] = useState(initialColumns);
     const [configDropdownOpen, setConfigDropdownOpen] = useState(false);
+    const [addColumnOpen, setAddColumnOpen] = useState(false);
+    const [expandedCategory, setExpandedCategory] = useState(null);
     const [resizing, setResizing] = useState(null);
+    const [draggedIndex, setDraggedIndex] = useState(null);
+
     const resizingRef = useRef(null);
     const configDropdownRef = useRef(null);
+    const columnListRef = useRef(null);
+    const scrollIntervalRef = useRef(null);
 
     // Update columns when initialColumns change
     useEffect(() => {
@@ -67,6 +64,8 @@ export const DataTable = ({
         const handleClickOutside = (event) => {
             if (configDropdownRef.current && !configDropdownRef.current.contains(event.target)) {
                 setConfigDropdownOpen(false);
+                setAddColumnOpen(false);
+                setExpandedCategory(null);
             }
         };
 
@@ -117,11 +116,91 @@ export const DataTable = ({
         document.body.style.userSelect = 'none';
     };
 
-    // Toggle column visibility
+    // Toggle column visibility - Simple on/off switch
     const toggleColumn = (key) => {
-        setColumns(prev => prev.map(col =>
-            col.key === key ? { ...col, visible: !col.visible } : col
-        ));
+        setColumns(prev => {
+            const updated = prev.map(col =>
+                col.key === key ? { ...col, visible: !col.visible } : col
+            );
+            onColumnsChange?.(updated);
+            return updated;
+        });
+    };
+
+    // Reset to defaults
+    const handleReset = () => {
+        if (!defaultColumns || defaultColumns.length === 0) return;
+        setColumns(defaultColumns);
+        onColumnsChange?.(defaultColumns);
+    };
+
+    // Drag and Drop reordering logic
+    const handleDragStart = (e, index) => {
+        setDraggedIndex(index);
+        e.dataTransfer.effectAllowed = 'move';
+    };
+
+    const handleDragOver = (e, index) => {
+        e.preventDefault();
+        if (draggedIndex === null || draggedIndex === index) return;
+
+        // Auto-scroll logic with delta calculation
+        const container = columnListRef.current;
+        if (container) {
+            const rect = container.getBoundingClientRect();
+            const threshold = 50;
+            const topDist = e.clientY - rect.top;
+            const bottomDist = rect.bottom - e.clientY;
+
+            clearInterval(scrollIntervalRef.current);
+
+            if (topDist < threshold) {
+                const speed = Math.max(2, (threshold - topDist) / 4);
+                scrollIntervalRef.current = setInterval(() => {
+                    container.scrollTop -= speed;
+                }, 10);
+            } else if (bottomDist < threshold) {
+                const speed = Math.max(2, (threshold - bottomDist) / 4);
+                scrollIntervalRef.current = setInterval(() => {
+                    container.scrollTop += speed;
+                }, 10);
+            }
+        }
+
+        // Swap columns in state for visual reordering
+        const updated = [...columns];
+        const itemToMove = updated.splice(draggedIndex, 1)[0];
+        updated.splice(index, 0, itemToMove);
+        setColumns(updated);
+        setDraggedIndex(index);
+    };
+
+    const handleDragEnd = () => {
+        setDraggedIndex(null);
+        clearInterval(scrollIntervalRef.current);
+        onColumnsChange?.(columns);
+    };
+
+    // Add a column from the extra columns pool
+    const addExtraColumn = (extraCol) => {
+        setColumns(prev => {
+            // Don't add if already exists
+            if (prev.find(c => c.key === extraCol.key)) return prev;
+            const updated = [...prev, { ...extraCol, visible: true }];
+            onColumnsChange?.(updated);
+            return updated;
+        });
+        setAddColumnOpen(false);
+        setExpandedCategory(null);
+    };
+
+    // Remove a column (only extra/added ones)
+    const removeColumn = (key) => {
+        setColumns(prev => {
+            const updated = prev.filter(c => c.key !== key);
+            onColumnsChange?.(updated);
+            return updated;
+        });
     };
 
     // Handle column header click for sorting
@@ -177,8 +256,46 @@ export const DataTable = ({
         return result;
     }, [data, searchQuery, sortConfig, searchFilter]);
 
-    // Get visible columns
+    // Selection handlers
+    const handleSelectAll = (e) => {
+        if (e.target.checked) {
+            onSelectedRowsChange(processedData.map(row => row.id || data.indexOf(row)));
+        } else {
+            onSelectedRowsChange([]);
+        }
+    };
+
+    const handleSelectRow = (e, row) => {
+        e.stopPropagation();
+        const id = row.id || data.indexOf(row);
+        if (e.target.checked) {
+            onSelectedRowsChange([...selectedRows, id]);
+        } else {
+            onSelectedRowsChange(selectedRows.filter(rId => rId !== id));
+        }
+    };
+
+    const isAllSelected = processedData.length > 0 && selectedRows.length === processedData.length;
+    const isSomeSelected = selectedRows.length > 0 && !isAllSelected;
+
+    // Get visible columns - These are the ones shown in the table
     const visibleColumns = columns.filter(col => col.visible);
+
+    // Get available extra columns (not already added)
+    const availableExtras = extraColumns.filter(
+        extra => !columns.find(c => c.key === extra.key)
+    );
+
+    // Group available extras by category
+    const groupedExtras = useMemo(() => {
+        const groups = {};
+        availableExtras.forEach(col => {
+            const cat = col.category || 'أخرى';
+            if (!groups[cat]) groups[cat] = [];
+            groups[cat].push(col);
+        });
+        return groups;
+    }, [availableExtras]);
 
     // Get sort icon for column
     const getSortIcon = (columnKey) => {
@@ -195,6 +312,11 @@ export const DataTable = ({
             return column.render(value, row, rowIndex);
         }
         return value ?? '-';
+    };
+
+    // Check if column is removable (was added from extras)
+    const isRemovable = (key) => {
+        return extraColumns.some(ec => ec.key === key);
     };
 
     // Format footer text
@@ -220,33 +342,142 @@ export const DataTable = ({
                 </div>
 
                 <div className="dt-filter-group">
+                    {headerActions && <div className="dt-header-actions">{headerActions}</div>}
                     {/* Configuration Dropdown */}
                     <div className="dt-config-dropdown" ref={configDropdownRef}>
                         <button
                             className={`dt-config-btn ${configDropdownOpen ? 'active' : ''}`}
-                            onClick={() => setConfigDropdownOpen(!configDropdownOpen)}
-                            title="إعدادات الجدول"
+                            onClick={() => {
+                                setConfigDropdownOpen(!configDropdownOpen);
+                                setAddColumnOpen(false);
+                                setExpandedCategory(null);
+                            }}
+                            title="إعدادات الأعمدة"
                         >
-                            <SettingsIcon size={22} />
+                            <Sliders size={26} />
                         </button>
 
                         {configDropdownOpen && (
                             <div className="dt-dropdown-menu">
-                                <div className="dt-menu-header">إظهار الأعمدة</div>
-                                {columns.map(col => (
-                                    <label key={col.key} className="dt-dropdown-checkbox">
-                                        <input
-                                            type="checkbox"
-                                            checked={col.visible}
-                                            onChange={() => toggleColumn(col.key)}
-                                        />
-                                        <span className="dt-checkbox-box">
-                                            {col.visible && <Check size={14} />}
-                                        </span>
-                                        <span className="dt-item-label">{col.label}</span>
-                                        {col.visible ? <Eye size={14} className="dt-visibility-icon" /> : <EyeOff size={14} className="dt-visibility-icon" />}
-                                    </label>
-                                ))}
+                                {!addColumnOpen ? (
+                                    <>
+                                        <div className="dt-menu-header">
+                                            <Columns size={16} />
+                                            <span>ترتيب و إظهار الأعمدة</span>
+
+                                            {defaultColumns && defaultColumns.length > 0 && (
+                                                <button
+                                                    className="dt-reset-btn"
+                                                    onClick={handleReset}
+                                                    title="إعادة ضبط الافتراضيات"
+                                                >
+                                                    <RotateCcw size={14} />
+                                                </button>
+                                            )}
+                                        </div>
+                                        <div
+                                            className="dt-column-list"
+                                            ref={columnListRef}
+                                            onDragLeave={() => clearInterval(scrollIntervalRef.current)}
+                                        >
+                                            {columns.map((col, index) => (
+                                                <div
+                                                    key={col.key}
+                                                    className={`dt-column-item ${col.visible ? 'dt-col-visible' : 'dt-col-hidden'} ${draggedIndex === index ? 'dragging' : ''}`}
+                                                    draggable
+                                                    onDragStart={(e) => handleDragStart(e, index)}
+                                                    onDragOver={(e) => handleDragOver(e, index)}
+                                                    onDragEnd={handleDragEnd}
+                                                >
+                                                    <div className="dt-item-drag-handle">
+                                                        <Grid size={18} />
+                                                    </div>
+
+                                                    <button
+                                                        className="dt-visibility-toggle"
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            toggleColumn(col.key);
+                                                        }}
+                                                        title="تبديل الظهور"
+                                                    >
+                                                        {col.visible
+                                                            ? <Eye size={18} className="dt-vis-icon on" />
+                                                            : <EyeOff size={18} className="dt-vis-icon off" />
+                                                        }
+                                                    </button>
+
+                                                    <span className="dt-item-label">{col.label}</span>
+
+                                                    <span className="dt-item-order">
+                                                        {index + 1}
+                                                    </span>
+
+                                                    {isRemovable(col.key) && (
+                                                        <button
+                                                            className="dt-remove-col-btn"
+                                                            onClick={(e) => { e.stopPropagation(); removeColumn(col.key); }}
+                                                            title="إزالة العمود"
+                                                        >
+                                                            <X size={16} />
+                                                        </button>
+                                                    )}
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        {/* Add Column Button */}
+                                        {availableExtras.length > 0 && (
+                                            <button
+                                                className="dt-add-column-btn"
+                                                onClick={() => setAddColumnOpen(true)}
+                                            >
+                                                <Plus size={20} />
+                                                <span>إضافة عمود</span>
+                                            </button>
+                                        )}
+                                    </>
+                                ) : (
+                                    /* Add Column Picker */
+                                    <div className="dt-add-column-picker">
+                                        <div className="dt-picker-header">
+                                            <button className="dt-back-btn" onClick={() => { setAddColumnOpen(false); setExpandedCategory(null); }}>
+                                                <ChevronRight size={18} />
+                                            </button>
+                                            <span>إضافة عمود جديد</span>
+                                        </div>
+
+                                        <div className="dt-picker-categories">
+                                            {Object.entries(groupedExtras).map(([category, cols]) => (
+                                                <div key={category} className="dt-picker-category">
+                                                    <button
+                                                        className={`dt-category-header ${expandedCategory === category ? 'expanded' : ''}`}
+                                                        onClick={() => setExpandedCategory(expandedCategory === category ? null : category)}
+                                                    >
+                                                        <ChevronRight size={16} className="dt-cat-arrow" />
+                                                        <span>{category}</span>
+                                                        <span className="dt-cat-count">{cols.length}</span>
+                                                    </button>
+
+                                                    {expandedCategory === category && (
+                                                        <div className="dt-category-items">
+                                                            {cols.map(col => (
+                                                                <button
+                                                                    key={col.key}
+                                                                    className="dt-extra-col-item"
+                                                                    onClick={() => addExtraColumn(col)}
+                                                                >
+                                                                    <Plus size={16} />
+                                                                    <span>{col.label}</span>
+                                                                </button>
+                                                            ))}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         )}
                     </div>
@@ -273,44 +504,84 @@ export const DataTable = ({
             {!loading && !error && (
                 <>
                     <div className="dt-table-container">
-                        <table className="dt-table">
-                            <thead>
-                                <tr>
-                                    {visibleColumns.map(col => (
-                                        <th
-                                            key={col.key}
-                                            onClick={() => handleSort(col.key)}
-                                            onDoubleClick={handleDoubleClick}
-                                            className={`${sortConfig.key === col.key ? 'sorted' : ''} ${col.sortable === false ? 'no-sort' : ''}`}
-                                            style={{ width: col.width }}
-                                        >
-                                            <div
-                                                className={`dt-resize-handle ${resizing === col.key ? 'active' : ''}`}
-                                                onMouseDown={(e) => handleResizeStart(e, col.key, col.width)}
-                                                onClick={(e) => e.stopPropagation()}
-                                            />
-                                            <span className="dt-th-content">
-                                                {col.label}
-                                                {col.sortable !== false && getSortIcon(col.key)}
-                                            </span>
-                                        </th>
-                                    ))}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {processedData.map((row, rowIndex) => (
-                                    <tr key={row.id || rowIndex} className={rowIndex % 2 === 1 ? 'row-alt' : ''}>
-                                        {visibleColumns.map(col => (
-                                            <td key={col.key}>
-                                                {renderCell(col, row, rowIndex)}
-                                            </td>
+                        {visibleColumns.length > 0 ? (
+                            <table className="dt-table">
+                                <thead>
+                                    <tr className="dt-header-row">
+                                        {selectable && (
+                                            <th className="dt-header-cell selection-cell">
+                                                <div className="dt-checkbox-wrapper">
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={isAllSelected}
+                                                        ref={el => el && (el.indeterminate = isSomeSelected)}
+                                                        onChange={handleSelectAll}
+                                                    />
+                                                    <span className="checkbox-visual"></span>
+                                                </div>
+                                            </th>
+                                        )}
+                                        {visibleColumns.map((col, idx) => (
+                                            <th
+                                                key={col.key}
+                                                onClick={() => handleSort(col.key)}
+                                                onDoubleClick={handleDoubleClick}
+                                                className={`${sortConfig.key === col.key ? 'sorted' : ''} ${col.sortable === false ? 'no-sort' : ''}`}
+                                                style={{ width: col.width }}
+                                            >
+                                                <div
+                                                    className={`dt-resize-handle ${resizing === col.key ? 'active' : ''}`}
+                                                    onMouseDown={(e) => handleResizeStart(e, col.key, col.width)}
+                                                    onClick={(e) => e.stopPropagation()}
+                                                />
+                                                <span className="dt-th-content">
+                                                    {col.label}
+                                                    {col.sortable !== false && getSortIcon(col.key)}
+                                                </span>
+                                            </th>
                                         ))}
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    {processedData.map((row, rowIndex) => (
+                                        <tr
+                                            key={row.id || rowIndex}
+                                            className={`${rowIndex % 2 === 1 ? 'row-alt' : ''} ${onRowClick ? 'clickable' : ''}`}
+                                            onClick={(e) => onRowClick && onRowClick(row, e)}
+                                        >
+                                            {selectable && (
+                                                <td className="dt-body-cell selection-cell">
+                                                    <div className="dt-checkbox-wrapper">
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={selectedRows.includes(row.id || data.indexOf(row))}
+                                                            onChange={(e) => handleSelectRow(e, row)}
+                                                            onClick={(e) => e.stopPropagation()}
+                                                        />
+                                                        <span className="checkbox-visual"></span>
+                                                    </div>
+                                                </td>
+                                            )}
+                                            {visibleColumns.map((col) => (
+                                                <td key={col.key}>
+                                                    {renderCell(col, row, rowIndex)}
+                                                </td>
+                                            ))}
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        ) : (
+                            <div className="dt-no-columns-state">
+                                <AlertCircle size={48} />
+                                <p>يجب إظهار عمود واحد على الأقل لعرض البيانات</p>
+                                {defaultColumns && defaultColumns.length > 0 && (
+                                    <button onClick={handleReset}>إعادة ضبط الأعمدة</button>
+                                )}
+                            </div>
+                        )}
 
-                        {processedData.length === 0 && (
+                        {processedData.length === 0 && visibleColumns.length > 0 && (
                             <div className="dt-empty-state">
                                 {EmptyIcon && <EmptyIcon size={48} />}
                                 <p>{emptyTitle}</p>
@@ -320,9 +591,11 @@ export const DataTable = ({
                     </div>
 
                     {/* Footer Stats */}
-                    <div className="dt-table-footer">
-                        <span>{formattedFooterText}</span>
-                    </div>
+                    {visibleColumns.length > 0 && (
+                        <div className="dt-table-footer">
+                            <span>{formattedFooterText}</span>
+                        </div>
+                    )}
                 </>
             )}
         </div>
@@ -339,6 +612,14 @@ DataTable.propTypes = {
         render: PropTypes.func,
         sortable: PropTypes.bool,
     })),
+    defaultColumns: PropTypes.array,
+    extraColumns: PropTypes.arrayOf(PropTypes.shape({
+        key: PropTypes.string.isRequired,
+        label: PropTypes.string.isRequired,
+        category: PropTypes.string,
+        width: PropTypes.number,
+        render: PropTypes.func,
+    })),
     loading: PropTypes.bool,
     error: PropTypes.string,
     searchPlaceholder: PropTypes.string,
@@ -349,4 +630,6 @@ DataTable.propTypes = {
     footerText: PropTypes.string,
     className: PropTypes.string,
     onRetry: PropTypes.func,
+    onRowClick: PropTypes.func,
+    onColumnsChange: PropTypes.func,
 };

@@ -4,28 +4,19 @@
 #collapsibleSidebar {
     transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: fixed !important;
-    border-right: 1px solid var(--color-slate-200);
-    /* LTR default, overridden by RTL */
+    border-inline-end: 1px solid var(--color-slate-200);
     z-index: 50;
     box-shadow: 0 0 0 rgba(0, 0, 0, 0);
     height: 97vh;
-    top: 0;
+    top: 50%;
+    transform: translateY(-50%);
     width: 64px;
     overflow: hidden;
     margin: 10px;
     border-radius: 15px;
     border: 1px solid var(--color-slate-300);
     @include glass-uno;
-
-    [dir="rtl"] & {
-        border-right: none;
-        border-left: 1px solid var(--color-slate-200);
-        right: 0;
-    }
-
-    [dir="ltr"] & {
-        left: 0;
-    }
+    inset-inline-start: 0;
 
     &:hover {
         width: 256px;

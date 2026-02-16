@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { useTranslation } from '../../../context/LanguageContext';
 import { NavLink } from 'react-router-dom';
 import './Sidebar.scss';
 import PropTypes from 'prop-types';
@@ -8,60 +9,62 @@ import {
     Users, Book, Home, Layout, Clock, UserPlus
 } from 'react-feather';
 
-const NAVIGATION_CONFIG = {
-    Director: [
-        {
-            name: 'nav.management',
-            items: [
-                { href: '/', icon: Grid, label: 'لوحة التحكم' },
-                { href: '/teachers', icon: Users, label: 'إدارة الأساتذة' },
-                { href: '/students', icon: Users, label: 'إدارة الطلاب' },
-                { href: '/registration', icon: UserPlus, label: 'إدارة التسجيلات' },
-                { href: '/academic', icon: Book, label: 'إدارة أكادمية' },
-                { href: '/hub', icon: Calendar, label: 'التقويم و الإعلانات' }
-            ]
-        },
-        {
-            name: 'nav.account',
-            items: [
-                { href: '#', icon: LogOut, label: 'تسجيل الخروج', action: 'logout' }
-            ]
-        }
-    ],
-    HR_Manager: [
-        {
-            name: 'nav.dashboard',
-            items: [
-                { href: 'index.html', icon: Grid, label: 'لوحة التحكم' }
-            ]
-        },
-        {
-            name: 'nav.management',
-            items: [
-                { href: 'index.html', icon: Users, label: 'إدارة الموظفين' },
-                { href: 'index.html', icon: Layout, label: 'الهيكل التنظيمي' },
-                { href: 'index.html', icon: Clock, label: 'الحضور' }
-            ]
-        },
-        {
-            name: 'nav.account',
-            items: [
-                { href: '#', icon: LogOut, label: 'تسجيل الخروج', action: 'logout' }
-            ]
-        }
-    ],
-    // Add other roles as needed
-    Default: [
-        {
-            name: 'nav.main',
-            items: [
-                { href: 'index.html', icon: Home, label: 'الرئيسية' }
-            ]
-        }
-    ]
-};
-
+// Removed config object to move inside component for translation
 export const Sidebar = ({ role = 'Director', onLogout, className = '' }) => {
+    const { t } = useTranslation();
+
+    const NAVIGATION_CONFIG = {
+        Director: [
+            {
+                name: 'nav.management',
+                items: [
+                    { href: '/', icon: Grid, label: t('nav.dashboard') },
+                    { href: '/teachers', icon: Users, label: t('nav.teachers') },
+                    { href: '/students', icon: Users, label: t('nav.students') },
+                    { href: '/registration', icon: UserPlus, label: t('nav.registration') },
+                    { href: '/academic', icon: Book, label: t('nav.academic') },
+                    { href: '/hub', icon: Calendar, label: t('nav.calendar') }
+                ]
+            },
+            {
+                name: 'nav.account',
+                items: [
+                    { href: '#', icon: LogOut, label: t('nav.logout'), action: 'logout' }
+                ]
+            }
+        ],
+        HR_Manager: [
+            {
+                name: 'nav.dashboard',
+                items: [
+                    { href: 'index.html', icon: Grid, label: t('nav.dashboard') }
+                ]
+            },
+            {
+                name: 'nav.hr',
+                items: [
+                    { href: 'index.html', icon: Users, label: t('nav.employees') },
+                    { href: 'index.html', icon: Layout, label: t('nav.structure') },
+                    { href: 'index.html', icon: Clock, label: t('nav.attendance') }
+                ]
+            },
+            {
+                name: 'nav.account',
+                items: [
+                    { href: '#', icon: LogOut, label: t('nav.logout'), action: 'logout' }
+                ]
+            }
+        ],
+        // Add other roles as needed
+        Default: [
+            {
+                name: 'nav.main',
+                items: [
+                    { href: 'index.html', icon: Home, label: t('nav.main') }
+                ]
+            }
+        ]
+    };
     const [activeLink, setActiveLink] = useState('index.html'); // Default active
     const navSections = NAVIGATION_CONFIG[role] || NAVIGATION_CONFIG['Default'];
 

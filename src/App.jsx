@@ -12,6 +12,11 @@ import { StudentsOrganization } from './pages/students/StudentsOrganization';
 import { RegistrationOverview } from './pages/registration/RegistrationOverview';
 import { RegistrationRequests } from './pages/registration/RegistrationRequests';
 import { RegistrationMeetings } from './pages/registration/RegistrationMeetings';
+import { RegistrationCommissions } from './pages/registration/RegistrationCommissions';
+import { RegistrationFinalization } from './pages/registration/RegistrationFinalization';
+import { TeachersLayout } from './layouts/TeachersLayout';
+import { TeachersOverview } from './pages/teachers/TeachersOverview';
+import { TeachersManagement } from './pages/teachers/TeachersManagement';
 import './styles/global.scss';
 
 // Placeholder component for pages under construction
@@ -37,7 +42,10 @@ function App() {
           <Route path="showcase" element={<Showcase />} />
 
           {/* Management Units */}
-          <Route path="teachers" element={<PlaceholderPage title="إدارة الأساتذة" />} />
+          <Route path="teachers" element={<TeachersLayout />}>
+            <Route index element={<TeachersOverview />} />
+            <Route path="list" element={<TeachersManagement />} />
+          </Route>
           <Route path="students" element={<StudentsLayout />}>
             <Route index element={<StudentsHome />} />
             <Route path="organization" element={<StudentsOrganization />} />
@@ -46,6 +54,8 @@ function App() {
             <Route index element={<RegistrationOverview />} />
             <Route path="requests" element={<RegistrationRequests />} />
             <Route path="meetings" element={<RegistrationMeetings />} />
+            <Route path="commissions" element={<RegistrationCommissions />} />
+            <Route path="finalization" element={<RegistrationFinalization />} />
           </Route>
           <Route path="academic" element={<PlaceholderPage title="إدارة أكادمية" />} />
           <Route path="hub" element={<PlaceholderPage title="التقويم و الإعلانات" />} />

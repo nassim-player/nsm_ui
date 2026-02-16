@@ -1,0 +1,230 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.steps-container {
+    display: flex;
+    gap: var(--spacing-sm);
+    width: 100%;
+
+    &.horizontal {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+
+        .step-item {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            position: relative;
+
+            &:last-child {
+                flex: 0 1 auto;
+
+                .step-line {
+                    display: none;
+                }
+            }
+        }
+
+        .step-point-wrapper {
+            display: flex;
+            align-items: center;
+            position: relative;
+            flex: 1;
+
+            .step-line {
+                height: 2px;
+                background: var(--color-slate-200);
+                flex: 1;
+                margin: 0 var(--spacing-sm);
+                transition: background var(--transition-base);
+            }
+        }
+    }
+
+    &.vertical {
+        flex-direction: column;
+
+        .step-item {
+            display: flex;
+            gap: var(--spacing-md);
+            position: relative;
+            padding-bottom: var(--spacing-xl);
+
+            &:last-child {
+                padding-bottom: 0;
+
+                .step-line {
+                    display: none;
+                }
+            }
+        }
+
+        .step-point-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .step-line {
+                width: 2px;
+                background: var(--color-slate-200);
+                flex: 1;
+                margin-top: var(--spacing-sm);
+            }
+        }
+    }
+
+    /* Variant: on-primary (for dark/blue headers) */
+    &.variant-on-primary {
+        .step-item {
+            .step-point {
+                background: rgba(255, 255, 255, 0.1);
+                border-color: rgba(255, 255, 255, 0.2);
+                color: rgba(255, 255, 255, 0.6);
+            }
+
+            .step-line {
+                background: rgba(255, 255, 255, 0.1);
+            }
+
+            .step-label {
+                color: rgba(255, 255, 255, 0.7);
+            }
+
+            .step-desc {
+                color: rgba(255, 255, 255, 0.5);
+            }
+
+            &.active {
+                .step-point {
+                    background: white;
+                    color: var(--color-primary);
+                    border-color: white;
+                    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+                }
+
+                .step-label {
+                    color: white;
+                }
+
+                .step-desc {
+                    color: rgba(255, 255, 255, 0.9);
+                }
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -1rem;
+                    right: 0;
+                    width: 100%;
+                    height: 4px;
+                    background: white;
+                    border-radius: 2px 2px 0 0;
+                }
+            }
+
+            &.completed {
+                .step-point {
+                    background: var(--color-success);
+                    border-color: var(--color-success);
+                    color: white;
+                }
+
+                .step-line {
+                    background: var(--color-success);
+                }
+
+                .step-label {
+                    color: rgba(255, 255, 255, 0.9);
+                }
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -1rem;
+                    right: 0;
+                    width: 100%;
+                    height: 4px;
+                    background: var(--color-success);
+                    border-radius: 2px 2px 0 0;
+                }
+            }
+        }
+    }
+
+    /* Base Step Item Styles */
+    .step-item {
+        .step-point {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            border: 2px solid var(--color-slate-300);
+            color: var(--color-slate-500);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            z-index: 1;
+            transition: all var(--transition-base);
+        }
+
+        .step-content {
+            display: flex;
+            flex-direction: column;
+
+            .step-label {
+                font-size: 0.85rem;
+                font-weight: 600;
+                color: var(--text-secondary);
+                transition: color var(--transition-base);
+            }
+
+            .step-desc {
+                font-size: 0.75rem;
+                color: var(--text-tertiary);
+            }
+        }
+
+        &.active {
+            .step-point {
+                border-color: var(--color-primary);
+                background: var(--color-primary);
+                color: white;
+                box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb), 0.1);
+            }
+
+            .step-label {
+                color: var(--color-primary);
+            }
+        }
+
+        &.completed {
+            .step-point {
+                border-color: var(--color-success);
+                background: var(--color-success);
+                color: white;
+            }
+
+            .step-line {
+                background: var(--color-success) !important;
+            }
+
+            .step-label {
+                color: var(--text-primary);
+            }
+        }
+    }
+}
+
+[dir="rtl"] {
+    .steps-container.horizontal {
+        .step-item {
+            .step-content {
+                text-align: right;
+            }
+        }
+    }
+}

@@ -1,0 +1,3527 @@
+:root {
+  /* Primary Colors */
+  --color-primary: #3b82f6;
+  --color-primary-dark: #2563eb;
+  --color-primary-light: #60a5fa;
+  /* Secondary Colors */
+  --color-secondary: #8b5cf6;
+  --color-secondary-dark: #7c3aed;
+  --color-secondary-light: #a78bfa;
+  /* Neutral Colors - Updated for better contrast */
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  /* Backgrounds - Distinct Layers */
+  --bg-primary: #ffffff;
+  --bg-primary-subtle: #f8fafc;
+  /* Slightly darker than white for panel backgrounds */
+  --bg-secondary: #f1f5f9;
+  /* distinct grey for card headers/sections */
+  --bg-tertiary: #e2e8f0;
+  --border-color: #e2e8f0;
+  --border-color-hover: #cbd5e1;
+  /* Status Colors */
+  --color-success: #10b981;
+  --color-success-dark: #059669;
+  --color-success-light: #d1fae5;
+  --color-warning: #f59e0b;
+  --color-warning-dark: #d97706;
+  --color-warning-light: #fef3c7;
+  --color-error: #ef4444;
+  --color-error-dark: #dc2626;
+  --color-error-light: #fee2e2;
+  --color-info: #3b82f6;
+  --color-info-dark: #2563eb;
+  --color-info-light: #dbeafe;
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  /* Border Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  /* Legacy/Compat Variables */
+  --primary-color: #3b82f6;
+  --secondary-color: #64748b;
+  --bacground-color: #ffffff;
+  --cards-color: #ffffff;
+  --cards-color-2: #f8fafc;
+  --content-color: #f1f5f9;
+  --text-color: #0f172a;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --text-tertiary: #94a3b8;
+  --vec-color-hover: #f1f5f9;
+  --vec-color-lighter: #cbd5e1;
+  --vec-color: #475569;
+  --vec-color-better: #64748b;
+  --light-gray: #e2e8f0;
+  --mid-gray: #94a3b8;
+  --dark-gray: #64748b;
+  --srv-gray: #94a3b8;
+  --titel-gray: #64748b;
+  --off-white: #f8fafc;
+  --off-white-tb2t: rgba(15, 23, 42, 0.5);
+  --idk: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  --idk-border: #dbeafe;
+  /* Glass Effect Variables */
+  --glass-background-zero: rgba(255, 255, 255, 0.95);
+  --glass-background-uno-zero: rgba(255, 255, 255, 0.85);
+  --glass-border-zero: rgba(255, 255, 255, 0.5);
+  --glass-background-uno: rgba(255, 255, 255, 0.7);
+  --glass-background-uno-hover: rgba(255, 255, 255, 0.8);
+  --glass-border-uno: rgba(255, 255, 255, 0.4);
+  --glass-background-dos: rgba(255, 255, 255, 0.4);
+  --glass-border-dos: rgba(255, 255, 255, 0.3);
+  --gradient-start: #3b82f6;
+  --gradient-end: #6366f1;
+  /* Header Fluid Variables */
+  --header-bg-gradient: radial-gradient(circle at top left, #f0f9ff, #e0f2fe);
+  --blob-1-color: #3b82f6;
+  --blob-2-color: #60a5fa;
+  --blob-3-color: #93c5fd;
+  --glass-panel-bg: rgba(255, 255, 255, 0.4);
+  --glass-panel-border: rgba(255, 255, 255, 0.6);
+  --glass-panel-shadow: rgba(59, 130, 246, 0.1);
+  /* RGB Components */
+  --color-primary-rgb: 59, 130, 246;
+  --color-secondary-rgb: 139, 92, 246;
+  --color-success-rgb: 16, 185, 129;
+  --color-warning-rgb: 245, 158, 11;
+  --color-error-rgb: 239, 68, 68;
+  /* Direction & Alignment Variables */
+  --direction: ltr;
+  --text-align: left;
+  --opposite-align: right;
+  --direction-multiplier: 1;
+}
+
+[dir=rtl] {
+  --direction: rtl;
+  --text-align: right;
+  --opposite-align: left;
+  --direction-multiplier: -1;
+}
+
+.dark-mode {
+  /* Primary Colors */
+  --color-primary: #60a5fa;
+  --color-primary-dark: #3b82f6;
+  --color-primary-light: #93c5fd;
+  /* Secondary Colors */
+  --color-secondary: #a78bfa;
+  --color-secondary-dark: #8b5cf6;
+  --color-secondary-light: #c4b5fd;
+  /* Neutral Colors - Inverted and adjusted for dark mode contrast */
+  --color-slate-50: #0f172a;
+  --color-slate-100: #1e293b;
+  --color-slate-200: #334155;
+  --color-slate-300: #475569;
+  --color-slate-400: #64748b;
+  --color-slate-500: #94a3b8;
+  --color-slate-600: #cbd5e1;
+  --color-slate-700: #e2e8f0;
+  --color-slate-800: #f1f5f9;
+  --color-slate-900: #f8fafc;
+  /* Backgrounds - Distinct Dark Layers */
+  --bg-primary: #1e293b;
+  /* Main card background */
+  --bg-primary-subtle: #0f172a;
+  /* Page background / deep background */
+  --bg-secondary: #334155;
+  /* Distinct headers/sections */
+  --bg-tertiary: #475569;
+  --border-color: #334155;
+  --border-color-hover: #475569;
+  /* Status Colors */
+  --color-success: #34d399;
+  --color-success-dark: #10b981;
+  --color-success-light: rgba(52, 211, 153, 0.15);
+  --color-warning: #fbbf24;
+  --color-warning-dark: #f59e0b;
+  --color-warning-light: rgba(251, 191, 36, 0.15);
+  --color-error: #f87171;
+  --color-error-dark: #ef4444;
+  --color-error-light: rgba(248, 113, 113, 0.15);
+  --color-info: #60a5fa;
+  --color-info-dark: #3b82f6;
+  --color-info-light: rgba(96, 165, 250, 0.15);
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+  /* Legacy/Compat Variables - Adjusted for Dark Mode */
+  --primary-color: #60a5fa;
+  --secondary-color: #94a3b8;
+  --bacground-color: #0f172a;
+  --cards-color: #1e293b;
+  --cards-color-2: #334155;
+  --content-color: #0f172a;
+  --text-color: #f1f5f9;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-tertiary: #64748b;
+  --vec-color-hover: #334155;
+  --vec-color-lighter: #475569;
+  --vec-color: #cbd5e1;
+  --vec-color-better: #e2e8f0;
+  --light-gray: #475569;
+  --mid-gray: #94a3b8;
+  --dark-gray: #cbd5e1;
+  --srv-gray: #cbd5e1;
+  --titel-gray: #94a3b8;
+  --off-white: #334155;
+  --off-white-tb2t: rgba(241, 241, 241, 0.1);
+  --idk: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  --idk-border: #334155;
+  /* Glass Effect Variables - Dark Mode */
+  --glass-background-zero: rgba(30, 41, 59, 0.95);
+  --glass-background-uno-zero: rgba(15, 23, 42, 0.9);
+  --glass-border-zero: rgba(255, 255, 255, 0.1);
+  --glass-background-uno: rgba(0, 0, 0, 0.4);
+  --glass-background-uno-hover: rgba(0, 0, 0, 0.6);
+  --glass-border-uno: rgba(255, 255, 255, 0.08);
+  --glass-background-dos: rgba(0, 0, 0, 0.3);
+  --glass-border-dos: rgba(255, 255, 255, 0.05);
+  /* Header Fluid Variables - Dark Mode */
+  --header-bg-gradient: radial-gradient(circle at top left, #1e293b, #0f172a);
+  --blob-1-color: #1e3a8a;
+  --blob-2-color: #1e40af;
+  --blob-3-color: #1d4ed8;
+  --glass-panel-bg: rgba(30, 41, 59, 0.5);
+  --glass-panel-border: rgba(255, 255, 255, 0.08);
+  --glass-panel-shadow: rgba(0, 0, 0, 0.4);
+  /* RGB Components */
+  --color-primary-rgb: 96, 165, 250;
+  --color-secondary-rgb: 167, 139, 250;
+  --color-success-rgb: 52, 211, 153;
+  --color-warning-rgb: 251, 191, 36;
+  --color-error-rgb: 248, 113, 113;
+}
+
+/* Mixins */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(calc(20px * var(--direction-multiplier, 1)));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+:root {
+  /* Primary Colors */
+  --color-primary: #3b82f6;
+  --color-primary-dark: #2563eb;
+  --color-primary-light: #60a5fa;
+  /* Secondary Colors */
+  --color-secondary: #8b5cf6;
+  --color-secondary-dark: #7c3aed;
+  --color-secondary-light: #a78bfa;
+  /* Neutral Colors - Updated for better contrast */
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  /* Backgrounds - Distinct Layers */
+  --bg-primary: #ffffff;
+  --bg-primary-subtle: #f8fafc;
+  /* Slightly darker than white for panel backgrounds */
+  --bg-secondary: #f1f5f9;
+  /* distinct grey for card headers/sections */
+  --bg-tertiary: #e2e8f0;
+  --border-color: #e2e8f0;
+  --border-color-hover: #cbd5e1;
+  /* Status Colors */
+  --color-success: #10b981;
+  --color-success-dark: #059669;
+  --color-success-light: #d1fae5;
+  --color-warning: #f59e0b;
+  --color-warning-dark: #d97706;
+  --color-warning-light: #fef3c7;
+  --color-error: #ef4444;
+  --color-error-dark: #dc2626;
+  --color-error-light: #fee2e2;
+  --color-info: #3b82f6;
+  --color-info-dark: #2563eb;
+  --color-info-light: #dbeafe;
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  /* Border Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  /* Legacy/Compat Variables */
+  --primary-color: #3b82f6;
+  --secondary-color: #64748b;
+  --bacground-color: #ffffff;
+  --cards-color: #ffffff;
+  --cards-color-2: #f8fafc;
+  --content-color: #f1f5f9;
+  --text-color: #0f172a;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --text-tertiary: #94a3b8;
+  --vec-color-hover: #f1f5f9;
+  --vec-color-lighter: #cbd5e1;
+  --vec-color: #475569;
+  --vec-color-better: #64748b;
+  --light-gray: #e2e8f0;
+  --mid-gray: #94a3b8;
+  --dark-gray: #64748b;
+  --srv-gray: #94a3b8;
+  --titel-gray: #64748b;
+  --off-white: #f8fafc;
+  --off-white-tb2t: rgba(15, 23, 42, 0.5);
+  --idk: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  --idk-border: #dbeafe;
+  /* Glass Effect Variables */
+  --glass-background-zero: rgba(255, 255, 255, 0.95);
+  --glass-background-uno-zero: rgba(255, 255, 255, 0.85);
+  --glass-border-zero: rgba(255, 255, 255, 0.5);
+  --glass-background-uno: rgba(255, 255, 255, 0.7);
+  --glass-background-uno-hover: rgba(255, 255, 255, 0.8);
+  --glass-border-uno: rgba(255, 255, 255, 0.4);
+  --glass-background-dos: rgba(255, 255, 255, 0.4);
+  --glass-border-dos: rgba(255, 255, 255, 0.3);
+  --gradient-start: #3b82f6;
+  --gradient-end: #6366f1;
+  /* Header Fluid Variables */
+  --header-bg-gradient: radial-gradient(circle at top left, #f0f9ff, #e0f2fe);
+  --blob-1-color: #3b82f6;
+  --blob-2-color: #60a5fa;
+  --blob-3-color: #93c5fd;
+  --glass-panel-bg: rgba(255, 255, 255, 0.4);
+  --glass-panel-border: rgba(255, 255, 255, 0.6);
+  --glass-panel-shadow: rgba(59, 130, 246, 0.1);
+  /* RGB Components */
+  --color-primary-rgb: 59, 130, 246;
+  --color-secondary-rgb: 139, 92, 246;
+  --color-success-rgb: 16, 185, 129;
+  --color-warning-rgb: 245, 158, 11;
+  --color-error-rgb: 239, 68, 68;
+  /* Direction & Alignment Variables */
+  --direction: ltr;
+  --text-align: left;
+  --opposite-align: right;
+  --direction-multiplier: 1;
+}
+
+[dir=rtl] {
+  --direction: rtl;
+  --text-align: right;
+  --opposite-align: left;
+  --direction-multiplier: -1;
+}
+
+.dark-mode {
+  /* Primary Colors */
+  --color-primary: #60a5fa;
+  --color-primary-dark: #3b82f6;
+  --color-primary-light: #93c5fd;
+  /* Secondary Colors */
+  --color-secondary: #a78bfa;
+  --color-secondary-dark: #8b5cf6;
+  --color-secondary-light: #c4b5fd;
+  /* Neutral Colors - Inverted and adjusted for dark mode contrast */
+  --color-slate-50: #0f172a;
+  --color-slate-100: #1e293b;
+  --color-slate-200: #334155;
+  --color-slate-300: #475569;
+  --color-slate-400: #64748b;
+  --color-slate-500: #94a3b8;
+  --color-slate-600: #cbd5e1;
+  --color-slate-700: #e2e8f0;
+  --color-slate-800: #f1f5f9;
+  --color-slate-900: #f8fafc;
+  /* Backgrounds - Distinct Dark Layers */
+  --bg-primary: #1e293b;
+  /* Main card background */
+  --bg-primary-subtle: #0f172a;
+  /* Page background / deep background */
+  --bg-secondary: #334155;
+  /* Distinct headers/sections */
+  --bg-tertiary: #475569;
+  --border-color: #334155;
+  --border-color-hover: #475569;
+  /* Status Colors */
+  --color-success: #34d399;
+  --color-success-dark: #10b981;
+  --color-success-light: rgba(52, 211, 153, 0.15);
+  --color-warning: #fbbf24;
+  --color-warning-dark: #f59e0b;
+  --color-warning-light: rgba(251, 191, 36, 0.15);
+  --color-error: #f87171;
+  --color-error-dark: #ef4444;
+  --color-error-light: rgba(248, 113, 113, 0.15);
+  --color-info: #60a5fa;
+  --color-info-dark: #3b82f6;
+  --color-info-light: rgba(96, 165, 250, 0.15);
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+  /* Legacy/Compat Variables - Adjusted for Dark Mode */
+  --primary-color: #60a5fa;
+  --secondary-color: #94a3b8;
+  --bacground-color: #0f172a;
+  --cards-color: #1e293b;
+  --cards-color-2: #334155;
+  --content-color: #0f172a;
+  --text-color: #f1f5f9;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-tertiary: #64748b;
+  --vec-color-hover: #334155;
+  --vec-color-lighter: #475569;
+  --vec-color: #cbd5e1;
+  --vec-color-better: #e2e8f0;
+  --light-gray: #475569;
+  --mid-gray: #94a3b8;
+  --dark-gray: #cbd5e1;
+  --srv-gray: #cbd5e1;
+  --titel-gray: #94a3b8;
+  --off-white: #334155;
+  --off-white-tb2t: rgba(241, 241, 241, 0.1);
+  --idk: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  --idk-border: #334155;
+  /* Glass Effect Variables - Dark Mode */
+  --glass-background-zero: rgba(30, 41, 59, 0.95);
+  --glass-background-uno-zero: rgba(15, 23, 42, 0.9);
+  --glass-border-zero: rgba(255, 255, 255, 0.1);
+  --glass-background-uno: rgba(0, 0, 0, 0.4);
+  --glass-background-uno-hover: rgba(0, 0, 0, 0.6);
+  --glass-border-uno: rgba(255, 255, 255, 0.08);
+  --glass-background-dos: rgba(0, 0, 0, 0.3);
+  --glass-border-dos: rgba(255, 255, 255, 0.05);
+  /* Header Fluid Variables - Dark Mode */
+  --header-bg-gradient: radial-gradient(circle at top left, #1e293b, #0f172a);
+  --blob-1-color: #1e3a8a;
+  --blob-2-color: #1e40af;
+  --blob-3-color: #1d4ed8;
+  --glass-panel-bg: rgba(30, 41, 59, 0.5);
+  --glass-panel-border: rgba(255, 255, 255, 0.08);
+  --glass-panel-shadow: rgba(0, 0, 0, 0.4);
+  /* RGB Components */
+  --color-primary-rgb: 96, 165, 250;
+  --color-secondary-rgb: 167, 139, 250;
+  --color-success-rgb: 52, 211, 153;
+  --color-warning-rgb: 251, 191, 36;
+  --color-error-rgb: 248, 113, 113;
+}
+
+/* Mixins */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(calc(20px * var(--direction-multiplier, 1)));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.registration-meetings {
+  padding: 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.registration-meetings .page-header {
+  margin-bottom: 2rem;
+}
+.registration-meetings .page-header .header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.registration-meetings .page-header .title-section h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+}
+.registration-meetings .page-header .title-section p {
+  color: var(--text-secondary);
+  margin: 0;
+  font-size: 0.9rem;
+}
+.registration-meetings .page-header .manage-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(var(--color-primary-rgb), 0.25);
+}
+.registration-meetings .page-header .manage-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(var(--color-primary-rgb), 0.35);
+}
+.registration-meetings .stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+@media (max-width: 900px) {
+  .registration-meetings .stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 500px) {
+  .registration-meetings .stats-row {
+    grid-template-columns: 1fr;
+  }
+}
+.registration-meetings .stats-row .stat-card {
+  backdrop-filter: blur(8.2px);
+  background: var(--glass-background-uno);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(8.2px);
+  border: 1px solid var(--glass-border-uno);
+  background: var(--cards-color);
+  padding: 1.25rem;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.2s ease;
+  border: 1px solid var(--color-slate-100);
+}
+.registration-meetings .stats-row .stat-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-slate-200);
+}
+.registration-meetings .stats-row .stat-card .stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.registration-meetings .stats-row .stat-card .stat-data {
+  display: flex;
+  flex-direction: column;
+}
+.registration-meetings .stats-row .stat-card .stat-data .num {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+.registration-meetings .stats-row .stat-card .stat-data .label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+.registration-meetings .stats-row .stat-card.available .stat-icon {
+  background: rgba(var(--color-success-rgb), 0.1);
+  color: var(--color-success);
+}
+.registration-meetings .stats-row .stat-card.financial .stat-icon {
+  background: rgba(var(--color-primary-rgb), 0.1);
+  color: var(--color-primary);
+}
+.registration-meetings .stats-row .stat-card.approved .stat-icon {
+  background: rgba(var(--color-primary-rgb), 0.1);
+  color: var(--color-primary);
+}
+.registration-meetings .stats-row .stat-card.review .stat-icon {
+  background: rgba(var(--color-warning-rgb), 0.15);
+  color: #f59e0b;
+}
+.registration-meetings .content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+@media (max-width: 950px) {
+  .registration-meetings .content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.registration-meetings .content-grid .panel-container.full-width {
+  grid-column: 1/-1;
+}
+.registration-meetings .panel-container {
+  backdrop-filter: blur(8.2px);
+  background: var(--glass-background-uno);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(8.2px);
+  border: 1px solid var(--glass-border-uno);
+  border-radius: 20px;
+  overflow: hidden;
+}
+.registration-meetings .panel-container .panel-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--hover-bg);
+}
+.registration-meetings .panel-container .panel-header h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+.registration-meetings .panel-container .panel-header .header-title {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  color: var(--text-primary);
+}
+.registration-meetings .panel-container .panel-header .header-title svg {
+  color: var(--color-primary);
+}
+.registration-meetings .panel-container .panel-header .badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.registration-meetings .panel-container .panel-header .badge.yellow {
+  background: rgba(var(--color-warning-rgb), 0.15);
+  color: var(--color-warning-dark);
+}
+.registration-meetings .panel-container .panel-header .badge.blue {
+  background: rgba(var(--color-primary-rgb), 0.15);
+  color: var(--color-primary);
+}
+.registration-meetings .panel-container .panel-header .badge.orange {
+  background: rgba(245, 158, 11, 0.15);
+  color: #b45309;
+}
+.registration-meetings .panel-container .panel-body {
+  padding: 1rem;
+  max-height: 400px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-slate-400) transparent;
+}
+.registration-meetings .panel-container .panel-body::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.registration-meetings .panel-container .panel-body::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+.registration-meetings .panel-container .panel-body::-webkit-scrollbar-thumb {
+  background: var(--color-slate-300);
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.registration-meetings .panel-container .panel-body::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+.dark-mode .registration-meetings .panel-container .panel-body::-webkit-scrollbar-thumb {
+  background: var(--color-slate-600);
+}
+.dark-mode .registration-meetings .panel-container .panel-body::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+.registration-meetings .review-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.875rem 1rem;
+  background: var(--cards-color);
+  border: 1px solid var(--color-slate-200);
+  border-radius: 12px;
+  margin-bottom: 0.5rem;
+  border-right: 3px solid #f59e0b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.registration-meetings .review-item:hover {
+  transform: translateX(-4px);
+  border-color: #f59e0b;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.1);
+}
+.registration-meetings .review-item .item-date {
+  width: 50px;
+  height: 50px;
+  background: rgba(245, 158, 11, 0.1);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.registration-meetings .review-item .item-date .day {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #f59e0b;
+  line-height: 1;
+}
+.registration-meetings .review-item .item-date .month {
+  font-size: 0.6rem;
+  color: var(--text-secondary);
+  font-weight: 700;
+}
+.registration-meetings .review-item .item-info {
+  flex: 1;
+}
+.registration-meetings .review-item .item-info .time {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.registration-meetings .review-item .item-info .name {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+.registration-meetings .review-item .item-action {
+  width: 32px;
+  height: 32px;
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.registration-meetings .review-item:hover .item-action {
+  background: #f59e0b;
+  color: white;
+}
+.registration-meetings .approved-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--cards-color);
+  border: 1px solid var(--color-slate-200);
+  border-radius: 12px;
+  margin-bottom: 0.5rem;
+  border-right: 3px solid var(--color-primary);
+}
+.registration-meetings .approved-item .item-date {
+  width: 50px;
+  height: 50px;
+  background: rgba(var(--color-primary-rgb), 0.1);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.registration-meetings .approved-item .item-date .day {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1;
+}
+.registration-meetings .approved-item .item-date .month {
+  font-size: 0.6rem;
+  color: var(--text-secondary);
+  font-weight: 700;
+}
+.registration-meetings .approved-item .item-info {
+  flex: 1;
+}
+.registration-meetings .approved-item .item-info .time {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.registration-meetings .approved-item .item-info .name {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+.registration-meetings .approved-item .item-status {
+  color: var(--color-primary);
+}
+.registration-meetings .approved-item.clickable, .registration-meetings .approved-item[onClick] {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.registration-meetings .approved-item.clickable:hover, .registration-meetings .approved-item[onClick]:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(var(--color-primary-rgb), 0.1);
+}
+.registration-meetings .approved-item .commission-tag {
+  background: rgba(var(--color-primary-rgb), 0.1);
+  color: var(--color-primary);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+  margin-top: 0.35rem;
+  display: inline-block;
+}
+.registration-meetings .edit-confirmed-modal {
+  background: var(--cards-color);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 500px;
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  animation: modal-appear 0.3s ease;
+}
+.registration-meetings .edit-confirmed-modal .modal-body {
+  padding: 1.5rem;
+}
+.registration-meetings .edit-confirmed-modal .edit-info-card {
+  background: var(--hover-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+.registration-meetings .edit-confirmed-modal .edit-info-card .parent-summary {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.registration-meetings .edit-confirmed-modal .edit-info-card .parent-summary .avatar {
+  width: 48px;
+  height: 48px;
+  background: var(--cards-color);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  border: 1px solid var(--border-color);
+}
+.registration-meetings .edit-confirmed-modal .edit-info-card .parent-summary .details h5 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.registration-meetings .edit-confirmed-modal .edit-info-card .parent-summary .details span {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+.registration-meetings .edit-confirmed-modal .edit-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.registration-meetings .edit-confirmed-modal .edit-fields .field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.registration-meetings .edit-confirmed-modal .edit-fields .field-group label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+.registration-meetings .edit-confirmed-modal .edit-fields .field-group select {
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: var(--cards-color);
+  color: var(--text-primary);
+  font-weight: 600;
+  outline: none;
+}
+.registration-meetings .edit-confirmed-modal .edit-fields .field-group select:focus {
+  border-color: var(--color-primary);
+}
+.registration-meetings .edit-confirmed-modal .time-select-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-slate-400) transparent;
+}
+.registration-meetings .edit-confirmed-modal .time-select-grid::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.registration-meetings .edit-confirmed-modal .time-select-grid::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+.registration-meetings .edit-confirmed-modal .time-select-grid::-webkit-scrollbar-thumb {
+  background: var(--color-slate-300);
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.registration-meetings .edit-confirmed-modal .time-select-grid::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+.dark-mode .registration-meetings .edit-confirmed-modal .time-select-grid::-webkit-scrollbar-thumb {
+  background: var(--color-slate-600);
+}
+.dark-mode .registration-meetings .edit-confirmed-modal .time-select-grid::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+.registration-meetings .edit-confirmed-modal .time-select-grid .time-chip {
+  padding: 0.5rem;
+  background: var(--cards-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.registration-meetings .edit-confirmed-modal .time-select-grid .time-chip:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+.registration-meetings .edit-confirmed-modal .time-select-grid .time-chip.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
+.registration-meetings .edit-confirmed-modal .edit-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.registration-meetings .edit-confirmed-modal .edit-actions button {
+  flex: 1;
+  padding: 0.875rem;
+  border-radius: 12px;
+  border: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.registration-meetings .edit-confirmed-modal .edit-actions .cancel-btn {
+  background: var(--hover-bg);
+  color: var(--text-secondary);
+}
+.registration-meetings .edit-confirmed-modal .edit-actions .cancel-btn:hover {
+  background: var(--border-color);
+}
+.registration-meetings .edit-confirmed-modal .edit-actions .save-btn {
+  background: var(--color-primary);
+  color: white;
+}
+.registration-meetings .edit-confirmed-modal .edit-actions .save-btn:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(var(--color-primary-rgb), 0.2);
+}
+.registration-meetings .empty-state {
+  padding: 3rem 1rem;
+  text-align: center;
+  color: var(--text-secondary);
+}
+.registration-meetings .empty-state svg {
+  margin-bottom: 0.75rem;
+  opacity: 0.5;
+}
+.registration-meetings .empty-state p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+.registration-meetings .status-legend {
+  backdrop-filter: blur(8.2px);
+  background: var(--glass-background-uno);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(8.2px);
+  border: 1px solid var(--glass-border-uno);
+  padding: 1rem 1.5rem;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.registration-meetings .status-legend .legend-title {
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+.registration-meetings .status-legend .legend-items {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.registration-meetings .status-legend .legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+.registration-meetings .status-legend .legend-item .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+}
+.registration-meetings .status-legend .legend-item .dot.available {
+  background: var(--color-success);
+}
+.registration-meetings .status-legend .legend-item .dot.reserved {
+  background: var(--color-warning);
+}
+.registration-meetings .status-legend .legend-item .dot.approved {
+  background: var(--color-primary);
+}
+.registration-meetings .status-legend .legend-item .dot.expired {
+  background: var(--color-slate-400);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.management-modal {
+  background: var(--cards-color);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  animation: modal-appear 0.3s ease;
+}
+.management-modal .modal-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: var(--hover-bg);
+}
+.management-modal .modal-header .header-text h2 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+.management-modal .modal-header .header-text p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+.management-modal .modal-header .close-btn {
+  padding: 0.5rem;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-radius: 8px;
+}
+.management-modal .modal-header .close-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+.management-modal .modal-body {
+  padding: 1.5rem;
+  overflow-y: auto;
+  max-height: calc(90vh - 100px);
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-slate-400) transparent;
+}
+.management-modal .modal-body::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.management-modal .modal-body::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+.management-modal .modal-body::-webkit-scrollbar-thumb {
+  background: var(--color-slate-300);
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.management-modal .modal-body::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+.dark-mode .management-modal .modal-body::-webkit-scrollbar-thumb {
+  background: var(--color-slate-600);
+}
+.dark-mode .management-modal .modal-body::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+.management-modal .calendar-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.management-modal .calendar-nav button {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid var(--color-slate-200);
+  background: var(--cards-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text-primary);
+}
+.management-modal .calendar-nav button:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+.management-modal .calendar-nav h3 {
+  flex: 1;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+.management-modal .calendar-nav .today-btn {
+  width: auto;
+  padding: 0 1rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.management-modal .calendar-grid .weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 0.5rem;
+}
+.management-modal .calendar-grid .weekdays div {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--text-secondary);
+  padding: 0.5rem 0;
+}
+.management-modal .calendar-grid .days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+.management-modal .calendar-grid .day-cell {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  background: var(--cards-color);
+  border: 1px solid var(--color-slate-100);
+}
+.management-modal .calendar-grid .day-cell:not(.empty):hover {
+  border-color: var(--color-primary);
+  background: rgba(var(--color-primary-rgb), 0.05);
+}
+.management-modal .calendar-grid .day-cell.today {
+  background: rgba(var(--color-primary-rgb), 0.1);
+  border-color: var(--color-primary);
+}
+.management-modal .calendar-grid .day-cell.today .day-num {
+  color: var(--color-primary);
+  font-weight: 800;
+}
+.management-modal .calendar-grid .day-cell.past {
+  opacity: 0.5;
+}
+.management-modal .calendar-grid .day-cell.past .day-num {
+  color: var(--text-secondary);
+}
+.management-modal .calendar-grid .day-cell .day-num {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.management-modal .calendar-grid .day-cell .slot-indicators {
+  display: flex;
+  gap: 2px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
+}
+.management-modal .calendar-grid .day-cell .slot-indicators .indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+}
+.management-modal .calendar-grid .day-cell .slot-indicators .indicator.available {
+  background: var(--color-success);
+}
+.management-modal .calendar-grid .day-cell .slot-indicators .indicator.reserved {
+  background: var(--color-warning);
+}
+.management-modal .calendar-grid .day-cell .slot-indicators .indicator.approved {
+  background: var(--color-primary);
+}
+.management-modal .calendar-grid .day-cell .slot-indicators .indicator.expired {
+  background: var(--color-slate-400);
+}
+.management-modal .calendar-grid .day-cell .slot-indicators .indicator.needs_review {
+  background: var(--color-warning);
+}
+.management-modal .calendar-grid .day-cell .slot-indicators .more {
+  font-size: 0.55rem;
+  color: var(--text-secondary);
+  font-weight: 700;
+}
+.management-modal .modal-legend {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+.management-modal .modal-legend .leg {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.management-modal .modal-legend .leg .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+.management-modal .modal-legend .leg .dot.available {
+  background: var(--color-success);
+}
+.management-modal .modal-legend .leg .dot.reserved {
+  background: var(--color-warning);
+}
+.management-modal .modal-legend .leg .dot.approved {
+  background: var(--color-primary);
+}
+.management-modal .modal-legend .leg .dot.expired {
+  background: var(--color-slate-400);
+}
+
+.slot-editor-modal {
+  background: var(--cards-color);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 500px;
+  max-height: 85vh;
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  animation: modal-slide 0.3s ease;
+}
+.slot-editor-modal .editor-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--hover-bg);
+}
+.slot-editor-modal .editor-header .date-display {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.slot-editor-modal .editor-header .date-display svg {
+  color: var(--primary-color);
+}
+.slot-editor-modal .editor-header button {
+  padding: 0.5rem;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-radius: 8px;
+}
+.slot-editor-modal .editor-header button:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+.slot-editor-modal .editor-body {
+  padding: 1.5rem;
+  overflow-y: auto;
+  max-height: calc(85vh - 70px);
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-slate-400) transparent;
+}
+.slot-editor-modal .editor-body::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.slot-editor-modal .editor-body::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+.slot-editor-modal .editor-body::-webkit-scrollbar-thumb {
+  background: var(--color-slate-300);
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.slot-editor-modal .editor-body::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+.dark-mode .slot-editor-modal .editor-body::-webkit-scrollbar-thumb {
+  background: var(--color-slate-600);
+}
+.dark-mode .slot-editor-modal .editor-body::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+.slot-editor-modal .slots-section {
+  margin-bottom: 2rem;
+}
+.slot-editor-modal .slots-section h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 1rem 0;
+}
+.slot-editor-modal .slots-section .current-slots {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 180px;
+  overflow-y: auto;
+  padding-left: 0.25rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-slate-400) transparent;
+}
+.slot-editor-modal .slots-section .current-slots::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.slot-editor-modal .slots-section .current-slots::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+.slot-editor-modal .slots-section .current-slots::-webkit-scrollbar-thumb {
+  background: var(--color-slate-300);
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.slot-editor-modal .slots-section .current-slots::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+.dark-mode .slot-editor-modal .slots-section .current-slots::-webkit-scrollbar-thumb {
+  background: var(--color-slate-600);
+}
+.dark-mode .slot-editor-modal .slots-section .current-slots::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+.slot-editor-modal .slots-section .no-slots {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  background: var(--hover-bg);
+  border-radius: 12px;
+}
+.slot-editor-modal .slots-section .slot-item {
+  display: grid;
+  grid-template-columns: 60px 1fr auto auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--cards-color);
+  border: 1px solid var(--color-slate-200);
+  border-radius: 10px;
+  border-right: 4px solid transparent;
+}
+.slot-editor-modal .slots-section .slot-item.available {
+  border-right-color: var(--color-success);
+}
+.slot-editor-modal .slots-section .slot-item.reserved {
+  border-right-color: var(--color-warning);
+}
+.slot-editor-modal .slots-section .slot-item.approved {
+  border-right-color: var(--color-primary);
+}
+.slot-editor-modal .slots-section .slot-item.expired {
+  border-right-color: var(--color-slate-400);
+}
+.slot-editor-modal .slots-section .slot-item.needs_review {
+  border-right-color: var(--color-warning);
+}
+.slot-editor-modal .slots-section .slot-item .slot-time {
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+.slot-editor-modal .slots-section .slot-item .slot-info .parent {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.slot-editor-modal .slots-section .slot-item .slot-info .empty-label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+.slot-editor-modal .slots-section .slot-item .slot-status .tag {
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+.slot-editor-modal .slots-section .slot-item .slot-status .tag.green {
+  background: rgba(var(--color-success-rgb), 0.15);
+  color: var(--color-success-dark);
+}
+.slot-editor-modal .slots-section .slot-item .slot-status .tag.yellow {
+  background: rgba(var(--color-warning-rgb), 0.15);
+  color: var(--color-warning-dark);
+}
+.slot-editor-modal .slots-section .slot-item .slot-status .tag.blue {
+  background: rgba(var(--color-primary-rgb), 0.15);
+  color: var(--color-primary);
+}
+.slot-editor-modal .slots-section .slot-item .slot-status .tag.gray {
+  background: rgba(var(--color-slate-400-rgb, 148, 163, 184), 0.15);
+  color: var(--color-slate-400);
+}
+.slot-editor-modal .slots-section .slot-item .slot-status .tag.orange {
+  background: rgba(var(--color-warning-rgb), 0.15);
+  color: var(--color-warning);
+}
+.slot-editor-modal .slots-section .slot-item .slot-actions {
+  display: flex;
+  gap: 0.25rem;
+}
+.slot-editor-modal .slots-section .slot-item .slot-actions button {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.slot-editor-modal .slots-section .slot-item .slot-actions button.approve {
+  background: rgba(var(--color-primary-rgb), 0.1);
+  color: var(--color-primary);
+}
+.slot-editor-modal .slots-section .slot-item .slot-actions button.approve:hover {
+  background: rgba(var(--color-primary-rgb), 0.2);
+}
+.slot-editor-modal .slots-section .slot-item .slot-actions button.review {
+  background: rgba(var(--color-warning-rgb), 0.1);
+  color: var(--color-warning);
+}
+.slot-editor-modal .slots-section .slot-item .slot-actions button.review:hover {
+  background: rgba(var(--color-warning-rgb), 0.2);
+}
+.slot-editor-modal .slots-section .slot-item .slot-actions button.delete {
+  background: rgba(var(--color-error-rgb), 0.15);
+  color: var(--color-error);
+}
+.slot-editor-modal .slots-section .slot-item .slot-actions button.delete:hover {
+  background: rgba(var(--color-error-rgb), 0.2);
+}
+.slot-editor-modal .add-slots-section .section-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.slot-editor-modal .add-slots-section .section-header-row h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+.slot-editor-modal .add-slots-section .section-header-row .multi-select-toggle {
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-slate-200);
+  background: var(--cards-color);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.slot-editor-modal .add-slots-section .section-header-row .multi-select-toggle:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+.slot-editor-modal .add-slots-section .section-header-row .multi-select-toggle.active {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+.slot-editor-modal .add-slots-section .preset-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+.slot-editor-modal .add-slots-section .preset-buttons button {
+  padding: 0.4rem 0.75rem;
+  border-radius: 20px;
+  border: 1px solid var(--color-slate-200);
+  background: var(--cards-color);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.slot-editor-modal .add-slots-section .preset-buttons button:hover {
+  border-color: var(--color-success);
+  background: rgba(var(--color-success-rgb), 0.1);
+  color: var(--color-success-dark);
+}
+.slot-editor-modal .add-slots-section .preset-buttons button.clear-btn:hover {
+  border-color: var(--color-error);
+  background: rgba(var(--color-error-rgb), 0.1);
+  color: var(--color-error);
+}
+.slot-editor-modal .add-slots-section .section-hint {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  margin: 0 0 0.75rem 0;
+}
+.slot-editor-modal .add-slots-section .batch-add-btn {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, var(--color-success), var(--color-success-dark));
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+.slot-editor-modal .add-slots-section .batch-add-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(var(--color-success-rgb), 0.3);
+}
+.slot-editor-modal .add-slots-section .time-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 0.25rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-slate-400) transparent;
+}
+.slot-editor-modal .add-slots-section .time-grid::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.slot-editor-modal .add-slots-section .time-grid::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+.slot-editor-modal .add-slots-section .time-grid::-webkit-scrollbar-thumb {
+  background: var(--color-slate-300);
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.slot-editor-modal .add-slots-section .time-grid::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+.dark-mode .slot-editor-modal .add-slots-section .time-grid::-webkit-scrollbar-thumb {
+  background: var(--color-slate-600);
+}
+.dark-mode .slot-editor-modal .add-slots-section .time-grid::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+@media (max-width: 480px) {
+  .slot-editor-modal .add-slots-section .time-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.slot-editor-modal .add-slots-section .time-grid .time-btn {
+  padding: 0.5rem 0.25rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-slate-100);
+  background: var(--cards-color);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.slot-editor-modal .add-slots-section .time-grid .time-btn:hover:not(:disabled) {
+  border-color: var(--color-success);
+  background: rgba(var(--color-success-rgb), 0.1);
+  color: var(--color-success);
+}
+.slot-editor-modal .add-slots-section .time-grid .time-btn.selected {
+  border-color: var(--color-primary);
+  background: rgba(var(--color-primary-rgb), 0.2);
+  color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.3);
+}
+.slot-editor-modal .add-slots-section .time-grid .time-btn.exists {
+  cursor: not-allowed;
+}
+.slot-editor-modal .add-slots-section .time-grid .time-btn.exists.available {
+  border-color: var(--color-success);
+  background: rgba(var(--color-success-rgb), 0.15);
+  color: var(--color-success-dark);
+  cursor: pointer;
+}
+.slot-editor-modal .add-slots-section .time-grid .time-btn.exists.available:hover {
+  background: rgba(var(--color-success-rgb), 0.25);
+}
+.slot-editor-modal .add-slots-section .time-grid .time-btn.exists.pending-remove {
+  border-color: var(--color-error);
+  background: rgba(var(--color-error-rgb), 0.15);
+  color: var(--color-error);
+  cursor: pointer;
+  animation: pulse-remove 0.8s ease infinite;
+}
+.slot-editor-modal .add-slots-section .time-grid .time-btn.exists.pending-remove:hover {
+  background: rgba(var(--color-error-rgb), 0.25);
+}
+.slot-editor-modal .add-slots-section .time-grid .time-btn.exists.reserved {
+  border-color: var(--color-warning);
+  background: rgba(var(--color-warning-rgb), 0.15);
+  color: var(--color-warning-dark);
+}
+.slot-editor-modal .add-slots-section .time-grid .time-btn.exists.approved {
+  border-color: var(--color-primary);
+  background: rgba(var(--color-primary-rgb), 0.15);
+  color: var(--color-primary);
+}
+.slot-editor-modal .add-slots-section .time-grid .time-btn.exists.expired {
+  border-color: var(--color-slate-400);
+  background: rgba(var(--color-slate-400-rgb), 0.15);
+  color: var(--color-slate-400);
+}
+.slot-editor-modal .add-slots-section .time-grid .time-btn.exists.needs_review {
+  border-color: var(--color-warning);
+  background: rgba(var(--color-warning-rgb), 0.15);
+  color: var(--color-warning);
+}
+.slot-editor-modal .add-slots-section .time-grid .time-btn.past {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.slot-editor-modal .add-slots-section .time-grid .time-btn:disabled {
+  cursor: not-allowed;
+}
+
+.review-modal {
+  background: var(--cards-color);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 420px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+  animation: modal-slide 0.3s ease;
+}
+.review-modal .review-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, rgba(var(--color-warning-rgb), 0.1), rgba(var(--color-warning-rgb), 0.05));
+}
+.review-modal .review-header svg {
+  color: var(--color-warning);
+  flex-shrink: 0;
+}
+.review-modal .review-header h3 {
+  flex: 1;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.review-modal .review-header button {
+  padding: 0.5rem;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-radius: 8px;
+}
+.review-modal .review-header button:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+.review-modal .review-body {
+  padding: 1.5rem;
+}
+.review-modal .review-info {
+  background: var(--hover-bg);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+.review-modal .review-info .info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+.review-modal .review-info .info-row:last-child {
+  border-bottom: none;
+}
+.review-modal .review-info .info-row .label {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+.review-modal .review-info .info-row .value {
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+}
+.review-modal .review-question {
+  text-align: center;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+.review-modal .review-actions-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.review-modal .review-actions-grid .action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--cards-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+.review-modal .review-actions-grid .action-btn svg {
+  width: 20px;
+  height: 20px;
+}
+.review-modal .review-actions-grid .action-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  transition: all 0.2s ease;
+}
+.review-modal .review-actions-grid .action-btn.full-width {
+  width: 100%;
+  background: var(--color-success);
+  color: white;
+  border: none;
+  font-size: 1rem;
+  padding: 1.15rem;
+  box-shadow: 0 4px 12px rgba(var(--color-success-rgb), 0.2);
+}
+.review-modal .review-actions-grid .action-btn.full-width:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(var(--color-success-rgb), 0.3);
+  background: var(--color-success-dark);
+}
+.review-modal .review-actions-grid .action-btn.canceled {
+  color: var(--color-error);
+  border-color: rgba(var(--color-error-rgb), 0.3);
+  background: rgba(var(--color-error-rgb), 0.05);
+}
+.review-modal .review-actions-grid .action-btn.canceled:hover {
+  background: rgba(var(--color-error-rgb), 0.1);
+  border-color: var(--color-error);
+}
+.review-modal .review-actions-grid .action-btn.noshow {
+  color: var(--text-secondary);
+  border-color: var(--border-color);
+}
+.review-modal .review-actions-grid .action-btn.noshow:hover {
+  background: var(--hover-bg);
+  border-color: var(--text-secondary);
+  color: var(--text-primary);
+}
+.review-modal .review-actions-grid .secondary-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.review-modal .success-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem 1rem;
+  text-align: center;
+  animation: fadeIn 0.4s ease-out;
+}
+.review-modal .success-step .success-icon {
+  position: relative;
+  margin-bottom: 1.5rem;
+  color: var(--color-success);
+}
+.review-modal .success-step .success-icon .ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(var(--color-success-rgb), 0.15);
+  animation: pulse 2s infinite;
+  z-index: -1;
+}
+.review-modal .success-step h4 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin: 0 0 0.5rem 0;
+  color: var(--text-primary);
+}
+.review-modal .success-step p {
+  color: var(--text-secondary);
+  margin: 0 0 2rem 0;
+  font-size: 0.95rem;
+  max-width: 80%;
+}
+.review-modal .success-step .close-action-btn {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.review-modal .success-step .close-action-btn:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+}
+.review-modal .form-step {
+  animation: slideUp 0.3s ease-out;
+  padding-top: 0.5rem;
+}
+.review-modal .form-step label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+.review-modal .form-step textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--bg-primary-subtle);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-family: inherit;
+  resize: none;
+  outline: none;
+  margin-bottom: 1.5rem;
+  transition: all 0.2s;
+}
+.review-modal .form-step textarea:focus {
+  border-color: var(--color-primary);
+  background: var(--cards-color);
+  box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb), 0.1);
+}
+.review-modal .form-step .form-actions {
+  display: flex;
+  gap: 1rem;
+}
+.review-modal .form-step .form-actions button {
+  flex: 1;
+  padding: 0.85rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+.review-modal .form-step .form-actions button.back-btn {
+  background: var(--hover-bg);
+  color: var(--text-secondary);
+}
+.review-modal .form-step .form-actions button.back-btn:hover {
+  background: var(--border-color);
+}
+.review-modal .form-step .form-actions button.confirm-btn {
+  background: var(--color-error);
+  color: white;
+}
+.review-modal .form-step .form-actions button.confirm-btn:hover:not(:disabled) {
+  background: rgb(220, 38, 38);
+  /* darker red */
+}
+.review-modal .form-step .form-actions button.confirm-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.review-modal .form-step .noshow-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.review-modal .form-step .noshow-options .option-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.5rem 1rem;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.review-modal .form-step .noshow-options .option-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.review-modal .form-step .noshow-options .option-btn.reschedule {
+  background: rgba(var(--color-warning-rgb), 0.05);
+  color: #d97706;
+  border-color: rgba(var(--color-warning-rgb), 0.2);
+}
+.review-modal .form-step .noshow-options .option-btn.reschedule:hover:not(:disabled) {
+  background: rgba(var(--color-warning-rgb), 0.15);
+  transform: translateY(-2px);
+}
+.review-modal .form-step .noshow-options .option-btn.reject {
+  background: rgba(var(--color-error-rgb), 0.05);
+  color: var(--color-error);
+  border-color: rgba(var(--color-error-rgb), 0.2);
+}
+.review-modal .form-step .noshow-options .option-btn.reject:hover:not(:disabled) {
+  background: rgba(var(--color-error-rgb), 0.15);
+  transform: translateY(-2px);
+}
+.review-modal .form-step .back-btn-text {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+.review-modal .form-step .back-btn-text:hover {
+  color: var(--text-primary);
+}
+
+.cancel-modal {
+  background: var(--cards-color);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 420px;
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  animation: modal-slide 0.3s ease;
+}
+.cancel-modal .cancel-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, rgba(var(--color-error-rgb), 0.08), rgba(var(--color-error-rgb), 0.03));
+}
+.cancel-modal .cancel-header svg {
+  color: var(--color-error);
+  flex-shrink: 0;
+}
+.cancel-modal .cancel-header h3 {
+  flex: 1;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.cancel-modal .cancel-header button {
+  padding: 0.5rem;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-radius: 8px;
+}
+.cancel-modal .cancel-header button:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+.cancel-modal .cancel-body {
+  padding: 1.5rem;
+}
+.cancel-modal .cancel-info {
+  background: var(--hover-bg);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+.cancel-modal .cancel-info .info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+.cancel-modal .cancel-info .info-row:last-child {
+  border-bottom: none;
+}
+.cancel-modal .cancel-info .info-row .label {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+.cancel-modal .cancel-info .info-row .value {
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+}
+.cancel-modal .reason-section {
+  margin-bottom: 1.5rem;
+}
+.cancel-modal .reason-section > label {
+  display: block;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+}
+.cancel-modal .reason-section .reason-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.cancel-modal .reason-section .reason-chips .reason-chip {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: 1px solid var(--color-slate-200);
+  background: var(--cards-color);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.cancel-modal .reason-section .reason-chips .reason-chip:hover {
+  border-color: var(--color-error);
+  color: var(--color-error);
+}
+.cancel-modal .reason-section .reason-chips .reason-chip.active {
+  background: rgba(var(--color-error-rgb), 0.1);
+  border-color: var(--color-error);
+  color: var(--color-error);
+}
+.cancel-modal .reason-section textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--color-slate-200);
+  font-size: 0.85rem;
+  font-family: inherit;
+  resize: none;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.cancel-modal .reason-section textarea:focus {
+  border-color: var(--color-primary);
+}
+.cancel-modal .reason-section textarea::-moz-placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+.cancel-modal .reason-section textarea::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+.cancel-modal .cancel-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+.cancel-modal .cancel-actions .back-btn {
+  flex: 1;
+  padding: 0.875rem;
+  border-radius: 10px;
+  border: 1px solid var(--color-slate-200);
+  background: var(--cards-color);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.cancel-modal .cancel-actions .back-btn:hover {
+  background: var(--hover-bg);
+}
+.cancel-modal .cancel-actions .confirm-btn {
+  flex: 1.5;
+  padding: 0.875rem;
+  border-radius: 10px;
+  border: none;
+  background: var(--color-error);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+.cancel-modal .cancel-actions .confirm-btn:hover:not(:disabled) {
+  background: var(--color-error-dark);
+  transform: translateY(-1px);
+}
+.cancel-modal .cancel-actions .confirm-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@keyframes modal-appear {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes modal-slide {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pulse-remove {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+.edit-modal {
+  width: 90%;
+  max-width: 550px;
+  background: var(--cards-color);
+  border-radius: 16px;
+  box-shadow: var(--shadow-xl);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: modal-slide 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid var(--border-color);
+}
+.edit-modal .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  background: var(--bg-primary-subtle);
+  border-bottom: 1px solid var(--border-color);
+}
+.edit-modal .modal-header .header-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.edit-modal .modal-header .header-title h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+.edit-modal .modal-header .header-title .text-primary {
+  color: var(--primary-color);
+}
+.edit-modal .modal-header .close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.edit-modal .modal-header .close-btn:hover {
+  background: rgba(var(--color-error-rgb), 0.1);
+  color: var(--color-error);
+}
+.edit-modal .modal-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+.edit-modal .modal-body .info-card {
+  background: linear-gradient(135deg, var(--bg-primary-subtle), var(--cards-color));
+  border-radius: 16px;
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+.edit-modal .modal-body .info-card .info-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(var(--color-primary-rgb), 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+}
+.edit-modal .modal-body .info-card .info-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.edit-modal .modal-body .info-card .info-content .label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-tertiary);
+  font-weight: 700;
+}
+.edit-modal .modal-body .info-card .info-content .value {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  font-weight: 800;
+}
+.edit-modal .modal-body .info-card .info-content .sub-value {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+.edit-modal .modal-body .form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.edit-modal .modal-body .form-section .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.edit-modal .modal-body .form-section .form-group label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.edit-modal .modal-body .form-section .form-group .select-wrapper {
+  position: relative;
+}
+.edit-modal .modal-body .form-section .form-group .select-wrapper select {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  transition: all 0.2s ease;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: left 1rem center;
+  padding-left: 2.5rem;
+}
+.edit-modal .modal-body .form-section .form-group .select-wrapper select:hover {
+  border-color: var(--text-secondary);
+}
+.edit-modal .modal-body .form-section .form-group .select-wrapper select:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb), 0.1);
+  background: var(--cards-color);
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233b82f6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+}
+.edit-modal .modal-body .form-section .form-group .time-grid-mini {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  gap: 0.5rem;
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 0.75rem;
+  background: var(--bg-primary-subtle);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+.edit-modal .modal-body .form-section .form-group .time-grid-mini.box-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.edit-modal .modal-body .form-section .form-group .time-grid-mini.box-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--color-slate-300);
+  border-radius: 4px;
+}
+.edit-modal .modal-body .form-section .form-group .time-grid-mini .time-chip {
+  padding: 0.6rem 0.25rem;
+  border: 1px solid var(--border-color);
+  background: var(--cards-color);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+.edit-modal .modal-body .form-section .form-group .time-grid-mini .time-chip:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.edit-modal .modal-body .form-section .form-group .time-grid-mini .time-chip.active {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+  box-shadow: 0 4px 12px rgba(var(--color-primary-rgb), 0.25);
+  transform: scale(1.05);
+}
+.edit-modal .modal-footer {
+  padding: 1.25rem 1.5rem;
+  background: var(--bg-primary-subtle);
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+}
+.edit-modal .modal-footer .btn {
+  padding: 0.875rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100px;
+}
+.edit-modal .modal-footer .btn.secondary {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+}
+.edit-modal .modal-footer .btn.secondary:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text-primary);
+}
+.edit-modal .modal-footer .btn.primary {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border: none;
+  color: white;
+  box-shadow: 0 4px 12px rgba(var(--color-primary-rgb), 0.3);
+}
+.edit-modal .modal-footer .btn.primary:hover {
+  box-shadow: 0 6px 16px rgba(var(--color-primary-rgb), 0.4);
+  transform: translateY(-2px);
+}
+.edit-modal .modal-footer .btn.primary:active {
+  transform: translateY(0);
+}
+
+.registration-commissions {
+  padding: 2rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+.registration-commissions .page-header {
+  margin-bottom: 2.5rem;
+}
+.registration-commissions .page-header .header-content .title-section h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+}
+.registration-commissions .page-header .header-content .title-section p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+.registration-commissions .meeting-manager-section {
+  margin-bottom: 3rem;
+}
+.registration-commissions .meeting-manager-section .section-header {
+  margin-bottom: 1.5rem;
+}
+.registration-commissions .meeting-manager-section .section-header h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+}
+.registration-commissions .meeting-manager-section .section-header p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+.registration-commissions .meeting-manager-section .manager-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  min-height: 600px;
+}
+@media (max-width: 1200px) {
+  .registration-commissions .meeting-manager-section .manager-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel,
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel {
+  backdrop-filter: blur(8.2px);
+  background: var(--glass-background-uno);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(8.2px);
+  border: 1px solid var(--glass-border-uno);
+  border-radius: 20px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-nav h3 {
+  flex: 1;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-nav button {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: var(--hover-bg);
+  border-radius: 10px;
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-nav button:hover {
+  background: rgba(var(--color-primary-rgb), 0.1);
+  color: var(--primary-color);
+  transform: scale(1.05);
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-nav button.today-btn {
+  width: auto;
+  padding: 0 1rem;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-grid {
+  flex: 1;
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-grid .weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-grid .weekdays div {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  padding: 0.5rem;
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-grid .days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-grid .days .day-cell {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  background: var(--hover-bg);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  border: 2px solid transparent;
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-grid .days .day-cell.empty {
+  background: transparent;
+  cursor: default;
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-grid .days .day-cell:not(.empty):not(.past):hover {
+  background: rgba(var(--color-primary-rgb), 0.1);
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-grid .days .day-cell.selected {
+  background: rgba(var(--color-primary-rgb), 0.15);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.1);
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-grid .days .day-cell.today {
+  border-color: var(--primary-color);
+  font-weight: 800;
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-grid .days .day-cell.past {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-grid .days .day-cell .day-num {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-grid .days .day-cell .slot-indicators {
+  display: flex;
+  gap: 2px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-grid .days .day-cell .slot-indicators .indicator {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-grid .days .day-cell .slot-indicators .indicator.available {
+  background: var(--color-success);
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-grid .days .day-cell .slot-indicators .indicator.reserved {
+  background: var(--color-warning);
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-grid .days .day-cell .slot-indicators .indicator.approved {
+  background: var(--color-primary);
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-grid .days .day-cell .slot-indicators .indicator.expired {
+  background: var(--color-slate-400);
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-grid .days .day-cell .slot-indicators .indicator.needs_review {
+  background: var(--color-error);
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-grid .days .day-cell .slot-indicators .more {
+  font-size: 0.6rem;
+  color: var(--text-tertiary);
+  margin-left: 2px;
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-legend {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-legend .leg {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-legend .leg .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-legend .leg .dot.available {
+  background: var(--color-success);
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-legend .leg .dot.reserved {
+  background: var(--color-warning);
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-legend .leg .dot.approved {
+  background: var(--color-primary);
+}
+.registration-commissions .meeting-manager-section .manager-container .calendar-panel .calendar-legend .leg .dot.expired {
+  background: var(--color-slate-400);
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .no-date-selected {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--text-secondary);
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .no-date-selected svg {
+  opacity: 0.3;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .no-date-selected p {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-header {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-header .date-display {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-header .date-display svg {
+  color: var(--primary-color);
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .slots-section h4 {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 0.75rem 0;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .slots-section .current-slots {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .slots-section .current-slots .slot-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: var(--hover-bg);
+  border-radius: 10px;
+  border-right: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .slots-section .current-slots .slot-item.available {
+  border-color: var(--color-success);
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .slots-section .current-slots .slot-item.reserved {
+  border-color: var(--color-warning);
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .slots-section .current-slots .slot-item.approved {
+  border-color: var(--color-primary);
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .slots-section .current-slots .slot-item.expired {
+  border-color: var(--color-slate-400);
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .slots-section .current-slots .slot-item.needs_review {
+  border-color: var(--color-error);
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .slots-section .current-slots .slot-item .slot-time {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  min-width: 50px;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .slots-section .current-slots .slot-item .slot-info {
+  flex: 1;
+  font-size: 0.85rem;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .slots-section .current-slots .slot-item .slot-info .parent {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .slots-section .current-slots .slot-item .slot-info .empty-label {
+  color: var(--text-tertiary);
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .slots-section .current-slots .slot-item .slot-status .tag {
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .slots-section .current-slots .slot-item .slot-status .tag.green {
+  background: rgba(var(--color-success-rgb), 0.1);
+  color: var(--color-success);
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .slots-section .current-slots .slot-item .slot-status .tag.yellow {
+  background: rgba(var(--color-warning-rgb), 0.1);
+  color: var(--color-warning);
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .slots-section .current-slots .slot-item .slot-status .tag.blue {
+  background: rgba(var(--color-primary-rgb), 0.1);
+  color: var(--color-primary);
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .slots-section .current-slots .slot-item .slot-status .tag.gray {
+  background: rgba(var(--color-slate-400-rgb), 0.1);
+  color: var(--color-slate-500);
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .slots-section .current-slots .slot-item .slot-status .tag.orange {
+  background: rgba(var(--color-error-rgb), 0.1);
+  color: var(--color-error);
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .slots-section .current-slots .slot-item .slot-actions {
+  display: flex;
+  gap: 0.25rem;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .slots-section .current-slots .slot-item .slot-actions button {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .slots-section .current-slots .slot-item .slot-actions button.approve {
+  background: rgba(var(--color-success-rgb), 0.1);
+  color: var(--color-success);
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .slots-section .current-slots .slot-item .slot-actions button.approve:hover {
+  background: rgba(var(--color-success-rgb), 0.2);
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .slots-section .current-slots .slot-item .slot-actions button.delete {
+  background: rgba(var(--color-error-rgb), 0.1);
+  color: var(--color-error);
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .slots-section .current-slots .slot-item .slot-actions button.delete:hover {
+  background: rgba(var(--color-error-rgb), 0.2);
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .slots-section .current-slots .no-slots {
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-tertiary);
+  font-size: 0.85rem;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section h4 {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 0.75rem 0;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .section-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .section-header-row .multi-select-toggle {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .section-header-row .multi-select-toggle:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  background: rgba(var(--color-primary-rgb), 0.05);
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .section-header-row .multi-select-toggle.active {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .preset-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .preset-buttons button {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border-color);
+  background: var(--hover-bg);
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .preset-buttons button svg {
+  flex-shrink: 0;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .preset-buttons button:hover {
+  border-color: var(--primary-color);
+  background: rgba(var(--color-primary-rgb), 0.1);
+  color: var(--primary-color);
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .preset-buttons button.clear-btn {
+  border-color: var(--color-error);
+  color: var(--color-error);
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .preset-buttons button.clear-btn:hover {
+  background: rgba(var(--color-error-rgb), 0.1);
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .section-hint {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin: 0 0 0.75rem 0;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .time-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  gap: 0.5rem;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 0.5rem;
+  background: var(--bg-secondary);
+  border-radius: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-slate-400) transparent;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .time-grid::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .time-grid::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .time-grid::-webkit-scrollbar-thumb {
+  background: var(--color-slate-300);
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .time-grid::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+.dark-mode .registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .time-grid::-webkit-scrollbar-thumb {
+  background: var(--color-slate-600);
+}
+.dark-mode .registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .time-grid::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .time-grid .time-btn {
+  padding: 0.75rem 0.5rem;
+  border: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .time-grid .time-btn:hover:not(:disabled) {
+  border-color: var(--primary-color);
+  background: rgba(var(--color-primary-rgb), 0.05);
+  transform: translateY(-2px);
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .time-grid .time-btn.selected {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .time-grid .time-btn.exists.available {
+  background: rgba(var(--color-success-rgb), 0.1);
+  border-color: var(--color-success);
+  color: var(--color-success);
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .time-grid .time-btn.exists.reserved, .registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .time-grid .time-btn.exists.approved, .registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .time-grid .time-btn.exists.needs_review {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .time-grid .time-btn.past {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .time-grid .time-btn.pending-remove {
+  background: rgba(var(--color-error-rgb), 0.1);
+  border-color: var(--color-error);
+  color: var(--color-error);
+  animation: pulse 0.5s infinite;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .time-grid .time-btn:disabled {
+  cursor: not-allowed;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .batch-add-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.75rem;
+  border: none;
+  background: linear-gradient(135deg, var(--color-success), var(--color-success-dark));
+  color: white;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+.registration-commissions .meeting-manager-section .manager-container .slot-editor-panel .editor-body .add-slots-section .batch-add-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(var(--color-success-rgb), 0.3);
+}
+.registration-commissions .commissions-section {
+  margin-bottom: 2rem;
+}
+.registration-commissions .commissions-section .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.registration-commissions .commissions-section .section-header h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+}
+.registration-commissions .commissions-section .section-header .action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.registration-commissions .commissions-section .section-header .action-btn.primary {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  box-shadow: 0 4px 12px rgba(var(--color-primary-rgb), 0.3);
+}
+.registration-commissions .commissions-section .section-header .action-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(var(--color-primary-rgb), 0.4);
+}
+.registration-commissions .commissions-section .commissions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 1.5rem;
+}
+.registration-commissions .commissions-section .commissions-grid .commission-card {
+  backdrop-filter: blur(8.2px);
+  background: var(--glass-background-uno);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(8.2px);
+  border: 1px solid var(--glass-border-uno);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border-right: 4px solid var(--commission-color);
+}
+.registration-commissions .commissions-section .commissions-grid .commission-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+}
+.registration-commissions .commissions-section .commissions-grid .commission-card .commission-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+}
+.registration-commissions .commissions-section .commissions-grid .commission-card .commission-header .commission-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.registration-commissions .commissions-section .commissions-grid .commission-card .commission-header .commission-title .commission-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--commission-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.registration-commissions .commissions-section .commissions-grid .commission-card .commission-header .commission-title h3 {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+}
+.registration-commissions .commissions-section .commissions-grid .commission-card .commission-header .commission-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+.registration-commissions .commissions-section .commissions-grid .commission-card .commission-header .commission-actions .icon-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: var(--hover-bg);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.registration-commissions .commissions-section .commissions-grid .commission-card .commission-header .commission-actions .icon-btn:hover {
+  background: rgba(var(--color-primary-rgb), 0.1);
+  color: var(--primary-color);
+}
+.registration-commissions .commissions-section .commissions-grid .commission-card .commission-header .commission-actions .icon-btn.danger:hover {
+  background: rgba(var(--color-error-rgb), 0.1);
+  color: var(--color-error);
+}
+.registration-commissions .commissions-section .commissions-grid .commission-card .commission-criteria-box {
+  background: var(--hover-bg);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+}
+.registration-commissions .commissions-section .commissions-grid .commission-card .commission-criteria-box h4 {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 0.75rem 0;
+}
+.registration-commissions .commissions-section .commissions-grid .commission-card .commission-criteria-box .criteria-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.registration-commissions .commissions-section .commissions-grid .commission-card .commission-criteria-box .criteria-list .criteria-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+}
+.registration-commissions .commissions-section .commissions-grid .commission-card .commission-criteria-box .criteria-list .criteria-item .label {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+.registration-commissions .commissions-section .commissions-grid .commission-card .commission-criteria-box .criteria-list .criteria-item .value {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+.registration-commissions .commissions-section .commissions-grid .commission-card .commission-members {
+  margin-bottom: 1.25rem;
+}
+.registration-commissions .commissions-section .commissions-grid .commission-card .commission-members h4 {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 0.75rem 0;
+}
+.registration-commissions .commissions-section .commissions-grid .commission-card .commission-members .members-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.registration-commissions .commissions-section .commissions-grid .commission-card .commission-members .members-list .member-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: var(--bg-secondary);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+.registration-commissions .commissions-section .commissions-grid .commission-card .commission-members .members-list .member-item:hover {
+  background: var(--hover-bg);
+}
+.registration-commissions .commissions-section .commissions-grid .commission-card .commission-members .members-list .member-item .member-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(var(--commission-color), 0.1);
+  color: var(--commission-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.registration-commissions .commissions-section .commissions-grid .commission-card .commission-members .members-list .member-item .member-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+.registration-commissions .commissions-section .commissions-grid .commission-card .commission-members .members-list .member-item .member-info .member-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.registration-commissions .commissions-section .commissions-grid .commission-card .commission-members .members-list .member-item .member-info .member-title {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+.registration-commissions .commissions-section .commissions-grid .commission-card .commission-stats {
+  display: flex;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+.registration-commissions .commissions-section .commissions-grid .commission-card .commission-stats .stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+.registration-commissions .commissions-section .commissions-grid .commission-card .commission-stats .stat-item svg {
+  color: var(--commission-color);
+  flex-shrink: 0;
+}
+.registration-commissions .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+.registration-commissions .modal-overlay .modal-content {
+  backdrop-filter: blur(8.2px);
+  background: var(--glass-background-uno);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(8.2px);
+  border: 1px solid var(--glass-border-uno);
+  border-radius: 20px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modalSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.registration-commissions .modal-overlay .modal-content.large {
+  max-width: 800px;
+}
+.registration-commissions .modal-overlay .modal-content .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+.registration-commissions .modal-overlay .modal-content .modal-header h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+}
+.registration-commissions .modal-overlay .modal-content .modal-header .close-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: var(--hover-bg);
+  border-radius: 10px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+.registration-commissions .modal-overlay .modal-content .modal-header .close-btn svg {
+  flex-shrink: 0;
+}
+.registration-commissions .modal-overlay .modal-content .modal-header .close-btn:hover {
+  background: rgba(var(--color-error-rgb), 0.1);
+  color: var(--color-error);
+}
+.registration-commissions .modal-overlay .modal-content .modal-body {
+  padding: 1.5rem;
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .section-description {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: -0.5rem 0 1.5rem 0;
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .form-section {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .form-section:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .form-section h4 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 1rem 0;
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .criteria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .form-group {
+  margin-bottom: 1.5rem;
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .form-group:last-child {
+  margin-bottom: 0;
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .form-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .form-group input,
+.registration-commissions .modal-overlay .modal-content .modal-body .form-group textarea,
+.registration-commissions .modal-overlay .modal-content .modal-body .form-group select {
+  width: 100%;
+  padding: 0.875rem;
+  border: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .form-group input:focus,
+.registration-commissions .modal-overlay .modal-content .modal-body .form-group textarea:focus,
+.registration-commissions .modal-overlay .modal-content .modal-body .form-group select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.1);
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .form-group input::-moz-placeholder, .registration-commissions .modal-overlay .modal-content .modal-body .form-group textarea::-moz-placeholder, .registration-commissions .modal-overlay .modal-content .modal-body .form-group select::-moz-placeholder {
+  color: var(--text-tertiary);
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .form-group input::placeholder,
+.registration-commissions .modal-overlay .modal-content .modal-body .form-group textarea::placeholder,
+.registration-commissions .modal-overlay .modal-content .modal-body .form-group select::placeholder {
+  color: var(--text-tertiary);
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .form-group input[type=color] {
+  height: 48px;
+  padding: 0.25rem;
+  cursor: pointer;
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .form-group select {
+  cursor: pointer;
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .member-role-section {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .member-role-section:last-child {
+  margin-bottom: 0;
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .member-role-section .role-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .member-role-section .role-header .role-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .member-role-section .role-header .role-icon.psychology {
+  background: linear-gradient(135deg, #ec4899, #f43f5e);
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .member-role-section .role-header .role-icon.teacher {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .member-role-section .role-header .role-icon.admin {
+  background: linear-gradient(135deg, #10b981, #14b8a6);
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .member-role-section .role-header h5 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .member-role-section .member-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.875rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .member-role-section .member-display .member-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .member-role-section .member-display .member-info .member-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .member-role-section .member-display .member-info .member-title {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .member-role-section .member-display .remove-member-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: rgba(var(--color-error-rgb), 0.1);
+  color: var(--color-error);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .member-role-section .member-display .remove-member-btn:hover {
+  background: rgba(var(--color-error-rgb), 0.2);
+  transform: scale(1.05);
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .info-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: rgba(var(--color-primary-rgb), 0.05);
+  border: 1px solid rgba(var(--color-primary-rgb), 0.2);
+  border-radius: 10px;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .info-box svg {
+  color: var(--primary-color);
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+.registration-commissions .modal-overlay .modal-content .modal-body .info-box p {
+  margin: 0;
+}
+.registration-commissions .modal-overlay .modal-content .modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+.registration-commissions .modal-overlay .modal-content .modal-footer .btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.registration-commissions .modal-overlay .modal-content .modal-footer .btn svg {
+  flex-shrink: 0;
+}
+.registration-commissions .modal-overlay .modal-content .modal-footer .btn.secondary {
+  background: var(--hover-bg);
+  color: var(--text-primary);
+}
+.registration-commissions .modal-overlay .modal-content .modal-footer .btn.secondary:hover {
+  background: var(--border-color);
+}
+.registration-commissions .modal-overlay .modal-content .modal-footer .btn.primary {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  box-shadow: 0 4px 12px rgba(var(--color-primary-rgb), 0.3);
+}
+.registration-commissions .modal-overlay .modal-content .modal-footer .btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(var(--color-primary-rgb), 0.4);
+}
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}/*# sourceMappingURL=RegistrationCommissions.css.map */

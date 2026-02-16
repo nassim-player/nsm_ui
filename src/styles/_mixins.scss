@@ -1,4 +1,4 @@
-@import 'variables';
+@use 'variables' as *;
 /* Mixins */
 
 @mixin flex($align: center, $justify: center, $direction: row, $gap: 0) {
@@ -73,8 +73,8 @@
     font-size: 16px;
     transition: all $transition-speed;
     background: var(--cards-color);
-    direction: rtl;
-    text-align: right;
+    direction: var(--direction);
+    text-align: var(--text-align);
     color: var(--text-color);
 
     &:focus {
@@ -127,7 +127,7 @@
     padding: 20px;
     border-radius: $border-radius-medium;
     margin-bottom: 20px;
-    border-right: 4px solid $primary-color;
+    border-inline-start: 4px solid $primary-color;
 }
 
 @mixin flex-center {
@@ -163,7 +163,7 @@
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateX(20px);
+        transform: translateX(calc(20px * var(--direction-multiplier, 1)));
     }
 
     to {
@@ -187,6 +187,48 @@
     transition: all 0.3s ease;
     box-shadow: 0 10px 30px rgba(12, 148, 201, 0.2);
     transform: translateY(-5px);
+}
 
+@mixin custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-slate-400) transparent;
 
+    &::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--color-slate-300);
+        border-radius: 10px;
+        border: 1px solid transparent;
+        background-clip: padding-box;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background: var(--color-primary);
+        }
+    }
+
+    .dark-mode & {
+        &::-webkit-scrollbar-thumb {
+            background: var(--color-slate-600);
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background: var(--color-primary);
+        }
+    }
+}
+
+@mixin glass-hover {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    transition: all 0.2s ease;
 }

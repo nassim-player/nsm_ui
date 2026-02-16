@@ -1,0 +1,188 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: var(--spacing-md);
+    animation: fadeIn var(--transition-base);
+    transition: all var(--transition-base);
+
+    &.is-open {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+}
+
+.modal-container {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    width: 100%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp var(--transition-base);
+    overflow: hidden;
+    position: relative;
+
+    @keyframes slideUp {
+        from {
+            transform: translateY(20px) scale(0.98);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+    }
+
+    // Sizes
+    &.small {
+        max-width: 480px;
+    }
+
+    &.medium {
+        max-width: 650px;
+    }
+
+    &.large {
+        max-width: 900px;
+    }
+
+    &.full {
+        max-width: 95vw;
+        height: 95vh;
+    }
+
+    // Glass Effect
+    &.glass-effect {
+        background: var(--glass-background-zero);
+        border: 1px solid var(--glass-border-zero);
+        @include glass-uno;
+    }
+
+    .modal-header {
+        padding: var(--spacing-lg);
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--bg-primary-subtle);
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+
+            .header-icon {
+                width: 40px;
+                height: 40px;
+                border-radius: var(--radius-md);
+                background: var(--color-primary-light);
+                color: var(--color-primary-dark);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+            }
+
+            .title-area {
+                display: flex;
+                flex-direction: column;
+
+                h3 {
+                    margin: 0;
+                    font-size: 1.25rem;
+                    font-weight: 700;
+                    color: var(--text-primary);
+                }
+
+                .subtitle {
+                    font-size: 0.875rem;
+                    color: var(--text-secondary);
+                }
+            }
+        }
+
+        .close-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+
+            &:hover {
+                background: var(--color-error-light);
+                color: var(--color-error);
+                transform: rotate(90deg);
+            }
+        }
+    }
+
+    .modal-body {
+        padding: var(--spacing-xl);
+        overflow-y: auto;
+        flex: 1;
+    }
+
+    .modal-footer {
+        padding: var(--spacing-lg);
+        border-top: 1px solid var(--border-color);
+        background: var(--bg-primary-subtle);
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: var(--spacing-md);
+    }
+}
+
+// Support for RTL
+[dir="rtl"] {
+    .modal-header {
+        .header-content {
+            .title-area {
+                h3 {
+                    text-align: right;
+                }
+
+                .subtitle {
+                    text-align: right;
+                }
+            }
+        }
+    }
+}
+
+.dark-mode {
+    .modal-overlay {
+        background: rgba(0, 0, 0, 0.6);
+    }
+}
