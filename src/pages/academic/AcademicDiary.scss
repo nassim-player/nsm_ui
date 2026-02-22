@@ -1,0 +1,413 @@
+@use "../../styles/mixins" as *;
+
+.academic-diary {
+    padding: 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    direction: var(--direction);
+    text-align: var(--text-align);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    /* ───── Page Header ───── */
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        .header-content {
+            h1 {
+                font-size: 1.75rem;
+                font-weight: 800;
+                color: var(--text-primary);
+                margin: 0 0 0.35rem 0;
+                background: linear-gradient(135deg, var(--color-slate-800) 0%, var(--color-slate-700) 100%);
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            p {
+                color: var(--text-secondary);
+                font-size: 1rem;
+                margin: 0;
+            }
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+            flex-wrap: wrap;
+        }
+    }
+
+    /* ───── Filters Bar ───── */
+    .filters-bar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        gap: 1rem;
+        padding: 1.25rem 1.5rem;
+        @include glass-uno;
+        background: var(--cards-color);
+        border-radius: 20px;
+        border: 1px solid var(--border-color);
+        animation: filterSlideIn 0.25s ease-out;
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            flex: 1;
+            min-width: 150px;
+            max-width: 220px;
+
+            label {
+                display: flex;
+                align-items: center;
+                gap: 0.35rem;
+                font-size: 0.78rem;
+                font-weight: 700;
+                color: var(--text-tertiary);
+                text-transform: uppercase;
+                letter-spacing: 0.3px;
+
+                svg {
+                    color: var(--color-primary);
+                    opacity: 0.7;
+                }
+            }
+
+            select {
+                width: 100%;
+            }
+        }
+
+        .clear-filters {
+            margin-inline-start: auto;
+            align-self: flex-end;
+        }
+    }
+
+    @keyframes filterSlideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-8px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* ───── Tabbed Panel ───── */
+    .diary-tabbed-panel {
+        @include glass-uno;
+        background: var(--cards-color);
+        border-radius: 20px;
+        border: 1px solid var(--border-color);
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .tabs-bar {
+        display: flex;
+        gap: 0.25rem;
+        padding: 0.25rem;
+        background: var(--bg-secondary);
+        border-radius: 14px;
+
+        .tab-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.65rem 0.75rem;
+            border: none;
+            border-radius: 11px;
+            background: transparent;
+            color: var(--text-tertiary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+
+            svg {
+                flex-shrink: 0;
+            }
+
+            .tab-count {
+                font-size: 0.72rem;
+                font-weight: 700;
+                padding: 0.1rem 0.45rem;
+                border-radius: 6px;
+                background: rgba(var(--color-primary-rgb), 0.08);
+                color: var(--color-primary);
+                min-width: 20px;
+                text-align: center;
+            }
+
+            &:hover:not(.active) {
+                color: var(--text-secondary);
+                background: var(--bg-primary-subtle);
+            }
+
+            &.active {
+                background: var(--cards-color);
+                color: var(--color-primary);
+                box-shadow: var(--shadow-sm);
+
+                .tab-count {
+                    background: rgba(var(--color-primary-rgb), 0.15);
+                }
+            }
+        }
+    }
+
+    .tab-content {
+        animation: tabFadeIn 0.2s ease-out;
+    }
+
+    @keyframes tabFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(4px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* ───── Feed List ───── */
+    .diary-feed-list {
+        max-height: 72vh;
+        overflow-y: auto;
+        @include custom-scrollbar;
+    }
+
+    /* ───── Diary Entry Card ───── */
+    .diary-entry {
+        padding: 1rem 1.25rem;
+        margin-bottom: 0.625rem;
+        border-radius: 14px;
+        border: 1px solid var(--border-color);
+        background: var(--bg-primary);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            bottom: 10px;
+            inset-inline-start: 0;
+            width: 3px;
+            border-radius: 0 3px 3px 0;
+            background: var(--color-primary);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        &:hover {
+            border-color: rgba(var(--color-primary-rgb), 0.25);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            transform: translateY(-1px);
+
+            &::before {
+                opacity: 1;
+            }
+        }
+
+        /* Meta row: date · class · time · modified */
+        .entry-meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.625rem;
+            font-size: 0.78rem;
+            color: var(--text-tertiary);
+
+            .entry-date {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.25rem;
+                font-weight: 700;
+                color: var(--text-primary);
+
+                svg {
+                    color: var(--color-primary);
+                    opacity: 0.7;
+                }
+            }
+
+            .entry-class {
+                padding: 0.15rem 0.5rem;
+                background: rgba(var(--color-primary-rgb), 0.08);
+                border-radius: 6px;
+                font-weight: 700;
+                color: var(--color-primary);
+                font-size: 0.75rem;
+            }
+
+            .entry-time {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.2rem;
+                font-variant-numeric: tabular-nums;
+
+                svg {
+                    opacity: 0.6;
+                }
+            }
+
+            .entry-modified {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.2rem;
+                padding: 0.125rem 0.4rem;
+                background: rgba(var(--color-warning-rgb), 0.1);
+                color: var(--color-warning);
+                border-radius: 4px;
+                font-weight: 600;
+                font-size: 0.72rem;
+            }
+        }
+
+        /* Subject · teacher */
+        .entry-subject-teacher {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.375rem;
+
+            .subject {
+                font-weight: 700;
+                color: var(--color-primary);
+                font-size: 0.9rem;
+            }
+
+            .separator {
+                color: var(--text-tertiary);
+                font-weight: 700;
+            }
+
+            .teacher {
+                font-size: 0.85rem;
+                color: var(--text-secondary);
+                font-weight: 500;
+            }
+        }
+
+        /* Lesson title */
+        .entry-lesson-title {
+            margin: 0 0 0.375rem 0;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+
+        /* Summary */
+        .entry-summary {
+            margin: 0 0 0.625rem 0;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.55;
+        }
+
+        /* Attachments & tags */
+        .entry-attachments {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.375rem;
+
+            .resource-tag {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.3rem;
+                padding: 0.25rem 0.6rem;
+                background: var(--bg-secondary);
+                border-radius: 8px;
+                color: var(--text-secondary);
+                font-size: 0.78rem;
+                font-weight: 600;
+                transition: background 0.15s ease;
+
+                svg {
+                    color: var(--color-primary);
+                    opacity: 0.6;
+                }
+
+                &:hover {
+                    background: rgba(var(--color-primary-rgb), 0.08);
+                    color: var(--color-primary);
+
+                    svg {
+                        opacity: 1;
+                    }
+                }
+            }
+
+            .homework-tag {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.3rem;
+                padding: 0.25rem 0.6rem;
+                background: rgba(139, 92, 246, 0.1);
+                border-radius: 8px;
+                color: var(--color-secondary);
+                font-weight: 700;
+                font-size: 0.78rem;
+
+                &.in-app {
+                    background: rgba(59, 130, 246, 0.1);
+                    color: var(--color-primary);
+                }
+            }
+        }
+
+        /* Homework variant accent bar */
+        &.homework-entry::before {
+            background: var(--color-secondary);
+        }
+
+        /* Summary variant accent bar */
+        &.summary-entry::before {
+            background: #10b981;
+        }
+    }
+
+    /* ───── Empty State ───── */
+    .empty-state {
+        padding: 3rem 2rem;
+        text-align: center;
+        color: var(--text-tertiary);
+
+        svg {
+            opacity: 0.35;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            margin: 0;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+    }
+}

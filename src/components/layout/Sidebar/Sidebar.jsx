@@ -23,7 +23,8 @@ export const Sidebar = ({ role = 'Director', onLogout, className = '' }) => {
                     { href: '/students', icon: Users, label: t('nav.students') },
                     { href: '/registration', icon: UserPlus, label: t('nav.registration') },
                     { href: '/academic', icon: Book, label: t('nav.academic') },
-                    { href: '/hub', icon: Calendar, label: t('nav.calendar') }
+                    { href: '/reception', icon: Clock, label: t('nav.reception') },
+                    { href: '/hub', icon: Calendar, label: t('nav.hub') || 'المركز الإعلامي' }
                 ]
             },
             {

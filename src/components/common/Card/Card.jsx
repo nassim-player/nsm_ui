@@ -67,26 +67,37 @@ TaskCard.propTypes = {
     className: PropTypes.string
 };
 
+/**
+ * StatCard — Single-purpose KPI card: one metric per card.
+ * Props: label, value, icon (optional), badges (optional array of { label, variant }).
+ * Optional style={{ '--kpi-color': '#hex' }} for accent/icon tint.
+ */
 export const StatCard = ({ label, value, icon: Icon, badges = [], className = '', style = {} }) => {
     return (
-        <div className={`card stat-card ${className}`} style={style}>
-            <div className="card-header">
-                <span className="stat-label">{label}</span>
+        <article
+            className={`stat-card ${className}`}
+            style={style}
+            role="figure"
+            aria-label={`${label}: ${value}`}
+        >
+            <span className="stat-card__accent" aria-hidden="true" />
+            <div className="stat-card__head">
+                <span className="stat-card__label">{label}</span>
                 {Icon && (
-                    <div className="stat-icon">
-                        {typeof Icon === 'string' ? <i className={`fas ${Icon}`}></i> : <Icon size={20} />}
-                    </div>
+                    <span className="stat-card__icon">
+                        {typeof Icon === 'string' ? <i className={`fas ${Icon}`} /> : <Icon size={24} />}
+                    </span>
                 )}
             </div>
-            <div className="stat-value">{value}</div>
+            <p className="stat-card__value">{value}</p>
             {badges.length > 0 && (
-                <div className="stat-badges">
-                    {badges.map((badge, index) => (
-                        <Badge key={index} variant={badge.variant}>{badge.label}</Badge>
+                <div className="stat-card__hint">
+                    {badges.map((badge, i) => (
+                        <Badge key={i} variant={badge.variant}>{badge.label}</Badge>
                     ))}
                 </div>
             )}
-        </div>
+        </article>
     );
 };
 

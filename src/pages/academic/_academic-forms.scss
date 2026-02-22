@@ -1,0 +1,248 @@
+// Shared custom form controls for Academic unit — stable across browsers, no default UA styling
+
+@use "../../styles/variables" as *;
+
+.academic-content {
+    // ---- Select (custom dropdown, no browser default) ----
+    select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        display: inline-block;
+        min-height: 40px;
+        padding: 0.5rem 2rem 0.5rem 0.875rem;
+        font-family: inherit;
+        font-size: 0.9rem;
+        font-weight: 500;
+        line-height: 1.4;
+        color: var(--text-primary);
+        background-color: var(--cards-color);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: left 0.65rem center;
+        background-size: 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+        cursor: pointer;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+        &:hover {
+            border-color: var(--border-color-hover);
+        }
+
+        &:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+
+    }
+
+    // ---- Input (text, date, etc.) ----
+    input[type="text"],
+    input[type="date"],
+    input[type="email"],
+    input[type="number"],
+    .filter-input {
+        display: inline-block;
+        min-height: 40px;
+        padding: 0.5rem 0.875rem;
+        font-family: inherit;
+        font-size: 0.9rem;
+        font-weight: 500;
+        line-height: 1.4;
+        color: var(--text-primary);
+        background-color: var(--cards-color);
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+        &::placeholder {
+            color: var(--text-tertiary, var(--color-slate-400));
+        }
+
+        &:hover {
+            border-color: var(--border-color-hover);
+        }
+
+        &:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+
+        // Date input: hide native calendar icon in some browsers for consistency (optional)
+        &::-webkit-calendar-picker-indicator {
+            opacity: 0.6;
+            cursor: pointer;
+        }
+    }
+
+    // ---- Buttons (reset + custom) ----
+    button {
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+        margin: 0;
+        cursor: pointer;
+        -webkit-appearance: none;
+        appearance: none;
+        border: none;
+        background: transparent;
+    }
+
+    // Primary action button
+    .action-btn.primary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        min-height: 40px;
+        padding: 0.5rem 1.25rem;
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: #fff;
+        background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+        border: 1px solid var(--color-primary-dark);
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(59, 130, 246, 0.25);
+        transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+
+        &:hover {
+            background: linear-gradient(135deg, var(--color-primary-dark) 0%, #1d4ed8 100%);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+            transform: translateY(-1px);
+        }
+
+        &:active {
+            transform: translateY(0);
+            box-shadow: 0 1px 3px rgba(59, 130, 246, 0.3);
+        }
+    }
+
+    // Secondary / outline button
+    .action-btn.secondary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        min-height: 40px;
+        padding: 0.5rem 1.25rem;
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: var(--text-primary);
+        background: var(--cards-color);
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+        transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+
+        &:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+            background: rgba(59, 130, 246, 0.06);
+            transform: translateY(-1px);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+
+    // Standalone primary (e.g. Export audit)
+    .action-btn:not(.secondary):not(.primary) {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        min-height: 40px;
+        padding: 0.5rem 1.25rem;
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: #fff;
+        background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+        border: 1px solid var(--color-primary-dark);
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(59, 130, 246, 0.25);
+        transition: transform 0.15s ease, box-shadow 0.2s ease;
+
+        &:hover {
+            background: linear-gradient(135deg, var(--color-primary-dark) 0%, #1d4ed8 100%);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+            transform: translateY(-1px);
+        }
+    }
+
+    // Clear filters / danger-style button
+    .clear-filters {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.35rem;
+        min-height: 36px;
+        padding: 0.4rem 0.875rem;
+        font-weight: 600;
+        font-size: 0.85rem;
+        color: var(--color-error);
+        background: rgba(239, 68, 68, 0.08);
+        border: 1px solid rgba(239, 68, 68, 0.25);
+        border-radius: 8px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+        transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+
+        &:hover {
+            background: rgba(239, 68, 68, 0.14);
+            border-color: rgba(239, 68, 68, 0.4);
+            transform: translateY(-1px);
+        }
+    }
+
+    // Icon-only buttons (e.g. Mail, Phone in follow-up)
+    .icon-btn {
+        width: 36px;
+        height: 36px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-primary);
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+        transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+
+        &:hover {
+            color: #fff;
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+            transform: translateY(-1px);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+
+    // Read-only badge (not a button, but form-area related)
+    .read-only-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.5rem 0.875rem;
+        background: rgba(59, 130, 246, 0.08);
+        border: 1px solid rgba(59, 130, 246, 0.25);
+        border-radius: 10px;
+        color: var(--color-primary);
+        font-size: 0.85rem;
+        font-weight: 600;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    }
+}
+
+// RTL: flip select dropdown arrow and padding
+[dir="rtl"] .academic-content select {
+    background-position: right 0.65rem center;
+    padding: 0.5rem 0.875rem 0.5rem 2rem;
+}

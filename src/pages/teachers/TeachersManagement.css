@@ -1,3 +1,4 @@
+@charset "UTF-8";
 :root {
   /* Primary Colors */
   --color-primary: #3b82f6;
@@ -111,6 +112,12 @@
   --color-success-rgb: 16, 185, 129;
   --color-warning-rgb: 245, 158, 11;
   --color-error-rgb: 239, 68, 68;
+  /* Interaction & Hover States */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --hover-bg: #f1f5f9;
+  --primary-hover: #2563eb;
+  /* RGB Components (extra) */
+  --color-slate-400-rgb: 148, 163, 184;
   /* Direction & Alignment Variables */
   --direction: ltr;
   --text-align: left;
@@ -214,6 +221,12 @@
   --glass-panel-bg: rgba(30, 41, 59, 0.5);
   --glass-panel-border: rgba(255, 255, 255, 0.08);
   --glass-panel-shadow: rgba(0, 0, 0, 0.4);
+  /* Interaction & Hover States */
+  --glass-bg: rgba(30, 41, 59, 0.7);
+  --hover-bg: #334155;
+  --primary-hover: #93c5fd;
+  /* RGB Components (extra) */
+  --color-slate-400-rgb: 100, 116, 139;
   /* RGB Components */
   --color-primary-rgb: 96, 165, 250;
   --color-secondary-rgb: 167, 139, 250;
@@ -237,12 +250,19 @@
   margin-bottom: 2rem;
 }
 .teachers-management .page-header h1 {
-  font-size: 1.8rem;
+  font-size: 1.75rem;
+  font-weight: 800;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--color-slate-800) 0%, var(--color-slate-700) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .teachers-management .page-header p {
   color: var(--text-secondary);
+  font-size: 1rem;
+  margin: 0;
 }
 .teachers-management .dept-tag {
   display: flex;
@@ -254,7 +274,6 @@
   color: var(--color-primary);
   font-weight: 700;
   font-size: 0.85rem;
-  width: -moz-fit-content;
   width: fit-content;
 }
 .teachers-management .dept-tag svg {
@@ -262,24 +281,33 @@
 }
 .teachers-management .table-card {
   background: var(--cards-color);
-  border-radius: 16px;
-  border: 1px solid var(--border-color);
   overflow: visible;
-  box-shadow: var(--shadow-md);
+  padding-bottom: 0;
+  transition: padding-bottom 0.35s ease;
+}
+.teachers-management .table-card.filter-open {
+  padding-bottom: 200px;
 }
 .teachers-management .status-badge {
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.75rem;
   font-weight: 600;
+  color: white;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-fast);
+}
+.teachers-management .status-badge:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 .teachers-management .status-badge.active {
-  background: rgba(34, 197, 94, 0.15);
-  color: #22c55e;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
 }
 .teachers-management .status-badge.on-leave {
-  background: rgba(245, 158, 11, 0.15);
-  color: #f59e0b;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
 }
 .teachers-management .name-nick-cell {
   display: flex;
@@ -383,228 +411,442 @@
   letter-spacing: 2px;
 }
 .teachers-management {
-  /* Integrated Filtration System */
+  /* Filters popup — stage, sub-stage, module, class */
 }
-.teachers-management .dt-filter-composite {
+.teachers-management .teachers-filters-popup {
   position: relative;
 }
-.teachers-management .dt-filter-composite .composite-filter-btn {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 0 16px;
-  height: 52px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-color);
-  border-radius: 14px;
-  color: var(--text-secondary);
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-.teachers-management .dt-filter-composite .composite-filter-btn .btn-icon {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.teachers-management .dt-filter-composite .composite-filter-btn .btn-icon .active-dot {
-  position: absolute;
-  top: -2px;
-  right: -2px;
-  width: 10px;
-  height: 10px;
-  background: #f43f5e;
-  border: 2px solid var(--bg-surface);
-  border-radius: 50%;
-  box-shadow: 0 0 8px rgba(244, 63, 94, 0.4);
-}
-.teachers-management .dt-filter-composite .composite-filter-btn .btn-label {
-  font-size: 0.95rem;
-}
-.teachers-management .dt-filter-composite .composite-filter-btn .arrow {
-  opacity: 0.5;
-  transition: transform 0.3s ease;
-}
-.teachers-management .dt-filter-composite .composite-filter-btn .arrow.up {
-  transform: rotate(180deg);
-}
-.teachers-management .dt-filter-composite .composite-filter-btn:hover, .teachers-management .dt-filter-composite .composite-filter-btn.active {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-  background: rgba(var(--color-primary-rgb), 0.04);
-  box-shadow: 0 4px 15px rgba(var(--color-primary-rgb), 0.1);
-}
-.teachers-management {
-  /* Premium Dropdown Menus */
-}
-.teachers-management .dt-dropdown-menu {
-  position: absolute;
-  z-index: 2000;
-  background: rgba(var(--bg-surface-rgb), 0.82);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid rgba(var(--color-slate-400-rgb), 0.15);
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  animation: premiumMenuIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.teachers-management .dt-dropdown-menu.filter-menu {
-  top: calc(100% + 12px);
-  inset-inline-end: 0;
-  width: 320px;
-  padding: 1.5rem;
-}
-.teachers-management .dt-dropdown-menu.quick-assign-menu {
-  position: fixed;
-  padding: 8px;
-}
-.teachers-management .dt-dropdown-menu .dt-menu-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 4px 8px 16px;
-  margin-bottom: 8px;
-  border-bottom: 1px solid rgba(var(--color-slate-400-rgb), 0.1);
-}
-.teachers-management .dt-dropdown-menu .dt-menu-header .header-title {
+.teachers-management .filters-popup-trigger {
   display: flex;
   align-items: center;
   gap: 10px;
+  padding: 8px 14px;
+  min-width: 120px;
+  backdrop-filter: blur(8.2px);
+  background: var(--glass-background-uno);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(8.2px);
+  border: 1px solid var(--glass-border-uno);
+  border-radius: 14px;
   color: var(--text-primary);
-  font-weight: 800;
-  font-size: 0.95rem;
-}
-.teachers-management .dt-dropdown-menu .dt-menu-header .header-title svg {
-  color: var(--color-primary);
-}
-.teachers-management .dt-dropdown-menu .dt-menu-header .dt-reset-link,
-.teachers-management .dt-dropdown-menu .dt-menu-header .dt-close-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  background: none;
-  border: none;
+  font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
-  color: var(--text-tertiary);
-  font-size: 0.8rem;
-  font-weight: 700;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  text-align: right;
 }
-.teachers-management .dt-dropdown-menu .dt-menu-header .dt-reset-link:hover,
-.teachers-management .dt-dropdown-menu .dt-menu-header .dt-close-btn:hover {
+.teachers-management .filters-popup-trigger .trigger-label {
+  font-size: 0.85rem;
+}
+.teachers-management .filters-popup-trigger .trigger-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: var(--color-primary);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.teachers-management .filters-popup-trigger .trigger-icon {
+  flex-shrink: 0;
+  color: var(--text-tertiary);
+  transition: transform 0.2s ease;
+}
+.teachers-management .filters-popup-trigger:hover {
+  border-color: var(--border-color-hover);
+}
+.teachers-management .filters-popup-trigger.open {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.12);
+}
+.teachers-management .filters-popup-trigger.open .trigger-icon {
+  transform: rotate(180deg);
   color: var(--color-primary);
 }
-.teachers-management .dt-dropdown-menu {
-  /* Filter Content */
+.teachers-management .filters-popup-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  inset-inline-end: 0;
+  width: 320px;
+  max-height: 420px;
+  padding: 12px;
+  overflow-y: auto;
+  backdrop-filter: blur(8.2px);
+  background: var(--glass-background-uno);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(8.2px);
+  border: 1px solid var(--glass-border-uno);
+  border-radius: 16px;
+  z-index: 1000;
+  animation: filtersPopupIn 0.2s ease;
 }
-.teachers-management .dt-dropdown-menu .filter-group label {
+.teachers-management .filters-popup-dropdown .filter-multiselect {
+  position: relative;
+  margin-bottom: 14px;
+}
+.teachers-management .filters-popup-dropdown .filter-multiselect:last-of-type {
+  margin-bottom: 0;
+}
+.teachers-management .filters-popup-dropdown .multiselect-label {
   display: block;
-  font-size: 0.75rem;
-  font-weight: 800;
+  font-size: 0.7rem;
+  font-weight: 700;
   color: var(--text-tertiary);
   text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 12px;
-  padding-inline-start: 4px;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+  padding-inline-start: 2px;
 }
-.teachers-management .dt-dropdown-menu .filter-group .filter-list {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.teachers-management .dt-dropdown-menu .filter-group .filter-list .filter-item-btn {
+.teachers-management .filters-popup-dropdown .multiselect-trigger {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 14px;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--glass-background-uno);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
-  border: 1px solid transparent;
-  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
   text-align: right;
 }
-.teachers-management .dt-dropdown-menu .filter-group .filter-list .filter-item-btn .item-meta {
+.teachers-management .filters-popup-dropdown .multiselect-trigger .multiselect-value {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.teachers-management .filters-popup-dropdown .multiselect-trigger .multiselect-chevron {
+  flex-shrink: 0;
+  color: var(--text-tertiary);
+  transition: transform 0.2s ease;
+}
+.teachers-management .filters-popup-dropdown .multiselect-trigger:hover {
+  border-color: var(--border-color-hover);
+  color: var(--text-primary);
+}
+.teachers-management .filters-popup-dropdown .multiselect-trigger.open {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.15);
+  color: var(--text-primary);
+}
+.teachers-management .filters-popup-dropdown .multiselect-trigger.open .multiselect-chevron {
+  transform: rotate(180deg);
+  color: var(--color-primary);
+}
+.teachers-management .filters-popup-dropdown .multiselect-trigger.has-value {
+  border-color: rgba(var(--color-primary-rgb), 0.4);
+  color: var(--text-primary);
+}
+.teachers-management .filters-popup-dropdown .multiselect-dropdown {
+  position: absolute;
+  top: 100%;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
+  margin-top: 6px;
+  max-height: 220px;
+  overflow-y: auto;
+  padding: 6px;
+  background: var(--cards-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  z-index: 10;
+  animation: multiselectDropdownIn 0.2s ease;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-slate-400) transparent;
+}
+.teachers-management .filters-popup-dropdown .multiselect-dropdown::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.teachers-management .filters-popup-dropdown .multiselect-dropdown::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+.teachers-management .filters-popup-dropdown .multiselect-dropdown::-webkit-scrollbar-thumb {
+  background: var(--color-slate-300);
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  transition: all 0.3s ease;
+}
+.teachers-management .filters-popup-dropdown .multiselect-dropdown::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+.dark-mode .teachers-management .filters-popup-dropdown .multiselect-dropdown::-webkit-scrollbar-thumb {
+  background: var(--color-slate-600);
+}
+.dark-mode .teachers-management .filters-popup-dropdown .multiselect-dropdown::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+.teachers-management .filters-popup-dropdown .multiselect-option {
   display: flex;
   align-items: center;
-  gap: 12px;
-}
-.teachers-management .dt-dropdown-menu .filter-group .filter-list .filter-item-btn .item-meta .color-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-.teachers-management .dt-dropdown-menu .filter-group .filter-list .filter-item-btn .item-meta .item-label {
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
   color: var(--text-primary);
-  font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  text-align: right;
 }
-.teachers-management .dt-dropdown-menu .filter-group .filter-list .filter-item-btn svg {
-  color: var(--color-primary);
+.teachers-management .filters-popup-dropdown .multiselect-option input[type=checkbox] {
+  position: absolute;
   opacity: 0;
-  transform: scale(0.5);
-  transition: all 0.2s ease;
+  pointer-events: none;
 }
-.teachers-management .dt-dropdown-menu .filter-group .filter-list .filter-item-btn:hover {
-  background: rgba(var(--color-primary-rgb), 0.05);
-  border-color: rgba(var(--color-primary-rgb), 0.1);
+.teachers-management .filters-popup-dropdown .multiselect-option .multiselect-option-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--bg-primary);
+  transition: all 0.15s ease;
+  color: transparent;
 }
-.teachers-management .dt-dropdown-menu .filter-group .filter-list .filter-item-btn.active {
-  background: rgba(var(--color-primary-rgb), 0.1);
+.teachers-management .filters-popup-dropdown .multiselect-option .option-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.teachers-management .filters-popup-dropdown .multiselect-option .multiselect-option-label {
+  flex: 1;
+}
+.teachers-management .filters-popup-dropdown .multiselect-option:hover {
+  background: var(--bg-secondary);
+}
+.teachers-management .filters-popup-dropdown .multiselect-option.checked .multiselect-option-check {
+  background: var(--option-accent, var(--color-primary));
+  border-color: var(--option-accent, var(--color-primary));
+  color: white;
+}
+.teachers-management .filters-popup-dropdown .multiselect-option.checked .multiselect-option-label {
+  color: var(--option-accent, var(--color-primary));
+}
+.teachers-management .filters-popup-dropdown .multiselect-option.checked .option-dot {
+  box-shadow: 0 0 0 2px var(--cards-color);
+}
+@keyframes multiselectDropdownIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.teachers-management .filters-popup-dropdown .filters-popup-reset {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-tertiary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+  border-top: 1px solid var(--border-color);
+}
+.teachers-management .filters-popup-dropdown .filters-popup-reset:hover {
+  background: rgba(var(--color-primary-rgb), 0.06);
+  color: var(--color-primary);
+}
+@keyframes filtersPopupIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.teachers-management {
+  /* Quick Assign: blur backdrop + simple dropdown */
+}
+.teachers-management .quick-assign-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1500;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  cursor: default;
+}
+.teachers-management .quick-assign-dropdown {
+  z-index: 1501;
+  padding: 8px;
+  background: var(--cards-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  animation: quickAssignDropdownIn 0.2s ease;
+}
+.teachers-management .quick-assign-dropdown .quick-assign-title {
+  padding: 6px 10px 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 4px;
+}
+.teachers-management .quick-assign-dropdown .quick-assign-number-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 0;
+  width: 100%;
+  max-width: 220px;
+}
+.teachers-management .quick-assign-dropdown .quick-assign-number-input input[type=number] {
+  flex: 1;
+  min-width: 0;
+  width: 80px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--cards-color);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: right;
+}
+.teachers-management .quick-assign-dropdown .quick-assign-number-input input[type=number]:focus {
+  outline: none;
   border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.15);
 }
-.teachers-management .dt-dropdown-menu .filter-group .filter-list .filter-item-btn.active svg {
-  opacity: 1;
-  transform: scale(1);
+.teachers-management .quick-assign-dropdown .quick-assign-number-input input[type=number]::placeholder {
+  color: var(--text-tertiary);
 }
-.teachers-management .dt-dropdown-menu {
-  /* Quick Option List */
+.teachers-management .quick-assign-dropdown .quick-assign-number-input .quick-assign-apply {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  background: var(--color-primary);
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease;
 }
-.teachers-management .dt-dropdown-menu .menu-options-list {
+.teachers-management .quick-assign-dropdown .quick-assign-number-input .quick-assign-apply:hover {
+  background: var(--color-primary-dark);
+}
+.teachers-management .quick-assign-dropdown .quick-assign-number-input .quick-assign-apply.shake {
+  animation: quick-assign-shake 0.5s ease;
+}
+@keyframes quick-assign-shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  15% {
+    transform: translateX(-6px);
+  }
+  35% {
+    transform: translateX(5px);
+  }
+  55% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(3px);
+  }
+}
+.teachers-management .quick-assign-dropdown .quick-assign-options {
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
-.teachers-management .dt-dropdown-menu .menu-options-list .menu-option-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 16px;
-  border: none;
+.teachers-management .quick-assign-dropdown .quick-assign-options.scrollable {
+  max-height: 280px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-slate-400) transparent;
+}
+.teachers-management .quick-assign-dropdown .quick-assign-options.scrollable::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.teachers-management .quick-assign-dropdown .quick-assign-options.scrollable::-webkit-scrollbar-track {
   background: transparent;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-align: right;
+  border-radius: 10px;
 }
-.teachers-management .dt-dropdown-menu .menu-options-list .menu-option-item .option-label {
+.teachers-management .quick-assign-dropdown .quick-assign-options.scrollable::-webkit-scrollbar-thumb {
+  background: var(--color-slate-300);
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  transition: all 0.3s ease;
+}
+.teachers-management .quick-assign-dropdown .quick-assign-options.scrollable::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+.dark-mode .teachers-management .quick-assign-dropdown .quick-assign-options.scrollable::-webkit-scrollbar-thumb {
+  background: var(--color-slate-600);
+}
+.dark-mode .teachers-management .quick-assign-dropdown .quick-assign-options.scrollable::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+.teachers-management .quick-assign-dropdown .quick-assign-option {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
   color: var(--text-primary);
-  font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: right;
+  cursor: pointer;
+  transition: background 0.15s ease;
 }
-.teachers-management .dt-dropdown-menu .menu-options-list .menu-option-item .option-arrow {
-  color: var(--color-primary);
-  opacity: 0;
-  transform: translateX(-10px);
-  transition: all 0.2s ease;
+.teachers-management .quick-assign-dropdown .quick-assign-option:hover {
+  background: var(--bg-secondary);
 }
-.teachers-management .dt-dropdown-menu .menu-options-list .menu-option-item:hover {
-  background: rgba(var(--color-primary-rgb), 0.08);
-}
-.teachers-management .dt-dropdown-menu .menu-options-list .menu-option-item:hover .option-arrow {
-  opacity: 1;
-  transform: translateX(0);
-}
-@keyframes premiumMenuIn {
+@keyframes quickAssignDropdownIn {
   from {
     opacity: 0;
-    transform: translateY(-10px) scale(0.98);
+    transform: translateY(-4px);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 }
 
@@ -636,9 +878,8 @@
 
 .modal-header-tabs {
   display: flex;
-  gap: 2rem;
-  margin-inline-end: 2rem;
-  height: 100%;
+  gap: 0.25rem;
+  margin-inline-end: 0.5rem;
   align-items: center;
 }
 @media (max-width: 768px) {
@@ -649,71 +890,63 @@
 .modal-header-tabs .header-tab-btn {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 4px;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
   border: none;
+  border-radius: 10px;
   background: transparent;
   color: var(--text-tertiary);
-  font-weight: 700;
-  font-size: 0.9rem;
+  font-weight: 600;
+  font-size: 0.875rem;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 .modal-header-tabs .header-tab-btn svg {
-  opacity: 0.6;
-  transition: all 0.3s ease;
+  opacity: 0.7;
+  flex-shrink: 0;
 }
 .modal-header-tabs .header-tab-btn span {
   white-space: nowrap;
-  letter-spacing: 0.3px;
-}
-.modal-header-tabs .header-tab-btn::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: var(--color-primary);
-  border-radius: 10px 10px 0 0;
-  transform: scaleX(0);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  opacity: 0;
 }
 .modal-header-tabs .header-tab-btn:hover {
   color: var(--text-primary);
+  background: var(--bg-tertiary);
 }
 .modal-header-tabs .header-tab-btn:hover svg {
   opacity: 1;
   color: var(--color-primary);
-  transform: translateY(-2px);
-}
-.modal-header-tabs .header-tab-btn:hover::after {
-  transform: scaleX(0.4);
-  opacity: 0.3;
 }
 .modal-header-tabs .header-tab-btn.active {
   color: var(--color-primary);
+  background: rgba(var(--color-primary-rgb), 0.1);
+  box-shadow: 0 0 0 1px rgba(var(--color-primary-rgb), 0.2);
 }
 .modal-header-tabs .header-tab-btn.active svg {
   opacity: 1;
-  transform: scale(1.1);
-}
-.modal-header-tabs .header-tab-btn.active::after {
-  transform: scaleX(1);
-  opacity: 1;
-  box-shadow: 0 -2px 10px rgba(var(--color-primary-rgb), 0.3);
+  color: var(--color-primary);
 }
 .modal-header-tabs .header-tab-btn:active {
   transform: scale(0.98);
 }
 
+.teacher-modal-content {
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.teacher-modal-content .tab-content {
+  min-height: 0;
+  flex: 1;
+}
 .teacher-modal-content .personal-info-grid,
 .teacher-modal-content .admin-control-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+.teacher-modal-content .admin-control-grid {
+  gap: 0;
 }
 .teacher-modal-content .personal-info-container {
   display: flex;
@@ -802,7 +1035,7 @@
 }
 .teacher-modal-content .info-item-editable:focus-within {
   border-color: var(--color-primary);
-  background: var(--bg-surface);
+  background: var(--bg-primary);
   box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb), 0.05);
 }
 .teacher-modal-content .info-item-editable .icon-box {
@@ -836,10 +1069,6 @@
   outline: none;
   width: 100%;
 }
-.teacher-modal-content .info-item-editable .input-field input::-moz-placeholder {
-  color: var(--text-tertiary);
-  opacity: 0.5;
-}
 .teacher-modal-content .info-item-editable .input-field input::placeholder {
   color: var(--text-tertiary);
   opacity: 0.5;
@@ -849,7 +1078,6 @@
   color: var(--text-primary);
   font-size: 1.1rem;
   border-bottom: 2px solid var(--color-primary);
-  width: -moz-fit-content;
   width: fit-content;
   padding-bottom: 4px;
   font-weight: 800;
@@ -888,6 +1116,26 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+.teacher-modal-content .config-form .modal-selects-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.teacher-modal-content .config-form .modal-selects-row .form-group {
+  margin-bottom: 0;
+  min-width: 0;
+}
+@media (max-width: 900px) {
+  .teacher-modal-content .config-form .modal-selects-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 500px) {
+  .teacher-modal-content .config-form .modal-selects-row {
+    grid-template-columns: 1fr;
+  }
 }
 .teacher-modal-content .config-form .section-label {
   font-size: 0.95rem;
@@ -928,6 +1176,32 @@
   outline: none;
   border-color: var(--color-primary);
   box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb), 0.1);
+}
+.teacher-modal-content .config-form .form-group .form-select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-inline-end: 2.5rem;
+}
+.teacher-modal-content .config-form .form-group .form-select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.12);
+}
+.teacher-modal-content .config-form .form-group [dir=rtl] .form-select {
+  background-position: left 1rem center;
 }
 .teacher-modal-content .config-form {
   /* Visual Choice Cards */
@@ -992,7 +1266,7 @@
 }
 .teacher-modal-content .config-form .multi-select-chips .chip-checkbox span {
   padding: 6px 16px;
-  background: var(--bg-surface);
+  background: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: 10px;
   font-size: 0.85rem;
@@ -1123,6 +1397,64 @@
   transform: scale(1);
   background: var(--color-primary);
 }
+.teacher-modal-content .config-form {
+  /* Hours per week (read-only) */
+}
+.teacher-modal-content .config-form .read-only-value.hours-per-week {
+  padding: 0.75rem 1rem;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.teacher-modal-content .config-form .read-only-preferences-note {
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+  margin: -0.25rem 0 0.75rem 0;
+}
+.teacher-modal-content .config-form .prefs-read-only-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.teacher-modal-content .config-form .prefs-read-only-list .pref-read-only-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+.teacher-modal-content .config-form .prefs-read-only-list .pref-read-only-item .pref-icon {
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+.teacher-modal-content .config-form .prefs-read-only-list .pref-read-only-item .pref-label {
+  flex: 1;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.teacher-modal-content .config-form .prefs-read-only-list .pref-read-only-item .pref-value {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-tertiary);
+}
+.teacher-modal-content .config-form .prefs-read-only-list .pref-read-only-item.active {
+  border-color: rgba(var(--color-primary-rgb), 0.3);
+  background: rgba(var(--color-primary-rgb), 0.05);
+}
+.teacher-modal-content .config-form .prefs-read-only-list .pref-read-only-item.active .pref-icon {
+  color: var(--color-primary);
+}
+.teacher-modal-content .config-form .prefs-read-only-list .pref-read-only-item.active .pref-label {
+  color: var(--text-primary);
+}
+.teacher-modal-content .config-form .prefs-read-only-list .pref-read-only-item.active .pref-value {
+  color: var(--color-primary);
+}
 .teacher-modal-content .auto-suggest-box {
   margin-top: 2rem;
   background: linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.08), rgba(var(--color-secondary-rgb), 0.08));
@@ -1195,4 +1527,6 @@
     transform: translateY(0);
     opacity: 1;
   }
-}/*# sourceMappingURL=TeachersManagement.css.map */
+}
+
+/*# sourceMappingURL=TeachersManagement.css.map */

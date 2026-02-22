@@ -1,0 +1,401 @@
+@use "../../styles/mixins" as *;
+
+.academic-read-receipts {
+    padding: 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    direction: var(--direction);
+    text-align: var(--text-align);
+
+    .page-header {
+        margin-bottom: 1.5rem;
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin: 0 0 0.5rem 0;
+            background: linear-gradient(135deg, var(--color-slate-800) 0%, var(--color-slate-700) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+    }
+
+    .filters-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+
+            label {
+                display: flex;
+                align-items: center;
+                gap: 0.35rem;
+                font-size: 0.9rem;
+                font-weight: 600;
+                color: var(--text-secondary);
+            }
+
+            select {
+                min-width: 160px;
+            }
+        }
+    }
+
+    /* ================================================================
+       Premium Stat Cards – Read Receipts
+       ================================================================ */
+    .stats-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+        margin-bottom: 1.75rem;
+
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* ── Shimmer keyframe ── */
+    @keyframes rr-shimmer {
+        0% {
+            transform: translateX(-100%) skewX(-15deg);
+        }
+
+        100% {
+            transform: translateX(200%) skewX(-15deg);
+        }
+    }
+
+    @keyframes rr-ring-in {
+        from {
+            stroke-dashoffset: 213.6;
+        }
+    }
+
+    /* ── Card base ── */
+    .rr-stat-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 18px;
+        padding: 1.35rem 1.5rem;
+        background: var(--cards-color);
+        border: 1px solid var(--border-color);
+        box-shadow:
+            0 1px 3px rgba(0, 0, 0, 0.04),
+            0 4px 14px rgba(0, 0, 0, 0.03);
+        transition:
+            transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+            box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+            border-color 0.25s ease;
+
+        &:hover {
+            transform: translateY(-4px);
+            box-shadow:
+                0 8px 28px rgba(0, 0, 0, 0.08),
+                0 2px 8px rgba(0, 0, 0, 0.04);
+            border-color: var(--border-color-hover);
+
+            .rr-stat-card__shimmer {
+                animation: rr-shimmer 0.8s ease forwards;
+            }
+        }
+
+        /* shimmer overlay */
+        &__shimmer {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(105deg,
+                    transparent 30%,
+                    rgba(255, 255, 255, 0.12) 50%,
+                    transparent 70%);
+            transform: translateX(-100%) skewX(-15deg);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* body layout */
+        &__body {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 1.1rem;
+        }
+
+        /* ── Ring (rate card) ── */
+        &__ring-wrap {
+            position: relative;
+            width: 72px;
+            height: 72px;
+            flex-shrink: 0;
+        }
+
+        &__ring {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        &__ring-track {
+            fill: none;
+            stroke: var(--border-color);
+            stroke-width: 6;
+        }
+
+        &__ring-fill {
+            fill: none;
+            stroke: #10b981;
+            stroke-width: 6;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: rr-ring-in 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        &__ring-value {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        /* ── Icon box (viewed / pending cards) ── */
+        &__icon-box {
+            flex-shrink: 0;
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+            &--viewed {
+                background: linear-gradient(135deg, #10b981, #059669);
+                color: #fff;
+                box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+            }
+
+            &--pending {
+                background: linear-gradient(135deg, #f59e0b, #d97706);
+                color: #fff;
+                box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3);
+            }
+        }
+
+        &:hover .rr-stat-card__icon-box {
+            transform: scale(1.08);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* ── Text ── */
+        &__info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            min-width: 0;
+        }
+
+        &__label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            line-height: 1.35;
+            letter-spacing: 0.01em;
+        }
+
+        &__value {
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+        }
+
+        &__sub {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-tertiary, var(--text-secondary));
+            margin-top: 0.15rem;
+
+            svg {
+                flex-shrink: 0;
+            }
+
+            &--success {
+                color: #10b981;
+            }
+
+            &--warning {
+                color: #f59e0b;
+            }
+        }
+
+        /* ── Variant accents ── */
+        &--rate {
+            border-inline-start: 3px solid #10b981;
+        }
+
+        &--viewed {
+            border-inline-start: 3px solid #3b82f6;
+        }
+
+        &--pending {
+            border-inline-start: 3px solid #f59e0b;
+        }
+    }
+
+    /* Dark-mode shimmer tweak */
+    .rr-stat-card__shimmer {
+        .dark-mode & {
+            background: linear-gradient(105deg,
+                    transparent 30%,
+                    rgba(255, 255, 255, 0.05) 50%,
+                    transparent 70%);
+        }
+    }
+
+    .content-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 1.5rem;
+
+        @media (max-width: 1024px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .list-panel {
+        @include glass-uno;
+        background: var(--cards-color);
+        border-radius: 20px;
+        border: 1px solid var(--border-color);
+
+        .panel-header {
+            background: transparent !important;
+            border: none !important;
+            padding: 0 1.25rem 1rem !important;
+        }
+    }
+
+    /* DataTable: badge styles for status and class cells */
+    .receipts-datatable {
+        .receipts-class-badge {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            background: var(--bg-secondary);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .receipts-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-fast);
+
+            &:hover {
+                transform: translateY(-1px);
+                box-shadow: var(--shadow-md);
+            }
+
+            &.viewed {
+                background: linear-gradient(135deg, #10b981, #059669);
+            }
+
+            &.not-viewed {
+                background: linear-gradient(135deg, #f59e0b, #d97706);
+            }
+        }
+    }
+
+    .side-panel .panel-container {
+        @include glass-uno;
+        background: var(--cards-color);
+        border-radius: 20px;
+        border: 1px solid var(--border-color);
+    }
+
+    .follow-up-content {
+        padding: 1rem 1.25rem !important;
+
+        .follow-up-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin: 0 0 1rem 0;
+            line-height: 1.5;
+        }
+
+        .all-viewed {
+            color: var(--color-success);
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .follow-up-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+
+            li {
+                padding: 0.75rem;
+                background: var(--bg-primary-subtle);
+                border-radius: 10px;
+                display: flex;
+                flex-direction: column;
+                gap: 0.25rem;
+
+                strong {
+                    font-size: 0.95rem;
+                    color: var(--text-primary);
+                }
+
+                span {
+                    font-size: 0.85rem;
+                    color: var(--text-secondary);
+                }
+
+                .actions {
+                    display: flex;
+                    gap: 0.5rem;
+                    margin-top: 0.35rem;
+                }
+
+                .icon-btn {
+                    width: 36px;
+                    height: 36px;
+                }
+            }
+        }
+    }
+}

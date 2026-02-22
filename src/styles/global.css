@@ -111,6 +111,12 @@
   --color-success-rgb: 16, 185, 129;
   --color-warning-rgb: 245, 158, 11;
   --color-error-rgb: 239, 68, 68;
+  /* Interaction & Hover States */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --hover-bg: #f1f5f9;
+  --primary-hover: #2563eb;
+  /* RGB Components (extra) */
+  --color-slate-400-rgb: 148, 163, 184;
   /* Direction & Alignment Variables */
   --direction: ltr;
   --text-align: left;
@@ -214,6 +220,12 @@
   --glass-panel-bg: rgba(30, 41, 59, 0.5);
   --glass-panel-border: rgba(255, 255, 255, 0.08);
   --glass-panel-shadow: rgba(0, 0, 0, 0.4);
+  /* Interaction & Hover States */
+  --glass-bg: rgba(30, 41, 59, 0.7);
+  --hover-bg: #334155;
+  --primary-hover: #93c5fd;
+  /* RGB Components (extra) */
+  --color-slate-400-rgb: 100, 116, 139;
   /* RGB Components */
   --color-primary-rgb: 96, 165, 250;
   --color-secondary-rgb: 167, 139, 250;
@@ -246,7 +258,6 @@
   border-radius: 20px;
   border: 3px solid transparent;
   background-clip: content-box;
-  -webkit-transition: background 0.3s ease;
   transition: background 0.3s ease;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -304,4 +315,6 @@ body.dark-mode {
 
 .hidden {
   display: none;
-}/*# sourceMappingURL=global.css.map */
+}
+
+/*# sourceMappingURL=global.css.map */

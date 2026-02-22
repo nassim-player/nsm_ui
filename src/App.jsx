@@ -17,6 +17,18 @@ import { RegistrationFinalization } from './pages/registration/RegistrationFinal
 import { TeachersLayout } from './layouts/TeachersLayout';
 import { TeachersOverview } from './pages/teachers/TeachersOverview';
 import { TeachersManagement } from './pages/teachers/TeachersManagement';
+import { AcademicLayout } from './layouts/AcademicLayout';
+import { AcademicOverview } from './pages/academic/AcademicOverview';
+import { AcademicDiary } from './pages/academic/AcademicDiary';
+import { AcademicReadReceipts } from './pages/academic/AcademicReadReceipts';
+import { AcademicAudit } from './pages/academic/AcademicAudit';
+import { HubLayout } from './layouts/HubLayout';
+import { HubOverview } from './pages/hub/HubOverview';
+import { HubPublications } from './pages/hub/HubPublications';
+import { ReceptionLayout } from './layouts/ReceptionLayout';
+import { ReceptionOverview } from './pages/reception/ReceptionOverview';
+import { ReceptionRequests } from './pages/reception/ReceptionRequests';
+import { ReceptionLog } from './pages/reception/ReceptionLog';
 import './styles/global.scss';
 
 // Placeholder component for pages under construction
@@ -57,8 +69,21 @@ function App() {
             <Route path="commissions" element={<RegistrationCommissions />} />
             <Route path="finalization" element={<RegistrationFinalization />} />
           </Route>
-          <Route path="academic" element={<PlaceholderPage title="إدارة أكادمية" />} />
-          <Route path="hub" element={<PlaceholderPage title="التقويم و الإعلانات" />} />
+          <Route path="academic" element={<AcademicLayout />}>
+            <Route index element={<AcademicOverview />} />
+            <Route path="diary" element={<AcademicDiary />} />
+            <Route path="read-receipts" element={<AcademicReadReceipts />} />
+            <Route path="audit" element={<AcademicAudit />} />
+          </Route>
+          <Route path="hub" element={<HubLayout />}>
+            <Route index element={<HubOverview />} />
+            <Route path="publications" element={<HubPublications />} />
+          </Route>
+          <Route path="reception" element={<ReceptionLayout />}>
+            <Route index element={<ReceptionOverview />} />
+            <Route path="requests" element={<ReceptionRequests />} />
+            <Route path="log" element={<ReceptionLog />} />
+          </Route>
 
           {/* Fallback */}
           <Route path="*" element={<PlaceholderPage title="صفحة غير موجودة" />} />

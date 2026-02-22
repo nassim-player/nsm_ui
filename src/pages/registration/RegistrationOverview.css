@@ -111,6 +111,12 @@
   --color-success-rgb: 16, 185, 129;
   --color-warning-rgb: 245, 158, 11;
   --color-error-rgb: 239, 68, 68;
+  /* Interaction & Hover States */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --hover-bg: #f1f5f9;
+  --primary-hover: #2563eb;
+  /* RGB Components (extra) */
+  --color-slate-400-rgb: 148, 163, 184;
   /* Direction & Alignment Variables */
   --direction: ltr;
   --text-align: left;
@@ -214,6 +220,12 @@
   --glass-panel-bg: rgba(30, 41, 59, 0.5);
   --glass-panel-border: rgba(255, 255, 255, 0.08);
   --glass-panel-shadow: rgba(0, 0, 0, 0.4);
+  /* Interaction & Hover States */
+  --glass-bg: rgba(30, 41, 59, 0.7);
+  --hover-bg: #334155;
+  --primary-hover: #93c5fd;
+  /* RGB Components (extra) */
+  --color-slate-400-rgb: 100, 116, 139;
   /* RGB Components */
   --color-primary-rgb: 96, 165, 250;
   --color-secondary-rgb: 167, 139, 250;
@@ -252,6 +264,10 @@
   font-weight: 800;
   color: var(--text-primary);
   margin: 0 0 0.5rem 0;
+  background: linear-gradient(135deg, var(--color-slate-800) 0%, var(--color-slate-700) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .registration-overview .page-header .header-content p {
   color: var(--text-secondary);
@@ -337,9 +353,6 @@
     grid-template-columns: 1fr;
   }
 }
-.registration-overview .stats-grid {
-  /* Reusable StatCard adaptation */
-}
 .registration-overview .stats-grid .stat-card {
   backdrop-filter: blur(8.2px);
   background: var(--glass-background-uno);
@@ -347,61 +360,6 @@
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   -webkit-backdrop-filter: blur(8.2px);
   border: 1px solid var(--glass-border-uno);
-  transition: all 0.2s ease;
-  padding: 1.5rem;
-  border-radius: 16px;
-  background: var(--cards-color);
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-.registration-overview .stats-grid .stat-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-}
-.registration-overview .stats-grid .stat-card .card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  background: transparent !important;
-  border: none !important;
-  padding: 0 !important;
-  margin-bottom: 0.5rem;
-}
-.registration-overview .stats-grid .stat-card .card-header .stat-label {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  font-weight: 600;
-  margin: 0;
-}
-.registration-overview .stats-grid .stat-card .card-header .stat-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  background: var(--icon-bg, rgba(var(--color-primary-rgb), 0.1));
-  color: var(--icon-color, var(--color-primary));
-  box-shadow: none;
-}
-.registration-overview .stats-grid .stat-card .stat-value {
-  font-size: 1.85rem;
-  font-weight: 800;
-  color: var(--text-primary);
-  line-height: 1.2;
-  margin: 0;
-}
-.registration-overview .stats-grid .stat-card .stat-badges {
-  margin-top: 0.5rem;
-  display: flex;
-}
-.registration-overview .stats-grid .stat-card .stat-badges .badge {
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 0.2rem 0.6rem;
-  border-radius: 6px;
 }
 .registration-overview {
   /* Dashboard Layout */
@@ -530,31 +488,35 @@
   font-size: 0.9rem;
 }
 .registration-overview .overview-panel .panel-body .simple-table .status-badge {
-  padding: 0.25rem 0.6rem;
-  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
   font-size: 0.75rem;
-  font-weight: 700;
-  display: inline-block;
+  font-weight: 600;
+  color: white;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-fast);
+}
+.registration-overview .overview-panel .panel-body .simple-table .status-badge:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 .registration-overview .overview-panel .panel-body .simple-table .status-badge.orange {
-  background: rgba(249, 115, 22, 0.1);
-  color: #f97316;
+  background: linear-gradient(135deg, #f97316, #ea580c);
 }
 .registration-overview .overview-panel .panel-body .simple-table .status-badge.blue {
-  background: rgba(59, 130, 246, 0.1);
-  color: #3b82f6;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
 }
 .registration-overview .overview-panel .panel-body .simple-table .status-badge.purple {
-  background: rgba(139, 92, 246, 0.1);
-  color: #8b5cf6;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
 }
 .registration-overview .overview-panel .panel-body .simple-table .status-badge.green {
-  background: rgba(34, 197, 94, 0.1);
-  color: #22c55e;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
 }
 .registration-overview .overview-panel .panel-body .simple-table .status-badge.red {
-  background: rgba(239, 68, 68, 0.1);
-  color: #ef4444;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
 }
 .registration-overview {
   /* Pipeline Visual Adaptation */
@@ -816,4 +778,6 @@
 .registration-overview .overview-card.stats-mini .shortcuts-grid .shortcut-btn.purple:hover {
   border-color: #8b5cf6;
   background: rgba(139, 92, 246, 0.05);
-}/*# sourceMappingURL=RegistrationOverview.css.map */
+}
+
+/*# sourceMappingURL=RegistrationOverview.css.map */

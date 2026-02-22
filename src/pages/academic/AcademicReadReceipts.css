@@ -245,151 +245,188 @@
     transform: translateX(0);
   }
 }
-.dashboard-home {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+.academic-read-receipts {
+  padding: 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  direction: var(--direction);
+  text-align: var(--text-align);
 }
-
-.welcome-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  flex-wrap: wrap;
-  gap: 16px;
+.academic-read-receipts .page-header {
+  margin-bottom: 1.5rem;
 }
-@media (max-width: 768px) {
-  .welcome-section {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
-.welcome-title {
+.academic-read-receipts .page-header h1 {
   font-size: 1.75rem;
   font-weight: 800;
-  color: var(--color-slate-900);
-  margin-bottom: 8px;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
   background: linear-gradient(135deg, var(--color-slate-800) 0%, var(--color-slate-700) 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
-.welcome-subtitle {
-  font-size: 1rem;
-  color: var(--color-slate-500);
+.academic-read-receipts .page-header p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin: 0;
 }
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
+.academic-read-receipts .filters-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
-
-.content-grid {
+.academic-read-receipts .filters-row .filter-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.academic-read-receipts .filters-row .filter-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.academic-read-receipts .filters-row .filter-group select {
+  min-width: 160px;
+}
+.academic-read-receipts .stats-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 32px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 @media (max-width: 768px) {
-  .content-grid {
+  .academic-read-receipts .stats-row {
     grid-template-columns: 1fr;
   }
 }
-
-.content-column {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+.academic-read-receipts .stats-row .stat-card {
+  backdrop-filter: blur(8.2px);
+  background: var(--glass-background-uno);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(8.2px);
+  border: 1px solid var(--glass-border-uno);
 }
-
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.academic-read-receipts .content-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
 }
-
-.section-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--color-slate-800);
+@media (max-width: 1024px) {
+  .academic-read-receipts .content-grid {
+    grid-template-columns: 1fr;
+  }
 }
-
-.btn-text {
-  background: none;
-  border: none;
-  color: var(--color-primary);
-  font-weight: 600;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-.btn-text:hover {
-  text-decoration: underline;
-}
-
-.tasks-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.notifications-panel {
+.academic-read-receipts .list-panel {
+  backdrop-filter: blur(8.2px);
+  background: var(--glass-background-uno);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(8.2px);
+  border: 1px solid var(--glass-border-uno);
   background: var(--cards-color);
   border-radius: 20px;
-  padding: 24px;
-  border: 1px solid rgba(148, 163, 184, 0.15);
-  box-shadow: var(--shadow-sm);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  border: 1px solid var(--border-color);
 }
-
-.notification-item {
-  display: flex;
-  gap: 16px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+.academic-read-receipts .list-panel .panel-header {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 1.25rem 1rem !important;
 }
-.notification-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+.academic-read-receipts {
+  /* DataTable: badge styles for status and class cells */
 }
-
-.notif-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  display: flex;
+.academic-read-receipts .receipts-datatable .receipts-class-badge {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  background: var(--bg-secondary);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.academic-read-receipts .receipts-datatable .receipts-badge {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
   color: white;
-  flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-fast);
 }
-.notif-icon.bg-blue {
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
+.academic-read-receipts .receipts-datatable .receipts-badge:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
-.notif-icon.bg-green {
+.academic-read-receipts .receipts-datatable .receipts-badge.viewed {
   background: linear-gradient(135deg, #10b981, #059669);
 }
-
-.notif-content {
-  flex: 1;
+.academic-read-receipts .receipts-datatable .receipts-badge.not-viewed {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
 }
-.notif-content h4 {
+.academic-read-receipts .side-panel .panel-container {
+  backdrop-filter: blur(8.2px);
+  background: var(--glass-background-uno);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(8.2px);
+  border: 1px solid var(--glass-border-uno);
+  background: var(--cards-color);
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+}
+.academic-read-receipts .follow-up-content {
+  padding: 1rem 1.25rem !important;
+}
+.academic-read-receipts .follow-up-content .follow-up-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0 0 1rem 0;
+  line-height: 1.5;
+}
+.academic-read-receipts .follow-up-content .all-viewed {
+  color: var(--color-success);
+  font-weight: 600;
+  margin: 0;
+}
+.academic-read-receipts .follow-up-content .follow-up-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.academic-read-receipts .follow-up-content .follow-up-list li {
+  padding: 0.75rem;
+  background: var(--bg-primary-subtle);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.academic-read-receipts .follow-up-content .follow-up-list li strong {
   font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--color-slate-800);
-  margin-bottom: 4px;
+  color: var(--text-primary);
 }
-.notif-content p {
+.academic-read-receipts .follow-up-content .follow-up-list li span {
   font-size: 0.85rem;
-  color: var(--color-slate-500);
-  margin-bottom: 6px;
+  color: var(--text-secondary);
 }
-.notif-content .notif-time {
-  font-size: 0.75rem;
-  color: var(--color-slate-400);
+.academic-read-receipts .follow-up-content .follow-up-list li .actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.35rem;
+}
+.academic-read-receipts .follow-up-content .follow-up-list li .icon-btn {
+  width: 36px;
+  height: 36px;
 }
 
-/*# sourceMappingURL=DashboardHome.css.map */
+/*# sourceMappingURL=AcademicReadReceipts.css.map */

@@ -1,0 +1,186 @@
+@use "../../styles/mixins" as *;
+
+.academic-audit {
+    padding: 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    direction: var(--direction);
+    text-align: var(--text-align);
+
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        .header-content {
+            h1 {
+                font-size: 1.75rem;
+                font-weight: 800;
+                color: var(--text-primary);
+                margin: 0 0 0.5rem 0;
+                background: linear-gradient(135deg, var(--color-slate-800) 0%, var(--color-slate-700) 100%);
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            p {
+                color: var(--text-secondary);
+                font-size: 0.95rem;
+                margin: 0;
+            }
+        }
+
+    }
+
+    .filters-panel {
+        margin-bottom: 1.5rem;
+        @include glass-uno;
+        background: var(--cards-color);
+        border-radius: 20px;
+        border: 1px solid var(--border-color);
+
+        .panel-body {
+            padding: 1rem 1.25rem !important;
+        }
+
+        .filters-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem 1.5rem;
+
+            .filter-group {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+
+                label {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.35rem;
+                    font-size: 0.85rem;
+                    font-weight: 600;
+                    color: var(--text-secondary);
+                }
+
+                .filter-input,
+                select {
+                    min-width: 140px;
+                }
+            }
+        }
+    }
+
+    .audit-panel {
+        @include glass-uno;
+        background: var(--cards-color);
+        border-radius: 20px;
+        border: 1px solid var(--border-color);
+
+        .panel-header {
+            background: transparent !important;
+            border: none !important;
+            padding: 0 1.25rem 1rem !important;
+        }
+    }
+
+    .audit-table-wrap {
+        overflow-x: auto;
+        max-height: 60vh;
+        overflow-y: auto;
+        @include custom-scrollbar;
+    }
+
+    .audit-table {
+        width: 100%;
+        border-collapse: collapse;
+
+        th {
+            text-align: var(--text-align);
+            padding: 0.75rem 1rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-primary-subtle);
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            vertical-align: middle;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: var(--bg-primary-subtle);
+        }
+
+        .time-cell {
+            font-variant-numeric: tabular-nums;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-fast);
+
+            &:hover {
+                transform: translateY(-1px);
+                box-shadow: var(--shadow-md);
+            }
+
+            &.created {
+                background: linear-gradient(135deg, #10b981, #059669);
+            }
+
+            &.modified {
+                background: linear-gradient(135deg, #3b82f6, #2563eb);
+            }
+        }
+
+        .lesson-cell {
+            max-width: 220px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .class-badge {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            background: var(--bg-secondary);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .details-cell {
+            max-width: 200px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+}

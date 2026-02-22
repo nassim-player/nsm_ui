@@ -1,4 +1,21 @@
 {
+    "common": {
+        "search": {
+            "ar": "بحث...",
+            "en": "Search...",
+            "fr": "Recherche..."
+        },
+        "student": {
+            "ar": "التلميذ(ة)",
+            "en": "Student",
+            "fr": "Élève"
+        },
+        "close": {
+            "ar": "إغلاق",
+            "en": "Close",
+            "fr": "Fermer"
+        }
+    },
     "total_requests": {
         "ar": "إجمالي الطلبات",
         "en": "Total Requests",
@@ -70,7 +87,7 @@
         "fr": "Tableau de bord d'inscription"
     },
     "registration_overview_desc": {
-        "ar": "نظرة عامة على سير عملية تسجيل الطلاب الجدد",
+        "ar": "نظرة عامة على سير عملية تسجيل التلاميذ الجدد",
         "en": "Overview of the new student registration process",
         "fr": "Aperçu du processus d'inscription des nouveaux étudiants"
     },
@@ -156,7 +173,7 @@
             "fr": "Gestion des enseignants"
         },
         "students": {
-            "ar": "إدارة الطلاب",
+            "ar": "إدارة التلاميذ",
             "en": "Students Management",
             "fr": "Gestion des étudiants"
         },
@@ -166,12 +183,17 @@
             "fr": "Gestion des inscriptions"
         },
         "academic": {
-            "ar": "إدارة أكادمية",
-            "en": "Academic Management",
-            "fr": "Gestion académique"
+            "ar": "دفتر الدروس الرقمي",
+            "en": "Digital Class Diary",
+            "fr": "Carnet de cours numérique"
         },
         "calendar": {
             "ar": "التقويم و الإعلانات",
+            "en": "Calendar & Announcements",
+            "fr": "Calendrier et annonces"
+        },
+        "hub": {
+            "ar": " اﻟﺘﻘﻮﻳﻢ واﻹﻋﻻﻧﺎت",
             "en": "Calendar & Announcements",
             "fr": "Calendrier et annonces"
         },
@@ -244,6 +266,11 @@
             "ar": "الحضور",
             "en": "Attendance",
             "fr": "Présence"
+        },
+        "reception": {
+            "ar": "المواعيد والاستقبال",
+            "en": "Reception",
+            "fr": "Réception"
         }
     },
     "req": {
@@ -673,7 +700,7 @@
             "fr": "Redoublant?"
         },
         "students_count": {
-            "ar": "عدد الطلاب",
+            "ar": "عدد التلاميذ",
             "en": "Students Count",
             "fr": "Nombre d'étudiants"
         },
@@ -750,7 +777,7 @@
             "fr": "Psychologue"
         },
         "teacher": {
-            "ar": "معلم المرحلة",
+            "ar": "أستاذ المرحلة",
             "en": "Teacher",
             "fr": "Enseignant"
         },
@@ -870,7 +897,7 @@
             "fr": "Sélectionner un psychologue..."
         },
         "select_teacher": {
-            "ar": "اختر معلم...",
+            "ar": "اختر أستاذ...",
             "en": "Select Teacher...",
             "fr": "Sélectionner un enseignant..."
         },
@@ -1477,10 +1504,35 @@
             "en": "HR Information",
             "fr": "Informations RH"
         },
+        "personal_info": {
+            "ar": "المعلومات الشخصية",
+            "en": "Personal Info",
+            "fr": "Infos personnelles"
+        },
         "admin_control": {
             "ar": "تحكم الإدارة",
             "en": "Admin Control",
             "fr": "Contrôle Admin"
+        },
+        "teacher_details": {
+            "ar": "تفاصيل التدريس",
+            "en": "Teaching Details",
+            "fr": "Détails enseignement"
+        },
+        "preferences_set_by_teacher": {
+            "ar": "يُحددها الأستاذ (للاطلاع فقط)",
+            "en": "Set by teacher (read-only)",
+            "fr": "Défini par l'enseignant (lecture seule)"
+        },
+        "yes": {
+            "ar": "نعم",
+            "en": "Yes",
+            "fr": "Oui"
+        },
+        "no": {
+            "ar": "لا",
+            "en": "No",
+            "fr": "Non"
         },
         "contact_data": {
             "ar": "بيانات الاتصال",
@@ -1607,6 +1659,21 @@
             "en": "Class",
             "fr": "Classe"
         },
+        "weekly_hours": {
+            "ar": "الحجم الساعي",
+            "en": "Weekly hours",
+            "fr": "Volume horaire"
+        },
+        "assign_weekly_hours": {
+            "ar": "تعيين الحجم الساعي",
+            "en": "Assign weekly hours",
+            "fr": "Assigner le volume horaire"
+        },
+        "hours": {
+            "ar": "س",
+            "en": "h",
+            "fr": "h"
+        },
         "filter": {
             "ar": "تصفية",
             "en": "Filter",
@@ -1631,6 +1698,1513 @@
             "ar": "تعيين سريع",
             "en": "Quick Assign",
             "fr": "Assignation rapide"
+        }
+    },
+    "academic": {
+        "nav_overview": {
+            "ar": "نظرة عامة",
+            "en": "Overview",
+            "fr": "Aperçu"
+        },
+        "nav_diary": {
+            "ar": "دفتر الدروس و الواجبات",
+            "en": "Diary Feed",
+            "fr": "Carnet de cours"
+        },
+        "nav_read_receipts": {
+            "ar": "إشعارات الاطلاع",
+            "en": "Read Receipts",
+            "fr": "Accusés de lecture"
+        },
+        "nav_audit": {
+            "ar": "سجل التدقيق",
+            "en": "Audit Log",
+            "fr": "Journal d'audit"
+        },
+        "unit_title": {
+            "ar": "دفتر الدروس الرقمي",
+            "en": "Digital Class Diary",
+            "fr": "Carnet de cours numérique"
+        },
+        "overview_desc": {
+            "ar": "مراقبة التقدم البيداغوجي في الوقت الفعلي وعرض إكمال الدفاتر ومتابعة أولياء الأمور",
+            "en": "Monitor pedagogical progress in real time, diary completion, and parent engagement",
+            "fr": "Suivre la progression pédagogique en temps réel, l'état du carnet et l'engagement des parents"
+        },
+        "read_only_notice": {
+            "ar": "واجهة عرض فقط — لا تعديل",
+            "en": "Read-only view — no editing",
+            "fr": "Vue lecture seule — pas de modification"
+        },
+        "kpi_diary_completion": {
+            "ar": "نسبة إكمال الدفتر اليوم",
+            "en": "Diary Completion Rate",
+            "fr": "Taux de complétion du carnet"
+        },
+        "kpi_recent_updates": {
+            "ar": "تحديثات حديثة",
+            "en": "Recent Updates",
+            "fr": "Mises à jour récentes"
+        },
+        "kpi_parent_engagement": {
+            "ar": "متابعة أولياء الأمور",
+            "en": "Parent Engagement",
+            "fr": "Engagement des parents"
+        },
+        "today": {
+            "ar": "اليوم",
+            "en": "Today",
+            "fr": "Aujourd'hui"
+        },
+        "last_24h": {
+            "ar": "آخر 24 ساعة",
+            "en": "Last 24h",
+            "fr": "Dernières 24h"
+        },
+        "views_this_week": {
+            "ar": "مشاهدات هذا الأسبوع",
+            "en": "Views this week",
+            "fr": "Vues cette semaine"
+        },
+        "status_grid_title": {
+            "ar": "حالة تسجيل الدروس حسب الفصل",
+            "en": "Lesson Log Status by Class",
+            "fr": "État des cours par classe"
+        },
+        "class_logged": {
+            "ar": "تم تسجيل الدرس",
+            "en": "Lesson logged",
+            "fr": "Cours enregistré"
+        },
+        "class_empty": {
+            "ar": "لم يُسجّل بعد",
+            "en": "Not yet logged",
+            "fr": "Pas encore enregistré"
+        },
+        "level_primary": {
+            "ar": "الابتدائي",
+            "en": "Primary",
+            "fr": "Primaire"
+        },
+        "level_middle": {
+            "ar": "المتوسط",
+            "en": "Middle",
+            "fr": "Collège"
+        },
+        "diary_feed_title": {
+            "ar": "سجل الدروس اليومي",
+            "en": "Digital Diary Feed",
+            "fr": "Fil du carnet quotidien"
+        },
+        "lessons_register": {
+            "ar": "سجل الدروس",
+            "en": "Lessons register",
+            "fr": "Registre des cours"
+        },
+        "homeworks_register": {
+            "ar": "سجل الواجبات",
+            "en": "Homeworks register",
+            "fr": "Registre des devoirs"
+        },
+        "summaries_register": {
+            "ar": "سجل الملخصات",
+            "en": "Summaries register",
+            "fr": "Registre des résumés"
+        },
+        "summaries_panel_title": {
+            "ar": "ملخصات يومية",
+            "en": "Daily summaries",
+            "fr": "Résumés quotidiens"
+        },
+        "tab_lessons": {
+            "ar": "الدروس",
+            "en": "Lessons",
+            "fr": "Cours"
+        },
+        "tab_homeworks": {
+            "ar": "الواجبات",
+            "en": "Homework",
+            "fr": "Devoirs"
+        },
+        "tab_summaries": {
+            "ar": "الملخصات",
+            "en": "Summaries",
+            "fr": "Résumés"
+        },
+        "homeworks_panel_title": {
+            "ar": "الواجبات اليومية",
+            "en": "Daily homeworks",
+            "fr": "Devoirs du jour"
+        },
+        "in_app_exercises": {
+            "ar": "تمارين داخل التطبيق",
+            "en": "In-app exercises",
+            "fr": "Exercices in-app"
+        },
+        "entry_type_paragraph": {
+            "ar": "نص",
+            "en": "Paragraph",
+            "fr": "Paragraphe"
+        },
+        "entry_type_image": {
+            "ar": "صورة",
+            "en": "Image",
+            "fr": "Image"
+        },
+        "entry_type_pdf": {
+            "ar": "PDF",
+            "en": "PDF",
+            "fr": "PDF"
+        },
+        "entry_type_video": {
+            "ar": "فيديو",
+            "en": "Video",
+            "fr": "Vidéo"
+        },
+        "subject": {
+            "ar": "المادة",
+            "en": "Subject",
+            "fr": "Matière"
+        },
+        "teacher": {
+            "ar": "الأستاذ",
+            "en": "Teacher",
+            "fr": "Enseignant"
+        },
+        "lesson_title": {
+            "ar": "عنوان الدرس",
+            "en": "Lesson Title",
+            "fr": "Titre du cours"
+        },
+        "content_summary": {
+            "ar": "ملخص المحتوى",
+            "en": "Content Summary",
+            "fr": "Résumé du contenu"
+        },
+        "resources_homework": {
+            "ar": "موارد وواجبات",
+            "en": "Resources & Homework",
+            "fr": "Ressources et devoirs"
+        },
+        "homework": {
+            "ar": "الواجب",
+            "en": "Homework",
+            "fr": "Devoirs"
+        },
+        "modified": {
+            "ar": "تعديل",
+            "en": "Modified",
+            "fr": "Modifié"
+        },
+        "quick_insight": {
+            "ar": "لمحة سريعة",
+            "en": "Quick Insight",
+            "fr": "Aperçu rapide"
+        },
+        "classes_logged_primary": {
+            "ar": "فصول تم تسجيل دروسها (ابتدائي)",
+            "en": "Primary classes with entries",
+            "fr": "Classes avec entrées (primaire)"
+        },
+        "classes_pending": {
+            "ar": "فصول بانتظار التسجيل",
+            "en": "Classes pending",
+            "fr": "Classes en attente"
+        },
+        "parent_views_today": {
+            "ar": "مشاهدات أولياء الأمور اليوم",
+            "en": "Parent views today",
+            "fr": "Vues parents aujourd'hui"
+        },
+        "legend": {
+            "ar": "دليل الرموز",
+            "en": "Legend",
+            "fr": "Légende"
+        },
+        "diary_page_title": {
+            "ar": "دفتر الدروس — عرض كامل",
+            "en": "Full Diary View",
+            "fr": "Vue complète du carnet"
+        },
+        "diary_page_desc": {
+            "ar": "استعرض وتصفية جميع إدخالات الدروس حسب المستوى أو الفصل أو الأستاذ أو التاريخ. للعرض فقط.",
+            "en": "Browse and filter all lesson entries by level, class, teacher or date. Read-only.",
+            "fr": "Parcourir et filtrer toutes les entrées par niveau, classe, enseignant ou date. Lecture seule."
+        },
+        "hide_filters": {
+            "ar": "إخفاء الفلاتر",
+            "en": "Hide filters",
+            "fr": "Masquer les filtres"
+        },
+        "show_filters": {
+            "ar": "إظهار الفلاتر",
+            "en": "Show filters",
+            "fr": "Afficher les filtres"
+        },
+        "export_diary": {
+            "ar": "تصدير الدفتر",
+            "en": "Export diary",
+            "fr": "Exporter le carnet"
+        },
+        "filter_by_level": {
+            "ar": "المستوى",
+            "en": "Level",
+            "fr": "Niveau"
+        },
+        "filter_by_class": {
+            "ar": "الفصل",
+            "en": "Class",
+            "fr": "Classe"
+        },
+        "filter_by_teacher": {
+            "ar": "الأستاذ",
+            "en": "Teacher",
+            "fr": "Enseignant"
+        },
+        "filter_by_date": {
+            "ar": "التاريخ",
+            "en": "Date",
+            "fr": "Date"
+        },
+        "filter_all": {
+            "ar": "الكل",
+            "en": "All",
+            "fr": "Tout"
+        },
+        "filter_all_levels": {
+            "ar": "جميع المستويات",
+            "en": "All levels",
+            "fr": "Tous les niveaux"
+        },
+        "clear_filters": {
+            "ar": "مسح الفلاتر",
+            "en": "Clear filters",
+            "fr": "Effacer les filtres"
+        },
+        "no_entries_match": {
+            "ar": "لا توجد إدخالات تطابق الفلاتر",
+            "en": "No entries match the filters",
+            "fr": "Aucune entrée ne correspond aux filtres"
+        },
+        "read_receipts_title": {
+            "ar": "إشعارات الاطلاع — أولياء الأمور",
+            "en": "Read Receipts — Parent Engagement",
+            "fr": "Accusés de lecture — Engagement des parents"
+        },
+        "read_receipts_desc": {
+            "ar": "معرفة من اطّلع على ملخصات الدروس اليومية لمتابعة التواصل وإغلاق الحلقة مع الأسر التي لم تطّلع بعد.",
+            "en": "See who has viewed daily lesson notes to close the communication loop and follow up with families who haven't.",
+            "fr": "Voir qui a consulté les résumés quotidiens pour boucler la boucle de communication et relancer les familles qui n'ont pas consulté."
+        },
+        "receipts_view_rate": {
+            "ar": "نسبة الاطلاع",
+            "en": "View rate",
+            "fr": "Taux de consultation"
+        },
+        "receipts_viewed_count": {
+            "ar": "اطّلع",
+            "en": "Viewed",
+            "fr": "Consulté"
+        },
+        "receipts_not_viewed_count": {
+            "ar": "لم يطّلع",
+            "en": "Not viewed",
+            "fr": "Non consulté"
+        },
+        "receipts_by_guardian": {
+            "ar": "حالة الاطلاع حسب الولي",
+            "en": "View status by guardian",
+            "fr": "Statut de lecture par tuteur"
+        },
+        "student_name": {
+            "ar": "الابن/البنت",
+            "en": "Student",
+            "fr": "Élève"
+        },
+        "viewed_at": {
+            "ar": "وقت الاطلاع",
+            "en": "Viewed at",
+            "fr": "Consulté à"
+        },
+        "viewed": {
+            "ar": "اطّلع",
+            "en": "Viewed",
+            "fr": "Consulté"
+        },
+        "not_viewed": {
+            "ar": "لم يطّلع",
+            "en": "Not viewed",
+            "fr": "Non consulté"
+        },
+        "follow_up_title": {
+            "ar": "متابعة — لم يطّلعوا بعد",
+            "en": "Follow up — Not yet viewed",
+            "fr": "Suivi — Pas encore consulté"
+        },
+        "follow_up_desc": {
+            "ar": "يمكن إرسال رسالة أو إشعار لهؤلاء الأولياء لضمان اطلاعهم على الدروس والواجبات.",
+            "en": "Send a message or notification to these guardians to ensure they see lessons and homework.",
+            "fr": "Envoyer un message ou une notification à ces tuteurs pour s'assurer qu'ils consultent les cours et devoirs."
+        },
+        "all_parents_viewed": {
+            "ar": "جميع الأولياء اطّلعوا على الملخص اليوم.",
+            "en": "All parents have viewed today's summary.",
+            "fr": "Tous les parents ont consulté le résumé du jour."
+        },
+        "send_message": {
+            "ar": "إرسال رسالة",
+            "en": "Send message",
+            "fr": "Envoyer un message"
+        },
+        "send_notification": {
+            "ar": "إرسال إشعار",
+            "en": "Send notification",
+            "fr": "Envoyer une notification"
+        },
+        "search_guardian": {
+            "ar": "بحث بالولي أو التلميذ...",
+            "en": "Search guardian or student...",
+            "fr": "Rechercher tuteur ou élève..."
+        },
+        "no_receipts_data": {
+            "ar": "لا توجد بيانات اطلاع",
+            "en": "No view data",
+            "fr": "Aucune donnée de consultation"
+        },
+        "receipts_footer": {
+            "ar": "إجمالي النتائج: {count}",
+            "en": "Total: {count}",
+            "fr": "Total : {count}"
+        },
+        "audit_title": {
+            "ar": "سجل التدقيق والتعديلات",
+            "en": "Audit Log & Modifications",
+            "fr": "Journal d'audit et modifications"
+        },
+        "audit_desc": {
+            "ar": "تتبع تاريخ إنشاء وتعديل كل إدخال في الدفتر لضمان النزاهة البيداغوجية والشفافية.",
+            "en": "Track when each diary entry was created and modified for pedagogical integrity and transparency.",
+            "fr": "Suivre la création et les modifications de chaque entrée pour l'intégrité pédagogique et la transparence."
+        },
+        "export_audit": {
+            "ar": "تصدير السجل",
+            "en": "Export log",
+            "fr": "Exporter le journal"
+        },
+        "audit_date_from": {
+            "ar": "من تاريخ",
+            "en": "From date",
+            "fr": "À partir du"
+        },
+        "audit_date_to": {
+            "ar": "إلى تاريخ",
+            "en": "To date",
+            "fr": "Au"
+        },
+        "audit_action_type": {
+            "ar": "نوع العملية",
+            "en": "Action type",
+            "fr": "Type d'action"
+        },
+        "audit_created": {
+            "ar": "إنشاء",
+            "en": "Created",
+            "fr": "Créé"
+        },
+        "audit_modified": {
+            "ar": "تعديل",
+            "en": "Modified",
+            "fr": "Modifié"
+        },
+        "audit_log_table_title": {
+            "ar": "سجل العمليات",
+            "en": "Audit log",
+            "fr": "Journal des opérations"
+        },
+        "audit_timestamp": {
+            "ar": "الوقت",
+            "en": "Timestamp",
+            "fr": "Date et heure"
+        },
+        "audit_action": {
+            "ar": "العملية",
+            "en": "Action",
+            "fr": "Action"
+        },
+        "audit_details": {
+            "ar": "تفاصيل",
+            "en": "Details",
+            "fr": "Détails"
+        },
+        "class": {
+            "ar": "الفصل",
+            "en": "Class",
+            "fr": "Classe"
+        }
+    },
+    "hub": {
+        "periods_manager": {
+            "ar": "إدارة الفترات",
+            "en": "Periods Manager",
+            "fr": "Gestion des périodes"
+        },
+        "nav_periods": {
+            "ar": "قائمة الفترات",
+            "en": "Periods List",
+            "fr": "Liste des périodes"
+        },
+        "manage_all_periods": {
+            "ar": "إدارة جميع الفترات",
+            "en": "Manage All Periods",
+            "fr": "Gérer toutes les périodes"
+        },
+        "publications": {
+            "ar": "المنشورات والإشعارات",
+            "en": "Publications & Notices",
+            "fr": "Publications et avis"
+        },
+        "publications_title": {
+            "ar": "المنشورات",
+            "en": "Publications",
+            "fr": "Publications"
+        },
+        "publications_desc": {
+            "ar": "إدارة الإشعارات والمنشورات المرسلة لأولياء الأمور والطلاب والمعلمين",
+            "en": "Manage notices and publications sent to parents, students, and teachers",
+            "fr": "Gérer les avis et les publications envoyés aux parents, élèves et enseignants"
+        },
+        "schedule_publication": {
+            "ar": "نشر منشور جديد",
+            "en": "Schedule Publication",
+            "fr": "Programmer une publication"
+        },
+        "edit_period": {
+            "ar": "تعديل الفترة",
+            "en": "Edit Period",
+            "fr": "Modifier la période"
+        },
+        "public_publication": {
+            "ar": "منشور عام",
+            "en": "Public Publication",
+            "fr": "Publication publique"
+        },
+        "administrative_order": {
+            "ar": "أمر إداري",
+            "en": "Administrative Order",
+            "fr": "Ordre administratif"
+        },
+        "manage_urgencies": {
+            "ar": "إدارة مستويات الأهمية",
+            "en": "Manage Urgencies",
+            "fr": "Gérer les urgences"
+        },
+        "add_urgency": {
+            "ar": "إضافة مستوى جديد",
+            "en": "Add Urgency Level",
+            "fr": "Ajouter un niveau d'urgence"
+        },
+        "settings": {
+            "ar": "الإعدادات",
+            "en": "Settings",
+            "fr": "Paramètres"
+        },
+        "defined_periods": {
+            "ar": "الفترات المحددة",
+            "en": "Defined Periods",
+            "fr": "Périodes définies"
+        },
+        "periods_desc": {
+            "ar": "أضف وعدّل الفترات لتنظيم العام الأكاديمي",
+            "en": "Add and edit periods to organize the academic year",
+            "fr": "Ajoutez et modifiez des périodes pour organiser l'année"
+        },
+        "search_periods": {
+            "ar": "البحث في الفترات...",
+            "en": "Search periods...",
+            "fr": "Rechercher des périodes..."
+        },
+        "nav_calendar": {
+            "ar": "التقويم الأكاديمي",
+            "en": "Academic Calendar",
+            "fr": "Calendrier académique"
+        },
+        "filter_view": {
+            "ar": "تصفية العرض",
+            "en": "Filter View",
+            "fr": "Filtrer la vue"
+        },
+        "add_event": {
+            "ar": "إضافة حدث",
+            "en": "Add Event",
+            "fr": "Ajouter un événement"
+        },
+        "upcoming_highlight": {
+            "ar": "أبرز الأحداث القادمة",
+            "en": "Upcoming Highlight",
+            "fr": "Événement à venir"
+        },
+        "days_left": {
+            "ar": "يوم متبقي",
+            "en": "days left",
+            "fr": "jours restants"
+        },
+        "no_upcoming_events": {
+            "ar": "لا توجد أحداث قادمة",
+            "en": "No upcoming events",
+            "fr": "Aucun événement à venir"
+        },
+        "exams_this_month": {
+            "ar": "امتحانات هذا الشهر",
+            "en": "Exams this month",
+            "fr": "Examens ce mois-ci"
+        },
+        "holidays_upcoming": {
+            "ar": "عطل قادمة",
+            "en": "Upcoming holidays",
+            "fr": "Vacances à venir"
+        },
+        "assessments_pending": {
+            "ar": "تقييمات قيد الانتظار",
+            "en": "Pending assessments",
+            "fr": "Évaluations en attente"
+        },
+        "latest_announcements": {
+            "ar": "أحدث الإعلانات",
+            "en": "Latest Announcements",
+            "fr": "Dernières annonces"
+        },
+        "view_all_updates": {
+            "ar": "عرض كل التحديثات",
+            "en": "View all updates",
+            "fr": "Voir toutes les mises à jour"
+        },
+        "read_more": {
+            "ar": "اقرأ المزيد",
+            "en": "Read more",
+            "fr": "Lire la suite"
+        },
+        "nav_announcements": {
+            "ar": "لوحة الإعلانات",
+            "en": "Announcement Board",
+            "fr": "Tableau d'annonces"
+        },
+        "nav_notifications": {
+            "ar": "مقاييس التواصل",
+            "en": "Engagement Metrics",
+            "fr": "Métriques d'engagement"
+        },
+        "page_title": {
+            "ar": "التقويم الأكاديمي الموحد",
+            "en": "Unified Academic Calendar",
+            "fr": "Calendrier académique unifié"
+        },
+        "page_desc": {
+            "ar": "عرض مدمج للعطل والامتحانات والتقييمات في جدول زمني واحد",
+            "en": "Integrated view of holidays, exams, and assessments in a single timeline",
+            "fr": "Vue intégrée des vacances, examens et évaluations dans un calendrier unique"
+        },
+        "quick_glance": {
+            "ar": "نظرة سريعة",
+            "en": "Quick Glance",
+            "fr": "Aperçu rapide"
+        },
+        "event_holiday": {
+            "ar": "عطلة",
+            "en": "Holiday",
+            "fr": "Vacances"
+        },
+        "event_exam": {
+            "ar": "امتحان",
+            "en": "Exam",
+            "fr": "Examen"
+        },
+        "event_assessment": {
+            "ar": "تقييم",
+            "en": "Assessment",
+            "fr": "Évaluation"
+        },
+        "days_remaining": {
+            "ar": "يوم متبقي",
+            "en": "days remaining",
+            "fr": "jours restants"
+        },
+        "select_day": {
+            "ar": "اختر يوماً",
+            "en": "Select a day",
+            "fr": "Sélectionnez un jour"
+        },
+        "no_events_this_day": {
+            "ar": "لا توجد أحداث في هذا اليوم",
+            "en": "No events on this day",
+            "fr": "Aucun événement ce jour"
+        },
+        "click_day_to_view": {
+            "ar": "انقر على يوم في التقويم لعرض أحداثه",
+            "en": "Click a day on the calendar to view its events",
+            "fr": "Cliquez sur un jour du calendrier pour voir ses événements"
+        },
+        "month_events": {
+            "ar": "أحداث الشهر",
+            "en": "Month Events",
+            "fr": "Événements du mois"
+        },
+        "no_events_this_month": {
+            "ar": "لا توجد أحداث هذا الشهر",
+            "en": "No events this month",
+            "fr": "Aucun événement ce mois"
+        },
+        "exam_alerts": {
+            "ar": "تنبيهات الامتحانات",
+            "en": "Exam Alerts",
+            "fr": "Alertes d'examens"
+        },
+        "three_day_alert": {
+            "ar": "تنبيه 3 أيام",
+            "en": "3-Day Alert",
+            "fr": "Alerte 3 jours"
+        },
+        "one_day_alert": {
+            "ar": "تنبيه يوم واحد",
+            "en": "1-Day Alert",
+            "fr": "Alerte 1 jour"
+        },
+        "alert_sent": {
+            "ar": "تم الإرسال",
+            "en": "Sent",
+            "fr": "Envoyée"
+        },
+        "alert_scheduled": {
+            "ar": "مجدول",
+            "en": "Scheduled",
+            "fr": "Planifiée"
+        },
+        "alert_pending": {
+            "ar": "في الانتظار",
+            "en": "Pending",
+            "fr": "En attente"
+        },
+        "parents_reached": {
+            "ar": "وصول الأولياء",
+            "en": "parents reached",
+            "fr": "parents atteints"
+        },
+        "today": {
+            "ar": "اليوم",
+            "en": "Today",
+            "fr": "Aujourd'hui"
+        },
+        "tomorrow": {
+            "ar": "غداً",
+            "en": "Tomorrow",
+            "fr": "Demain"
+        },
+        "in_days_prefix": {
+            "ar": "بعد",
+            "en": "In",
+            "fr": "Dans"
+        },
+        "days": {
+            "ar": "أيام",
+            "en": "days",
+            "fr": "jours"
+        },
+        "announcements_title": {
+            "ar": "لوحة الإعلانات الرقمية",
+            "en": "Digital Announcement Board",
+            "fr": "Tableau d'annonces numérique"
+        },
+        "announcements_desc": {
+            "ar": "مركز البث للتعليمات العامة والإعلانات المدرسية",
+            "en": "Broadcast center for general instructions and school announcements",
+            "fr": "Centre de diffusion pour les instructions générales et les annonces scolaires"
+        },
+        "schedule_announcement": {
+            "ar": "جدولة إعلان",
+            "en": "Schedule Announcement",
+            "fr": "Planifier une annonce"
+        },
+        "total_announcements": {
+            "ar": "إجمالي الإعلانات",
+            "en": "Total Announcements",
+            "fr": "Total des annonces"
+        },
+        "urgency_mandatory": {
+            "ar": "إلزامي",
+            "en": "Mandatory",
+            "fr": "Obligatoire"
+        },
+        "urgency_urgent": {
+            "ar": "عاجل",
+            "en": "Urgent",
+            "fr": "Urgent"
+        },
+        "urgency_normal": {
+            "ar": "عادي",
+            "en": "Normal",
+            "fr": "Normal"
+        },
+        "search_announcements": {
+            "ar": "البحث في الإعلانات...",
+            "en": "Search announcements...",
+            "fr": "Rechercher des annonces..."
+        },
+        "filter_all": {
+            "ar": "الكل",
+            "en": "All",
+            "fr": "Tous"
+        },
+        "filter_mandatory": {
+            "ar": "إلزامي",
+            "en": "Mandatory",
+            "fr": "Obligatoire"
+        },
+        "filter_urgent": {
+            "ar": "عاجل",
+            "en": "Urgent",
+            "fr": "Urgent"
+        },
+        "filter_normal": {
+            "ar": "عادي",
+            "en": "Normal",
+            "fr": "Normal"
+        },
+        "pinned": {
+            "ar": "مثبت",
+            "en": "Pinned",
+            "fr": "Épinglé"
+        },
+        "no_announcements": {
+            "ar": "لا توجد إعلانات",
+            "en": "No announcements",
+            "fr": "Aucune annonce"
+        },
+        "category_finance": {
+            "ar": "مالية",
+            "en": "Finance",
+            "fr": "Finance"
+        },
+        "category_schedule": {
+            "ar": "مواعيد",
+            "en": "Schedule",
+            "fr": "Horaires"
+        },
+        "category_activity": {
+            "ar": "أنشطة",
+            "en": "Activity",
+            "fr": "Activité"
+        },
+        "category_facility": {
+            "ar": "مرافق",
+            "en": "Facility",
+            "fr": "Infrastructure"
+        },
+        "category_health": {
+            "ar": "صحة",
+            "en": "Health",
+            "fr": "Santé"
+        },
+        "notifications_title": {
+            "ar": "مقاييس تواصل الأولياء",
+            "en": "Parent Engagement Metrics",
+            "fr": "Métriques d'engagement des parents"
+        },
+        "notifications_desc": {
+            "ar": "ملخص حالة تسليم الإشعارات ووصولها إلى أجهزة الأولياء",
+            "en": "Summary of notification delivery status and confirmation of reaching parent devices",
+            "fr": "Résumé de l'état de livraison des notifications et confirmation d'atteinte des appareils des parents"
+        },
+        "delivery_rate": {
+            "ar": "نسبة التسليم",
+            "en": "Delivery Rate",
+            "fr": "Taux de livraison"
+        },
+        "total_sent": {
+            "ar": "إجمالي المرسل",
+            "en": "Total Sent",
+            "fr": "Total envoyé"
+        },
+        "total_delivered": {
+            "ar": "تم التسليم",
+            "en": "Delivered",
+            "fr": "Livré"
+        },
+        "confirmed": {
+            "ar": "مؤكد",
+            "en": "Confirmed",
+            "fr": "Confirmé"
+        },
+        "failed_deliveries": {
+            "ar": "فشل التسليم",
+            "en": "Failed Deliveries",
+            "fr": "Échecs de livraison"
+        },
+        "still_pending": {
+            "ar": "لا يزال في الانتظار",
+            "en": "still pending",
+            "fr": "en attente"
+        },
+        "weekly_trend": {
+            "ar": "الاتجاه الأسبوعي",
+            "en": "Weekly Trend",
+            "fr": "Tendance hebdomadaire"
+        },
+        "sent": {
+            "ar": "مرسل",
+            "en": "Sent",
+            "fr": "Envoyé"
+        },
+        "delivered_label": {
+            "ar": "مستلم",
+            "en": "Delivered",
+            "fr": "Livré"
+        },
+        "read": {
+            "ar": "مقروء",
+            "en": "Read",
+            "fr": "Lu"
+        },
+        "device_breakdown": {
+            "ar": "توزيع الأجهزة",
+            "en": "Device Breakdown",
+            "fr": "Répartition des appareils"
+        },
+        "active_devices": {
+            "ar": "أجهزة نشطة",
+            "en": "Active Devices",
+            "fr": "Appareils actifs"
+        },
+        "devices": {
+            "ar": "جهاز",
+            "en": "devices",
+            "fr": "appareils"
+        },
+        "notification_log": {
+            "ar": "سجل الإشعارات",
+            "en": "Notification Log",
+            "fr": "Journal des notifications"
+        },
+        "type_all": {
+            "ar": "الكل",
+            "en": "All",
+            "fr": "Tous"
+        },
+        "type_exam_alert": {
+            "ar": "تنبيه امتحان",
+            "en": "Exam Alert",
+            "fr": "Alerte examen"
+        },
+        "type_announcement": {
+            "ar": "إعلان",
+            "en": "Announcement",
+            "fr": "Annonce"
+        },
+        "type_diary": {
+            "ar": "ملاحظة يومية",
+            "en": "Daily Note",
+            "fr": "Note quotidienne"
+        },
+        "type_system": {
+            "ar": "نظام",
+            "en": "System",
+            "fr": "Système"
+        },
+        "status_delivered": {
+            "ar": "تم التسليم",
+            "en": "Delivered",
+            "fr": "Livré"
+        },
+        "status_partial": {
+            "ar": "جزئي",
+            "en": "Partial",
+            "fr": "Partiel"
+        },
+        "status_scheduled": {
+            "ar": "مجدول",
+            "en": "Scheduled",
+            "fr": "Planifié"
+        },
+        "status_failed": {
+            "ar": "فشل",
+            "en": "Failed",
+            "fr": "Échoué"
+        },
+        "tab_main": {
+            "ar": "الإعلانات العامة",
+            "en": "Main Announcements",
+            "fr": "Annonces générales"
+        },
+        "tab_staff": {
+            "ar": "منشورات الموظفين",
+            "en": "Worker Publications",
+            "fr": "Publications du personnel"
+        },
+        "manage_categories": {
+            "ar": "إدارة التصنيفات",
+            "en": "Manage Categories",
+            "fr": "Gérer les catégories"
+        },
+        "add_category": {
+            "ar": "إضافة تصنيف",
+            "en": "Add Category",
+            "fr": "Ajouter une catégorie"
+        },
+        "category_regulation": {
+            "ar": "لوائح داخلية",
+            "en": "Internal Regulations",
+            "fr": "Règlements internes"
+        },
+        "category_instruction": {
+            "ar": "تعليمات عمل",
+            "en": "Work Instructions",
+            "fr": "Instructions de travail"
+        },
+        "define_period": {
+            "ar": "تحديد الفترة",
+            "en": "Define Period",
+            "fr": "Définir la période"
+        },
+        "period_title": {
+            "ar": "عنوان الفترة",
+            "en": "Period Title",
+            "fr": "Titre de la période"
+        },
+        "period_type": {
+            "ar": "نوع الفترة",
+            "en": "Period Type",
+            "fr": "Type de période"
+        },
+        "period_title_placeholder": {
+            "ar": "مثال: امتحانات الفصل الأول...",
+            "en": "e.g., First Semester Exams...",
+            "fr": "ex: Examens du 1er semestre..."
+        },
+        "all_day": {
+            "ar": "طوال اليوم",
+            "en": "All Day",
+            "fr": "Toute la journée"
+        },
+        "save_period": {
+            "ar": "حفظ الفترة",
+            "en": "Save Period",
+            "fr": "Enregistrer la période"
+        },
+        "period_exams": {
+            "ar": "فترة امتحانات",
+            "en": "Exam Period",
+            "fr": "Période d'examens"
+        },
+        "period_vacations": {
+            "ar": "عطلة مدرسية",
+            "en": "School Holiday",
+            "fr": "Vacances scolaires"
+        },
+        "period_events": {
+            "ar": "فعاليات",
+            "en": "Events",
+            "fr": "Événements"
+        },
+        "modal_subtitle": {
+            "ar": "أنشئ إعلانًا جديدًا وأرسله إلى الجمهور المستهدف",
+            "en": "Create a new announcement and send it to the target audience",
+            "fr": "Créez une nouvelle annonce et envoyez-la au public cible"
+        },
+        "modal_audience": {
+            "ar": "الجمهور المستهدف",
+            "en": "Target Audience",
+            "fr": "Public cible"
+        },
+        "modal_audience_hint": {
+            "ar": "حدد الفئات التي ستتلقى هذا الإعلان",
+            "en": "Select the groups that will receive this announcement",
+            "fr": "Sélectionnez les groupes qui recevront cette annonce"
+        },
+        "modal_parents": {
+            "ar": "أولياء الأمور",
+            "en": "Parents",
+            "fr": "Parents"
+        },
+        "modal_teachers": {
+            "ar": "الأساتذة",
+            "en": "Teachers",
+            "fr": "Enseignants"
+        },
+        "modal_students": {
+            "ar": "التلاميذ",
+            "en": "Students",
+            "fr": "Étudiants"
+        },
+        "modal_target_classes": {
+            "ar": "استهداف الأقسام",
+            "en": "Class Targeting",
+            "fr": "Ciblage des classes"
+        },
+        "modal_all_classes": {
+            "ar": "جميع الأقسام",
+            "en": "All Classes",
+            "fr": "Toutes les classes"
+        },
+        "modal_specific_classes": {
+            "ar": "أقسام محددة",
+            "en": "Specific Classes",
+            "fr": "Classes spécifiques"
+        },
+        "modal_estimated_reach": {
+            "ar": "الوصول التقديري",
+            "en": "Estimated Reach",
+            "fr": "Portée estimée"
+        },
+        "modal_recipients": {
+            "ar": "مستلم",
+            "en": "recipients",
+            "fr": "destinataires"
+        },
+        "modal_content": {
+            "ar": "محتوى الإعلان",
+            "en": "Announcement Content",
+            "fr": "Contenu de l'annonce"
+        },
+        "modal_content_hint": {
+            "ar": "اكتب عنوان ونص الإعلان",
+            "en": "Write the announcement title and body",
+            "fr": "Rédigez le titre et le corps de l'annonce"
+        },
+        "modal_title": {
+            "ar": "العنوان",
+            "en": "Title",
+            "fr": "Titre"
+        },
+        "modal_title_placeholder": {
+            "ar": "أدخل عنوان الإعلان...",
+            "en": "Enter announcement title...",
+            "fr": "Entrez le titre de l'annonce..."
+        },
+        "modal_body": {
+            "ar": "نص الإعلان",
+            "en": "Announcement Body",
+            "fr": "Corps de l'annonce"
+        },
+        "modal_body_placeholder": {
+            "ar": "اكتب تفاصيل الإعلان هنا...",
+            "en": "Write announcement details here...",
+            "fr": "Rédigez les détails de l'annonce ici..."
+        },
+        "modal_urgency": {
+            "ar": "مستوى الأهمية",
+            "en": "Urgency Level",
+            "fr": "Niveau d'urgence"
+        },
+        "modal_category": {
+            "ar": "التصنيف",
+            "en": "Category",
+            "fr": "Catégorie"
+        },
+        "modal_pin_announcement": {
+            "ar": "تثبيت هذا الإعلان في الأعلى",
+            "en": "Pin this announcement to the top",
+            "fr": "Épingler cette annonce en haut"
+        },
+        "modal_link_exams": {
+            "ar": "ربط بالامتحانات",
+            "en": "Link to Exams",
+            "fr": "Lier aux examens"
+        },
+        "modal_link_exams_hint": {
+            "ar": "أرفق الإعلان بامتحان قادم لإرسال تنبيهات تلقائية",
+            "en": "Attach the announcement to an upcoming exam for automatic alerts",
+            "fr": "Associez l'annonce à un examen à venir pour des alertes automatiques"
+        },
+        "modal_attachments": {
+            "ar": "المرفقات",
+            "en": "Attachments",
+            "fr": "Pièces jointes"
+        },
+        "modal_attachments_hint": {
+            "ar": "أرفق ملفات PDF أو صور أو وثائق",
+            "en": "Attach PDF files, images, or documents",
+            "fr": "Joindre des fichiers PDF, images ou documents"
+        },
+        "modal_drop_files": {
+            "ar": "اسحب الملفات هنا أو انقر للتحميل",
+            "en": "Drag files here or click to upload",
+            "fr": "Glissez les fichiers ici ou cliquez pour télécharger"
+        },
+        "modal_drop_hint": {
+            "ar": "PDF, DOC, XLS, JPG, PNG — حد أقصى 10 ميجا",
+            "en": "PDF, DOC, XLS, JPG, PNG — max 10MB",
+            "fr": "PDF, DOC, XLS, JPG, PNG — 10 Mo max"
+        },
+        "modal_scheduling": {
+            "ar": "جدولة الإرسال",
+            "en": "Delivery Scheduling",
+            "fr": "Planification de l'envoi"
+        },
+        "modal_scheduling_hint": {
+            "ar": "اختر موعد إرسال الإعلان",
+            "en": "Choose when to send the announcement",
+            "fr": "Choisissez quand envoyer l'annonce"
+        },
+        "modal_send_now": {
+            "ar": "إرسال فوري",
+            "en": "Send Now",
+            "fr": "Envoyer maintenant"
+        },
+        "modal_send_now_desc": {
+            "ar": "سيتم إرسال الإعلان فورًا لجميع المستلمين",
+            "en": "The announcement will be sent immediately to all recipients",
+            "fr": "L'annonce sera envoyée immédiatement à tous les destinataires"
+        },
+        "modal_schedule_later": {
+            "ar": "جدولة لاحقًا",
+            "en": "Schedule Later",
+            "fr": "Planifier plus tard"
+        },
+        "modal_schedule_later_desc": {
+            "ar": "حدد تاريخ ووقت الإرسال المطلوب",
+            "en": "Set a specific date and time for delivery",
+            "fr": "Définissez une date et une heure spécifiques pour l'envoi"
+        },
+        "modal_date": {
+            "ar": "التاريخ",
+            "en": "Date",
+            "fr": "Date"
+        },
+        "modal_time": {
+            "ar": "الوقت",
+            "en": "Time",
+            "fr": "Heure"
+        },
+        "modal_distribution": {
+            "ar": "قنوات التوزيع",
+            "en": "Distribution Channels",
+            "fr": "Canaux de distribution"
+        },
+        "modal_distribution_hint": {
+            "ar": "اختر طريقة إيصال الإعلان",
+            "en": "Choose how to deliver the announcement",
+            "fr": "Choisissez comment diffuser l'annonce"
+        },
+        "modal_push_notif": {
+            "ar": "إشعار فوري",
+            "en": "Push Notification",
+            "fr": "Notification push"
+        },
+        "modal_push_desc": {
+            "ar": "إشعار مباشر على الهاتف",
+            "en": "Direct notification on phone",
+            "fr": "Notification directe sur téléphone"
+        },
+        "modal_sms": {
+            "ar": "رسالة SMS",
+            "en": "SMS Message",
+            "fr": "Message SMS"
+        },
+        "modal_sms_desc": {
+            "ar": "رسالة نصية قصيرة",
+            "en": "Short text message",
+            "fr": "Message texte court"
+        },
+        "modal_email": {
+            "ar": "بريد إلكتروني",
+            "en": "Email",
+            "fr": "E-mail"
+        },
+        "modal_email_desc": {
+            "ar": "إرسال عبر البريد",
+            "en": "Send via email",
+            "fr": "Envoyer par e-mail"
+        },
+        "modal_in_app": {
+            "ar": "داخل التطبيق",
+            "en": "In-App",
+            "fr": "Dans l'application"
+        },
+        "modal_in_app_desc": {
+            "ar": "إشعار داخل التطبيق",
+            "en": "In-app notification",
+            "fr": "Notification dans l'application"
+        },
+        "modal_social_share": {
+            "ar": "نشر على وسائل التواصل",
+            "en": "Social Media Sharing",
+            "fr": "Partage sur les réseaux sociaux"
+        },
+        "modal_school_website": {
+            "ar": "موقع المدرسة",
+            "en": "School Website",
+            "fr": "Site web de l'école"
+        },
+        "modal_require_confirmation": {
+            "ar": "طلب تأكيد القراءة من الأولياء",
+            "en": "Require read confirmation from parents",
+            "fr": "Exiger une confirmation de lecture des parents"
+        },
+        "modal_cancel": {
+            "ar": "إلغاء",
+            "en": "Cancel",
+            "fr": "Annuler"
+        },
+        "modal_publish_now": {
+            "ar": "نشر الآن",
+            "en": "Publish Now",
+            "fr": "Publier maintenant"
+        },
+        "modal_schedule": {
+            "ar": "جدولة",
+            "en": "Schedule",
+            "fr": "Planifier"
+        },
+        "modal_channels": {
+            "ar": "قنوات",
+            "en": "channels",
+            "fr": "canaux"
+        },
+        "modal_files": {
+            "ar": "ملفات",
+            "en": "files",
+            "fr": "fichiers"
+        }
+    },
+    "reception": {
+        "title": {
+            "ar": "المواعيد والاستقبالات",
+            "en": "Appointments & Receptions",
+            "fr": "Rendez-vous et Réceptions"
+        },
+        "subtitle": {
+            "ar": "لوحة تحكم مركزية لإدارة الزيارات والمواعيد",
+            "en": "Centralized dashboard for visits and appointments"
+        },
+        "search_archive": {
+            "ar": "البحث في سجل الزيارات السابقة..."
+        },
+        "master_schedule": {
+            "ar": "الجدول الزمني للإدارة والأساتذة",
+            "en": "Master Schedule",
+            "fr": "Calendrier principal"
+        },
+        "peak_hours_warning": {
+            "ar": "ساعات ذروة الاستقبال"
+        },
+        "status_completed": {
+            "ar": "مكتمل"
+        },
+        "status_in_progress": {
+            "ar": "جار الآن"
+        },
+        "status_confirmed": {
+            "ar": "مؤكد"
+        },
+        "status_pending": {
+            "ar": "قيد الانتظار"
+        },
+        "requests_desk": {
+            "ar": "طلبات المواعيد (مكتب التحكم)"
+        },
+        "new": {
+            "ar": "جديد"
+        },
+        "conflict_detected": {
+            "ar": "تضارب في المواعيد!"
+        },
+        "approve": {
+            "ar": "قبول",
+            "en": "Approve",
+            "fr": "Approuver"
+        },
+        "reschedule": {
+            "ar": "تأجيل/تغيير",
+            "en": "Reschedule",
+            "fr": "Reprogrammer"
+        },
+        "cancel": {
+            "ar": "إلغاء"
+        },
+        "digital_log": {
+            "ar": "سجل الاستقبالات الرقمي"
+        },
+        "outcome_placeholder": {
+            "ar": "أدخل ملخص الزيارة والنتائج هنا..."
+        },
+        "save_log": {
+            "ar": "حفظ بيانات السجل",
+            "en": "Save Log Data",
+            "fr": "Enregistrer les données du registre"
+        },
+        "teacher_availability": {
+            "ar": "إدارة أوقات الأساتذة"
+        },
+        "override": {
+            "ar": "تعديل الجدول"
+        },
+        "dashboard_desc": {
+            "ar": "إدارة مواعيد الإدارة والمدرسين وسجل استقبال الزوار.",
+            "en": "Manage admin/teacher appointments and visitor reception log.",
+            "fr": "Gérer les rendez-vous et le registre d'accueil."
+        },
+        "requests_desc": {
+            "ar": "إدارة وتنسيق طلبات المقابلة مع الطاقم الإداري والتربوي.",
+            "en": "Manage and coordinate interview requests with administrative and teaching staff.",
+            "fr": "Gérer et coordonner les demandes d'entretien avec le personnel administratif et enseignant."
+        },
+        "log_desc": {
+            "ar": "تسجيل حركة الدخول والخروج للزوار والمتابعة اليومية.",
+            "en": "Recording visitor entry and exit and daily monitoring.",
+            "fr": "Enregistrement des entrées et sorties des visiteurs et suivi quotidien."
+        },
+        "nav_overview": {
+            "ar": "نظرة عامة ومراقبة",
+            "en": "Overview & Monitor",
+            "fr": "Aperçu et Moniteur"
+        },
+        "nav_requests": {
+            "ar": "طلبات المواعيد",
+            "en": "Appointment Requests",
+            "fr": "Demandes de rendez-vous"
+        },
+        "nav_log": {
+            "ar": "سجل الاستقبال ",
+            "en": "Reception Log",
+            "fr": "Registre d'accueil "
+        },
+        "expected_visitors": {
+            "ar": "زوار اليوم",
+            "en": "Today's Visitors",
+            "fr": "Visiteurs d'aujourd'hui"
+        },
+        "pending_requests": {
+            "ar": "طلبات معلقة",
+            "en": "Pending Requests",
+            "fr": "Demandes en attente"
+        },
+        "completed_meetings": {
+            "ar": "المواعيد المكتملة",
+            "en": "Completed Meetings",
+            "fr": "Réunions terminées"
+        },
+        "blocked_slots": {
+            "ar": "فترات محجوبة",
+            "en": "Blocked Slots",
+            "fr": "Créneaux bloqués"
+        },
+        "traffic_monitor": {
+            "ar": "مراقب حركة الزوار (الوقت الفعلي)",
+            "en": "Real-time Traffic Monitor",
+            "fr": "Moniteur de trafic en temps réel"
+        },
+        "centralized_queue": {
+            "ar": "إدارة طلبات المواعيد",
+            "en": "Appointments Queue",
+            "fr": "File d'attente des rendez-vous"
+        },
+        "availability_override": {
+            "ar": "تجاوز وإدارة المواعيد (تعديل الأوقات)",
+            "en": "Availability Override",
+            "fr": "Gestion des disponibilités"
+        },
+        "reject": {
+            "ar": "رفض",
+            "en": "Reject",
+            "fr": "Rejeter"
+        },
+        "block_slot": {
+            "ar": "حجب موعد",
+            "en": "Block Time Slot",
+            "fr": "Bloquer un créneau"
+        },
+        "visitor_name": {
+            "ar": "اسم الزائر / الولي",
+            "en": "Visitor/Parent Name",
+            "fr": "Nom du visiteur/parent"
+        },
+        "time_slot": {
+            "ar": "فترة الموعد",
+            "en": "Time Slot",
+            "fr": "Créneau horaire"
+        },
+        "purpose": {
+            "ar": "موضوع الزيارة",
+            "en": "Meeting Purpose",
+            "fr": "Motif de la visite"
+        },
+        "meeting_with": {
+            "ar": "المعني بالزيارة",
+            "en": "Meeting With",
+            "fr": "Rencontre avec"
+        },
+        "reception_log_form": {
+            "ar": "نموذج السجل الرقمي للاستقبال",
+            "en": "Digital Reception Log Form",
+            "fr": "Formulaire du registre numérique d'accueil"
+        },
+        "arrival_time": {
+            "ar": "وقت الدخول الفعلي",
+            "en": "Actual Arrival Time",
+            "fr": "Heure d'arrivée effective"
+        },
+        "departure_time": {
+            "ar": "وقت خروج الزائر",
+            "en": "Departure Time",
+            "fr": "Heure de départ"
+        },
+        "outcome_documentation": {
+            "ar": "مخرجات وملاحظات الاجتماع",
+            "en": "Meeting Summary & Outcomes",
+            "fr": "Résumé et résultats de la réunion"
+        },
+        "log_history": {
+            "ar": "أرشيف السجل لليوم",
+            "en": "Today's Log Archive",
+            "fr": "Archive du registre d'aujourd'hui"
+        },
+        "search_logs": {
+            "ar": "البحث في السجل...",
+            "en": "Search logs...",
+            "fr": "Rechercher dans le registre..."
+        },
+        "status_new": {
+            "ar": "جديد",
+            "en": "New",
+            "fr": "Nouveau"
+        },
+        "status_approved": {
+            "ar": "مقبول",
+            "en": "Approved",
+            "fr": "Approuvé"
+        },
+        "status_rejected": {
+            "ar": "مرفوض",
+            "en": "Rejected",
+            "fr": "Rejeté"
+        },
+        "no_requests": {
+            "ar": "لا توجد طلبات مواعيد حالياً",
+            "en": "No appointment requests at the moment",
+            "fr": "Aucune demande de rendez-vous pour le moment"
+        },
+        "overdue": {
+            "ar": "تجاوز الوقت",
+            "en": "Overdue",
+            "fr": "En retard"
+        },
+        "meeting_details": {
+            "ar": "تفاصيل الاجتماع",
+            "en": "Meeting Details",
+            "fr": "Détails de la réunion"
+        },
+        "meeting_result": {
+            "ar": "مخرجات ونتائج المقابلة",
+            "en": "Meeting Summary & Outcomes",
+            "fr": "Résumé et résultats de l'entretien"
+        },
+        "actions": {
+            "ar": "الإجراءات",
+            "en": "Actions",
+            "fr": "Actions"
+        },
+        "status": {
+            "ar": "الحالة",
+            "en": "Status",
+            "fr": "Statut"
         }
     }
 }

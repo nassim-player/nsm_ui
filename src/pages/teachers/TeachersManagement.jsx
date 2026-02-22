@@ -22,11 +22,16 @@ const mockTeachersData = [
         sub_stage: "3rd Middle",
         module: "",
         class: "",
+        weekly_hours: "",
         status: "Active",
         hire_date: "2015-09-01",
         education: "ماستر رياضيات",
         experience: 10,
-        address: "حي 5 جويلية، الجزائر العاصمة"
+        address: "حي 5 جويلية، الجزائر العاصمة",
+        pref_morning: true,
+        pref_afternoon: false,
+        pref_calm_class: false,
+        pref_special_needs: true
     },
     {
         id: "T002",
@@ -38,11 +43,16 @@ const mockTeachersData = [
         sub_stage: "2nd Primary",
         module: "Sciences",
         class: "E-02",
+        weekly_hours: 18,
         status: "Active",
         hire_date: "2020-01-15",
         education: "دكتوراه فيزياء",
         experience: 5,
-        address: "وسط المدينة، البليدة"
+        address: "وسط المدينة، البليدة",
+        pref_morning: true,
+        pref_afternoon: true,
+        pref_calm_class: true,
+        pref_special_needs: false
     },
     {
         id: "T003",
@@ -54,11 +64,16 @@ const mockTeachersData = [
         sub_stage: "1st Middle",
         module: "",
         class: "",
+        weekly_hours: "",
         status: "Active",
         hire_date: "2010-09-01",
         education: "ليسانس أدب عربي",
         experience: 15,
-        address: "حي الوفاء، بومرداس"
+        address: "حي الوفاء، بومرداس",
+        pref_morning: false,
+        pref_afternoon: true,
+        pref_calm_class: true,
+        pref_special_needs: true
     },
     {
         id: "T004",
@@ -70,11 +85,16 @@ const mockTeachersData = [
         sub_stage: "1st Primary",
         module: "English",
         class: "E-01",
+        weekly_hours: 12,
         status: "On Leave",
         hire_date: "2022-09-01",
         education: "ماستر لغة إنجليزية",
         experience: 3,
-        address: "شارع عبان رمضان، تيبازة"
+        address: "شارع عبان رمضان، تيبازة",
+        pref_morning: true,
+        pref_afternoon: false,
+        pref_calm_class: false,
+        pref_special_needs: false
     },
     {
         id: "T005",
@@ -86,11 +106,16 @@ const mockTeachersData = [
         sub_stage: "2nd Middle",
         module: "Coding",
         class: "E-03",
+        weekly_hours: "",
         status: "Active",
         hire_date: "2018-09-01",
         education: "ماستر إعلام آلي",
         experience: 8,
-        address: "حي الأمل، وهران"
+        address: "حي الأمل، وهران",
+        pref_morning: true,
+        pref_afternoon: true,
+        pref_calm_class: false,
+        pref_special_needs: true
     }
 ];
 
@@ -104,6 +129,8 @@ export const TeachersManagement = () => {
     // UI State for Popups
     const [filterDropdownOpen, setFilterDropdownOpen] = useState(false);
     const [quickAssign, setQuickAssign] = useState(null); // { rowIndex, colKey, rect }
+    const [weeklyHoursInput, setWeeklyHoursInput] = useState('');
+    const [shakeApplyButton, setShakeApplyButton] = useState(false);
     const [activeFilters, setActiveFilters] = useState({
         stage: [],
         sub_stage: [],
@@ -119,7 +146,6 @@ export const TeachersManagement = () => {
     const [isApprovalSent, setIsApprovalSent] = useState(false);
 
     const filterDropdownRef = useRef(null);
-
     const stageOptions = useMemo(() => [
         { id: 'pre-school', label: t('teachers.stage_pre_school') || 'ما قبل المدرسة', color: '#8b5cf6' },
         { id: 'primary', label: t('teachers.stage_primary') || 'الطور الابتدائي', color: '#10b981' },
@@ -132,7 +158,7 @@ export const TeachersManagement = () => {
         { id: '1st Middle', label: '1st Middle' },
         { id: '2nd Middle', label: '2nd Middle' },
         { id: '3rd Middle', label: '3rd Middle' }
-    ], [t]);
+    ], []);
 
     const moduleOptions = useMemo(() => [
         { id: 'Maths', label: 'Maths' },
@@ -144,7 +170,7 @@ export const TeachersManagement = () => {
         { id: 'English', label: 'English' },
         { id: 'Informatique', label: 'Informatique' },
         { id: 'Coding', label: 'Coding' }
-    ], [t]);
+    ], []);
 
     const classOptions = useMemo(() => [
         { id: 'E-01', label: 'E-01' },
@@ -157,7 +183,7 @@ export const TeachersManagement = () => {
         { id: 'G-04', label: 'G-04' },
         { id: 'G-05', label: 'G-05' },
         { id: 'G-06', label: 'G-06' }
-    ], [t]);
+    ], []);
 
     const filterConfig = useMemo(() => [
         { key: 'stage', label: t('teachers.stage'), options: stageOptions },
@@ -193,11 +219,23 @@ export const TeachersManagement = () => {
         const row = filteredData[rowIndex];
         if (!row) return;
         const dataIndex = data.findIndex((d) => d.id === row.id);
-        if (dataIndex === -1) return;
+        if (dataIndex === -1) return; 
         const newData = [...data];
         newData[dataIndex] = { ...newData[dataIndex], [colKey]: value };
         setData(newData);
         setQuickAssign(null);
+        setWeeklyHoursInput('');
+    };
+
+    const applyWeeklyHours = () => {
+        if (!quickAssign || quickAssign.colKey !== 'weekly_hours') return;
+        const num = parseInt(weeklyHoursInput, 10);
+        if (Number.isNaN(num) || num < 1 || num > 40) {
+            setShakeApplyButton(true);
+            setTimeout(() => setShakeApplyButton(false), 500);
+            return;
+        }
+        handleQuickAssign(quickAssign.rowIndex, 'weekly_hours', num);
     };
 
     const columns = useMemo(() => [
@@ -272,6 +310,33 @@ export const TeachersManagement = () => {
                     }}
                 >
                     <span className="qa-value">{val || '--'}</span>
+                    <Plus size={14} className="qa-indicator" />
+                </div>
+            )
+        },
+        {
+            key: 'weekly_hours',
+            label: t('teachers.weekly_hours'),
+            visible: true,
+            width: 120,
+            render: (val, row, idx) => (
+                <div
+                    className={`qa-cell ${!val && val !== 0 ? 'is-empty' : ''}`}
+                    data-quick-assign-cell={`weekly_hours-${idx}`}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        const rect = e.currentTarget.getBoundingClientRect();
+                        const current = row?.weekly_hours;
+                        setWeeklyHoursInput(current !== '' && current != null ? String(current) : '');
+                        setQuickAssign({
+                            rowIndex: idx,
+                            colKey: 'weekly_hours',
+                            rect,
+                            title: t('teachers.assign_weekly_hours') || 'تعيين الحجم الساعي'
+                        });
+                    }}
+                >
+                    <span className="qa-value">{val !== '' && val != null ? `${val} ${t('teachers.hours') || 'س'}` : '--'}</span>
                     <Plus size={14} className="qa-indicator" />
                 </div>
             )
@@ -476,30 +541,61 @@ export const TeachersManagement = () => {
                         style={{
                             top: quickAssign.rect.bottom + 6,
                             left: quickAssign.rect.left,
-                            width: Math.max(200, quickAssign.rect.width),
+                            width: quickAssign.colKey === 'weekly_hours'
+                                ? Math.max(220, quickAssign.rect.width)
+                                : Math.max(200, quickAssign.rect.width),
                             position: 'fixed'
                         }}
                         onClick={(e) => e.stopPropagation()}
                     >
                         <div className="quick-assign-title">{quickAssign.title}</div>
-                        <div className="quick-assign-options">
-                            {(quickAssign.colKey === 'module'
-                                ? ['Maths', 'Physique', 'Arabe', 'Français', 'Anglais', 'Informatique']
-                                : ['G-01', 'G-02', 'G-03', 'G-04', 'G-05', 'G-06']
-                            ).map((opt) => (
+                        {quickAssign.colKey === 'weekly_hours' ? (
+                            <div className="quick-assign-number-input">
+                                <input
+                                    type="number"
+                                    min={1}
+                                    max={40}
+                                    value={String(weeklyHoursInput ?? '')}
+                                    onChange={(e) => setWeeklyHoursInput(e.target.value)}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter') applyWeeklyHours();
+                                    }}
+                                    placeholder={`1 - 40 ${t('teachers.hours') || 'س'}`}
+                                    autoFocus
+                                />
                                 <button
-                                    key={opt}
                                     type="button"
-                                    className="quick-assign-option"
+                                    className={`quick-assign-apply ${shakeApplyButton ? 'shake' : ''}`}
                                     onClick={(e) => {
                                         e.stopPropagation();
-                                        handleQuickAssign(quickAssign.rowIndex, quickAssign.colKey, opt);
+                                        applyWeeklyHours();
                                     }}
+                                    title={t('teachers.assign_weekly_hours') || 'تعيين الحجم الساعي'}
+                                    aria-label={t('common.apply') || 'تطبيق'}
                                 >
-                                    {opt}
+                                    <Check size={20} />
                                 </button>
-                            ))}
-                        </div>
+                            </div>
+                        ) : (
+                            <div className="quick-assign-options">
+                                {(quickAssign.colKey === 'module'
+                                    ? ['Maths', 'Physique', 'Arabe', 'Français', 'Anglais', 'Informatique']
+                                    : ['G-01', 'G-02', 'G-03', 'G-04', 'G-05', 'G-06']
+                                ).map((opt) => (
+                                    <button
+                                        key={opt}
+                                        type="button"
+                                        className="quick-assign-option"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            handleQuickAssign(quickAssign.rowIndex, quickAssign.colKey, opt);
+                                        }}
+                                    >
+                                        {opt}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
                     </div>
                 </>
             )}
@@ -518,14 +614,14 @@ export const TeachersManagement = () => {
                             onClick={() => setActiveTab('personal')}
                         >
                             <Briefcase size={16} />
-                            <span>{t('teachers.drh_info')}</span>
+                            <span>{t('teachers.personal_info')}</span>
                         </button>
                         <button
                             className={`header-tab-btn ${activeTab === 'admin' ? 'active' : ''}`}
                             onClick={() => setActiveTab('admin')}
                         >
                             <Settings size={16} />
-                            <span>{t('teachers.admin_control')}</span>
+                            <span>{t('teachers.teacher_details')}</span>
                         </button>
                     </div>
                 }
@@ -632,89 +728,90 @@ export const TeachersManagement = () => {
                         ) : (
                             <div className="admin-control-grid">
                                 <div className="config-form">
-                                    <div className="form-group mb-4">
-                                        <label className="section-label">{t('teachers.assigned_department')}</label>
-                                        <div className="visual-choice-grid">
-                                            {['الرياضيات', 'العلوم', 'اللغات', 'الترميز'].map(dept => (
-                                                <button
-                                                    key={dept}
-                                                    type="button"
-                                                    className={`choice-card ${selectedTeacher?.department === dept ? 'active' : ''}`}
-                                                >
-                                                    <Award size={18} />
-                                                    <span>{dept}</span>
-                                                </button>
-                                            ))}
-                                        </div>
-                                    </div>
-
-                                    <div className="form-group mb-4">
-                                        <label className="section-label">{t('teachers.assigned_module')}</label>
-                                        <div className="visual-choice-grid">
-                                            {['Math', 'Sciences', 'Arabic'].map(mod => (
-                                                <button
-                                                    key={mod}
-                                                    type="button"
-                                                    className={`choice-card ${selectedTeacher?.module === mod ? 'active' : ''}`}
-                                                >
-                                                    <BookOpen size={18} />
-                                                    <span>{mod}</span>
-                                                </button>
-                                            ))}
-                                        </div>
-                                    </div>
-
-                                    <div className="form-group mb-4">
-                                        <label className="section-label">{t('teachers.assigned_classes')}</label>
-                                        <div className="multi-select-chips">
-                                            {['E-01', 'E-02', 'E-03', 'E-04'].map(cls => (
-                                                <label key={cls} className="chip-checkbox">
-                                                    <input type="checkbox" defaultChecked={selectedTeacher?.class === cls} />
-                                                    <span>{cls}</span>
-                                                </label>
-                                            ))}
-                                        </div>
-                                    </div>
-
-                                    <div className="form-row mb-4">
+                                    <div className="modal-selects-row">
                                         <div className="form-group">
-                                            <label className="section-label">{t('teachers.working_hours')}</label>
-                                            <div className="time-range-group">
-                                                <input type="time" defaultValue="08:00" />
-                                                <span className="separator">→</span>
-                                                <input type="time" defaultValue="16:30" />
-                                            </div>
+                                            <label className="section-label">{t('teachers.stage')}</label>
+                                            <select
+                                                className="form-select"
+                                                value={selectedTeacher?.stage ?? ''}
+                                                onChange={() => {}}
+                                            >
+                                                <option value="">--</option>
+                                                {stageOptions.map(opt => (
+                                                    <option key={opt.id} value={opt.id}>{opt.label}</option>
+                                                ))}
+                                            </select>
                                         </div>
                                         <div className="form-group">
-                                            <label className="section-label">{t('teachers.break_times')}</label>
-                                            <div className="time-range-group">
-                                                <input type="time" defaultValue="12:00" />
-                                                <span className="separator">→</span>
-                                                <input type="time" defaultValue="13:00" />
-                                            </div>
+                                            <label className="section-label">{t('teachers.sub_stage')}</label>
+                                            <select
+                                                className="form-select"
+                                                value={selectedTeacher?.sub_stage ?? ''}
+                                                onChange={() => {}}
+                                            >
+                                                <option value="">--</option>
+                                                {subStageOptions.map(opt => (
+                                                    <option key={opt.id} value={opt.id}>{opt.label}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                        <div className="form-group">
+                                            <label className="section-label">{t('teachers.assigned_module')}</label>
+                                            <select
+                                                className="form-select"
+                                                value={selectedTeacher?.module ?? ''}
+                                                onChange={() => {}}
+                                            >
+                                                <option value="">--</option>
+                                                {moduleOptions.map(opt => (
+                                                    <option key={opt.id} value={opt.id}>{opt.label}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                        <div className="form-group">
+                                            <label className="section-label">{t('teachers.class')}</label>
+                                            <select
+                                                className="form-select"
+                                                value={selectedTeacher?.class ?? ''}
+                                                onChange={() => {}}
+                                            >
+                                                <option value="">--</option>
+                                                {classOptions.map(opt => (
+                                                    <option key={opt.id} value={opt.id}>{opt.label}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div className="form-group mb-4">
+                                        <label className="section-label">{t('teachers.weekly_hours')}</label>
+                                        <div className="read-only-value hours-per-week">
+                                            {selectedTeacher?.weekly_hours !== '' && selectedTeacher?.weekly_hours != null
+                                                ? `${selectedTeacher.weekly_hours} ${t('teachers.hours')}`
+                                                : '--'}
                                         </div>
                                     </div>
 
                                     <div className="form-group mb-4">
                                         <label className="section-label">{t('teachers.teaching_preferences')}</label>
-                                        <div className="premium-prefs-grid">
+                                        <p className="read-only-preferences-note">{t('teachers.preferences_set_by_teacher')}</p>
+                                        <div className="prefs-read-only-list">
                                             {[
-                                                { id: 'calm', label: t('teachers.pref_calm_class'), icon: Shield, checked: false },
-                                                { id: 'morning', label: t('teachers.pref_morning'), icon: Sun, checked: true },
-                                                { id: 'afternoon', label: t('teachers.pref_afternoon'), icon: Moon, checked: false },
-                                                { id: 'special', label: t('teachers.pref_special_needs'), icon: Heart, checked: true }
-                                            ].map(pref => (
-                                                <label key={pref.id} className="pref-toggle-card">
-                                                    <input type="checkbox" defaultChecked={pref.checked} />
-                                                    <div className="card-inner">
-                                                        <pref.icon size={20} className="pref-icon" />
+                                                { id: 'calm', label: t('teachers.pref_calm_class'), icon: Shield, key: 'pref_calm_class' },
+                                                { id: 'morning', label: t('teachers.pref_morning'), icon: Sun, key: 'pref_morning' },
+                                                { id: 'afternoon', label: t('teachers.pref_afternoon'), icon: Moon, key: 'pref_afternoon' },
+                                                { id: 'special', label: t('teachers.pref_special_needs'), icon: Heart, key: 'pref_special_needs' }
+                                            ].map(pref => {
+                                                const Icon = pref.icon;
+                                                const checked = !!selectedTeacher?.[pref.key];
+                                                return (
+                                                    <div key={pref.id} className={`pref-read-only-item ${checked ? 'active' : ''}`}>
+                                                        <Icon size={18} className="pref-icon" />
                                                         <span className="pref-label">{pref.label}</span>
-                                                        <div className="check-indicator">
-                                                            <Check size={12} />
-                                                        </div>
+                                                        <span className="pref-value">{checked ? t('teachers.yes') : t('teachers.no')}</span>
                                                     </div>
-                                                </label>
-                                            ))}
+                                                );
+                                            })}
                                         </div>
                                     </div>
 

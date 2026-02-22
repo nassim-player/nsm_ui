@@ -136,6 +136,14 @@
     --color-warning-rgb: 245, 158, 11;
     --color-error-rgb: 239, 68, 68;
 
+    /* Interaction & Hover States */
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --hover-bg: #f1f5f9;
+    --primary-hover: #2563eb;
+
+    /* RGB Components (extra) */
+    --color-slate-400-rgb: 148, 163, 184;
+
     /* Direction & Alignment Variables */
     --direction: ltr;
     --text-align: left;
@@ -259,6 +267,14 @@
     --glass-panel-bg: rgba(30, 41, 59, 0.5);
     --glass-panel-border: rgba(255, 255, 255, 0.08);
     --glass-panel-shadow: rgba(0, 0, 0, 0.4);
+
+    /* Interaction & Hover States */
+    --glass-bg: rgba(30, 41, 59, 0.7);
+    --hover-bg: #334155;
+    --primary-hover: #93c5fd;
+
+    /* RGB Components (extra) */
+    --color-slate-400-rgb: 100, 116, 139;
 
     /* RGB Components */
     --color-primary-rgb: 96, 165, 250;

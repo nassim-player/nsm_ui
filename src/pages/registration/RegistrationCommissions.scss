@@ -1,5 +1,5 @@
-@use "../../styles/mixins.scss" as *;
-@import "./RegistrationMeetings.scss";
+@use "../../styles/mixins" as *;
+@use "./RegistrationMeetings";
 
 .registration-commissions {
     padding: 2rem;
