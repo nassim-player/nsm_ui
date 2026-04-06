@@ -1,4 +1,486 @@
 {
+    "dist": {
+        "title": {
+            "ar": "وحدة التوزيع على الأقسام",
+            "en": "Class Distribution Unit",
+            "fr": "Unité de Distribution"
+        },
+        "subtitle": {
+            "ar": "إدارة، توزيع، وإسناد الأقسام للأساتذة استناداً إلى المعايير التربوية والمكانية",
+            "en": "Manage and distribute classes based on pedagogical guidelines",
+            "fr": "Gérez et distribuez les classes"
+        },
+        "simulate": {
+            "ar": "محاكاة (مسودة)",
+            "en": "Simulate (Draft)",
+            "fr": "Simuler (Brouillon)"
+        },
+        "approve": {
+            "ar": "اعتماد التوزيع",
+            "en": "Approve Distribution",
+            "fr": "Approuver la distribution"
+        },
+        "tab_engine": {
+            "ar": "آلية التوزيع (Engine)",
+            "en": "Distribution Engine",
+            "fr": "Moteur de distribution"
+        },
+        "tab_assignment": {
+            "ar": "إسناد الأقسام",
+            "en": "Class Assignment",
+            "fr": "Affectation des classes"
+        },
+        "tab_manual": {
+            "ar": "المكتبة المركزية للتحكم المستقل",
+            "en": "Manual Override Control",
+            "fr": "Contrôle manuel"
+        },
+        "engine_title": {
+            "ar": "المحرك الخوارزمي للتوزيع",
+            "en": "Algorithmic Distribution Engine",
+            "fr": "Moteur Algorithmique"
+        },
+        "engine_desc": {
+            "ar": "يعتمد التوزيع على الخريطة التربوية، ويقوم بخلق توازن بين الأقسام بناءً على معايير محددة سلفاً.",
+            "en": "Class distribution is based on the educational map to balance groups.",
+            "fr": "Distribution des classes pour équilibrer les groupes."
+        },
+        "btn_start_dist": {
+            "ar": "بدء التوزيع التلقائي",
+            "en": "Start Auto Distribution",
+            "fr": "Démarrer la distribution"
+        },
+        "btn_processing": {
+            "ar": "جاري المعالجة...",
+            "en": "Processing...",
+            "fr": "Traitement en cours..."
+        },
+        "prog_parsing": {
+            "ar": "تحليل بيانات الطلاب...",
+            "en": "Parsing student data...",
+            "fr": "Analyse des données..."
+        },
+        "prog_balancing": {
+            "ar": "تطبيق معايير التوازن...",
+            "en": "Applying balance criteria...",
+            "fr": "Application des critères..."
+        },
+        "prog_age": {
+            "ar": "تقييم الفوارق العمرية...",
+            "en": "Evaluating age gaps...",
+            "fr": "Évaluation des écarts d'âge..."
+        },
+        "prog_done": {
+            "ar": "إتمام التوزيع...",
+            "en": "Finalizing distribution...",
+            "fr": "Finalisation..."
+        },
+        "crit_gender": {
+            "ar": "التوازن بين الجنسين",
+            "en": "Gender Balance",
+            "fr": "Équilibre des genres"
+        },
+        "crit_gender_desc": {
+            "ar": "يضمن المحرك نسبة متقاربة بين الذكور والإناث في كل قسم.",
+            "en": "Ensures similar male/female ratio per class.",
+            "fr": "Assure un ratio similaire homme/femme."
+        },
+        "crit_academic": {
+            "ar": "القسم",
+            "en": "Class",
+            "fr": "Classe"
+        },
+        "crit_academic_desc": {
+            "ar": "مزج مستويات الأداء بإنصاف داخل الفوج الواحد.",
+            "en": "Mixing performance levels equally within a single group.",
+            "fr": "Mélange équitable des niveaux de performance."
+        },
+        "crit_age": {
+            "ar": "فوارق السن (التحضيري)",
+            "en": "Age Gaps (Prep)",
+            "fr": "Écarts d'âge (Prépa)"
+        },
+        "crit_age_desc": {
+            "ar": "فارق السن داخل الفوج الواحد لا يتجاوز 6 أشهر.",
+            "en": "Age difference within a class does not exceed 6 months.",
+            "fr": "L'écart d'âge ne dépasse pas 6 mois."
+        },
+        "crit_capacity": {
+            "ar": "طاقة الاستيعاب",
+            "en": "Capacity",
+            "fr": "Capacité"
+        },
+        "crit_capacity_desc": {
+            "ar": "التنبيه عند تجاوز العدد الأقصى المسموح به.",
+            "en": "Alerts when max capacity is exceeded.",
+            "fr": "Alerte dépassement capacité maximale."
+        },
+        "unassigned_classes": {
+            "ar": "الأقسام بانتظار إسناد الأساتذة",
+            "en": "Classes Awaiting Teachers",
+            "fr": "Classes en attente"
+        },
+        "capacity": {
+            "ar": "الطاقة",
+            "en": "Capacity",
+            "fr": "Capacité"
+        },
+        "avg_level": {
+            "ar": "المستوى العام",
+            "en": "Avg. Level",
+            "fr": "Niveau moyen"
+        },
+        "drop_zone": {
+            "ar": "اسحب الأستاذ هنا",
+            "en": "Drop Teacher Here",
+            "fr": "Déposez l'enseignant ici"
+        },
+        "avail_teachers": {
+            "ar": "الأساتذة المتاحين",
+            "en": "Available Teachers",
+            "fr": "Enseignants disponibles"
+        },
+        "search_teacher": {
+            "ar": "البحث عن أستاذ...",
+            "en": "Search Teacher...",
+            "fr": "Rechercher enseignant..."
+        },
+        "experience": {
+            "ar": "خبرة",
+            "en": "Experience",
+            "fr": "Expérience"
+        },
+        "floor_map": {
+            "ar": "الخريطة المكانية للطوابق",
+            "en": "Spatial Floor Map",
+            "fr": "Carte spatiale des étages"
+        },
+        "ground_floor": {
+            "ar": "الطابق الأرضي (التحضيري والأولى)",
+            "en": "Ground Floor (Prep & 1st)",
+            "fr": "Rez-de-chaussée (Prépa & 1ère)"
+        },
+        "first_floor": {
+            "ar": "الطابق الأول",
+            "en": "First Floor",
+            "fr": "Premier étage"
+        },
+        "empty_room": {
+            "ar": "فارغة",
+            "en": "Empty",
+            "fr": "Vide"
+        },
+        "btn_transfer": {
+            "ar": "أداة تحويل التلاميذ (يدوي)",
+            "en": "Manual Student Transfer",
+            "fr": "Transfert manuel"
+        },
+        "max_capacity_label": {
+            "ar": "الطاقة الاستيعابية",
+            "en": "Max Capacity",
+            "fr": "Capacité maximale"
+        },
+        "overcrowded_warn": {
+            "ar": "تجاوز للحد الأقصى!",
+            "en": "Max Capacity Exceeded!",
+            "fr": "Capacité max dépassée!"
+        },
+        "males": {
+            "ar": "ذكور",
+            "en": "Males",
+            "fr": "Garçons"
+        },
+        "females": {
+            "ar": "إناث",
+            "en": "Females",
+            "fr": "Filles"
+        },
+        "assigned_teacher_label": {
+            "ar": "الأستاذ المسند:",
+            "en": "Assigned Teacher:",
+            "fr": "Enseignant assigné:"
+        },
+        "unassigned": {
+            "ar": "غير مسند بعد",
+            "en": "Unassigned",
+            "fr": "Non assigné"
+        },
+        "max_age_gap": {
+            "ar": "الفارق العمري الأقصى:",
+            "en": "Max Age Gap:",
+            "fr": "Écart max d'âge:"
+        },
+        "transfer_title": {
+            "ar": "أداة تحويل التلاميذ (التدخل اليدوي)",
+            "en": "Student Transfer Tool (Manual Override)",
+            "fr": "Outil de transfert (Manuel)"
+        },
+        "search_student_label": {
+            "ar": "ابحث عن التلميذ",
+            "en": "Search Student",
+            "fr": "Rechercher étudiant"
+        },
+        "search_student_placeholder": {
+            "ar": "اكتب اسم التلميذ أو رقمه...",
+            "en": "Type student name or ID...",
+            "fr": "Nom ou ID étudiant..."
+        },
+        "from_class_label": {
+            "ar": "من القسم (الحالي)",
+            "en": "From Class (Current)",
+            "fr": "Classe de départ"
+        },
+        "select_class": {
+            "ar": "اختر القسم...",
+            "en": "Select Class...",
+            "fr": "Sélectionner classe..."
+        },
+        "to_class_label": {
+            "ar": "إلى القسم (الوجهة)",
+            "en": "To Class (Destination)",
+            "fr": "Classe de destination"
+        },
+        "transfer_warning": {
+            "ar": "سينتج عن هذا التحويل تغيير بنسبة الذكور/الإناث في كلا القسمين وقد يتم تجاوز السعة المعيارية. يرجى المراجعة.",
+            "en": "This transfer will re-balance the gender ratio and capacity limits. Please review.",
+            "fr": "Ce transfert va modifier l'équilibre des genres et la capacité. Veuillez vérifier."
+        },
+        "btn_confirm": {
+            "ar": "تأكيد التحويل",
+            "en": "Confirm Transfer",
+            "fr": "Confirmer transfert"
+        },
+        "transfer_success_msg": {
+            "ar": "تم حفظ التحويل بنجاح، يجب مراجعة تأثير التوازن!",
+            "en": "Transfer saved successfully. Please review the new balance!",
+            "fr": "Transfert effectué. Vérifiez l'équilibre !"
+        },
+        "alert_success": {
+            "ar": "تم حفظ التحويل بنجاح، يجب مراجعة تأثير التوازن!",
+            "en": "Transfer saved successfully, please review balance limits!",
+            "fr": "Transfert enregistré avec succès, vérifiez les limites !"
+        },
+        "btn_cancel": {
+            "ar": "إلغاء",
+            "en": "Cancel",
+            "fr": "Annuler"
+        },
+        "search_class": {
+            "ar": "بحث عن قسم...",
+            "en": "Search Class...",
+            "fr": "Rechercher classe..."
+        },
+        "tab_stats": {
+            "ar": "الإحصائيات",
+            "en": "Statistics",
+            "fr": "Statistiques"
+        },
+        "tab_teachers": {
+            "ar": "الأساتذة",
+            "en": "Teachers",
+            "fr": "Enseignants"
+        },
+        "tab_students": {
+            "ar": "التلاميذ",
+            "en": "Students",
+            "fr": "Étudiants"
+        },
+        "stage_max_teachers": {
+            "ar": "الحد الأقصى للمرحلة:",
+            "en": "Stage Max Teachers:",
+            "fr": "Max enseignants par cycle:"
+        },
+        "tab_students_list_title": {
+            "ar": "قائمة التلاميذ",
+            "en": "Students List",
+            "fr": "Liste des élèves"
+        },
+        "no_students_registered": {
+            "ar": "لا يوجد تلاميذ مسجلين حالياً",
+            "en": "No students registered currently",
+            "fr": "Aucun élève inscrit actuellement"
+        },
+        "stage_label": {
+            "ar": "المرحلة",
+            "en": "Stage",
+            "fr": "Cycle"
+        },
+        "stage_p": {
+            "ar": "ابتدائي",
+            "en": "Primary",
+            "fr": "Primaire"
+        },
+        "stage_m": {
+            "ar": "متوسط",
+            "en": "Middle",
+            "fr": "Moyen"
+        },
+        "stage_k": {
+            "ar": "تحضيري",
+            "en": "Preschool",
+            "fr": "Maternelle"
+        },
+        "teachers_plural": {
+            "ar": "أساتذة",
+            "en": "teachers",
+            "fr": "enseignants"
+        },
+        "view_grid": {
+            "ar": "عرض شبكي",
+            "en": "Grid View",
+            "fr": "Vue grille"
+        },
+        "view_table": {
+            "ar": "عرض جدول",
+            "en": "Table View",
+            "fr": "Vue tableau"
+        },
+        "additional_info": {
+            "ar": "معلومات إضافية",
+            "en": "Additional Info",
+            "fr": "Infos sup"
+        },
+        "max_age_gap_val": {
+            "ar": "أقصى فارق عمري:",
+            "en": "Max Age Gap:",
+            "fr": "Écart d'âge max :"
+        },
+        "occupancy_status": {
+            "ar": "حالة الاكتظاظ:",
+            "en": "Occupancy Status:",
+            "fr": "Statut d'occupation :"
+        },
+        "overcrowding_critical": {
+            "ar": "حرجة",
+            "en": "Critical",
+            "fr": "Critique"
+        },
+        "overcrowding_normal": {
+            "ar": "طبيعية",
+            "en": "Normal",
+            "fr": "Normale"
+        },
+        "assign_assigned": {
+            "ar": "أقسام مسندة",
+            "en": "Assigned",
+            "fr": "Assignées"
+        },
+        "assign_pending": {
+            "ar": "بانتظار الإسناد",
+            "en": "Pending",
+            "fr": "En attente"
+        },
+        "assign_total_teachers": {
+            "ar": "إجمالي الأساتذة",
+            "en": "Total Teachers",
+            "fr": "Total enseignants"
+        },
+        "assign_available": {
+            "ar": "أساتذة متاحين",
+            "en": "Available",
+            "fr": "Disponibles"
+        },
+        "assign_classes_title": {
+            "ar": "الأقسام",
+            "en": "Classes",
+            "fr": "Classes"
+        },
+        "assign_all": {
+            "ar": "الكل",
+            "en": "All",
+            "fr": "Tous"
+        },
+        "assign_current_teachers": {
+            "ar": "الأساتذة الحاليين",
+            "en": "Current Teachers",
+            "fr": "Enseignants actuels"
+        },
+        "assign_new": {
+            "ar": "جديد",
+            "en": "New",
+            "fr": "Nouveau"
+        },
+        "assign_no_teachers": {
+            "ar": "لا يوجد أساتذة متاحين لهذه المادة",
+            "en": "No teachers available for this subject",
+            "fr": "Aucun enseignant disponible pour cette matière"
+        },
+        "assign_pick_teacher": {
+            "ar": "اختر أستاذ للإسناد",
+            "en": "Pick a Teacher to Assign",
+            "fr": "Choisir un enseignant"
+        },
+        "assign_slots": {
+            "ar": "مقاعد",
+            "en": "slots",
+            "fr": "places"
+        },
+        "assign_max_reached": {
+            "ar": "تم بلوغ الحد الأقصى من الأساتذة لهذا القسم",
+            "en": "Maximum teacher slots reached for this class",
+            "fr": "Nombre maximum d'enseignants atteint pour cette classe"
+        },
+        "assign_modules_filled": {
+            "ar": "مواد مسندة",
+            "en": "Modules Filled",
+            "fr": "Matières assignées"
+        },
+        "assign_modules_empty": {
+            "ar": "مواد شاغرة",
+            "en": "Modules Empty",
+            "fr": "Matières vacantes"
+        },
+        "assign_total_slots": {
+            "ar": "إجمالي المواد",
+            "en": "Total Modules",
+            "fr": "Total matières"
+        },
+        "assign_modules_label": {
+            "ar": "مواد",
+            "en": "modules",
+            "fr": "matières"
+        },
+        "assign_picking_for": {
+            "ar": "اختيار أستاذ لمادة",
+            "en": "Pick teacher for",
+            "fr": "Choisir enseignant pour"
+        },
+        "assign_student_roster": {
+            "ar": "قائمة تلاميذ القسم",
+            "en": "Class Student Roster",
+            "fr": "Liste des élèves"
+        },
+        "assign_select_class_view": {
+            "ar": "اختر القسم لعرض التلاميذ...",
+            "en": "Select class to view students...",
+            "fr": "Sélectionner la classe..."
+        },
+        "assign_select_class_prompt": {
+            "ar": "اختر قسماً من القائمة أعلاه لعرض قائمة التلاميذ",
+            "en": "Select a class from the dropdown above to view its students",
+            "fr": "Sélectionnez une classe pour voir ses élèves"
+        },
+        "assign_student_name": {
+            "ar": "اسم التلميذ",
+            "en": "Student Name",
+            "fr": "Nom de l'élève"
+        },
+        "assign_student_id": {
+            "ar": "الرقم",
+            "en": "ID",
+            "fr": "ID"
+        },
+        "assign_search_student": {
+            "ar": "بحث عن تلميذ...",
+            "en": "Search student...",
+            "fr": "Rechercher élève..."
+        },
+        "assign_total_students": {
+            "ar": "إجمالي التلاميذ",
+            "en": "Total Students",
+            "fr": "Total élèves"
+        }
+    },
     "common": {
         "search": {
             "ar": "بحث...",
@@ -14,6 +496,16 @@
             "ar": "إغلاق",
             "en": "Close",
             "fr": "Fermer"
+        },
+        "cancel": {
+            "ar": "إلغاء",
+            "en": "Cancel",
+            "fr": "Annuler"
+        },
+        "save": {
+            "ar": "حفظ",
+            "en": "Save",
+            "fr": "Enregistrer"
         }
     },
     "total_requests": {
@@ -202,6 +694,11 @@
             "en": "HR Management",
             "fr": "Gestion RH"
         },
+        "complaints": {
+            "ar": "الشكاوي والاقتراحات",
+            "en": "Complaints & Suggestions",
+            "fr": "Plaintes et Suggestions"
+        },
         "account": {
             "ar": "الحساب",
             "en": "Account",
@@ -271,6 +768,485 @@
             "ar": "المواعيد والاستقبال",
             "en": "Reception",
             "fr": "Réception"
+        },
+        "group_core": {
+            "ar": "الرئيسية",
+            "en": "Home",
+            "fr": "Accueil"
+        },
+        "group_people": {
+            "ar": "الأفراد",
+            "en": "People",
+            "fr": "Personnes"
+        },
+        "group_academic": {
+            "ar": "الدراسة",
+            "en": "Academic",
+            "fr": "Académique"
+        },
+        "group_comms": {
+            "ar": "العمليات",
+            "en": "Operations",
+            "fr": "Opérations"
+        },
+        "safe_exit": {
+            "ar": "بوابة الخروج الآمن",
+            "en": "Safe Exit Gate",
+            "fr": "Porte de Sortie Sécurisée"
+        },
+        "scheduling": {
+            "ar": "الجداول الذكية",
+            "en": "Smart Scheduling",
+            "fr": "Planification Intelligente"
+        },
+        "dist": {
+            "title": {
+                "ar": "توزيع الأقسام",
+                "en": "Class Distribution",
+                "fr": "Distribution des Classes"
+            },
+            "stage_label": {
+                "ar": "المرحلة",
+                "en": "Stage",
+                "fr": "Niveau"
+            }
+        },
+        "distribution": {
+            "ar": "التوزيع على الأقسام",
+            "en": "Class Distribution",
+            "fr": "Distribution des classes"
+        }
+    },
+    "scheduling": {
+        "search_placeholder": {
+            "ar": "البحث عن أستاذ أو مادة...",
+            "en": "Search teacher or subject...",
+            "fr": "Rechercher enseignant ou matière..."
+        },
+        "shift_edit_hint": {
+            "ar": "اضغط مع الاستمرار على Shift والنقر للتحرير",
+            "en": "Hold Shift and click to edit",
+            "fr": "Maintenez Shift et cliquez pour modifier"
+        },
+        "enable_edit_mode": {
+            "ar": "تفعيل التعديل",
+            "en": "Enable Edit Mode",
+            "fr": "Activer le mode édition"
+        },
+        "disable_edit_mode": {
+            "ar": "تعطيل التعديل",
+            "en": "Disable Edit Mode",
+            "fr": "Désactiver le mode édition"
+        },
+        "edit_session": {
+            "ar": "تعديل الحصة",
+            "en": "Edit Session",
+            "fr": "Modifier la session"
+        },
+        "nav_generator": {
+            "ar": "مولد الجداول",
+            "en": "Schedule Generator",
+            "fr": "Générateur de planning"
+        },
+        "nav_master": {
+            "ar": "الجدول العام",
+            "en": "Master Timetable",
+            "fr": "Emploi du temps général"
+        },
+        "unit_badge": {
+            "ar": "الوحدة 5",
+            "en": "Unit 5",
+            "fr": "Unité 5"
+        },
+        "gen_title": {
+            "ar": "مولّد الجداول (محرك الجدولة)",
+            "en": "Schedule Generator (Engine)",
+            "fr": "Générateur de planning (Moteur)"
+        },
+        "gen_desc": {
+            "ar": "توليد تلقائي للجدول وفق القيود المعرفة، مع إمكانية التدخل اليدوي",
+            "en": "Auto-generate timetables from defined constraints, with manual override",
+            "fr": "Génération automatique des emplois du temps selon les contraintes définies"
+        },
+        "stats_classes": {
+            "ar": "أقسام",
+            "en": "Classes",
+            "fr": "Classes"
+        },
+        "stats_teachers": {
+            "ar": "أساتذة",
+            "en": "Teachers",
+            "fr": "Enseignants"
+        },
+        "stats_rooms": {
+            "ar": "قاعات",
+            "en": "Rooms",
+            "fr": "Salles"
+        },
+        "stats_slots": {
+            "ar": "حصص أسبوعية",
+            "en": "Weekly Slots",
+            "fr": "Créneaux hebdo"
+        },
+        "engine_panel_title": {
+            "ar": "لوحة تحكم المحرك",
+            "en": "Engine Control Panel",
+            "fr": "Panneau de contrôle du moteur"
+        },
+        "engine_idle": {
+            "ar": "المحرك جاهز",
+            "en": "Engine Ready",
+            "fr": "Moteur prêt"
+        },
+        "engine_idle_desc": {
+            "ar": "اضغط على 'توليد الجدول' للبدء",
+            "en": "Press 'Generate Schedule' to start",
+            "fr": "Appuyer sur 'Générer' pour commencer"
+        },
+        "engine_running": {
+            "ar": "جارٍ التوليد...",
+            "en": "Generating...",
+            "fr": "Génération en cours..."
+        },
+        "engine_running_desc": {
+            "ar": "معالجة القيود...",
+            "en": "Processing constraints...",
+            "fr": "Traitement des contraintes..."
+        },
+        "engine_done": {
+            "ar": "تم التوليد بنجاح!",
+            "en": "Generation Complete!",
+            "fr": "Génération terminée!"
+        },
+        "engine_done_desc": {
+            "ar": "الجدول جاهز. انتقل إلى عرض الجدول العام",
+            "en": "Timetable ready. Go to Master View",
+            "fr": "Emploi du temps prêt. Aller à la vue générale"
+        },
+        "engine_error": {
+            "ar": "خطأ في التوليد",
+            "en": "Generation Error",
+            "fr": "Erreur de génération"
+        },
+        "btn_generate": {
+            "ar": "توليد الجدول",
+            "en": "Generate Schedule",
+            "fr": "Générer le planning"
+        },
+        "btn_regenerate": {
+            "ar": "إعادة التوليد",
+            "en": "Regenerate",
+            "fr": "Régénérer"
+        },
+        "btn_running": {
+            "ar": "جارٍ التوليد...",
+            "en": "Running...",
+            "fr": "En cours..."
+        },
+        "btn_reset": {
+            "ar": "إعادة تعيين",
+            "en": "Reset",
+            "fr": "Réinitialiser"
+        },
+        "conflicts_found": {
+            "ar": "تعارض مكتشف",
+            "en": "conflicts found",
+            "fr": "conflits détectés"
+        },
+        "conflicts_resolved": {
+            "ar": "تم حلها",
+            "en": "resolved",
+            "fr": "résolus"
+        },
+        "gen_success_title": {
+            "ar": "تم توليد الجدول بنجاح!",
+            "en": "Schedule Generated Successfully!",
+            "fr": "Planning généré avec succès!"
+        },
+        "gen_success_desc": {
+            "ar": "يمكنك الآن مراجعة الجدول وتعديله من علامة تبويب عرض الجدول العام",
+            "en": "You can now review and edit the timetable from the Master View tab",
+            "fr": "Vous pouvez maintenant revoir et modifier l'emploi du temps"
+        },
+        "constraints_title": {
+            "ar": "القيود النشطة",
+            "en": "Active Constraints",
+            "fr": "Contraintes actives"
+        },
+        "constraints_active": {
+            "ar": "قيد نشط",
+            "en": "active",
+            "fr": "actives"
+        },
+        "constraint_teacher_avail": {
+            "ar": "توفر الأساتذة",
+            "en": "Teacher Availability",
+            "fr": "Disponibilité des enseignants"
+        },
+        "constraint_teacher_avail_desc": {
+            "ar": "أيام الراحة وتفضيل صباحي/مسائي من الوحدة 3",
+            "en": "Rest days & morning/evening preferences from Unit 3",
+            "fr": "Jours de repos et préférences horaires de l'Unité 3"
+        },
+        "constraint_hour_quota": {
+            "ar": "الحجم الساعي الأسبوعي",
+            "en": "Weekly Hour Volume",
+            "fr": "Volume horaire hebdomadaire"
+        },
+        "constraint_hour_quota_desc": {
+            "ar": "احترام الحجم الساعي القانوني لكل مادة",
+            "en": "Legal weekly hour volume per subject must be respected",
+            "fr": "Volume horaire légal hebdomadaire par matière"
+        },
+        "constraint_room_cap": {
+            "ar": "طاقة القاعات",
+            "en": "Room Capacity",
+            "fr": "Capacité des salles"
+        },
+        "constraint_room_cap_desc": {
+            "ar": "تطابق عدد التلاميذ مع طاقة القاعة من الوحدة 0",
+            "en": "Match class sizes to room capacity from Unit 0",
+            "fr": "Correspondance effectifs/capacité salle (Unité 0)"
+        },
+        "constraint_no_overlap": {
+            "ar": "منع التضارب",
+            "en": "No-Overlap Rule",
+            "fr": "Règle anti-chevauchement"
+        },
+        "constraint_no_overlap_desc": {
+            "ar": "لا تدريس في فصلين في نفس الوقت",
+            "en": "A teacher cannot be in two rooms simultaneously",
+            "fr": "Un enseignant ne peut pas être dans deux salles à la fois"
+        },
+        "status_ok": {
+            "ar": "سليم",
+            "en": "OK",
+            "fr": "OK"
+        },
+        "status_warning": {
+            "ar": "تحذير",
+            "en": "Warning",
+            "fr": "Avertissement"
+        },
+        "status_error": {
+            "ar": "خطأ",
+            "en": "Error",
+            "fr": "Erreur"
+        },
+        "gen_steps_title": {
+            "ar": "خطوات التوليد",
+            "en": "Generation Steps",
+            "fr": "Étapes de génération"
+        },
+        "gen_step_parse": {
+            "ar": "تحليل بيانات المدرسة",
+            "en": "Parsing school data",
+            "fr": "Analyse des données scolaires"
+        },
+        "gen_step_teachers": {
+            "ar": "تحميل بيانات الأساتذة وتفضيلاتهم",
+            "en": "Loading teachers & preferences",
+            "fr": "Chargement enseignants et préférences"
+        },
+        "gen_step_quotas": {
+            "ar": "حساب الحجم الساعي لكل مادة",
+            "en": "Computing hourly quotas per subject",
+            "fr": "Calcul des volumes horaires par matière"
+        },
+        "gen_step_rooms": {
+            "ar": "مطابقة القاعات مع الفصول",
+            "en": "Matching rooms to classes",
+            "fr": "Attribution des salles aux classes"
+        },
+        "gen_step_conflicts": {
+            "ar": "كشف التضاربات ومعالجتها",
+            "en": "Detecting & resolving conflicts",
+            "fr": "Détection et résolution des conflits"
+        },
+        "gen_step_optimize": {
+            "ar": "تحسين الجدول وتوزيعه",
+            "en": "Optimizing schedule distribution",
+            "fr": "Optimisation de la distribution"
+        },
+        "gen_step_finalize": {
+            "ar": "إنهاء الجدول وحفظه",
+            "en": "Finalizing & saving schedule",
+            "fr": "Finalisation et sauvegarde"
+        },
+        "engine_log_title": {
+            "ar": "سجل المحرك",
+            "en": "Engine Log",
+            "fr": "Journal du moteur"
+        },
+        "log_clear": {
+            "ar": "مسح السجل",
+            "en": "Clear Log",
+            "fr": "Vider le journal"
+        },
+        "log_empty": {
+            "ar": "لا توجد سجلات بعد. ابدأ التوليد لرؤية مسار التجهيز",
+            "en": "No logs yet. Start generation to see output",
+            "fr": "Aucun journal. Démarrez la génération pour voir les résultats"
+        },
+        "log_start": {
+            "ar": "[محرك] بدء توليد الجدول…",
+            "en": "[ENGINE] Starting schedule generation...",
+            "fr": "[MOTEUR] Démarrage de la génération..."
+        },
+        "log_parsing": {
+            "ar": "[تحليل] تحميل بيانات 18 قسم ، 28 أستاذ ، 22 قاعة",
+            "en": "[PARSE] Loading 18 classes, 28 teachers, 22 rooms",
+            "fr": "[PARSE] Chargement 18 classes, 28 enseignants, 22 salles"
+        },
+        "log_teachers_loaded": {
+            "ar": "[أساتذة] تحميل تفضيلات 28 أستاذ بنجاح",
+            "en": "[TEACHERS] 28 teacher preference profiles loaded",
+            "fr": "[ENSEIGNANTS] 28 profils de préférences chargés"
+        },
+        "log_quotas_check": {
+            "ar": "[حجم ساعي] التحقق من الحجم الساعي لـ 14 مادة",
+            "en": "[QUOTAS] Validating hour volume for 14 subjects",
+            "fr": "[QUOTAS] Validation volume horaire pour 14 matières"
+        },
+        "log_rooms_check": {
+            "ar": "[قاعات] مطابقة القاعات مع طاقة الفصول",
+            "en": "[ROOMS] Matching rooms to class capacities",
+            "fr": "[SALLES] Attribution salles aux capacités des classes"
+        },
+        "log_conflict_detected": {
+            "ar": "[تحذير] تعارض مكتشف: أستاذ 'محمد علي' في فصلين في نفس الوقت",
+            "en": "[WARN] Conflict detected: 'Mohamed Ali' in 2 rooms at same slot",
+            "fr": "[ALERTE] Conflit détecté: 'Mohamed Ali' dans 2 salles simultanément"
+        },
+        "log_conflict_resolved": {
+            "ar": "[حل] تم حل التعارض بنجاح بالتعيين في فترة بديلة",
+            "en": "[RESOLVED] Conflict resolved by assigning alternate slot",
+            "fr": "[RÉSOLU] Conflit résolu par attribution d'un créneau alternatif"
+        },
+        "log_optimizing": {
+            "ar": "[تحسين] توزيع الحصص وفق تفضيلات الصباحي/المسائي",
+            "en": "[OPTIMIZE] Distributing sessions per morning/evening rules",
+            "fr": "[OPTIMISE] Distribution selon préférences matin/soir"
+        },
+        "log_done": {
+            "ar": "[محرك] ✅ الجدول جاهز — 0 تعارضات متبقية",
+            "en": "[ENGINE] ✅ Schedule complete — 0 conflicts remaining",
+            "fr": "[MOTEUR] ✅ Planning terminé — 0 conflits restants"
+        },
+        "master_title": {
+            "ar": "عرض الجدول العام",
+            "en": "Master Timetable View",
+            "fr": "Vue générale de l'emploi du temps"
+        },
+        "master_desc": {
+            "ar": "جدول الدروس بصورة كاملة — اسحب وأفلت لتعديل الجلسات",
+            "en": "Full week timetable grid — drag & drop to adjust sessions",
+            "fr": "Grille complète de la semaine — glisser-déposer pour ajuster"
+        },
+        "conflicts_detected": {
+            "ar": "تعارض مكتشف",
+            "en": "conflicts detected",
+            "fr": "conflits détectés"
+        },
+        "show_conflicts_only": {
+            "ar": "عرض التعارضات فقط",
+            "en": "Show Conflicts Only",
+            "fr": "Afficher conflits uniquement"
+        },
+        "export_pdf": {
+            "ar": "تصدير PDF",
+            "en": "Export PDF",
+            "fr": "Exporter PDF"
+        },
+        "view_class": {
+            "ar": "عرض الفصل",
+            "en": "Class View",
+            "fr": "Vue classe"
+        },
+        "view_teacher": {
+            "ar": "عرض الأستاذ",
+            "en": "Teacher View",
+            "fr": "Vue enseignant"
+        },
+        "grid_time": {
+            "ar": "الوقت / اليوم",
+            "en": "Time / Day",
+            "fr": "Heure / Jour"
+        },
+        "conflict": {
+            "ar": "تعارض",
+            "en": "Conflict",
+            "fr": "Conflit"
+        },
+        "instant_resolution": {
+            "ar": "حل فوري",
+            "en": "Instant Resolution",
+            "fr": "Résolution instantanée"
+        },
+        "pref_label": {
+            "ar": "تفضيل",
+            "en": "Preference",
+            "fr": "Préférence"
+        },
+        "rest_day": {
+            "ar": "يوم راحة",
+            "en": "Rest Day",
+            "fr": "Jour de repos"
+        },
+        "room_capacity": {
+            "ar": "طاقة",
+            "en": "Capacity",
+            "fr": "Capacité"
+        },
+        "room_lab": {
+            "ar": "مختبر",
+            "en": "Lab",
+            "fr": "Laboratoire"
+        },
+        "room_class": {
+            "ar": "قاعة دراسية",
+            "en": "Classroom",
+            "fr": "Salle de classe"
+        },
+        "legend_subjects": {
+            "ar": "المواد",
+            "en": "Subjects",
+            "fr": "Matières"
+        },
+        "legend_conflict": {
+            "ar": "تعارض",
+            "en": "Conflict",
+            "fr": "Conflit"
+        },
+        "legend_legal_slot": {
+            "ar": "خانة مسموحة",
+            "en": "Legal Slot",
+            "fr": "Créneau autorisé"
+        },
+        "legend_illegal_slot": {
+            "ar": "خانة محظورة",
+            "en": "Illegal Slot",
+            "fr": "Créneau interdit"
+        },
+        "teacher_reference": {
+            "ar": "مرجع الأساتذة",
+            "en": "Teacher Reference",
+            "fr": "Référence enseignants"
+        },
+        "stage_all": {
+            "ar": "كل المراحل",
+            "en": "All Stages",
+            "fr": "Toutes les étapes"
+        },
+        "stage_primary": {
+            "ar": "ابتدائي",
+            "en": "Primary",
+            "fr": "Primaire"
+        },
+        "stage_middle": {
+            "ar": "متوسط",
+            "en": "Middle",
+            "fr": "Moyen"
         }
     },
     "req": {
@@ -2170,8 +3146,8 @@
         },
         "publications_desc": {
             "ar": "إدارة الإشعارات والمنشورات المرسلة لأولياء الأمور والطلاب والمعلمين",
-            "en": "Manage notices and publications sent to parents, students, and teachers",
-            "fr": "Gérer les avis et les publications envoyés aux parents, élèves et enseignants"
+            "en": "Manage notifications and publications sent to parents, students and teachers",
+            "fr": "Gérer les notifications et publications envoyées aux parents, étudiants et enseignants"
         },
         "schedule_publication": {
             "ar": "نشر منشور جديد",
@@ -2638,6 +3614,66 @@
             "en": "Worker Publications",
             "fr": "Publications du personnel"
         },
+        "tab_regulations": {
+            "ar": "التعليمات و اللوائح",
+            "en": "Regulations & Guidelines",
+            "fr": "Règlements et directives"
+        },
+        "create_publication": {
+            "ar": "إنشاء منشور / تعليمة جديدة",
+            "en": "Create Publication / Instruction",
+            "fr": "Créer une publication / instruction"
+        },
+        "all_publications": {
+            "ar": "الكل",
+            "en": "All",
+            "fr": "Tous"
+        },
+        "exam_periods": {
+            "ar": "فترات الامتحانات",
+            "en": "Exam Periods",
+            "fr": "Périodes d'examens"
+        },
+        "vacations_upcoming": {
+            "ar": "عطل قادمة",
+            "en": "Upcoming Vacations",
+            "fr": "Vacances à venir"
+        },
+        "celebrations_activities": {
+            "ar": "احتفالات وأنشطة",
+            "en": "Celebrations & Activities",
+            "fr": "Célébrations et activités"
+        },
+        "event_vacation": {
+            "ar": "عطلة",
+            "en": "Vacation",
+            "fr": "Vacances"
+        },
+        "event_exam_period": {
+            "ar": "فترة امتحانات",
+            "en": "Exam Period",
+            "fr": "Période d'examens"
+        },
+        "event_celebration": {
+            "ar": "احتفال",
+            "en": "Celebration",
+            "fr": "Célébration"
+        },
+        "event_activity": {
+            "ar": "نشاط",
+            "en": "Activity",
+            "fr": "Activité"
+        },
+        "event_type": {
+            "ar": "نوع الحدث",
+            "en": "Event Type",
+            "fr": "Type d'événement"
+        },
+        "event_description": {
+            "ar": "وصف الحدث (اختياري)",
+            "en": "Event Description (optional)",
+            "fr": "Description de l'événement (optionnel)"
+        },
         "manage_categories": {
             "ar": "إدارة التصنيفات",
             "en": "Manage Categories",
@@ -2962,9 +3998,184 @@
             "ar": "ملفات",
             "en": "files",
             "fr": "fichiers"
+        },
+        "choose_icon": {
+            "ar": "اختر رمزاً",
+            "en": "Choose an Icon",
+            "fr": "Choisir une icône"
+        },
+        "define_period_subtitle": {
+            "ar": "حدد نوع الحدث والتفاصيل والتواريخ",
+            "en": "Set the event type, details, and dates",
+            "fr": "Définissez le type, les détails et les dates de l'événement"
+        },
+        "start_date": {
+            "ar": "من",
+            "en": "From",
+            "fr": "Du"
+        },
+        "end_date": {
+            "ar": "إلى",
+            "en": "To",
+            "fr": "Au"
+        },
+        "same_day": {
+            "ar": "نفس اليوم",
+            "en": "Same Day",
+            "fr": "Même jour"
+        },
+        "event_name": {
+            "ar": "اسم الحدث",
+            "en": "Event Name",
+            "fr": "Nom de l'événement"
+        },
+        "event_name_placeholder": {
+            "ar": "مثال: عطلة الشتاء، أسبوع العلوم...",
+            "en": "e.g. Winter Break, Science Week...",
+            "fr": "ex : Vacances d'hiver, Semaine des sciences..."
+        },
+        "event_name_icon": {
+            "ar": "اسم الحدث والرمز",
+            "en": "Event Name & Icon",
+            "fr": "Nom et icône de l'événement"
+        },
+        "event_name_icon_hint": {
+            "ar": "أدخل اسم الحدث واختر رمزاً مناسباً",
+            "en": "Enter the event name and choose a suitable icon",
+            "fr": "Saisissez le nom de l'événement et choisissez une icône appropriée"
+        },
+        "event_details": {
+            "ar": "تفاصيل الحدث",
+            "en": "Event Details",
+            "fr": "Détails de l'événement"
+        },
+        "event_details_hint": {
+            "ar": "أضف وصفاً اختيارياً للحدث",
+            "en": "Add an optional description for the event",
+            "fr": "Ajoutez une description optionnelle pour l'événement"
+        },
+        "event_description_placeholder": {
+            "ar": "أضف وصفاً مختصراً للحدث...",
+            "en": "Add a brief description of the event...",
+            "fr": "Ajoutez une brève description de l'événement..."
+        },
+        "event_dates": {
+            "ar": "تاريخ الحدث",
+            "en": "Event Dates",
+            "fr": "Dates de l'événement"
+        },
+        "event_dates_hint": {
+            "ar": "التواريخ المحددة من التقويم",
+            "en": "Dates selected from the calendar",
+            "fr": "Dates sélectionnées depuis le calendrier"
+        },
+        "untitled_event": {
+            "ar": "حدث بدون عنوان",
+            "en": "Untitled Event",
+            "fr": "Événement sans titre"
+        },
+        "no_icon_selected": {
+            "ar": "بدون رمز",
+            "en": "No icon selected",
+            "fr": "Aucune icône sélectionnée"
+        },
+        "icon_star": {
+            "ar": "نجمة",
+            "en": "Star",
+            "fr": "Étoile"
+        },
+        "icon_sun": {
+            "ar": "شمس",
+            "en": "Sun",
+            "fr": "Soleil"
+        },
+        "icon_book": {
+            "ar": "كتاب",
+            "en": "Book",
+            "fr": "Livre"
+        },
+        "icon_award": {
+            "ar": "جائزة",
+            "en": "Award",
+            "fr": "Prix"
+        },
+        "icon_bell": {
+            "ar": "جرس",
+            "en": "Bell",
+            "fr": "Cloche"
+        },
+        "icon_heart": {
+            "ar": "قلب",
+            "en": "Heart",
+            "fr": "Cœur"
+        },
+        "icon_flag": {
+            "ar": "علم",
+            "en": "Flag",
+            "fr": "Drapeau"
+        },
+        "icon_music": {
+            "ar": "موسيقى",
+            "en": "Music",
+            "fr": "Musique"
+        },
+        "icon_users": {
+            "ar": "مجموعة",
+            "en": "Group",
+            "fr": "Groupe"
+        },
+        "icon_briefcase": {
+            "ar": "حقيبة",
+            "en": "Briefcase",
+            "fr": "Mallette"
+        },
+        "icon_globe": {
+            "ar": "عالم",
+            "en": "Globe",
+            "fr": "Globe"
+        },
+        "icon_zap": {
+            "ar": "برق",
+            "en": "Lightning",
+            "fr": "Éclair"
         }
     },
     "reception": {
+        "peak_label": {
+            "ar": "أعلى ذروة",
+            "en": "Peak",
+            "fr": "Pique"
+        },
+        "peak_hours": {
+            "ar": "ساعات الذروة لتوافد الزوار",
+            "en": "Peak Visitor Hours",
+            "fr": "Heures de pointe des visiteurs"
+        },
+        "purpose_inquiry": {
+            "ar": "استفسار عام",
+            "en": "General Inquiry",
+            "fr": "Demande générale"
+        },
+        "purpose_registration": {
+            "ar": "تسجيل تلميذ",
+            "en": "Student Registration",
+            "fr": "Inscription d'étudiant"
+        },
+        "purpose_documents": {
+            "ar": "استخراج وثائق",
+            "en": "Document Requests",
+            "fr": "Demandes de documents"
+        },
+        "purpose_other": {
+            "ar": "أخرى",
+            "en": "Other",
+            "fr": "Autre"
+        },
+        "visits_breakdown": {
+            "ar": "أسباب الزيارة الشائعة",
+            "en": "Common Visit Purposes",
+            "fr": "Motifs de visite fréquents"
+        },
         "title": {
             "ar": "المواعيد والاستقبالات",
             "en": "Appointments & Receptions",
@@ -2972,10 +4183,13 @@
         },
         "subtitle": {
             "ar": "لوحة تحكم مركزية لإدارة الزيارات والمواعيد",
-            "en": "Centralized dashboard for visits and appointments"
+            "en": "Centralized dashboard for visits and appointments",
+            "fr": "Tableau de bord centralisé pour les visites et rendez-vous"
         },
         "search_archive": {
-            "ar": "البحث في سجل الزيارات السابقة..."
+            "ar": "البحث في سجل الزيارات السابقة...",
+            "en": "Search past visit records...",
+            "fr": "Rechercher dans les archives de visites..."
         },
         "master_schedule": {
             "ar": "الجدول الزمني للإدارة والأساتذة",
@@ -2983,28 +4197,44 @@
             "fr": "Calendrier principal"
         },
         "peak_hours_warning": {
-            "ar": "ساعات ذروة الاستقبال"
+            "ar": "ساعات ذروة الاستقبال",
+            "en": "Peak Reception Hours",
+            "fr": "Heures de pointe d'accueil"
         },
         "status_completed": {
-            "ar": "مكتمل"
+            "ar": "مكتمل",
+            "en": "Completed",
+            "fr": "Terminé"
         },
         "status_in_progress": {
-            "ar": "جار الآن"
+            "ar": "جار الآن",
+            "en": "In Progress",
+            "fr": "En cours"
         },
         "status_confirmed": {
-            "ar": "مؤكد"
+            "ar": "مؤكد",
+            "en": "Confirmed",
+            "fr": "Confirmé"
         },
         "status_pending": {
-            "ar": "قيد الانتظار"
+            "ar": "قيد الانتظار",
+            "en": "Pending",
+            "fr": "En attente"
         },
         "requests_desk": {
-            "ar": "طلبات المواعيد (مكتب التحكم)"
+            "ar": "طلبات المواعيد (مكتب التحكم)",
+            "en": "Appointment Requests (Control Desk)",
+            "fr": "Demandes de rendez-vous (Bureau de contrôle)"
         },
         "new": {
-            "ar": "جديد"
+            "ar": "جديد",
+            "en": "New",
+            "fr": "Nouveau"
         },
         "conflict_detected": {
-            "ar": "تضارب في المواعيد!"
+            "ar": "تضارب في المواعيد!",
+            "en": "Schedule Conflict Detected!",
+            "fr": "Conflit d'horaire détecté !"
         },
         "approve": {
             "ar": "قبول",
@@ -3017,13 +4247,14 @@
             "fr": "Reprogrammer"
         },
         "cancel": {
-            "ar": "إلغاء"
+            "ar": "إلغاء",
+            "en": "Cancel",
+            "fr": "Annuler"
         },
         "digital_log": {
-            "ar": "سجل الاستقبالات الرقمي"
-        },
-        "outcome_placeholder": {
-            "ar": "أدخل ملخص الزيارة والنتائج هنا..."
+            "ar": "سجل الاستقبالات الرقمي",
+            "en": "Digital Reception Log",
+            "fr": "Registre numérique d'accueil"
         },
         "save_log": {
             "ar": "حفظ بيانات السجل",
@@ -3031,10 +4262,14 @@
             "fr": "Enregistrer les données du registre"
         },
         "teacher_availability": {
-            "ar": "إدارة أوقات الأساتذة"
+            "ar": "إدارة أوقات الأساتذة",
+            "en": "Teacher Availability Management",
+            "fr": "Gestion des disponibilités des enseignants"
         },
         "override": {
-            "ar": "تعديل الجدول"
+            "ar": "تعديل الجدول",
+            "en": "Schedule Override",
+            "fr": "Modification manuelle du planning"
         },
         "dashboard_desc": {
             "ar": "إدارة مواعيد الإدارة والمدرسين وسجل استقبال الزوار.",
@@ -3062,9 +4297,9 @@
             "fr": "Demandes de rendez-vous"
         },
         "nav_log": {
-            "ar": "سجل الاستقبال ",
-            "en": "Reception Log",
-            "fr": "Registre d'accueil "
+            "ar": "تنظيم المواعيد",
+            "en": "Schedule Management",
+            "fr": "Gestion du planning"
         },
         "expected_visitors": {
             "ar": "زوار اليوم",
@@ -3130,6 +4365,86 @@
             "ar": "المعني بالزيارة",
             "en": "Meeting With",
             "fr": "Rencontre avec"
+        },
+        "visitor_name_placeholder": {
+            "ar": "مثال: أحمد الإبراهيمي",
+            "en": "e.g. John Doe",
+            "fr": "ex: Jean Dupont"
+        },
+        "student_name_placeholder": {
+            "ar": "الاسم واللقب",
+            "en": "First and Last Name",
+            "fr": "Nom et Prénom"
+        },
+        "principal": {
+            "ar": "المدير",
+            "en": "Principal",
+            "fr": "Directeur"
+        },
+        "accounting": {
+            "ar": "المحاسبة",
+            "en": "Accounting",
+            "fr": "Comptabilité"
+        },
+        "teacher": {
+            "ar": "أستاذ(ة)",
+            "en": "Teacher",
+            "fr": "Professeur"
+        },
+        "reason_placeholder": {
+            "ar": "سبب المقابلة...",
+            "en": "Reason for meeting...",
+            "fr": "Motif de la visite..."
+        },
+        "outcome_placeholder": {
+            "ar": "صف باختصار مخرجات المقابلة...",
+            "en": "Briefly describe the outcome...",
+            "fr": "Décrivez brièvement le résultat..."
+        },
+        "admin_actions": {
+            "ar": "الإجراءات المتخذة",
+            "en": "Administrative Actions Taken",
+            "fr": "Actions administratives prises"
+        },
+        "admin_actions_placeholder": {
+            "ar": "أضف الإجراءات المتخذة هنا...",
+            "en": "Add actions taken here...",
+            "fr": "Ajouter les actions prises ici..."
+        },
+        "admin_notes": {
+            "ar": "ملاحظات إدارية",
+            "en": "Administration Notes",
+            "fr": "Notes administratives"
+        },
+        "admin_notes_placeholder": {
+            "ar": "أضف ملاحظات إدارية إضافية...",
+            "en": "Add additional administration notes...",
+            "fr": "Ajouter des notes administratives supplémentaires..."
+        },
+        "reschedule_desc": {
+            "ar": "تحديد الوقت الجديد للمركز مع",
+            "en": "Set new time for meeting with",
+            "fr": "Définir la nouvelle heure de réunion avec"
+        },
+        "reschedule_regarding": {
+            "ar": "بخصوص",
+            "en": "regarding",
+            "fr": "concernant"
+        },
+        "new_time": {
+            "ar": "الوقت الجديد",
+            "en": "New Time",
+            "fr": "Nouvelle Heure"
+        },
+        "add_admin_comment": {
+            "ar": "أضف ملاحظة أو إجراء إداري...",
+            "en": "Add note or administrative action...",
+            "fr": "Ajouter une note ou action administrative..."
+        },
+        "admin_comments": {
+            "ar": "ملاحظات الإدارة",
+            "en": "Administration Notes",
+            "fr": "Notes de l'administration"
         },
         "reception_log_form": {
             "ar": "نموذج السجل الرقمي للاستقبال",
@@ -3205,6 +4520,962 @@
             "ar": "الحالة",
             "en": "Status",
             "fr": "Statut"
+        },
+        "all_year_logs": {
+            "ar": "سجل زيارات الموسم الدراسي",
+            "en": "Seasons Logs",
+            "fr": "Journal des visites de la saison complète"
+        },
+        "view_details": {
+            "ar": "عرض التفاصيل",
+            "en": "View Details",
+            "fr": "Voir les détails"
+        },
+        "date": {
+            "ar": "التاريخ",
+            "en": "Date",
+            "fr": "Date"
+        },
+        "add_log": {
+            "ar": "إضافة سجل",
+            "en": "Add Log",
+            "fr": "Ajouter un registre"
+        },
+        "teacher_notes": {
+            "ar": "ملاحظات الأستاذ/الإدارة",
+            "en": "Teacher & Admin Notes",
+            "fr": "Notes de professeur et d'administration"
+        },
+        "visitors_today": {
+            "ar": "زائر اليوم",
+            "en": "Visitors Today",
+            "fr": "Visiteurs aujourd'hui"
+        },
+        "meeting_outcomes": {
+            "ar": "مخرجات ونتائج المقابلة",
+            "en": "Meeting Outcomes & Results",
+            "fr": "Résultats et conclusions de l'entretien"
+        },
+        "admin_actions_taken": {
+            "ar": "الإجرائات المتخذة من الإدارة",
+            "en": "Administrative Actions Taken",
+            "fr": "Actions administratives prises"
+        },
+        "add_admin_action": {
+            "ar": "أضف الإجرائات التي تم اتخاذها...",
+            "en": "Add the actions that were taken...",
+            "fr": "Ajoutez les actions qui ont été prises..."
+        },
+        "daily_traffic": {
+            "ar": "حركة الزوار اليوم",
+            "en": "Today's Traffic",
+            "fr": "Trafic du jour"
+        }
+    },
+    "complaints": {
+        "title": {
+            "ar": "وحدة الشكاوي والاقتراحات",
+            "en": "Complaints & Suggestions",
+            "fr": "Plaintes et Suggestions"
+        },
+        "subtitle": {
+            "ar": "إدارة ومتابعة الشكاوي والاقتراحات الخاصة بالمدرسة بشكل مركزي.",
+            "en": "Manage and track school-wide complaints and suggestions centrally.",
+            "fr": "Gérer et suivre de manière centralisée les plaintes et suggestions de l'école."
+        },
+        "nav_oversight": {
+            "ar": "متابعة الشكاوي",
+            "en": "Complaints Oversight",
+            "fr": "Suivi des Plaintes"
+        },
+        "nav_submission": {
+            "ar": "تسجيل شكوى جديدة",
+            "en": "New Submission",
+            "fr": "Nouvelle Soumission"
+        },
+        "submission_form": {
+            "ar": "نموذج تسجيل شكوى أو اقتراح",
+            "en": "Complaint or Suggestion Registration Form",
+            "fr": "Formulaire d'enregistrement de plainte ou suggestion"
+        },
+        "oversight_table": {
+            "ar": "جدول متابعة الشكاوي والاقتراحات",
+            "en": "Complaints Tracking Table",
+            "fr": "Tableau de suivi des plaintes"
+        }
+    },
+    "mail": {
+        "nav_outgoing": {
+            "ar": "سجل الصادر",
+            "en": "Outgoing Register",
+            "fr": "Registre Départ"
+        },
+        "nav_incoming": {
+            "ar": "سجل الوارد",
+            "en": "Incoming Register",
+            "fr": "Registre Arrivée"
+        },
+        "nav_archive": {
+            "ar": "الأرشيف الموحد",
+            "en": "Unified Archive",
+            "fr": "Archives Unifiées"
+        },
+        "title_outgoing": {
+            "ar": "سجل الصادر",
+            "en": "Outgoing Register",
+            "fr": "Registre Départ"
+        },
+        "title_incoming": {
+            "ar": "سجل الوارد",
+            "en": "Incoming Register",
+            "fr": "Registre Arrivée"
+        },
+        "title_archive": {
+            "ar": "الأرشيف الموحد",
+            "en": "Unified Archive",
+            "fr": "Archives Unifiées"
+        },
+        "subtitle_outgoing": {
+            "ar": "تسجيل الوثائق والملفات المرسلة إلى المؤسسات الخارجية",
+            "en": "Register outward documents and files sent to external institutions",
+            "fr": "Enregistrer les documents et dossiers envoyés aux institutions externes"
+        },
+        "subtitle_incoming": {
+            "ar": "تسجيل الوثائق والتعليمات والملفات الواردة من الجهات الخارجية",
+            "en": "Register inward documents, instructions, and files from external entities",
+            "fr": "Enregistrer les documents, instructions et dossiers provenant d'entités externes"
+        },
+        "subtitle_archive": {
+            "ar": "الاطلاع على السجلات وبحث الوثائق وطباعة جداول الإرسال",
+            "en": "View registers, search documents, and print dispatch schedules",
+            "fr": "Consulter les registres, rechercher des documents et imprimer les bordereaux d'envoi"
+        },
+        "add_outgoing": {
+            "ar": "إضافة صادر جديد",
+            "en": "Add Outgoing Entry",
+            "fr": "Ajouter un départ"
+        },
+        "add_incoming": {
+            "ar": "تسجيل وارد جديد",
+            "en": "Add Incoming Entry",
+            "fr": "Ajouter une arrivée"
+        },
+        "print_register": {
+            "ar": "طباعة السجل",
+            "en": "Print Register",
+            "fr": "Imprimer le registre"
+        },
+        "entries_count": {
+            "ar": "{count} قيد مسجل",
+            "en": "{count} entries recorded",
+            "fr": "{count} entrées enregistrées"
+        },
+        "success_outgoing": {
+            "ar": "تم تسجيل القيد بنجاح وتخصيص رقم الأرشيف",
+            "en": "Entry recorded successfully and archive number assigned",
+            "fr": "Entrée enregistrée avec succès et numéro d'archive attribué"
+        },
+        "success_incoming": {
+            "ar": "تم تسجيل الوارد بنجاح",
+            "en": "Incoming entry recorded successfully",
+            "fr": "Entrée d'arrivée enregistrée avec succès"
+        },
+        "next_number": {
+            "ar": "الرقم التالي:",
+            "en": "Next Number:",
+            "fr": "Numéro suivant:"
+        },
+        "archive_number": {
+            "ar": "رقم الأرشيف",
+            "en": "Archive Number",
+            "fr": "Numéro d'archive"
+        },
+        "date": {
+            "ar": "التاريخ",
+            "en": "Date",
+            "fr": "Date"
+        },
+        "date_arrival": {
+            "ar": "تاريخ الاستلام",
+            "en": "Arrival Date",
+            "fr": "Date d'arrivée"
+        },
+        "date_original": {
+            "ar": "تاريخ الوثيقة الأصلية",
+            "en": "Original Date",
+            "fr": "Date originale"
+        },
+        "date_send": {
+            "ar": "تاريخ الإرسال",
+            "en": "Send Date",
+            "fr": "Date d'envoi"
+        },
+        "source": {
+            "ar": "الباعث (مصدر الوارد)",
+            "en": "Source (Sender)",
+            "fr": "Expéditeur (Source)"
+        },
+        "recipient": {
+            "ar": "المرسل إليه (الجهة المستقبلة)",
+            "en": "Recipient (Destination)",
+            "fr": "Destinataire"
+        },
+        "search_entity": {
+            "ar": "ابحث عن جهة أو اكتب اسمها...",
+            "en": "Search or type entity name...",
+            "fr": "Rechercher ou saisir le nom de l'entité..."
+        },
+        "object": {
+            "ar": "الموضوع / المحتوى",
+            "en": "Object / Content",
+            "fr": "Objet / Contenu"
+        },
+        "object_incoming": {
+            "ar": "موضوع الوارد",
+            "en": "Incoming Object",
+            "fr": "Objet de l'arrivée"
+        },
+        "object_outgoing": {
+            "ar": "موضوع الإرسال",
+            "en": "Send Object",
+            "fr": "Objet de l'envoi"
+        },
+        "object_placeholder": {
+            "ar": "وصف موجز لمحتوى الوثيقة...",
+            "en": "Brief description of document content...",
+            "fr": "Brève description du contenu..."
+        },
+        "reference": {
+            "ar": "رقم المرجع",
+            "en": "Reference Number",
+            "fr": "Numéro de référence"
+        },
+        "pieces": {
+            "ar": "عدد الوثائق / القطع",
+            "en": "Number of Pieces",
+            "fr": "Nombre de pièces"
+        },
+        "pieces_short": {
+            "ar": "القطع",
+            "en": "Pieces",
+            "fr": "Pièces"
+        },
+        "observations": {
+            "ar": "ملاحظات",
+            "en": "Observations",
+            "fr": "Observations"
+        },
+        "obs_placeholder": {
+            "ar": "أي ملاحظات إضافية...",
+            "en": "Any additional notes...",
+            "fr": "Toute note supplémentaire..."
+        },
+        "auto_number_hint": {
+            "ar": "سيتم تعيين رقم الأرشيف تلقائيا",
+            "en": "Archive number will be assigned automatically",
+            "fr": "Le numéro d'archive sera attribué automatiquement"
+        },
+        "auto_number_hint_out": {
+            "ar": "سيتم توليد رقم الأرشيف تلقائيا عند التسجيل",
+            "en": "Archive number will be generated upon registration",
+            "fr": "Le numéro d'archive sera généré lors de l'enregistrement"
+        },
+        "save_entry": {
+            "ar": "تسجيل في السجل",
+            "en": "Save Entry",
+            "fr": "Enregistrer l'entrée"
+        },
+        "save_incoming": {
+            "ar": "تسجيل الوارد",
+            "en": "Save Incoming",
+            "fr": "Enregistrer l'arrivée"
+        },
+        "no_entries": {
+            "ar": "لا توجد قيود مسجلة بعد",
+            "en": "No entries recorded yet",
+            "fr": "Aucune entrée enregistrée pour le moment"
+        },
+        "no_entries_in": {
+            "ar": "لا توجد واردات مسجلة",
+            "en": "No incoming entries recorded",
+            "fr": "Aucune arrivée enregistrée"
+        },
+        "total_entries": {
+            "ar": "إجمالي القيود:",
+            "en": "Total Entries:",
+            "fr": "Total des entrées:"
+        },
+        "total_pieces": {
+            "ar": "إجمالي الوثائق:",
+            "en": "Total Pieces:",
+            "fr": "Total des pièces:"
+        },
+        "actions": {
+            "ar": "إجراءات",
+            "en": "Actions",
+            "fr": "Actions"
+        },
+        "print_qr": {
+            "ar": "طباعة QR",
+            "en": "Print QR",
+            "fr": "Imprimer QR"
+        },
+        "delete": {
+            "ar": "حذف",
+            "en": "Delete",
+            "fr": "Supprimer"
+        },
+        "qr_label_out": {
+            "ar": "ملف صادر",
+            "en": "Outgoing File",
+            "fr": "Dossier Départ"
+        },
+        "qr_label_in": {
+            "ar": "ملف وارد",
+            "en": "Incoming File",
+            "fr": "Dossier Arrivée"
+        },
+        "school_name": {
+            "ar": "مدرسة الفضيلة الخاصة",
+            "en": "Elfadila Private School",
+            "fr": "École Privée Elfadila"
+        },
+        "print_sticker": {
+            "ar": "طباعة الملصق",
+            "en": "Print Sticker",
+            "fr": "Imprimer l'étiquette"
+        },
+        "close": {
+            "ar": "إغلاق",
+            "en": "Close",
+            "fr": "Fermer"
+        },
+        "school_year": {
+            "ar": "السنة الدراسية:",
+            "en": "School Year:",
+            "fr": "Année scolaire:"
+        },
+        "type": {
+            "ar": "النوع",
+            "en": "Type",
+            "fr": "Type"
+        },
+        "filter_all": {
+            "ar": "جميع القيود",
+            "en": "All Entries",
+            "fr": "Toutes les entrées"
+        },
+        "filter_out": {
+            "ar": "الصادر فقط",
+            "en": "Outgoing Only",
+            "fr": "Départs uniquement"
+        },
+        "filter_in": {
+            "ar": "الوارد فقط",
+            "en": "Incoming Only",
+            "fr": "Arrivées uniquement"
+        },
+        "search_archive": {
+            "ar": "البحث في الأرشيف...",
+            "en": "Search archive...",
+            "fr": "Rechercher dans les archives..."
+        },
+        "print_dispatch": {
+            "ar": "طباعة جدول إرسال PDF",
+            "en": "Print Dispatch PDF",
+            "fr": "Imprimer le bordereau PDF"
+        },
+        "stats_total": {
+            "ar": "إجمالي المراسلات",
+            "en": "Total Correspondences",
+            "fr": "Total des correspondances"
+        },
+        "stats_out": {
+            "ar": "الصادر",
+            "en": "Outgoing",
+            "fr": "Départs"
+        },
+        "stats_in": {
+            "ar": "الوارد",
+            "en": "Incoming",
+            "fr": "Arrivées"
+        },
+        "dispatch_schedule": {
+            "ar": "جدول الإرسال والاستلام",
+            "en": "Dispatch Schedule",
+            "fr": "Bordereau d'envoi et de réception"
+        },
+        "sender": {
+            "ar": "الجهة المرسلة",
+            "en": "Sending Entity",
+            "fr": "Entité expéditrice"
+        },
+        "recipient_entity": {
+            "ar": "الجهة المستقبلة",
+            "en": "Receiving Entity",
+            "fr": "Entité réceptrice"
+        },
+        "generated_on": {
+            "ar": "تاريخ الاستخراج:",
+            "en": "Generated on:",
+            "fr": "Généré le:"
+        },
+        "students_label": {
+            "ar": "أسماء التلاميذ المعنيين بالإرسال",
+            "en": "Names of students concerned",
+            "fr": "Noms des élèves concernés"
+        },
+        "add_student": {
+            "ar": "إضافة اسم تلميذ...",
+            "en": "Add student name...",
+            "fr": "Ajouter un nom d'élève..."
+        },
+        "qr_modal_title": {
+            "ar": "ملصق QR  ",
+            "en": "QR Sticker  ",
+            "fr": "Étiquette QR  "
+        },
+        "generating": {
+            "ar": "جار التوليد...",
+            "en": "Generating...",
+            "fr": "Génération en cours..."
+        },
+        "obj_student_file": {
+            "ar": "إرسال ملف التلميذ",
+            "en": "Send student file",
+            "fr": "Envoi du dossier de l'élève"
+        },
+        "obj_admin_doc_req": {
+            "ar": "طلب وثيقة إدارية",
+            "en": "Administrative document request",
+            "fr": "Demande de document administratif"
+        },
+        "obj_official_notice": {
+            "ar": "إشعار رسمي",
+            "en": "Official notice",
+            "fr": "Avis officiel"
+        },
+        "obj_admin_corr": {
+            "ar": "مراسلة إدارية",
+            "en": "Administrative correspondence",
+            "fr": "Correspondance administrative"
+        },
+        "obj_financial": {
+            "ar": "وثيقة مالية",
+            "en": "Financial document",
+            "fr": "Document financier"
+        },
+        "obj_exam_results": {
+            "ar": "نتائج امتحانات",
+            "en": "Exam results",
+            "fr": "Résultats d'examens"
+        },
+        "obj_contract": {
+            "ar": "عقد أو اتفاقية",
+            "en": "Contract or agreement",
+            "fr": "Contrat ou accord"
+        },
+        "obj_other": {
+            "ar": "أخرى",
+            "en": "Other",
+            "fr": "Autre"
+        },
+        "inst_directive": {
+            "ar": "تعليمة وزارية",
+            "en": "Ministerial directive",
+            "fr": "Directive ministérielle"
+        },
+        "inst_student_file": {
+            "ar": "ملف تلميذ وارد",
+            "en": "Incoming student file",
+            "fr": "Dossier d'élève entrant"
+        },
+        "inst_package": {
+            "ar": "طرد / توريد مادي",
+            "en": "Package / Material supply",
+            "fr": "Colis / Fourniture matérielle"
+        },
+        "inst_official": {
+            "ar": "مراسلة رسمية",
+            "en": "Official correspondence",
+            "fr": "Correspondance officielle"
+        }
+    },
+    "safe_exit": {
+        "nav_monitor": {
+            "ar": "شاشة البوابة المركزية",
+            "en": "Central Gate Monitor",
+            "fr": "Moniteur Central du Portail"
+        },
+        "nav_verify": {
+            "ar": "التحقق الفوري",
+            "en": "Immediate Verification",
+            "fr": "Vérification Immédiate"
+        },
+        "monitor_title": {
+            "ar": "شاشة البوابة المركزية",
+            "en": "Central Gate Monitor",
+            "fr": "Moniteur Central du Portail"
+        },
+        "monitor_subtitle": {
+            "ar": "مراقبة الخروج في الوقت الحقيقي",
+            "en": "Real-time exit monitoring",
+            "fr": "Surveillance des sorties en temps réel"
+        },
+        "last_update": {
+            "ar": "آخر تحديث",
+            "en": "Last update",
+            "fr": "Dernière mise à jour"
+        },
+        "refresh": {
+            "ar": "تحديث",
+            "en": "Refresh",
+            "fr": "Actualiser"
+        },
+        "manual_entry": {
+            "ar": "تسجيل يدوي",
+            "en": "Manual Entry",
+            "fr": "Saisie Manuelle"
+        },
+        "lockdown_emergency": {
+            "ar": "إغلاق طارئ",
+            "en": "Emergency Lockdown",
+            "fr": "Verrouillage d'urgence"
+        },
+        "unlock_gate": {
+            "ar": "فتح البوابة",
+            "en": "Unlock Gate",
+            "fr": "Déverrouiller le portail"
+        },
+        "lockdown_active": {
+            "ar": "⚠️ وضع الإغلاق الطارئ مُفعَّل — تم تعطيل جميع تأكيدات الخروج",
+            "en": "⚠️ Emergency Lockdown Active — All exit confirmations disabled",
+            "fr": "⚠️ Verrouillage d'urgence activé — Toutes les confirmations de sortie désactivées"
+        },
+        "cancel_lockdown": {
+            "ar": "إلغاء الإغلاق",
+            "en": "Cancel Lockdown",
+            "fr": "Annuler le verrouillage"
+        },
+        "live_arrival_feed": {
+            "ar": "إدارة الوصول الفوري",
+            "en": "Live Arrival Feed",
+            "fr": "Flux d'arrivée en direct"
+        },
+        "waiting": {
+            "ar": "في الانتظار",
+            "en": "Waiting",
+            "fr": "En attente"
+        },
+        "no_active_signals": {
+            "ar": "لا توجد إشارات وصول نشطة",
+            "en": "No active arrival signals",
+            "fr": "Aucun signal d'arrivée actif"
+        },
+        "students_in_building": {
+            "ar": "طلاب في المبنى",
+            "en": "Students in building",
+            "fr": "Élèves dans le bâtiment"
+        },
+        "current_status": {
+            "ar": "الوضع الراهن",
+            "en": "Current Status",
+            "fr": "Statut Actuel"
+        },
+        "ready_for_pickup": {
+            "ar": "جاهزون للاستلام",
+            "en": "Ready for pickup",
+            "fr": "Prêt pour le ramassage"
+        },
+        "at_gate_sub": {
+            "ar": "بالبوابة",
+            "en": "At gate",
+            "fr": "Au portail"
+        },
+        "left_school": {
+            "ar": "غادروا المدرسة",
+            "en": "Left school",
+            "fr": "Ont quitté l'école"
+        },
+        "confirmed": {
+            "ar": "تم التأكيد",
+            "en": "Confirmed",
+            "fr": "Confirmé"
+        },
+        "im_near_signal": {
+            "ar": "إشارة \"أنا قريب\"",
+            "en": "\"I'm near\" signal",
+            "fr": "Signal \"Je suis proche\""
+        },
+        "waiting_prep": {
+            "ar": "بانتظار التحضير",
+            "en": "Waiting preparation",
+            "fr": "En attente de préparation"
+        },
+        "gate_status": {
+            "ar": "حالة البوابة",
+            "en": "Gate Status",
+            "fr": "Statut du portail"
+        },
+        "locked": {
+            "ar": "مُقفل",
+            "en": "Locked",
+            "fr": "Verrouillé"
+        },
+        "unlocked": {
+            "ar": "مفتوح",
+            "en": "Unlocked",
+            "fr": "Déverrouillé"
+        },
+        "approaching": {
+            "ar": "في الطريق",
+            "en": "Approaching",
+            "fr": "En approche"
+        },
+        "at_gate": {
+            "ar": "عند البوابة",
+            "en": "At Gate",
+            "fr": "Au portail"
+        },
+        "arrived_at": {
+            "ar": "وصل",
+            "en": "Arrived",
+            "fr": "Arrivé"
+        },
+        "confirm_pickup": {
+            "ar": "تأكيد التسليم",
+            "en": "Confirm Pickup",
+            "fr": "Confirmer le ramassage"
+        },
+        "manual_entry_title": {
+            "ar": "تسجيل يدوي",
+            "en": "Manual Entry",
+            "fr": "Saisie Manuelle"
+        },
+        "manual_entry_desc": {
+            "ar": "أضف طلب استلام يدوياً (هاتف معطل / زيارة مباشرة)",
+            "en": "Add pickup request manually (broken phone / walk-in)",
+            "fr": "Ajouter manuellement une demande (téléphone cassé / visite)"
+        },
+        "parent_name": {
+            "ar": "اسم ولي الأمر",
+            "en": "Parent Name",
+            "fr": "Nom du parent"
+        },
+        "student_name": {
+            "ar": "اسم الطالب",
+            "en": "Student Name",
+            "fr": "Nom de l'élève"
+        },
+        "submit_request": {
+            "ar": "تسجيل الطلب",
+            "en": "Submit Request",
+            "fr": "Soumettre la demande"
+        },
+        "safe_exit_ledger": {
+            "ar": "سجل الخروج الآمن",
+            "en": "Safe Exit Ledger",
+            "fr": "Registre de sortie sécurisée"
+        },
+        "records": {
+            "ar": "سجل",
+            "en": "records",
+            "fr": "enregistrements"
+        },
+        "search_ledger": {
+            "ar": "ابحث في سجل اليوم...",
+            "en": "Search today's ledger...",
+            "fr": "Rechercher dans le registre..."
+        },
+        "no_records_yet": {
+            "ar": "لا توجد سجلات بعد",
+            "en": "No records yet",
+            "fr": "Aucun enregistrement pour le moment"
+        },
+        "verify_point": {
+            "ar": "نقطة التحقق الفوري",
+            "en": "Immediate Verification Point",
+            "fr": "Point de vérification immédiat"
+        },
+        "verify_desc": {
+            "ar": "تحقق من هوية ولي الأمر قبل التأكيد على تسليم التلميذ",
+            "en": "Verify guardian identity before confirming handover",
+            "fr": "Vérifier l'identité du parent avant de confirmer la remise"
+        },
+        "search_roster": {
+            "ar": "البحث في قائمة الطلاب",
+            "en": "Search Student Roster",
+            "fr": "Rechercher dans la liste des élèves"
+        },
+        "search_placeholder": {
+            "ar": "اسم الطالب، رقمه، أو الفصل...",
+            "en": "Student name, ID, or class...",
+            "fr": "Nom de l'élève, ID ou classe..."
+        },
+        "no_results": {
+            "ar": "لا توجد نتائج",
+            "en": "No results",
+            "fr": "Aucun résultat"
+        },
+        "completed_today": {
+            "ar": "مكتمل اليوم",
+            "en": "Completed today",
+            "fr": "Terminé aujourd'hui"
+        },
+        "no_student_selected": {
+            "ar": "لم يتم تحديد طالب",
+            "en": "No student selected",
+            "fr": "Aucun élève sélectionné"
+        },
+        "select_student_desc": {
+            "ar": "امسح رمز QR أو ابحث عن الطالب في القائمة لعرض لوحة التفويض والتحقق من هوية ولي الأمر.",
+            "en": "Scan a QR code or search for a student in the roster to view the authorization panel.",
+            "fr": "Scannez un QR ou recherchez un élève pour afficher le panneau d'autorisation."
+        },
+        "primary_guardian": {
+            "ar": "ولي الأمر الأساسي",
+            "en": "Primary Guardian",
+            "fr": "Tuteur Principal"
+        },
+        "authorized_persons": {
+            "ar": "الأشخاص المرخص لهم",
+            "en": "Authorized Persons",
+            "fr": "Personnes Autorisées"
+        },
+        "select_pickup_person": {
+            "ar": "الرجاء تحديد الشخص الذي سيستلم التلميذ",
+            "en": "Please select the person picking up the student",
+            "fr": "Veuillez sélectionner la personne qui récupère l'élève"
+        },
+        "confirm_pickup_btn": {
+            "ar": "تأكيد الاستلام",
+            "en": "Confirm Handover",
+            "fr": "Confirmer la remise"
+        },
+        "confirmed_success": {
+            "ar": "تم التأكيد بنجاح",
+            "en": "Confirmed Successfully",
+            "fr": "Confirmé avec succès"
+        },
+        "handed_over": {
+            "ar": "تم تسليم",
+            "en": "Handed over",
+            "fr": "Remis"
+        },
+        "to": {
+            "ar": "إلى",
+            "en": "to",
+            "fr": "à"
+        },
+        "id_number": {
+            "ar": "رقم الهوية",
+            "en": "ID Number",
+            "fr": "Numéro d'identité"
+        },
+        "immediate_scan": {
+            "ar": "المسح الفوري (QR / الهوية)",
+            "en": "Immediate Scan (QR / ID)",
+            "fr": "Scan Immédiat (QR / ID)"
+        },
+        "scanning": {
+            "ar": "جارٍ المسح...",
+            "en": "Scanning...",
+            "fr": "Analyse en cours..."
+        },
+        "click_to_scan": {
+            "ar": "انقر لمحاكاة مسح QR / الهوية",
+            "en": "Click to simulate QR/ID scan",
+            "fr": "Cliquez pour simuler le scan QR/ID"
+        },
+        "nav_tracker": {
+            "ar": "متابعة الحالة",
+            "en": "Student Status",
+            "fr": "Suivi des Élèves"
+        },
+        "tracker_title": {
+            "ar": "متابعة حالة التلاميذ",
+            "en": "Student Status Tracker",
+            "fr": "Suivi de l'état des élèves"
+        },
+        "tracker_subtitle": {
+            "ar": "لوحة الوضع الراهن لجميع التلاميذ",
+            "en": "Real-time status board for all students",
+            "fr": "Tableau de bord en temps réel pour tous les élèves"
+        },
+        "tracker_export": {
+            "ar": "تصدير PDF",
+            "en": "Export PDF",
+            "fr": "Exporter PDF"
+        },
+        "tracker_all": {
+            "ar": "الكل",
+            "en": "All",
+            "fr": "Tous"
+        },
+        "tracker_student_label": {
+            "ar": "تلميذ",
+            "en": "students",
+            "fr": "élèves"
+        },
+        "status_in_building": {
+            "ar": "داخل المبنى",
+            "en": "In Building",
+            "fr": "Dans le bâtiment"
+        },
+        "status_waiting": {
+            "ar": "في الانتظار",
+            "en": "Waiting",
+            "fr": "En attente"
+        },
+        "status_in_transport": {
+            "ar": "في الحافلة",
+            "en": "In Transport",
+            "fr": "En transport"
+        },
+        "status_left": {
+            "ar": "غادر",
+            "en": "Left",
+            "fr": "Parti"
+        },
+        "status_missing": {
+            "ar": "غير معروف",
+            "en": "Unknown",
+            "fr": "Inconnu"
+        },
+        "tracker_search_placeholder": {
+            "ar": "ابحث بالاسم، الفصل، أو ولي الأمر...",
+            "en": "Search by name, class, or guardian...",
+            "fr": "Rechercher par nom, classe ou tuteur..."
+        },
+        "tracker_filters": {
+            "ar": "تصفية",
+            "en": "Filters",
+            "fr": "Filtres"
+        },
+        "tracker_clear_filters": {
+            "ar": "مسح التصفية",
+            "en": "Clear Filters",
+            "fr": "Effacer les filtres"
+        },
+        "tracker_filter_class": {
+            "ar": "الفصل",
+            "en": "Class",
+            "fr": "Classe"
+        },
+        "tracker_filter_level": {
+            "ar": "المرحلة",
+            "en": "Level",
+            "fr": "Niveau"
+        },
+        "tracker_level_primary": {
+            "ar": "ابتدائي",
+            "en": "Primary",
+            "fr": "Primaire"
+        },
+        "tracker_level_middle": {
+            "ar": "متوسط",
+            "en": "Middle",
+            "fr": "Moyen"
+        },
+        "tracker_class": {
+            "ar": "الفصل",
+            "en": "Class",
+            "fr": "Classe"
+        },
+        "tracker_missing_alert": {
+            "ar": "تلميذ بحالة «غير معروف» — يرجى التحقق الفوري",
+            "en": "student(s) marked as unknown — immediate check required",
+            "fr": "élève(s) marqué(s) inconnus — vérification immédiate requise"
+        },
+        "tracker_show_missing": {
+            "ar": "عرض غير معروف",
+            "en": "Show Unknown",
+            "fr": "Afficher les inconnus"
+        },
+        "tracker_col_name": {
+            "ar": "اسم التلميذ",
+            "en": "Student Name",
+            "fr": "Nom de l'élève"
+        },
+        "tracker_col_class": {
+            "ar": "الفصل",
+            "en": "Class",
+            "fr": "Classe"
+        },
+        "tracker_col_guardian": {
+            "ar": "ولي الأمر",
+            "en": "Guardian",
+            "fr": "Tuteur"
+        },
+        "tracker_col_location": {
+            "ar": "الموقع الحالي",
+            "en": "Current Location",
+            "fr": "Emplacement actuel"
+        },
+        "tracker_col_transport": {
+            "ar": "الحافلة",
+            "en": "Transport",
+            "fr": "Transport"
+        },
+        "tracker_col_status": {
+            "ar": "الحالة",
+            "en": "Status",
+            "fr": "État"
+        },
+        "tracker_col_updated": {
+            "ar": "آخر تحديث",
+            "en": "Last Updated",
+            "fr": "Dernière mise à jour"
+        },
+        "tracker_no_results": {
+            "ar": "لا توجد نتائج مطابقة",
+            "en": "No matching students found",
+            "fr": "Aucun élève correspondant trouvé"
+        },
+        "tracker_click_details": {
+            "ar": "انقر لعرض التفاصيل وتغيير الحالة",
+            "en": "Click to view details and change status",
+            "fr": "Cliquez pour voir les détails et changer l'état"
+        },
+        "tracker_guardian": {
+            "ar": "ولي الأمر",
+            "en": "Guardian",
+            "fr": "Tuteur"
+        },
+        "tracker_location": {
+            "ar": "الموقع",
+            "en": "Location",
+            "fr": "Emplacement"
+        },
+        "tracker_updated": {
+            "ar": "آخر تحديث",
+            "en": "Last Updated",
+            "fr": "Dernière mise à jour"
+        },
+        "tracker_transport": {
+            "ar": "وسيلة النقل",
+            "en": "Transport",
+            "fr": "Transport"
+        },
+        "tracker_yes": {
+            "ar": "نعم",
+            "en": "Yes",
+            "fr": "Oui"
+        },
+        "tracker_no": {
+            "ar": "لا",
+            "en": "No",
+            "fr": "Non"
+        },
+        "tracker_current_status": {
+            "ar": "الحالة الحالية",
+            "en": "Current Status",
+            "fr": "État actuel"
+        },
+        "tracker_change_status": {
+            "ar": "تغيير الحالة",
+            "en": "Change Status",
+            "fr": "Changer l'état"
         }
     }
 }

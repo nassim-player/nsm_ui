@@ -12,7 +12,8 @@
 
 .data-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
 
     thead {
         background: linear-gradient(135deg, var(--color-slate-50) 0%, var(--color-slate-100) 100%);
@@ -25,7 +26,7 @@
             text-transform: uppercase;
             letter-spacing: 0.15em;
             color: var(--color-slate-600);
-            text-align: var(--text-align);
+            text-align: start;
         }
     }
 
@@ -49,6 +50,7 @@
             font-size: 0.9rem;
             color: var(--color-slate-600);
             vertical-align: middle;
+            text-align: start;
         }
     }
 }

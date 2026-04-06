@@ -4,27 +4,26 @@ import {
     Calendar, Star, Clock, ChevronLeft, ChevronRight,
     Sun, BookOpen, Award, AlertTriangle, Bell, CheckCircle,
     ArrowRight, Activity, Zap, MessageSquare, Monitor,
-    TrendingUp, Filter, MoreHorizontal, FileText, Check
+    TrendingUp, Filter, MoreHorizontal, FileText, Check,
+    Heart, Flag, Music, Users, Briefcase, Globe
 } from 'react-feather';
 import { Panel } from '../../components/common/Panel/Panel';
 import { Modal } from '../../components/common/Modal/Modal';
 import './HubOverview.scss';
 
-// ─── Shared Mock Data (Events) ───
+// ─── Shared Mock Data (Events & Periods) ───
 const ACADEMIC_EVENTS = [
-    // Holidays
-    { id: 'h1', type: 'holiday', title: 'عطلة الشتاء', titleEn: 'Winter Break', startDate: '2026-02-22', endDate: '2026-03-01', color: '#f59e0b' },
-    { id: 'h2', type: 'holiday', title: 'عطلة الربيع', titleEn: 'Spring Break', startDate: '2026-03-22', endDate: '2026-03-29', color: '#f59e0b' },
-    { id: 'h3', type: 'holiday', title: 'عيد الاستقلال', titleEn: 'Independence Day', startDate: '2026-03-19', endDate: '2026-03-19', color: '#f59e0b' },
-    // Exams
-    { id: 'e1', type: 'exam', title: 'امتحان الرياضيات', titleEn: 'Math Exam', startDate: '2026-02-20', endDate: '2026-02-20', color: '#ef4444', subject: 'رياضيات', level: '1 ابتدائي' },
-    { id: 'e2', type: 'exam', title: 'امتحان العلوم', titleEn: 'Science Exam', startDate: '2026-02-24', endDate: '2026-02-24', color: '#ef4444', subject: 'علوم', level: '1 ابتدائي' },
-    { id: 'e3', type: 'exam', title: 'امتحان اللغة العربية', titleEn: 'Arabic Exam', startDate: '2026-02-25', endDate: '2026-02-25', color: '#ef4444', subject: 'لغة عربية', level: '2 ابتدائي' },
-    { id: 'e4', type: 'exam', title: 'امتحان الفرنسية', titleEn: 'French Exam', startDate: '2026-03-05', endDate: '2026-03-05', color: '#ef4444', subject: 'فرنسية', level: '1 متوسط' },
-    // Assessments
-    { id: 'a1', type: 'assessment', title: 'تقييم رياضيات فصلي', titleEn: 'Math Quarterly Assessment', startDate: '2026-02-26', endDate: '2026-02-27', color: '#8b5cf6', subject: 'رياضيات' },
-    { id: 'a2', type: 'assessment', title: 'تقييم العلوم', titleEn: 'Science Assessment', startDate: '2026-03-10', endDate: '2026-03-10', color: '#8b5cf6', subject: 'علوم' },
-    { id: 'a3', type: 'assessment', title: 'مراجعة شاملة', titleEn: 'Comprehensive Review', startDate: '2026-03-15', endDate: '2026-03-16', color: '#8b5cf6' },
+    // Vacations / Holidays
+    { id: 'h1', type: 'vacation', title: 'عطلة الشتاء', titleEn: 'Winter Break', startDate: '2026-02-22', endDate: '2026-03-01', color: '#f59e0b' },
+    { id: 'h2', type: 'vacation', title: 'عطلة الربيع', titleEn: 'Spring Break', startDate: '2026-03-22', endDate: '2026-03-29', color: '#f59e0b' },
+    { id: 'h3', type: 'celebration', title: 'عيد الاستقلال', titleEn: 'Independence Day', startDate: '2026-03-19', endDate: '2026-03-19', color: '#10b981' },
+    // Exam Periods (week-long, not individual days)
+    { id: 'e1', type: 'exam_period', title: 'أسبوع الامتحانات الفصلية', titleEn: 'Quarterly Exam Week', startDate: '2026-02-20', endDate: '2026-02-27', color: '#ef4444' },
+    { id: 'e2', type: 'exam_period', title: 'فترة التقييم المستمر', titleEn: 'Continuous Assessment Period', startDate: '2026-03-05', endDate: '2026-03-12', color: '#ef4444' },
+    // Celebrations & Activities
+    { id: 'c1', type: 'celebration', title: 'حفل التفوق الدراسي', titleEn: 'Academic Excellence Ceremony', startDate: '2026-02-26', endDate: '2026-02-26', color: '#10b981' },
+    { id: 'a1', type: 'activity', title: 'أسبوع العلوم والاكتشاف', titleEn: 'Science & Discovery Week', startDate: '2026-03-10', endDate: '2026-03-14', color: '#8b5cf6' },
+    { id: 'a2', type: 'activity', title: 'مسابقة القرآن الكريم', titleEn: 'Quran Competition', startDate: '2026-03-15', endDate: '2026-03-16', color: '#8b5cf6' },
 ];
 
 // Removed Announcements data since they are not part of an Academic Year Event Manager.
@@ -69,6 +68,30 @@ export const HubOverview = () => {
     const [selectedDate, setSelectedDate] = useState(TODAY.getDate()); // Default to today
     const [selectionRange, setSelectionRange] = useState({ start: null, end: null, isSelecting: false });
     const [showRangeModal, setShowRangeModal] = useState(false);
+    const [selectedIcon, setSelectedIcon] = useState(null);
+    const [eventTitle, setEventTitle] = useState('');
+    const [eventDescription, setEventDescription] = useState('');
+
+    const ICON_OPTIONS = [
+        { key: 'star', Icon: Star, label: t('hub.icon_star') || 'نجمة' },
+        { key: 'sun', Icon: Sun, label: t('hub.icon_sun') || 'شمس' },
+        { key: 'book-open', Icon: BookOpen, label: t('hub.icon_book') || 'كتاب' },
+        { key: 'award', Icon: Award, label: t('hub.icon_award') || 'جائزة' },
+        { key: 'bell', Icon: Bell, label: t('hub.icon_bell') || 'جرس' },
+        { key: 'heart', Icon: Heart, label: t('hub.icon_heart') || 'قلب' },
+        { key: 'flag', Icon: Flag, label: t('hub.icon_flag') || 'علم' },
+        { key: 'music', Icon: Music, label: t('hub.icon_music') || 'موسيقى' },
+        { key: 'users', Icon: Users, label: t('hub.icon_users') || 'مجموعة' },
+        { key: 'briefcase', Icon: Briefcase, label: t('hub.icon_briefcase') || 'حقيبة' },
+        { key: 'globe', Icon: Globe, label: t('hub.icon_globe') || 'عالم' },
+        { key: 'zap', Icon: Zap, label: t('hub.icon_zap') || 'برق' },
+    ];
+
+    const resetEventForm = () => {
+        setSelectedIcon(null);
+        setEventTitle('');
+        setEventDescription('');
+    };
 
     // ── Calendar Logic ──
     const daysInMonth = getDaysInMonth(currentYear, currentMonth);
@@ -106,10 +129,10 @@ export const HubOverview = () => {
 
     // ── Metrics ──
     const stats = useMemo(() => {
-        const exams = ACADEMIC_EVENTS.filter(e => e.type === 'exam').length;
-        const holidays = ACADEMIC_EVENTS.filter(e => e.type === 'holiday').length;
-        const assessments = ACADEMIC_EVENTS.filter(e => e.type === 'assessment').length;
-        return { exams, holidays, assessments };
+        const examPeriods = ACADEMIC_EVENTS.filter(e => e.type === 'exam_period').length;
+        const vacations = ACADEMIC_EVENTS.filter(e => e.type === 'vacation').length;
+        const celebrations = ACADEMIC_EVENTS.filter(e => e.type === 'celebration' || e.type === 'activity').length;
+        return { examPeriods, vacations, celebrations };
     }, []);
 
     const nextMajorEvent = useMemo(() => {
@@ -175,9 +198,10 @@ export const HubOverview = () => {
 
     const getEventTypeIcon = (type) => {
         switch (type) {
-            case 'holiday': return Sun;
-            case 'exam': return BookOpen;
-            case 'assessment': return Award;
+            case 'vacation': return Sun;
+            case 'exam_period': return BookOpen;
+            case 'celebration': return Award;
+            case 'activity': return Zap;
             default: return Calendar;
         }
     };
@@ -257,25 +281,25 @@ export const HubOverview = () => {
 
                 {/* Stats Grid */}
                 <div className="stats-grid">
-                    <div className="stat-card exams" style={{ '--accent': '#ef4444' }}>
+                    <div className="stat-card" style={{ '--accent': '#ef4444' }}>
                         <div className="stat-icon-wrap"><BookOpen size={20} /></div>
                         <div className="stat-info">
-                            <span className="stat-val">{stats.exams}</span>
-                            <span className="stat-lbl">{t('hub.exams_this_month')}</span>
+                            <span className="stat-val">{stats.examPeriods}</span>
+                            <span className="stat-lbl">{t('hub.exam_periods') || 'فترات الامتحانات'}</span>
                         </div>
                     </div>
-                    <div className="stat-card holidays" style={{ '--accent': '#f59e0b' }}>
+                    <div className="stat-card" style={{ '--accent': '#f59e0b' }}>
                         <div className="stat-icon-wrap"><Sun size={20} /></div>
                         <div className="stat-info">
-                            <span className="stat-val">{stats.holidays}</span>
-                            <span className="stat-lbl">{t('hub.holidays_upcoming')}</span>
+                            <span className="stat-val">{stats.vacations}</span>
+                            <span className="stat-lbl">{t('hub.vacations_upcoming') || 'عطل قادمة'}</span>
                         </div>
                     </div>
-                    <div className="stat-card assessments" style={{ '--accent': '#8b5cf6' }}>
+                    <div className="stat-card" style={{ '--accent': '#10b981' }}>
                         <div className="stat-icon-wrap"><Award size={20} /></div>
                         <div className="stat-info">
-                            <span className="stat-val">{stats.assessments}</span>
-                            <span className="stat-lbl">{t('hub.assessments_pending')}</span>
+                            <span className="stat-val">{stats.celebrations}</span>
+                            <span className="stat-lbl">{t('hub.celebrations_activities') || 'احتفالات وأنشطة'}</span>
                         </div>
                     </div>
                 </div>
@@ -417,43 +441,161 @@ export const HubOverview = () => {
                 </div>
             </div>
 
-            {/* ── Range Modal (Preserved & Styled) ── */}
+            {/* ── Add Event Modal ── */}
             <Modal
                 isOpen={showRangeModal}
-                onClose={() => setShowRangeModal(false)}
-                title={t('hub.define_period')}
+                onClose={() => { setShowRangeModal(false); resetEventForm(); }}
+                title={t('hub.define_period') || 'إضافة حدث جديد'}
+                subtitle={t('hub.define_period_subtitle') || 'حدد نوع الحدث والتفاصيل والتواريخ'}
                 icon={Calendar}
                 size="medium"
             >
                 <div className="range-modal-content">
-                    <div className="form-group main-input-group">
-                        <label className="form-label">{t('hub.period_title')}</label>
-                        <input
-                            type="text"
-                            className="form-input period-input"
-                            placeholder={t('hub.period_title_placeholder') || "..."}
-                            autoFocus
-                        />
-                    </div>
-                    <div className="range-info-footer">
-                        <div className="range-dates">
-                            <span className="date-pill">
-                                <Calendar size={14} className="date-icon" />
-                                {Math.min(selectionRange.start || 0, selectionRange.end || 0)} {language === 'ar' ? ARABIC_MONTHS[currentMonth] : ''}
-                            </span>
-                            {selectionRange.end !== selectionRange.start && (
-                                <>
-                                    <ArrowRight size={14} className="date-arrow" />
-                                    <span className="date-pill">
-                                        <Calendar size={14} className="date-icon" />
-                                        {Math.max(selectionRange.start || 0, selectionRange.end || 0)} {language === 'ar' ? ARABIC_MONTHS[currentMonth] : ''}
-                                    </span>
-                                </>
-                            )}
+                    {/* Section 1: Event Name & Icon */}
+                    <div className="modal-section">
+                        <div className="section-label">
+                            <span className="section-number">1</span>
+                            <div>
+                                <h4>{t('hub.event_name_icon') || 'اسم الحدث والرمز'}</h4>
+                                <p className="section-hint">{t('hub.event_name_icon_hint') || 'أدخل اسم الحدث واختر رمزاً مناسباً'}</p>
+                            </div>
                         </div>
-                        <button className="save-range-btn primary" onClick={() => setShowRangeModal(false)}>
+
+                        <div className="form-field">
+                            <label className="field-label">
+                                <FileText size={14} />
+                                {t('hub.event_name') || 'اسم الحدث'}
+                            </label>
+                            <input
+                                type="text"
+                                className="field-input"
+                                placeholder={t('hub.event_name_placeholder') || 'مثال: عطلة الشتاء، أسبوع العلوم...'}
+                                value={eventTitle}
+                                onChange={(e) => setEventTitle(e.target.value)}
+                                autoFocus
+                            />
+                        </div>
+
+                        <div className="icon-picker-section">
+                            <label className="field-label">
+                                <Star size={14} />
+                                {t('hub.choose_icon') || 'اختر رمزاً'}
+                            </label>
+                            <div className="icon-picker-grid">
+                                {ICON_OPTIONS.map(opt => {
+                                    const IconComp = opt.Icon;
+                                    return (
+                                        <button
+                                            key={opt.key}
+                                            type="button"
+                                            className={`icon-picker-item ${selectedIcon === opt.key ? 'active' : ''}`}
+                                            onClick={() => setSelectedIcon(opt.key)}
+                                            title={opt.label}
+                                        >
+                                            <IconComp size={20} />
+                                            <span className="icon-label">{opt.label}</span>
+                                            {selectedIcon === opt.key && (
+                                                <div className="icon-check">
+                                                    <Check size={10} />
+                                                </div>
+                                            )}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Section 2: Event Description */}
+                    <div className="modal-section">
+                        <div className="section-label">
+                            <span className="section-number">2</span>
+                            <div>
+                                <h4>{t('hub.event_details') || 'تفاصيل الحدث'}</h4>
+                                <p className="section-hint">{t('hub.event_details_hint') || 'أضف وصفاً اختيارياً للحدث'}</p>
+                            </div>
+                        </div>
+
+                        <div className="form-field">
+                            <label className="field-label">
+                                <MessageSquare size={14} />
+                                {t('hub.event_description') || 'وصف الحدث (اختياري)'}
+                            </label>
+                            <textarea
+                                className="field-textarea"
+                                rows="3"
+                                placeholder={t('hub.event_description_placeholder') || 'أضف وصفاً مختصراً للحدث...'}
+                                value={eventDescription}
+                                onChange={(e) => setEventDescription(e.target.value)}
+                            />
+                        </div>
+                    </div>
+
+                    {/* Section 3: Date Range */}
+                    <div className="modal-section">
+                        <div className="section-label">
+                            <span className="section-number">3</span>
+                            <div>
+                                <h4>{t('hub.event_dates') || 'تاريخ الحدث'}</h4>
+                                <p className="section-hint">{t('hub.event_dates_hint') || 'التواريخ المحددة من التقويم'}</p>
+                            </div>
+                        </div>
+
+                        <div className="date-range-display">
+                            <div className="date-card">
+                                <span className="date-card-label">{t('hub.start_date') || 'من'}</span>
+                                <div className="date-card-value">
+                                    <Calendar size={16} />
+                                    <span>{Math.min(selectionRange.start || 0, selectionRange.end || 0)} {language === 'ar' ? ARABIC_MONTHS[currentMonth] : ''} {currentYear}</span>
+                                </div>
+                            </div>
+                            <div className="date-connector">
+                                <ArrowRight size={18} />
+                            </div>
+                            <div className="date-card">
+                                <span className="date-card-label">{t('hub.end_date') || 'إلى'}</span>
+                                <div className="date-card-value">
+                                    <Calendar size={16} />
+                                    <span>
+                                        {selectionRange.end !== selectionRange.start
+                                            ? `${Math.max(selectionRange.start || 0, selectionRange.end || 0)} ${language === 'ar' ? ARABIC_MONTHS[currentMonth] : ''} ${currentYear}`
+                                            : t('hub.same_day') || 'نفس اليوم'
+                                        }
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {(eventTitle.trim() || selectedIcon) && (() => {
+                            const iconObj = ICON_OPTIONS.find(o => o.key === selectedIcon);
+                            const PreviewIcon = iconObj?.Icon || Calendar;
+                            return (
+                                <div className="event-preview" style={{ '--preview-color': 'var(--color-primary)' }}>
+                                    <div className="preview-icon-wrap">
+                                        <PreviewIcon size={18} />
+                                    </div>
+                                    <div className="preview-info">
+                                        <span className="preview-title">{eventTitle || (t('hub.untitled_event') || 'حدث بدون عنوان')}</span>
+                                        <span className="preview-type">{iconObj?.label || (t('hub.no_icon_selected') || 'بدون رمز')}</span>
+                                    </div>
+                                    <div className="preview-color-bar" />
+                                </div>
+                            );
+                        })()}
+                    </div>
+
+                    {/* Footer */}
+                    <div className="modal-actions">
+                        <button className="btn-cancel" onClick={() => { setShowRangeModal(false); resetEventForm(); }}>
+                            {t('hub.modal_cancel') || 'إلغاء'}
+                        </button>
+                        <button
+                            className="btn-save"
+                            disabled={!eventTitle.trim() || !selectedIcon}
+                            onClick={() => { setShowRangeModal(false); resetEventForm(); }}
+                        >
                             <Check size={16} />
-                            {t('hub.save_period')}
+                            {t('hub.save_period') || 'حفظ الحدث'}
                         </button>
                     </div>
                 </div>

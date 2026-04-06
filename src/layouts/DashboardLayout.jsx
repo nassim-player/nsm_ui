@@ -2,7 +2,8 @@
 import React from 'react';
 import { useTranslation } from '../context/LanguageContext';
 import { Outlet } from 'react-router-dom';
-import { Sidebar } from '../components/layout/Sidebar/Sidebar';
+// import { Sidebar } from '../components/layout/Sidebar/Sidebar';
+import { Sidebar2 } from '../components/layout/Sidebar2/Sidebar2';
 import { PageHero } from '../components/layout/PageHero/PageHero';
 import './DashboardLayout.scss';
 
@@ -12,7 +13,7 @@ export const DashboardLayout = () => {
 
     return (
         <div className="dashboard-layout">
-            <Sidebar role="Director" onLogout={() => console.log('Logging out...')} />
+            <Sidebar2 role="Director" onLogout={() => console.log('Logging out...')} />
 
             <main className="main-content">
                 <PageHero

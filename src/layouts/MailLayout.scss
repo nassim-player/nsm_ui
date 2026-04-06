@@ -1,0 +1,13 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.mail-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.mail-content {
+    flex: 1;
+}

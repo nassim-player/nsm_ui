@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
-import { Search, ChevronDown, ChevronUp, Loader, Check, Sliders, Eye, EyeOff, Plus, X, Columns, ChevronRight, Grid, RotateCcw, AlertCircle } from 'react-feather';
+import { Search, ChevronDown, ChevronUp, Loader, Check, Sliders, Eye, EyeOff, Plus, X, Columns, ChevronRight, ChevronLeft, Grid, RotateCcw, AlertCircle } from 'react-feather';
 import PropTypes from 'prop-types';
 import './DataTable.scss';
 
@@ -72,8 +72,9 @@ export const DataTable = ({
         const handleMouseMove = (e) => {
             if (resizingRef.current) {
                 const { key, startX, startWidth } = resizingRef.current;
-                // RTL: dragging left (negative delta) increases width
-                const delta = startX - e.clientX;
+                const isRTL = document.documentElement.dir === 'rtl';
+                // Calculate delta based on document direction
+                const delta = isRTL ? (startX - e.clientX) : (e.clientX - startX);
 
                 setColumns(prev => prev.map(col => {
                     if (col.key === key) {
@@ -344,7 +345,7 @@ export const DataTable = ({
                 <div className="dt-filter-group">
                     {headerActions && <div className="dt-header-actions">{headerActions}</div>}
                     {/* Configuration Dropdown */}
-                    <div className="dt-config-dropdown" ref={configDropdownRef}>
+                    <div className={`dt-config-dropdown ${configDropdownOpen ? 'is-open' : ''}`} ref={configDropdownRef}>
                         <button
                             className={`dt-config-btn ${configDropdownOpen ? 'active' : ''}`}
                             onClick={() => {
@@ -442,7 +443,7 @@ export const DataTable = ({
                                     <div className="dt-add-column-picker">
                                         <div className="dt-picker-header">
                                             <button className="dt-back-btn" onClick={() => { setAddColumnOpen(false); setExpandedCategory(null); }}>
-                                                <ChevronRight size={18} />
+                                                {document.documentElement.dir === 'rtl' ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
                                             </button>
                                             <span>إضافة عمود جديد</span>
                                         </div>
@@ -454,7 +455,7 @@ export const DataTable = ({
                                                         className={`dt-category-header ${expandedCategory === category ? 'expanded' : ''}`}
                                                         onClick={() => setExpandedCategory(expandedCategory === category ? null : category)}
                                                     >
-                                                        <ChevronRight size={16} className="dt-cat-arrow" />
+                                                        {document.documentElement.dir === 'rtl' ? <ChevronLeft size={16} className="dt-cat-arrow" /> : <ChevronRight size={16} className="dt-cat-arrow" />}
                                                         <span>{category}</span>
                                                         <span className="dt-cat-count">{cols.length}</span>
                                                     </button>

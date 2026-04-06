@@ -15,7 +15,7 @@
 
         to {
             opacity: 1;
-            transform: translateY(0);
+            transform: none;
         }
     }
 
@@ -67,9 +67,9 @@
         justify-content: center;
 
         button {
-            width: 38px;
-            height: 38px;
-            border-radius: 12px;
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
             border: none;
             display: flex;
             align-items: center;
@@ -77,7 +77,13 @@
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             background: var(--color-slate-100);
-            color: var(--color-slate-500);
+            color: var(--color-slate-700);
+
+            svg {
+                width: 22px !important;
+                height: 22px !important;
+                stroke-width: 2.2px;
+            }
 
             &:hover {
                 transform: scale(1.1);
@@ -170,16 +176,84 @@
         }
     }
 
-    /* Form Styling - Better & Premium */
-    .log-container-wrapper {
+    /* Stats Grid Duo - 2 Simple Stat Cards */
+    .stats-grid-duo {
         display: grid;
-        grid-template-columns: 1fr 380px;
-        gap: 2rem;
-        align-items: start;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
 
-        @media (max-width: 1024px) {
+        @media (max-width: 768px) {
             grid-template-columns: 1fr;
         }
+
+        .stat-card-simple {
+            background: var(--cards-color, white);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 24px 28px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                inset-inline-end: 0;
+                width: 4px;
+                height: 100%;
+                background: var(--accent);
+                opacity: 0.6;
+                border-radius: 0 0 0 4px;
+            }
+
+            &:hover {
+                transform: translateY(-3px);
+                box-shadow: var(--shadow-lg);
+                border-color: var(--accent);
+            }
+
+            .stat-icon-bubble {
+                width: 48px;
+                height: 48px;
+                border-radius: 14px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+            }
+
+            .stat-card-body {
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+
+                .stat-number {
+                    font-size: 2.4rem;
+                    font-weight: 800;
+                    line-height: 1;
+                    letter-spacing: -1px;
+                }
+
+                .stat-label {
+                    font-size: 13px;
+                    font-weight: 600;
+                    color: var(--text-secondary);
+                }
+            }
+        }
+    }
+
+    /* Form Styling - Better & Premium */
+    .log-container-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        align-items: stretch;
     }
 
     .log-form-container {
@@ -217,7 +291,7 @@
                     font-size: 14px;
                     font-weight: 700;
                     color: var(--color-slate-700);
-                    margin-right: 4px;
+                    margin-inline-end: 4px;
                 }
 
                 input,
@@ -255,7 +329,7 @@
                     appearance: none;
                     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
                     background-repeat: no-repeat;
-                    background-position: left 18px center;
+                    background-position: inline-start 18px center;
                 }
             }
 
@@ -337,13 +411,13 @@
                 height: 1px;
                 flex: 1;
                 background: var(--border-color);
-                margin-right: 15px;
+                margin-inline-end: 15px;
             }
         }
 
         .logs-list {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 16px;
 
             .log-item {
@@ -354,11 +428,13 @@
                 transition: all 0.3s ease;
                 display: flex;
                 flex-direction: column;
+                justify-content: space-between;
                 gap: 12px;
                 box-shadow: var(--shadow-sm);
+                min-height: 160px;
 
                 &:hover {
-                    transform: translateX(-5px);
+                    transform: translateY(-5px);
                     border-color: var(--color-primary-light);
                     box-shadow: var(--shadow-md);
                 }
@@ -438,7 +514,7 @@
                 content: '';
                 position: absolute;
                 top: 0;
-                right: 0;
+                inset-inline-end: 0;
                 width: 6px;
                 height: 100%;
                 background: var(--color-primary);

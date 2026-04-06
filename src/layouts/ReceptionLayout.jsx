@@ -1,7 +1,8 @@
 import React from 'react';
-import { Outlet, NavLink } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { useTranslation } from '../context/LanguageContext';
 import { Activity, Calendar, FileText } from 'react-feather';
+import { SubNav } from '../components/common/SubNav/SubNav';
 import './ReceptionLayout.scss';
 
 export const ReceptionLayout = () => {
@@ -15,21 +16,7 @@ export const ReceptionLayout = () => {
 
     return (
         <div className="reception-layout">
-            <nav className="reception-subnav">
-                {subLinks.map((link, index) => (
-                    <NavLink
-                        key={index}
-                        to={link.to}
-                        end={link.exact}
-                        className={({ isActive }) =>
-                            `subnav-link ${isActive ? 'active' : ''}`
-                        }
-                    >
-                        <link.icon size={18} />
-                        <span>{link.label}</span>
-                    </NavLink>
-                ))}
-            </nav>
+            <SubNav links={subLinks} />
             <div className="reception-content">
                 <Outlet />
             </div>

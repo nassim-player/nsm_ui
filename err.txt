@@ -1,0 +1,25 @@
+[36mvite v7.3.1 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 488 modules transformed.
+[31m✗[39m Build failed in 3.07s
+[31merror during build:
+[31msrc/pages/safe-exit/ExitVerification.jsx (4:17): "QrCode" is not exported by "node_modules/react-feather/dist/index.js", imported by "src/pages/safe-exit/ExitVerification.jsx".[31m
+file: [36mC:/xampp/htdocs/nsm_ui/src/pages/safe-exit/ExitVerification.jsx:4:17[31m
+[33m
+2: import {
+3:     Search, Shield, User, Phone, CreditCard,
+4:     CheckCircle, QrCode, AlertTriangle, ChevronDown,
+                    ^
+5:     UserCheck, X, Lock, Camera
+6: } from 'react-feather';
+[31m
+    at getRollupError (file:///C:/xampp/htdocs/nsm_ui/node_modules/rollup/dist/es/shared/parseAst.js:402:41)
+    at error (file:///C:/xampp/htdocs/nsm_ui/node_modules/rollup/dist/es/shared/parseAst.js:398:42)
+    at Module.error (file:///C:/xampp/htdocs/nsm_ui/node_modules/rollup/dist/es/shared/node-entry.js:17040:16)
+    at Module.traceVariable (file:///C:/xampp/htdocs/nsm_ui/node_modules/rollup/dist/es/shared/node-entry.js:17452:29)
+    at ModuleScope.findVariable (file:///C:/xampp/htdocs/nsm_ui/node_modules/rollup/dist/es/shared/node-entry.js:15070:39)
+    at ReturnValueScope.findVariable (file:///C:/xampp/htdocs/nsm_ui/node_modules/rollup/dist/es/shared/node-entry.js:5673:38)
+    at FunctionBodyScope.findVariable (file:///C:/xampp/htdocs/nsm_ui/node_modules/rollup/dist/es/shared/node-entry.js:5673:38)
+    at Identifier.bind (file:///C:/xampp/htdocs/nsm_ui/node_modules/rollup/dist/es/shared/node-entry.js:5447:40)
+    at CallExpression.bind (file:///C:/xampp/htdocs/nsm_ui/node_modules/rollup/dist/es/shared/node-entry.js:2825:28)
+    at CallExpression.bind (file:///C:/xampp/htdocs/nsm_ui/node_modules/rollup/dist/es/shared/node-entry.js:12179:15)[39m

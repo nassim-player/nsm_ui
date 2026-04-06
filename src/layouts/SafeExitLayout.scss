@@ -1,0 +1,13 @@
+@use '../styles/variables';
+@use '../styles/mixins' as *;
+
+.safe-exit-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.safe-exit-content {
+    flex: 1;
+}

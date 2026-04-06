@@ -1,148 +1,200 @@
-
-import React, { useState } from 'react';
-import { useTranslation } from '../../../context/LanguageContext';
-import { NavLink } from 'react-router-dom';
-import './Sidebar.scss';
-import PropTypes from 'prop-types';
+import React, { useState } from "react";
+import { useTranslation } from "../../../context/LanguageContext";
+import { NavLink } from "react-router-dom";
+import "./Sidebar.scss";
+import PropTypes from "prop-types";
 import {
-    Grid, Calendar, FileText, LogOut,
-    Users, Book, Home, Layout, Clock, UserPlus
-} from 'react-feather';
+  Grid,
+  Calendar,
+  LogOut,
+  Users,
+  Book,
+  Layout,
+  Clock,
+  UserPlus,
+  MessageSquare,
+  Mail,
+  ChevronDown,
+  Home,
+  Briefcase,
+  Cpu,
+} from "react-feather";
 
-// Removed config object to move inside component for translation
-export const Sidebar = ({ role = 'Director', onLogout, className = '' }) => {
-    const { t } = useTranslation();
+// Navigation config factory — call inside component for fresh translations
+const buildNavConfig = (t) => ({
+  Director: [
+    {
+      id: "core",
+      groupLabel: t("nav.group_core") || "الرئيسية",
+      items: [
+        { href: "/", icon: Grid, label: t("nav.dashboard") },
+      ],
+    },
+    {
+      id: "people",
+      groupLabel: t("nav.group_people") || "إدارة الأفراد",
+      items: [
+        { href: "/teachers", icon: Users, label: t("nav.teachers") },
+        { href: "/students", icon: Briefcase, label: t("nav.students") },
+        { href: "/registration", icon: UserPlus, label: t("nav.registration") },
+      ],
+    },
+    {
+      id: "academic",
+      groupLabel: t("nav.group_academic") || "الجانب الأكاديمي",
+      items: [
+        { href: "/academic", icon: Book, label: t("nav.academic") },
+        { href: "/reception", icon: Clock, label: t("nav.reception") },
+        { href: "/scheduling", icon: Cpu, label: t("nav.scheduling") || "الجداول الذكية" },
+      ],
+    },
+    {
+      id: "comms",
+      groupLabel: t("nav.group_comms") || "التواصل والعمليات",
+      items: [
+        {
+          href: "/hub",
+          icon: Calendar,
+          label: t("nav.hub") || "التقويم والإعلانات",
+        },
+        {
+          href: "/complaints",
+          icon: MessageSquare,
+          label: t("nav.complaints") || "الشكاوي والاقتراحات",
+        },
+        {
+          href: "/mail",
+          icon: Mail,
+          label: t("mail.nav_outgoing") || "الوثائق والبريد",
+        },
+      ],
+    },
+  ],
+  HR_Manager: [
+    {
+      id: "core",
+      groupLabel: t("nav.dashboard") || "الرئيسية",
+      items: [{ href: "/", icon: Grid, label: t("nav.dashboard") }],
+    },
+    {
+      id: "hr",
+      groupLabel: t("nav.hr") || "الموارد البشرية",
+      items: [
+        { href: "/employees", icon: Users, label: t("nav.employees") },
+        { href: "/structure", icon: Layout, label: t("nav.structure") },
+        { href: "/attendance", icon: Clock, label: t("nav.attendance") },
+      ],
+    },
+  ],
+  Default: [
+    {
+      id: "core",
+      groupLabel: t("nav.main") || "الرئيسية",
+      items: [{ href: "/", icon: Home, label: t("nav.main") }],
+    },
+  ],
+});
 
-    const NAVIGATION_CONFIG = {
-        Director: [
-            {
-                name: 'nav.management',
-                items: [
-                    { href: '/', icon: Grid, label: t('nav.dashboard') },
-                    { href: '/teachers', icon: Users, label: t('nav.teachers') },
-                    { href: '/students', icon: Users, label: t('nav.students') },
-                    { href: '/registration', icon: UserPlus, label: t('nav.registration') },
-                    { href: '/academic', icon: Book, label: t('nav.academic') },
-                    { href: '/reception', icon: Clock, label: t('nav.reception') },
-                    { href: '/hub', icon: Calendar, label: t('nav.hub') || 'المركز الإعلامي' }
-                ]
-            },
-            {
-                name: 'nav.account',
-                items: [
-                    { href: '#', icon: LogOut, label: t('nav.logout'), action: 'logout' }
-                ]
-            }
-        ],
-        HR_Manager: [
-            {
-                name: 'nav.dashboard',
-                items: [
-                    { href: 'index.html', icon: Grid, label: t('nav.dashboard') }
-                ]
-            },
-            {
-                name: 'nav.hr',
-                items: [
-                    { href: 'index.html', icon: Users, label: t('nav.employees') },
-                    { href: 'index.html', icon: Layout, label: t('nav.structure') },
-                    { href: 'index.html', icon: Clock, label: t('nav.attendance') }
-                ]
-            },
-            {
-                name: 'nav.account',
-                items: [
-                    { href: '#', icon: LogOut, label: t('nav.logout'), action: 'logout' }
-                ]
-            }
-        ],
-        // Add other roles as needed
-        Default: [
-            {
-                name: 'nav.main',
-                items: [
-                    { href: 'index.html', icon: Home, label: t('nav.main') }
-                ]
-            }
-        ]
-    };
-    const [activeLink, setActiveLink] = useState('index.html'); // Default active
-    const navSections = NAVIGATION_CONFIG[role] || NAVIGATION_CONFIG['Default'];
+export const Sidebar = ({ role = "Director", onLogout, className = "" }) => {
+  const { t } = useTranslation();
+  const navConfig = buildNavConfig(t);
+  const navGroups = navConfig[role] || navConfig["Default"];
 
-    const logoPath = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Ccircle cx="50" cy="50" r="45" fill="%233b82f6"/%3E%3Ctext x="50" y="65" font-size="40" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-weight="bold"%3EEF%3C/text%3E%3C/svg%3E';
+  // Track which groups are open; default: all open
+  const [openGroups, setOpenGroups] = useState(() =>
+    navGroups.reduce((acc, g) => ({ ...acc, [g.id]: true }), {})
+  );
 
-    const handleItemClick = (e, item) => {
-        if (item.action === 'logout') {
-            e.preventDefault();
-            if (onLogout) onLogout();
-        }
-        // No need to set activeLink manually, NavLink handles it
-    };
+  const toggleGroup = (id) =>
+    setOpenGroups((prev) => ({ ...prev, [id]: !prev[id] }));
 
-    return (
-        <div id="collapsibleSidebar" className={`sidebar ${className}`}>
-            {/* Logo Section */}
-            <div className="sidebar-logo-section">
-                <div className="flex items-center justify-center w-full">
-                    <div className="flex-shrink-0">
-                        <div className="logo-container">
-                            <img src={logoPath} alt="EL FADILA SCHOOL" className="logo-img" />
-                        </div>
-                    </div>
-                    <div className="school-info hidden overflow-hidden">
-                        <h1 className="school-title">EL FADILA SCHOOL</h1>
-                        <p className="school-subtitle">نظام إدارة الموارد البشرية</p>
-                    </div>
-                </div>
-            </div>
+  const handleLogout = (e) => {
+    e.preventDefault();
+    if (onLogout) onLogout();
+  };
 
-            {/* Navigation */}
-            <nav className="sidebar-nav">
-                {navSections.map((section, index) => (
-                    <React.Fragment key={index}>
-                        {index > 0 && <div className="nav-divider"></div>}
-                        <div className="nav-section">
-                            {section.items.map((item, itemIndex) => (
-                                item.action === 'logout' ? (
-                                    <a
-                                        key={itemIndex}
-                                        href={item.href}
-                                        className="nav-item"
-                                        onClick={(e) => handleItemClick(e, item)}
-                                        data-action={item.action}
-                                    >
-                                        <div className="nav-icon-wrapper">
-                                            <item.icon size={20} />
-                                        </div>
-                                        <span className="nav-label">
-                                            {item.label}
-                                        </span>
-                                    </a>
-                                ) : (
-                                    <NavLink
-                                        key={itemIndex}
-                                        to={item.href === 'index.html' ? '/' : item.href}
-                                        className={({ isActive }) => `nav-item ${isActive ? 'nav-active' : ''}`}
-                                    >
-                                        <div className="nav-icon-wrapper">
-                                            <item.icon size={20} />
-                                        </div>
-                                        <span className="nav-label">
-                                            {item.label}
-                                        </span>
-                                    </NavLink>
-                                )
-                            ))}
-                        </div>
-                    </React.Fragment>
-                ))}
-            </nav>
+  const logoPath =
+    'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Ccircle cx="50" cy="50" r="45" fill="%233b82f6"/%3E%3Ctext x="50" y="65" font-size="40" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-weight="bold"%3EEF%3C/text%3E%3C/svg%3E';
+
+  return (
+    <div id="collapsibleSidebar" className={`sidebar ${className}`}>
+      {/* ── Logo ── */}
+      <div className="sidebar-logo-section">
+        <div className="logo-row">
+          <div className="logo-container">
+            <img src={logoPath} alt="EL FADILA" className="logo-img" />
+          </div>
+          <div className="school-info">
+            <h1 className="school-title">EL FADILA</h1>
+            <p className="school-subtitle">نظام إدارة المدرسة</p>
+          </div>
         </div>
-    );
+      </div>
+
+      {/* ── Navigation ── */}
+      <nav className="sidebar-nav">
+        {navGroups.map((group) => (
+          <div key={group.id} className="nav-group">
+            {/* Group header — clickable to collapse/expand */}
+            <button
+              className="nav-group-header"
+              onClick={() => toggleGroup(group.id)}
+              title={group.groupLabel}
+            >
+              <span className="nav-group-label">{group.groupLabel}</span>
+              <ChevronDown
+                size={15}
+                className={`nav-group-chevron ${openGroups[group.id] ? "open" : ""}`}
+              />
+            </button>
+
+            {/* Group items */}
+            <div
+              className={`nav-group-items ${openGroups[group.id] ? "items-open" : "items-closed"}`}
+            >
+              {group.items.map((item, idx) => (
+                <NavLink
+                  key={idx}
+                  to={item.href}
+                  end={item.href === "/"}
+                  className={({ isActive }) =>
+                    `nav-item ${isActive ? "nav-active" : ""}`
+                  }
+                  title={item.label}
+                >
+                  <div className="nav-icon-wrapper">
+                    <item.icon size={20} />
+                  </div>
+                  <span className="nav-label">{item.label}</span>
+                </NavLink>
+              ))}
+            </div>
+          </div>
+        ))}
+      </nav>
+
+      {/* ── Footer / Logout ── */}
+      <div className="sidebar-footer">
+        <div className="nav-divider" />
+        <a
+          href="#"
+          className="nav-item logout-item"
+          onClick={handleLogout}
+          data-action="logout"
+          title={t("nav.logout")}
+        >
+          <div className="nav-icon-wrapper">
+            <LogOut size={20} />
+          </div>
+          <span className="nav-label">{t("nav.logout")}</span>
+        </a>
+      </div>
+    </div>
+  );
 };
 
 Sidebar.propTypes = {
-    role: PropTypes.string,
-    onLogout: PropTypes.func,
-    className: PropTypes.string
+  role: PropTypes.string,
+  onLogout: PropTypes.func,
+  className: PropTypes.string,
 };

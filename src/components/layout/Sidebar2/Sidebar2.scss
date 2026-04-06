@@ -1,0 +1,291 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+// ─── Config ──────────────────────────────────────────────────────────────────
+$rail-w : 68px;
+$panel-w : 260px;
+$radius : 20px;
+$speed : 0.32s;
+$ease : cubic-bezier(0.4, 0, 0.2, 1);
+
+// ─── Root ────────────────────────────────────────────────────────────────────
+#sidebar2 {
+    position: fixed !important;
+    inset-inline-start: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 50;
+    height: 96vh;
+    width: $rail-w;
+    margin-inline: 10px;
+    border-radius: $radius;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: width $speed $ease, box-shadow $speed $ease;
+
+    // Glass shell
+    background: var(--glass-background-zero);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--color-slate-200);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+
+    &:hover {
+        width: $panel-w;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.13), 0 4px 16px rgba(0, 0, 0, 0.07);
+
+        .s2-label,
+        .s2-group-text,
+        .s2-logo-text {
+            opacity: 1;
+            transform: translateX(0);
+            visibility: visible;
+        }
+
+        .s2-logo {
+            justify-content: flex-start;
+            padding-inline-start: 1.1rem;
+            gap: 12px;
+        }
+
+        .s2-group-label {
+            padding-inline-start: 0.85rem;
+        }
+    }
+}
+
+// ─── Logo ────────────────────────────────────────────────────────────────────
+.s2-logo {
+    height: 76px;
+    min-height: 76px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    border-bottom: 1px solid var(--color-slate-200);
+    padding-inline: 0;
+    transition: all $speed $ease;
+    background: linear-gradient(135deg,
+            rgba(59, 130, 246, 0.05) 0%,
+            rgba(139, 92, 246, 0.05) 100%);
+}
+
+.s2-logo-pill {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+}
+
+.s2-logo-img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.s2-logo-text {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-8px);
+    transition: opacity $speed $ease, transform $speed $ease, visibility $speed $ease;
+    white-space: nowrap;
+
+    [dir="rtl"] & {
+        transform: translateX(8px);
+    }
+}
+
+.s2-logo-name {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--color-slate-900);
+    letter-spacing: 0.03em;
+    line-height: 1.2;
+}
+
+.s2-logo-sub {
+    font-size: 0.68rem;
+    color: var(--color-slate-500);
+    margin-top: 2px;
+}
+
+// ─── Nav ─────────────────────────────────────────────────────────────────────
+.s2-nav {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0.75rem 0;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+// ─── Group ───────────────────────────────────────────────────────────────────
+.s2-group {
+    padding: 0;
+}
+
+.s2-group-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-inline: 1.25rem 0.75rem;
+    height: 28px;
+    margin-bottom: 2px;
+    transition: padding $speed $ease;
+}
+
+.s2-group-dot {
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--grp-color, var(--color-primary));
+    opacity: 0.7;
+}
+
+.s2-group-text {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--grp-color, var(--color-slate-400));
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-6px);
+    transition: opacity $speed $ease, transform $speed $ease, visibility $speed $ease;
+    white-space: nowrap;
+
+    [dir="rtl"] & {
+        transform: translateX(6px);
+    }
+}
+
+.s2-group-items {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 0 0.5rem;
+}
+
+// ─── Nav Item ────────────────────────────────────────────────────────────────
+.s2-item {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 0.3rem 0.3rem;
+    border-radius: 12px;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--color-slate-600);
+    position: relative;
+    transition: background $speed $ease, color 0.2s ease;
+    white-space: nowrap;
+
+    &:hover {
+        background: var(--item-bg, rgba(59, 130, 246, 0.1));
+        color: var(--item-color, var(--color-primary));
+
+        .s2-icon-pill {
+            background: var(--item-bg, rgba(59, 130, 246, 0.15));
+            color: var(--item-color, var(--color-primary));
+            transform: scale(1.06);
+        }
+
+        .s2-label {
+            color: var(--item-color, var(--color-primary));
+        }
+    }
+
+    // Active state
+    &.s2-item--active {
+        background: var(--item-bg, rgba(59, 130, 246, 0.12));
+        color: var(--item-active, var(--color-primary-dark));
+
+        .s2-icon-pill {
+            background: var(--item-color, var(--color-primary));
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+        }
+
+        .s2-label {
+            color: var(--item-active, var(--color-primary-dark));
+            font-weight: 600;
+        }
+
+        // Active accent line
+        &::after {
+            content: '';
+            position: absolute;
+            inset-inline-end: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 54%;
+            background: var(--item-color, var(--color-primary));
+            border-radius: 3px 0 0 3px;
+        }
+    }
+
+    // Logout variant
+    &.s2-logout {
+        color: var(--color-slate-500);
+    }
+}
+
+// ─── Icon pill ───────────────────────────────────────────────────────────────
+.s2-icon-pill {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--item-color, var(--color-slate-500));
+    background: transparent;
+    transition: background $speed $ease, color 0.2s ease,
+        transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+// ─── Label ───────────────────────────────────────────────────────────────────
+.s2-label {
+    font-size: 0.83rem;
+    font-weight: 500;
+    color: var(--color-slate-700);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-8px);
+    transition: opacity $speed $ease, transform $speed $ease,
+        visibility $speed $ease, color 0.15s ease;
+    margin-inline-start: 6px;
+
+    [dir="rtl"] & {
+        transform: translateX(8px);
+    }
+}
+
+// ─── Divider ─────────────────────────────────────────────────────────────────
+.s2-divider {
+    border-top: 1px solid var(--color-slate-200);
+    margin: 0.4rem 0.75rem;
+}
+
+// ─── Footer ──────────────────────────────────────────────────────────────────
+.s2-footer {
+    flex-shrink: 0;
+    padding: 0 0.5rem 0.75rem;
+}

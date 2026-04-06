@@ -14,6 +14,10 @@ import { RegistrationRequests } from './pages/registration/RegistrationRequests'
 import { RegistrationMeetings } from './pages/registration/RegistrationMeetings';
 import { RegistrationCommissions } from './pages/registration/RegistrationCommissions';
 import { RegistrationFinalization } from './pages/registration/RegistrationFinalization';
+import { DistributionLayout } from './layouts/DistributionLayout';
+import { DistributionEngine } from './pages/distribution/DistributionEngine';
+import { DistributionAssignment } from './pages/distribution/DistributionAssignment';
+import { DistributionManual } from './pages/distribution/DistributionManual';
 import { TeachersLayout } from './layouts/TeachersLayout';
 import { TeachersOverview } from './pages/teachers/TeachersOverview';
 import { TeachersManagement } from './pages/teachers/TeachersManagement';
@@ -29,6 +33,20 @@ import { ReceptionLayout } from './layouts/ReceptionLayout';
 import { ReceptionOverview } from './pages/reception/ReceptionOverview';
 import { ReceptionRequests } from './pages/reception/ReceptionRequests';
 import { ReceptionLog } from './pages/reception/ReceptionLog';
+import { ComplaintsLayout } from './layouts/ComplaintsLayout';
+import { ComplaintsSuggestions } from './pages/complaints/ComplaintsSuggestions';
+import { ComplaintsSubmission } from './pages/complaints/ComplaintsSubmission';
+import { MailLayout } from './layouts/MailLayout';
+import { MailOutgoing } from './pages/mail/MailOutgoing';
+import { MailIncoming } from './pages/mail/MailIncoming';
+import { MailArchive } from './pages/mail/MailArchive';
+import { SafeExitLayout } from './layouts/SafeExitLayout';
+import { GateMonitor } from './pages/safe-exit/GateMonitor';
+import { ExitVerification } from './pages/safe-exit/ExitVerification';
+import { StudentStatusTracker } from './pages/safe-exit/StudentStatusTracker';
+import { SchedulingLayout } from './layouts/SchedulingLayout';
+import { ScheduleGenerator } from './pages/scheduling/ScheduleGenerator';
+import { ScheduleMasterView } from './pages/scheduling/ScheduleMasterView';
 import './styles/global.scss';
 
 // Placeholder component for pages under construction
@@ -62,6 +80,11 @@ function App() {
             <Route index element={<StudentsHome />} />
             <Route path="organization" element={<StudentsOrganization />} />
           </Route>
+          <Route path="distribution" element={<DistributionLayout />}>
+            <Route index element={<DistributionEngine />} />
+            <Route path="assignment" element={<DistributionAssignment />} />
+            <Route path="manual" element={<DistributionManual />} />
+          </Route>
           <Route path="registration" element={<RegistrationLayout />}>
             <Route index element={<RegistrationOverview />} />
             <Route path="requests" element={<RegistrationRequests />} />
@@ -83,6 +106,24 @@ function App() {
             <Route index element={<ReceptionOverview />} />
             <Route path="requests" element={<ReceptionRequests />} />
             <Route path="log" element={<ReceptionLog />} />
+          </Route>
+          <Route path="complaints" element={<ComplaintsLayout />}>
+            <Route index element={<ComplaintsSuggestions />} />
+            <Route path="new" element={<ComplaintsSubmission />} />
+          </Route>
+          <Route path="mail" element={<MailLayout />}>
+            <Route index element={<MailOutgoing />} />
+            <Route path="incoming" element={<MailIncoming />} />
+            <Route path="archive" element={<MailArchive />} />
+          </Route>
+          <Route path="safe-exit" element={<SafeExitLayout />}>
+            <Route index element={<GateMonitor />} />
+            <Route path="verify" element={<ExitVerification />} />
+            <Route path="tracker" element={<StudentStatusTracker />} />
+          </Route>
+          <Route path="scheduling" element={<SchedulingLayout />}>
+            <Route index element={<ScheduleGenerator />} />
+            <Route path="master" element={<ScheduleMasterView />} />
           </Route>
 
           {/* Fallback */}

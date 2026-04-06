@@ -219,7 +219,7 @@ export const TeachersManagement = () => {
         const row = filteredData[rowIndex];
         if (!row) return;
         const dataIndex = data.findIndex((d) => d.id === row.id);
-        if (dataIndex === -1) return; 
+        if (dataIndex === -1) return;
         const newData = [...data];
         newData[dataIndex] = { ...newData[dataIndex], [colKey]: value };
         setData(newData);
@@ -734,7 +734,7 @@ export const TeachersManagement = () => {
                                             <select
                                                 className="form-select"
                                                 value={selectedTeacher?.stage ?? ''}
-                                                onChange={() => {}}
+                                                onChange={() => { }}
                                             >
                                                 <option value="">--</option>
                                                 {stageOptions.map(opt => (
@@ -747,7 +747,7 @@ export const TeachersManagement = () => {
                                             <select
                                                 className="form-select"
                                                 value={selectedTeacher?.sub_stage ?? ''}
-                                                onChange={() => {}}
+                                                onChange={() => { }}
                                             >
                                                 <option value="">--</option>
                                                 {subStageOptions.map(opt => (
@@ -760,7 +760,7 @@ export const TeachersManagement = () => {
                                             <select
                                                 className="form-select"
                                                 value={selectedTeacher?.module ?? ''}
-                                                onChange={() => {}}
+                                                onChange={() => { }}
                                             >
                                                 <option value="">--</option>
                                                 {moduleOptions.map(opt => (
@@ -773,7 +773,7 @@ export const TeachersManagement = () => {
                                             <select
                                                 className="form-select"
                                                 value={selectedTeacher?.class ?? ''}
-                                                onChange={() => {}}
+                                                onChange={() => { }}
                                             >
                                                 <option value="">--</option>
                                                 {classOptions.map(opt => (

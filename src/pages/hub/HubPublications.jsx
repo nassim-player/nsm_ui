@@ -2,7 +2,7 @@ import React, { useState, useMemo, useCallback } from 'react';
 import { useTranslation } from '../../context/LanguageContext';
 import {
     MessageSquare, AlertTriangle, AlertOctagon, Info, Clock,
-    User, Tag, ChevronDown, Plus, Send, Filter, Search,
+    User, Tag, ChevronDown, Plus, PlusCircle, Send, Filter, Search,
     CheckCircle, Eye, Users, BookOpen, Paperclip, Calendar,
     Globe, Link2, Mail, Smartphone, Share2, Image, FileText,
     X, Upload, Bell, Award, MapPin, Zap, Hash,
@@ -132,9 +132,11 @@ export const HubPublications = () => {
     const [activeTab, setActiveTab] = useState('main'); // 'main' or 'staff'
     const [urgencyFilter, setUrgencyFilter] = useState('all');
     const [searchQuery, setSearchQuery] = useState('');
-    const [categories] = useState(INITIAL_CATEGORY_CONFIG);
-    const [urgencies] = useState(INITIAL_URGENCY_CONFIG);
+    const [categories, setCategories] = useState(INITIAL_CATEGORY_CONFIG);
+    const [urgencies, setUrgencies] = useState(INITIAL_URGENCY_CONFIG);
     const [showSettingsModal, setShowSettingsModal] = useState(false);
+    const [editingItem, setEditingItem] = useState(null); // { type: 'category'|'urgency', key: string }
+    const [editingName, setEditingName] = useState('');
 
     // ── Modal state ──
     const [showModal, setShowModal] = useState(false);
@@ -195,8 +197,71 @@ export const HubPublications = () => {
         setShowModal(false);
     };
 
-    const handleFilterAction = (action, type, item = null) => {
-        alert(`[API Placeholder]\nAction: ${action}\nType: ${type}\n${item ? `Target: ${item}` : ''}\n\nThis functionality will be connected to the API later.`);
+    // ── Settings: Category CRUD ──
+    const addCategory = () => {
+        const newKey = `custom_${Date.now()}`;
+        setCategories(prev => ({ ...prev, [newKey]: { color: '#6366f1' } }));
+        setEditingItem({ type: 'category', key: newKey });
+        setEditingName('');
+    };
+
+    const deleteCategory = (key) => {
+        setCategories(prev => {
+            const copy = { ...prev };
+            delete copy[key];
+            return copy;
+        });
+        if (editingItem?.key === key) setEditingItem(null);
+    };
+
+    const updateCategoryColor = (key, color) => {
+        setCategories(prev => ({ ...prev, [key]: { ...prev[key], color } }));
+    };
+
+    // ── Settings: Urgency CRUD ──
+    const addUrgency = () => {
+        const newKey = `custom_${Date.now()}`;
+        setUrgencies(prev => ({ ...prev, [newKey]: { icon: Info, color: '#6366f1', bgColor: 'rgba(99, 102, 241, 0.1)' } }));
+        setEditingItem({ type: 'urgency', key: newKey });
+        setEditingName('');
+    };
+
+    const deleteUrgency = (key) => {
+        setUrgencies(prev => {
+            const copy = { ...prev };
+            delete copy[key];
+            return copy;
+        });
+        if (editingItem?.key === key) setEditingItem(null);
+    };
+
+    const updateUrgencyColor = (key, color) => {
+        const bgColor = `rgba(${parseInt(color.slice(1, 3), 16)}, ${parseInt(color.slice(3, 5), 16)}, ${parseInt(color.slice(5, 7), 16)}, 0.1)`;
+        setUrgencies(prev => ({ ...prev, [key]: { ...prev[key], color, bgColor } }));
+    };
+
+    const startEditing = (type, key) => {
+        const config = type === 'category' ? categories[key] : urgencies[key];
+        setEditingItem({ type, key });
+        setEditingName(config.name || t(`hub.${type === 'category' ? 'category' : 'urgency'}_${key}`) || key);
+    };
+
+    const stopEditing = () => {
+        if (editingItem && editingName.trim()) {
+            if (editingItem.type === 'category') {
+                setCategories(prev => ({
+                    ...prev,
+                    [editingItem.key]: { ...prev[editingItem.key], name: editingName.trim() }
+                }));
+            } else {
+                setUrgencies(prev => ({
+                    ...prev,
+                    [editingItem.key]: { ...prev[editingItem.key], name: editingName.trim() }
+                }));
+            }
+        }
+        setEditingItem(null);
+        setEditingName('');
     };
 
     // ── Audience count ──
@@ -230,7 +295,13 @@ export const HubPublications = () => {
             result = result.filter(a => !['regulation', 'instruction'].includes(a.category));
         }
 
-        if (urgencyFilter !== 'all') {
+        // Category filter (from stats row)
+        const categoryKeys = Object.keys(INITIAL_CATEGORY_CONFIG);
+        if (categoryKeys.includes(urgencyFilter)) {
+            result = result.filter(a => a.category === urgencyFilter);
+        }
+        // Urgency filter (from urgency chips)
+        else if (urgencyFilter !== 'all') {
             result = result.filter(a => a.urgency === urgencyFilter);
         }
 
@@ -248,11 +319,12 @@ export const HubPublications = () => {
     }, [urgencyFilter, searchQuery, activeTab]);
 
     const stats = useMemo(() => {
+        const byCategory = {};
+        Object.keys(INITIAL_CATEGORY_CONFIG).forEach(cat => {
+            byCategory[cat] = MOCK_ANNOUNCEMENTS.filter(a => a.category === cat).length;
+        });
         const total = MOCK_ANNOUNCEMENTS.length;
-        const mandatory = MOCK_ANNOUNCEMENTS.filter(a => a.urgency === 'mandatory').length;
-        const urgent = MOCK_ANNOUNCEMENTS.filter(a => a.urgency === 'urgent').length;
-        const normal = MOCK_ANNOUNCEMENTS.filter(a => a.urgency === 'normal').length;
-        return { total, mandatory, urgent, normal };
+        return { total, byCategory };
     }, []);
 
     const formatDate = (dateStr) => {
@@ -387,19 +459,19 @@ export const HubPublications = () => {
                     <div className="form-row form-row--half">
                         <label className="form-label">{t('hub.modal_urgency')}</label>
                         <div className="urgency-select">
-                            {['normal', 'urgent', 'mandatory'].map(level => (
+                            {Object.entries(urgencies).map(([level, config]) => (
                                 <button
                                     key={level}
                                     className={`urgency-option ${form.urgency === level ? 'active' : ''}`}
                                     onClick={() => updateForm('urgency', level)}
                                     style={form.urgency === level ? {
-                                        background: urgencies[level].bgColor,
-                                        color: urgencies[level].color,
-                                        borderColor: urgencies[level].color,
+                                        background: config.bgColor,
+                                        color: config.color,
+                                        borderColor: config.color,
                                     } : {}}
                                 >
-                                    {React.createElement(urgencies[level].icon, { size: 14 })}
-                                    <span>{t(`hub.urgency_${level}`)}</span>
+                                    {React.createElement(config.icon || Info, { size: 14 })}
+                                    <span>{config.name || t(`hub.urgency_${level}`) || level}</span>
                                 </button>
                             ))}
                         </div>
@@ -407,17 +479,17 @@ export const HubPublications = () => {
                     <div className="form-row form-row--half">
                         <label className="form-label">{t('hub.modal_category')}</label>
                         <div className="category-select">
-                            {Object.keys(categories)
-                                .filter(cat => activeTab === 'staff' ? ['regulation', 'instruction'].includes(cat) : !['regulation', 'instruction'].includes(cat))
-                                .map(cat => (
+                            {Object.entries(categories)
+                                .filter(([cat]) => activeTab === 'staff' ? ['regulation', 'instruction'].includes(cat) : !['regulation', 'instruction'].includes(cat) || cat.startsWith('custom_'))
+                                .map(([cat, config]) => (
                                     <button
                                         key={cat}
                                         className={`category-option ${form.category === cat ? 'active' : ''}`}
                                         onClick={() => updateForm('category', cat)}
-                                        style={form.category === cat ? { color: categories[cat].color, borderColor: categories[cat].color } : {}}
+                                        style={form.category === cat ? { color: config.color, borderColor: config.color } : {}}
                                     >
-                                        <span className="cat-dot" style={{ background: categories[cat].color }} />
-                                        <span>{t(`hub.category_${cat}`)}</span>
+                                        <span className="cat-dot" style={{ background: config.color }} />
+                                        <span>{config.name || t(`hub.category_${cat}`) || cat}</span>
                                     </button>
                                 ))}
                         </div>
@@ -630,12 +702,12 @@ export const HubPublications = () => {
                     <p>{t('hub.publications_desc') || t('hub.announcements_desc')}</p>
                 </div>
                 <div className="header-actions">
-                    <button className="settings-btn" onClick={() => setShowSettingsModal(true)}>
-                        <Settings size={22} />
+                    <button className="settings-btn" onClick={() => setShowSettingsModal(true)} title={t('hub.settings') || 'الإعدادات'}>
+                        <Settings size={20} />
                     </button>
                     <button className="schedule-btn" onClick={openModal}>
-                        <Plus size={16} />
-                        <span>{t('hub.schedule_publication') || t('hub.schedule_announcement')}</span>
+                        <PlusCircle size={18} />
+                        <span>{t('hub.create_publication') || 'إنشاء منشور / تعليمة جديدة'}</span>
                     </button>
                 </div>
             </div>
@@ -645,44 +717,43 @@ export const HubPublications = () => {
                     <Globe size={18} /><span>{t('hub.tab_main')}</span>
                 </button>
                 <button className={`tab-btn ${activeTab === 'staff' ? 'active' : ''}`} onClick={() => setActiveTab('staff')}>
-                    <Users size={18} /><span>{t('hub.tab_staff')}</span>
+                    <FileText size={18} /><span>{t('hub.tab_regulations') || 'التعليمات و اللوائح'}</span>
                 </button>
             </div>
 
             <div className="ann-stats-row">
-                <div className="ann-stat" onClick={() => setUrgencyFilter('all')}>
+                <div className={`ann-stat ${urgencyFilter === 'all' ? 'active' : ''}`} onClick={() => setUrgencyFilter('all')}>
                     <div className="ann-stat-icon" style={{ background: 'rgba(var(--color-primary-rgb), 0.1)', color: 'var(--color-primary)' }}><MessageSquare size={18} /></div>
-                    <div className="ann-stat-info"><span className="ann-stat-value">{stats.total}</span><span className="ann-stat-label">{t('hub.total_announcements')}</span></div>
+                    <div className="ann-stat-info"><span className="ann-stat-value">{stats.total}</span><span className="ann-stat-label">{t('hub.all_publications') || 'الكل'}</span></div>
                 </div>
-                <div className="ann-stat" onClick={() => setUrgencyFilter('mandatory')}>
-                    <div className="ann-stat-icon" style={{ background: urgencies.mandatory.bgColor, color: urgencies.mandatory.color }}><AlertOctagon size={18} /></div>
-                    <div className="ann-stat-info"><span className="ann-stat-value">{stats.mandatory}</span><span className="ann-stat-label">{t('hub.urgency_mandatory')}</span></div>
-                </div>
-                <div className="ann-stat" onClick={() => setUrgencyFilter('urgent')}>
-                    <div className="ann-stat-icon" style={{ background: urgencies.urgent.bgColor, color: urgencies.urgent.color }}><AlertTriangle size={18} /></div>
-                    <div className="ann-stat-info"><span className="ann-stat-value">{stats.urgent}</span><span className="ann-stat-label">{t('hub.urgency_urgent')}</span></div>
-                </div>
-                <div className="ann-stat" onClick={() => setUrgencyFilter('normal')}>
-                    <div className="ann-stat-icon" style={{ background: urgencies.normal.bgColor, color: urgencies.normal.color }}><Info size={18} /></div>
-                    <div className="ann-stat-info"><span className="ann-stat-value">{stats.normal}</span><span className="ann-stat-label">{t('hub.urgency_normal')}</span></div>
-                </div>
+                {Object.entries(categories).map(([key, config]) => (
+                    <div key={key} className={`ann-stat ${urgencyFilter === key ? 'active' : ''}`} onClick={() => setUrgencyFilter(prev => prev === key ? 'all' : key)}>
+                        <div className="ann-stat-icon" style={{ background: `${config.color}18`, color: config.color }}>
+                            <Tag size={16} />
+                        </div>
+                        <div className="ann-stat-info">
+                            <span className="ann-stat-value">{stats.byCategory[key] || 0}</span>
+                            <span className="ann-stat-label">{config.name || t(`hub.category_${key}`) || key}</span>
+                        </div>
+                    </div>
+                ))}
             </div>
 
             <div className="ann-filters">
                 <div className="search-wrap">
                     <Search size={16} />
-                    <input type="text" placeholder={t('hub.search_announcements')} value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+                    <input type="text" placeholder={t('hub.search_announcements') || 'ابحث في المنشورات...'} value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} style={{ fontFamily: 'inherit' }} />
                 </div>
                 <div className="urgency-chips">
-                    {['all', 'mandatory', 'urgent', 'normal'].map(level => (
+                    {['all', ...Object.keys(urgencies)].map(level => (
                         <button
                             key={level}
                             className={`urgency-chip ${urgencyFilter === level ? 'active' : ''}`}
                             onClick={() => setUrgencyFilter(level)}
                             style={level !== 'all' && urgencyFilter === level ? { background: urgencies[level].bgColor, color: urgencies[level].color, borderColor: urgencies[level].color } : {}}
                         >
-                            {level !== 'all' && React.createElement(urgencies[level].icon, { size: 14 })}
-                            <span>{t(`hub.filter_${level}`)}</span>
+                            {level !== 'all' && React.createElement(urgencies[level]?.icon || Info, { size: 14 })}
+                            <span>{level === 'all' ? t(`hub.filter_all`) : (urgencies[level]?.name || t(`hub.filter_${level}`) || t(`hub.urgency_${level}`) || level)}</span>
                         </button>
                     ))}
                 </div>
@@ -698,8 +769,8 @@ export const HubPublications = () => {
                     filteredAnnouncements.map((ann, idx) => (
                         <div key={ann.id || idx} className="update-card" style={{ borderLeft: `4px solid ${categories[ann.category]?.color || '#ccc'}` }}>
                             <div className="update-meta">
-                                <span className="cat-badge" style={{ backgroundColor: `${categories[ann.category]?.color}20`, color: categories[ann.category]?.color }}>
-                                    {t(`hub.category_${ann.category}`)}
+                                <span className="cat-badge" style={{ backgroundColor: `${categories[ann.category]?.color || '#ccc'}20`, color: categories[ann.category]?.color || '#ccc' }}>
+                                    {categories[ann.category]?.name || t(`hub.category_${ann.category}`) || ann.category}
                                 </span>
                                 {ann.pinned && <span className="badge-pinned">📌</span>}
                                 <span className="date">{formatDate(ann.date)}</span>
@@ -723,7 +794,7 @@ export const HubPublications = () => {
             <Modal
                 isOpen={showModal}
                 onClose={() => setShowModal(false)}
-                title={t('hub.schedule_publication') || t('hub.schedule_announcement')}
+                title={t('hub.create_publication') || 'إنشاء منشور / تعليمة جديدة'}
                 icon={MessageSquare}
                 size="large"
                 footer={renderModalFooter()}
@@ -741,16 +812,34 @@ export const HubPublications = () => {
                     <div className="fm-section">
                         <div className="fm-header">
                             <h4>{t('hub.manage_categories')}</h4>
-                            <button className="add-cat-btn" onClick={() => handleFilterAction('add', 'category')}><Plus size={14} /><span>{t('hub.add_category')}</span></button>
+                            <button className="add-cat-btn" onClick={addCategory}><Plus size={14} /><span>{t('hub.add_category')}</span></button>
                         </div>
                         <div className="fm-grid">
                             {Object.entries(categories).map(([key, config]) => (
-                                <div key={key} className="fm-item">
-                                    <span className="cat-dot" style={{ background: config.color }} />
-                                    <span className="cat-name">{t(`hub.category_${key}`)}</span>
+                                <div key={key} className={`fm-item ${editingItem?.type === 'category' && editingItem?.key === key ? 'editing' : ''}`}>
+                                    <input
+                                        type="color"
+                                        className="color-picker"
+                                        value={config.color}
+                                        onChange={(e) => updateCategoryColor(key, e.target.value)}
+                                        title="تغيير اللون"
+                                    />
+                                    {editingItem?.type === 'category' && editingItem?.key === key ? (
+                                        <input
+                                            type="text"
+                                            className="fm-edit-input"
+                                            value={editingName}
+                                            onChange={(e) => setEditingName(e.target.value)}
+                                            onBlur={stopEditing}
+                                            onKeyDown={(e) => e.key === 'Enter' && stopEditing()}
+                                            autoFocus
+                                        />
+                                    ) : (
+                                        <span className="cat-name" onDoubleClick={() => startEditing('category', key)}>{config.name || t(`hub.category_${key}`) || key}</span>
+                                    )}
                                     <div className="fm-actions">
-                                        <button className="fm-btn edit" onClick={() => handleFilterAction('edit', 'category', key)}><Edit2 size={12} /></button>
-                                        <button className="fm-btn delete" onClick={() => handleFilterAction('delete', 'category', key)}><X size={12} /></button>
+                                        <button className="fm-btn edit" onClick={() => startEditing('category', key)}><Edit2 size={12} /></button>
+                                        <button className="fm-btn delete" onClick={() => deleteCategory(key)}><X size={12} /></button>
                                     </div>
                                 </div>
                             ))}
@@ -760,16 +849,35 @@ export const HubPublications = () => {
                     <div className="fm-section">
                         <div className="fm-header">
                             <h4>{t('hub.manage_urgencies') || 'إدارة مستويات الأهمية'}</h4>
-                            <button className="add-cat-btn" onClick={() => handleFilterAction('add', 'urgency')}><Plus size={14} /><span>{t('hub.add_urgency') || 'إضافة مستوى أهمية'}</span></button>
+                            <button className="add-cat-btn" onClick={addUrgency}><Plus size={14} /><span>{t('hub.add_urgency') || 'إضافة مستوى أهمية'}</span></button>
                         </div>
                         <div className="fm-grid">
                             {Object.entries(urgencies).map(([key, config]) => (
-                                <div key={key} className="fm-item" style={{ borderColor: config.color, background: config.bgColor }}>
-                                    {React.createElement(config.icon, { size: 14, style: { color: config.color } })}
-                                    <span className="cat-name" style={{ color: config.color, fontWeight: 700 }}>{t(`hub.urgency_${key}`)}</span>
+                                <div key={key} className={`fm-item ${editingItem?.type === 'urgency' && editingItem?.key === key ? 'editing' : ''}`} style={{ borderColor: config.color, background: config.bgColor }}>
+                                    <input
+                                        type="color"
+                                        className="color-picker"
+                                        value={config.color}
+                                        onChange={(e) => updateUrgencyColor(key, e.target.value)}
+                                        title="تغيير اللون"
+                                    />
+                                    {editingItem?.type === 'urgency' && editingItem?.key === key ? (
+                                        <input
+                                            type="text"
+                                            className="fm-edit-input"
+                                            value={editingName}
+                                            onChange={(e) => setEditingName(e.target.value)}
+                                            onBlur={stopEditing}
+                                            onKeyDown={(e) => e.key === 'Enter' && stopEditing()}
+                                            autoFocus
+                                            style={{ color: config.color }}
+                                        />
+                                    ) : (
+                                        <span className="cat-name" style={{ color: config.color, fontWeight: 700 }} onDoubleClick={() => startEditing('urgency', key)}>{config.name || t(`hub.urgency_${key}`) || key}</span>
+                                    )}
                                     <div className="fm-actions">
-                                        <button className="fm-btn edit" style={{ color: config.color }} onClick={() => handleFilterAction('edit', 'urgency', key)}><Edit2 size={12} /></button>
-                                        <button className="fm-btn delete" style={{ color: config.color }} onClick={() => handleFilterAction('delete', 'urgency', key)}><X size={12} /></button>
+                                        <button className="fm-btn edit" style={{ color: config.color }} onClick={() => startEditing('urgency', key)}><Edit2 size={12} /></button>
+                                        <button className="fm-btn delete" style={{ color: config.color }} onClick={() => deleteUrgency(key)}><X size={12} /></button>
                                     </div>
                                 </div>
                             ))}

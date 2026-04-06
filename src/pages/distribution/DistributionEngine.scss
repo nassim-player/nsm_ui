@@ -1,0 +1,191 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.distribution-engine {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .engine-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: linear-gradient(135deg, rgba(79, 70, 229, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+        padding: 1.5rem;
+        border-radius: 16px;
+        border: 1px solid rgba(79, 70, 229, 0.1);
+
+        .engine-info {
+            h3 {
+                font-size: 1.25rem;
+                color: var(--text-primary);
+                margin-bottom: 0.5rem;
+            }
+
+            p {
+                color: var(--text-secondary);
+                font-size: 0.95rem;
+            }
+        }
+
+        .engine-btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+
+            &:hover:not(:disabled) {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            }
+
+            &.running {
+                background: #6b7280;
+                cursor: not-allowed;
+
+                svg {
+                    animation: spin 2s linear infinite;
+                }
+            }
+        }
+    }
+
+    .engine-progress {
+        background: var(--bg-card);
+        padding: 1.5rem;
+        border-radius: 16px;
+        border: 1px solid var(--border-color);
+
+        .progress-bar-container {
+            height: 8px;
+            background: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 0.75rem;
+
+            .progress-bar-fill {
+                height: 100%;
+                background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+                transition: width 0.3s ease;
+            }
+        }
+
+        .progress-status {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-align: center;
+            animation: pulse 1.5s infinite;
+        }
+    }
+
+    .engine-criteria-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+
+        .criteria-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+            &:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            }
+
+            .c-icon {
+                width: 44px;
+                height: 44px;
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 1rem;
+
+                &.gender {
+                    background: rgba(236, 72, 153, 0.1);
+                    color: #ec4899;
+                }
+
+                &.level {
+                    background: rgba(139, 92, 246, 0.1);
+                    color: #8b5cf6;
+                }
+
+                &.age {
+                    background: rgba(59, 130, 246, 0.1);
+                    color: #3b82f6;
+                }
+
+                &.capacity {
+                    background: rgba(245, 158, 11, 0.1);
+                    color: #f59e0b;
+                }
+            }
+
+            h4 {
+                font-size: 1.1rem;
+                color: var(--text-primary);
+                margin-bottom: 0.5rem;
+            }
+
+            p {
+                font-size: 0.9rem;
+                color: var(--text-secondary);
+                line-height: 1.5;
+            }
+
+            .demo-bar {
+                display: flex;
+                height: 12px;
+                border-radius: 6px;
+                overflow: hidden;
+                margin-top: 1rem;
+                font-size: 0;
+
+                .male-part {
+                    background: #3b82f6;
+                }
+
+                .female-part {
+                    background: #ec4899;
+                }
+            }
+        }
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.6;
+    }
+}

@@ -1,5 +1,6 @@
 
 import React, { useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { X } from 'react-feather';
 import './Modal.scss';
 import PropTypes from 'prop-types';
@@ -55,7 +56,7 @@ export const Modal = ({
         }
     };
 
-    return (
+    return createPortal(
         <div className={`modal-overlay ${isOpen ? 'is-open' : ''}`} onClick={handleOverlayClick}>
             <div
                 className={`modal-container ${size} ${glass ? 'glass-effect' : ''} ${className}`}
@@ -100,7 +101,8 @@ export const Modal = ({
                     </div>
                 )}
             </div>
-        </div>
+        </div>,
+        document.body
     );
 };
 

@@ -5,9 +5,9 @@ import { Plus, Calendar, Mail, FileText, Settings, UserPlus } from 'react-feathe
 import './QuickLinks.scss';
 import PropTypes from 'prop-types';
 
-export const QuickLinks = ({ className = '' }) => {
-    // These could be dynamic based on role in later versions
-    const links = [
+export const QuickLinks = ({ links: customLinks, className = '' }) => {
+    // Default links for backward compatibility if custom links are not provided
+    const defaultLinks = [
         { to: '/new-task', icon: Plus, label: 'مهمة جديدة', primary: true },
         { to: '/registration', icon: UserPlus, label: 'التسجيلات' },
         { to: '/calendar', icon: Calendar, label: 'التقويم' },
@@ -16,13 +16,16 @@ export const QuickLinks = ({ className = '' }) => {
         { to: '/settings', icon: Settings, label: 'الإعدادات' },
     ];
 
+    const displayLinks = customLinks || defaultLinks;
+
     return (
         <div className={`quick-links-bar ${className}`}>
             <div className="quick-links-container">
-                {links.map((link, index) => (
+                {displayLinks.map((link, index) => (
                     <NavLink
                         key={index}
                         to={link.to}
+                        end={link.exact}
                         className={({ isActive }) => `quick-link-item ${isActive ? 'active' : ''} ${link.primary ? 'primary' : ''}`}
                     >
                         <div className="quick-link-icon">
@@ -38,5 +41,13 @@ export const QuickLinks = ({ className = '' }) => {
 };
 
 QuickLinks.propTypes = {
+    links: PropTypes.arrayOf(PropTypes.shape({
+        to: PropTypes.string.isRequired,
+        icon: PropTypes.elementType.isRequired,
+        label: PropTypes.string.isRequired,
+        badge: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        primary: PropTypes.bool,
+        exact: PropTypes.bool
+    })),
     className: PropTypes.string
 };
